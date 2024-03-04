@@ -1,4 +1,4 @@
-from ._convert import convert_to_string, convert_to_subunit
+from ._convert import convert_to_subunit
 
 from ._tool_kit import (
     AccountType,

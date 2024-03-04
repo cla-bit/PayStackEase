@@ -2,7 +2,6 @@ from .apaystack import AsyncPayStackBase
 from .paystack import PayStackBase
 from .helpers import (
     convert_to_subunit,
-    convert_to_string,
     AccountType,
     Currency,
     Channels,
