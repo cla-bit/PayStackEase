@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "paystackease"
+version = "0.1.0"
+description = "This is a simple api wrapper for paystack"
+authors = ["Peter Mbachu <doublep098@gmail.com>"]
+maintainers = [
+    "petermbachu.bincom <petermbachu.bincom@gmail.com>",
+]
+readme = "README.md"
+license = "MIT"
+keywords = ["paystack", "api", "wrapper"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Development Status :: 5 - Production/Stable",
+    "Natural Language :: English",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+packages = [{include = "paystackease"}]
+
+
+[license]
+text = "Copyright ©2024 Peter Mbachu"
+
+
+[tool.poetry.urls]
+"Homepage" = "https://github.com/cla-bit/paystackease"
+"Repository" = "https://github.com/cla-bit/paystackease"
+"Source Code" = "https://github.com/cla-bit/paystackease"
+"Documentation" = "https://github.com/cla-bit/paystackease"
+"Bug Tracker" = "https://github.com/cla-bit/paystackease/issues"
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+black = "^24.2.0"
+responses = "^0.25.0"
+pytest = "^8.0.1"
+pylint = "^3.0.3"
+pyjwt = "^2.8.0"
+python-decouple = "^3.8"
+pyinquirer = "^1.0.3"
+typer = "^0.9.0"
+rich = "^13.7.0"
+aiohttp = "^3.9.3"
+aioresponses = "^0.7.6"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+pylint = "^3.0.3"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.0.1"
+responses = "^0.25.0"
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--doctest-modules"
+
+
+[tool.black]
+target-version = ['py310', 'py311']
+include = '\.pyi?$'
+
+
+[tool.poetry.scripts]
+apple-pay-script = "paystackease.docs.api_reference.api_apple_pay:main"
+bulk-charge-script = "paystackease.docs.api_reference.api_bulk_charges:main"
+charges-script = "paystackease.docs.api_reference.api_charges:main"
+transaction-script = "paystackease.docs.api_reference.api_transaction:main"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
