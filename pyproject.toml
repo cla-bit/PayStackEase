@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paystackease"
-version = "0.1.0"
+version = "0.1.01"
 description = "This is a simple api wrapper for paystack"
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
 maintainers = [
@@ -43,8 +43,9 @@ pytest = "^8.0.1"
 pylint = "^3.0.3"
 pyjwt = "^2.8.0"
 python-decouple = "^3.8"
-aiohttp = "^3.9.3"
+aiohttp = "^3.9"
 aioresponses = "^0.7.6"
+twine = "^5.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
