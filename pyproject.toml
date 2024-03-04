@@ -27,11 +27,11 @@ text = "Copyright ©2024 Peter Mbachu"
 
 
 [tool.poetry.urls]
-"Homepage" = "https://github.com/cla-bit/paystackease"
-"Repository" = "https://github.com/cla-bit/paystackease"
-"Source Code" = "https://github.com/cla-bit/paystackease"
-"Documentation" = "https://github.com/cla-bit/paystackease"
-"Bug Tracker" = "https://github.com/cla-bit/paystackease/issues"
+"Homepage" = "https://github.com/cla-bit/PayStackEase"
+"Repository" = "https://github.com/cla-bit/PayStackEase"
+"Source Code" = "https://github.com/cla-bit/PayStackEase"
+"Documentation" = "https://github.com/cla-bit/PayStackEase"
+"Bug Tracker" = "https://github.com/cla-bit/PayStackEase/issues"
 
 
 [tool.poetry.dependencies]
