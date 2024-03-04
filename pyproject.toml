@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paystackease"
-version = "0.1.01"
+version = "0.1.02"
 description = "This is a simple api wrapper for paystack"
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
 maintainers = [
