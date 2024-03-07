@@ -1,4 +1,4 @@
-# PayStackEase Library  ![paystackease](docs/images/paystackease.png)
+# PayStackEase Library  ![paystackease](api_docs/images/paystackease.png)
 
 Paystack is a technology company solving payments problems for ambitious businesses. Our mission is to help businesses in Africa become profitable, envied, and loved. We make it easy for businesses to accept secure payments from multiple local and global payment channels, and then we provide tools to help you retain existing customers, and acquire new ones.
 
