@@ -15,7 +15,7 @@ class IntegrationClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request("/integration/payment_session_timeout")
+        return self._get_request("/integration/payment_session_timeout")
 
     def update_timeout(self, timeout: int) -> dict:
         """Update payment session timeout
@@ -27,4 +27,4 @@ class IntegrationClientAPI(PayStackBaseClientAPI):
         """
 
         data = {"timeout": timeout}
-        return self.put_request("/integration/payment_session_timeout", data=data)
+        return self._put_request("/integration/payment_session_timeout", data=data)

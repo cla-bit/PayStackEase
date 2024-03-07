@@ -1,5 +1,6 @@
-from datetime import date, time
-from typing import Union
+"""
+This holds function to convert to subunits in NGN, GHS, USD, ZAR and KES
+"""
 
 from ._tool_kit import Currency
 

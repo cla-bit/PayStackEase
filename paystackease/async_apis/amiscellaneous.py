@@ -45,10 +45,10 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        use_cursor = self.convert_to_string(use_cursor)
-        pay_with_bank_transfer = self.convert_to_string(pay_with_bank_transfer)
-        pay_with_bank = self.convert_to_string(pay_with_bank)
-        enabled_for_verification = self.convert_to_string(enabled_for_verification)
+        use_cursor = self._convert_to_string(use_cursor)
+        pay_with_bank_transfer = self._convert_to_string(pay_with_bank_transfer)
+        pay_with_bank = self._convert_to_string(pay_with_bank)
+        enabled_for_verification = self._convert_to_string(enabled_for_verification)
 
         params = {
             "country": country,
@@ -63,14 +63,14 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
             "type": channel_type,
             "currency": currency,
         }
-        return await self.get_request("/bank", params=params)
+        return await self._get_request("/bank", params=params)
 
     async def list_countries(self) -> dict:
         """Get a list of all supported countries and their properties
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request("/country")
+        return await self._get_request("/country")
 
     async def list_states(self, country: str) -> dict:
         """Get a list of all supported states and their properties
@@ -79,4 +79,4 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         params = {"country": country}
-        return await self.get_request("/address_verification/states", params=params)
+        return await self._get_request("/address_verification/states", params=params)

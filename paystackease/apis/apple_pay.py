@@ -22,7 +22,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         data = {
             "domainName": domain_name,
         }
-        return self.post_request("/apple-pay/domain", data=data)
+        return self._post_request("/apple-pay/domain", data=data)
 
     def list_domains(
         self,
@@ -39,14 +39,14 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        use_cursor = self.convert_to_string(use_cursor)
+        use_cursor = self._convert_to_string(use_cursor)
 
         params = {
             "use_cursor": use_cursor,
             "next": next_page,
             "previous": previous_page,
         }
-        return self.get_request("/apple-pay/domain", params=params)
+        return self._get_request("/apple-pay/domain", params=params)
 
     def unregister_domain(self, domain_name: str) -> dict:
         """Unregister a domain or subdomain for Apple Pay
@@ -58,4 +58,4 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         data = {
             "domainName": domain_name,
         }
-        return self.delete_request("/apple-pay/domain", data=data)
+        return self._delete_request("/apple-pay/domain", data=data)

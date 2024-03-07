@@ -1,6 +1,6 @@
-from .apaystack import AsyncPayStackBase
-from .paystack import PayStackBase
-from .helpers import (
+from paystackease.apaystack import AsyncPayStackBase
+from paystackease.paystack import PayStackBase
+from paystackease.helpers import (
     convert_to_subunit,
     AccountType,
     Currency,

@@ -34,8 +34,8 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -45,7 +45,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             "transaction": transaction_id,
             "status": status,
         }
-        return self.get_request("/dispute", params=params)
+        return self._get_request("/dispute", params=params)
 
     def fetch_dispute(self, dispute_id: str) -> dict:
         """Fetch details about a dispute
@@ -54,7 +54,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/dispute/{dispute_id}")
+        return self._get_request(f"/dispute/{dispute_id}")
 
     def list_transaction_disputes(self, transaction_id: str) -> dict:
         """List disputes for a transaction
@@ -63,7 +63,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/dispute/transaction/{transaction_id}")
+        return self._get_request(f"/dispute/transaction/{transaction_id}")
 
     def update_dispute(
         self,
@@ -81,7 +81,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"refund_amount": refund_amount, "uploaded_filename": uploaded_filename}
-        return self.put_request(f"/dispute/{dispute_id}", data=data)
+        return self._put_request(f"/dispute/{dispute_id}", data=data)
 
     def add_evidence(
         self,
@@ -103,7 +103,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param delivery_date: The delivery date: YYYY-MM-DD
         """
         # convert date to string
-        delivery_date = self.convert_to_string(delivery_date)
+        delivery_date = self._convert_to_string(delivery_date)
 
         data = {
             "customer_email": customer_email,
@@ -113,7 +113,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             "delivery_address": delivery_address,
             "delivery_date": delivery_date,
         }
-        return self.post_request(f"/dispute/{dispute_id}/evidence", data=data)
+        return self._post_request(f"/dispute/{dispute_id}/evidence", data=data)
 
     def get_upload_url(self, dispute_id: str, uploaded_filename: str) -> dict:
         """Get upload url for dispute evidence
@@ -124,7 +124,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         params = {"uploaded_filename": uploaded_filename}
-        return self.get_request(f"/dispute/{dispute_id}/upload_url", params=params)
+        return self._get_request(f"/dispute/{dispute_id}/upload_url", params=params)
 
     def resolve_dispute(
         self,
@@ -153,7 +153,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             "uploaded_filename": uploaded_filename,
             "evidence": evidence,
         }
-        return self.put_request(f"/dispute/{dispute_id}/resolve", data=data)
+        return self._put_request(f"/dispute/{dispute_id}/resolve", data=data)
 
     def export_disputes(
         self,
@@ -174,8 +174,8 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         Acceptable values: { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -185,4 +185,4 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             "transaction": transaction_id,
             "status": status,
         }
-        return self.get_request("/dispute/export", params=params)
+        return self._get_request("/dispute/export", params=params)

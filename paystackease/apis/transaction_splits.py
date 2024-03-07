@@ -42,7 +42,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
             "bearer_type": bearer_type,
             "bearer_subaccount": bearer_subaccount,
         }
-        return self.post_request("/split", data=data)
+        return self._post_request("/split", data=data)
 
     def add_or_update_subaccount_split(
         self, split_id, subaccount: str, transaction_share: int
@@ -57,7 +57,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"subaccount": subaccount, "share": transaction_share}
-        return self.post_request(f"/split/{split_id}/subaccount/add", data=data)
+        return self._post_request(f"/split/{split_id}/subaccount/add", data=data)
 
     def remove_sub_account_split(self, split_id, subaccount: str) -> dict:
         """Remove a Sub Account from a transaction split
@@ -68,7 +68,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"subaccount": subaccount}
-        return self.post_request(f"/split/{split_id}/subaccount/remove", data=data)
+        return self._post_request(f"/split/{split_id}/subaccount/remove", data=data)
 
     def update_split(
         self,
@@ -89,7 +89,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        active = self.convert_to_string(active)
+        active = self._convert_to_string(active)
 
         data = {
             "name": transaction_split_name,
@@ -97,7 +97,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
             "bearer_type": bearer_type,
             "bearer_subaccount": bearer_subaccount,
         }
-        return self.put_request(f"/split/{split_id}", data=data)
+        return self._put_request(f"/split/{split_id}", data=data)
 
     def list_split(
         self,
@@ -122,9 +122,9 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date and bool to string
-        active = self.convert_to_string(active)
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        active = self._convert_to_string(active)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "name": split_name,
@@ -135,7 +135,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/split", params=params)
+        return self._get_request("/split", params=params)
 
     def fetch_split(self, split_id: str) -> dict:
         """Fetch details of a specific transaction split
@@ -144,4 +144,4 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/split/{split_id}")
+        return self._get_request(f"/split/{split_id}")

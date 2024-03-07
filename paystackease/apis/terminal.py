@@ -32,7 +32,7 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"type": event_type, "action": terminal_action, "data": data_object}
-        return self.post_request(f"/terminal/{terminal_id}/event", data=data)
+        return self._post_request(f"/terminal/{terminal_id}/event", data=data)
 
     def commission_terminal(self, serial_number: str) -> dict:
         """Activate debug device by linking it to your integration
@@ -42,7 +42,7 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"serial_number": serial_number}
-        return self.post_request("/terminal/commission_device", data=data)
+        return self._post_request("/terminal/commission_device", data=data)
 
     def decommission_terminal(self, serial_number: str) -> dict:
         """Deactivate debug device by unlinking it from your integration
@@ -52,7 +52,7 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"serial_number": serial_number}
-        return self.post_request("/terminal/decommission_device", data=data)
+        return self._post_request("/terminal/decommission_device", data=data)
 
     def update_terminal(
         self, terminal_id: str, terminal_name: str, terminal_address: str
@@ -66,7 +66,7 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"name": terminal_name, "address": terminal_address}
-        return self.put_request(f"/terminal/{terminal_id}", data=data)
+        return self._put_request(f"/terminal/{terminal_id}", data=data)
 
     def fetch_event_status(self, terminal_id: str, event_id: str) -> dict:
         """Fetch details of a specific event status sent to the terminal
@@ -76,7 +76,7 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/terminal/{terminal_id}/event/{event_id}")
+        return self._get_request(f"/terminal/{terminal_id}/event/{event_id}")
 
     def fetch_terminal_status(self, terminal_id: str) -> dict:
         """Fetch the availability of a terminal before sending an event
@@ -85,7 +85,7 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/terminal/{terminal_id}/presence")
+        return self._get_request(f"/terminal/{terminal_id}/presence")
 
     def list_terminals(
         self,
@@ -102,7 +102,7 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         params = {"perPage": per_page, "next": next_cursor, "previous": previous_cursor}
-        return self.get_request("/terminal", params=params)
+        return self._get_request("/terminal", params=params)
 
     def fetch_terminal(self, terminal_id: str) -> dict:
         """Get the details of a terminal
@@ -111,4 +111,4 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/terminal/timeline/{terminal_id}")
+        return self._get_request(f"/terminal/timeline/{terminal_id}")

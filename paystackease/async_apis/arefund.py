@@ -37,7 +37,7 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
             "customer_note": customer_note,
             "merchant_note": merchant_note,
         }
-        return await self.post_request("/refund", data=data)
+        return await self._post_request("/refund", data=data)
 
     async def list_refunds(
         self,
@@ -60,8 +60,8 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "reference": reference,
@@ -71,7 +71,7 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return await self.get_request("/refund", params=params)
+        return await self._get_request("/refund", params=params)
 
     async def fetch_refund(self, reference: str) -> dict:
         """Fetch a refund
@@ -80,4 +80,4 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/refund/{reference}")
+        return await self._get_request(f"/refund/{reference}")

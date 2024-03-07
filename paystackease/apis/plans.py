@@ -36,8 +36,8 @@ class PlanClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        # send_invoices = self.convert_to_string(send_invoices)
-        # send_sms = self.convert_to_string(send_sms)
+        # send_invoices = self._convert_to_string(send_invoices)
+        # send_sms = self._convert_to_string(send_sms)
 
         data = {
             "name": name,
@@ -49,7 +49,7 @@ class PlanClientAPI(PayStackBaseClientAPI):
             "currency": currency,
             "invoice_limit": invoice_limit,
         }
-        return self.post_request("/plan", data=data)
+        return self._post_request("/plan", data=data)
 
     def list_plans(
         self,
@@ -76,7 +76,7 @@ class PlanClientAPI(PayStackBaseClientAPI):
             "interval": interval,
             "amount": amount,
         }
-        return self.get_request("/plan", params=params)
+        return self._get_request("/plan", params=params)
 
     def fetch_plan(self, id_or_code: str) -> dict:
         """Get details of a plan
@@ -85,7 +85,7 @@ class PlanClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/plan/{id_or_code}")
+        return self._get_request(f"/plan/{id_or_code}")
 
     def update_plan(
         self,
@@ -124,4 +124,4 @@ class PlanClientAPI(PayStackBaseClientAPI):
             "currency": currency,
             "invoice_limit": invoice_limit,
         }
-        return self.put_request(f"/plan/{id_or_code}", data=data)
+        return self._put_request(f"/plan/{id_or_code}", data=data)

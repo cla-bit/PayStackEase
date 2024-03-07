@@ -46,7 +46,7 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
             "currency": currency,
             "invoice_limit": invoice_limit,
         }
-        return await self.post_request("/plan", data=data)
+        return await self._post_request("/plan", data=data)
 
     async def list_plans(
         self,
@@ -73,7 +73,7 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
             "interval": interval,
             "amount": amount,
         }
-        return await self.get_request("/plan", params=params)
+        return await self._get_request("/plan", params=params)
 
     async def fetch_plan(self, id_or_code: str) -> dict:
         """Get details of a plan
@@ -82,7 +82,7 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/plan/{id_or_code}")
+        return await self._get_request(f"/plan/{id_or_code}")
 
     async def update_plan(
         self,
@@ -121,4 +121,4 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
             "currency": currency,
             "invoice_limit": invoice_limit,
         }
-        return await self.put_request(f"/plan/{id_or_code}", data=data)
+        return await self._put_request(f"/plan/{id_or_code}", data=data)

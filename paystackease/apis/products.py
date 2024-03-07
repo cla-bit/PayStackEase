@@ -33,7 +33,7 @@ class ProductClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        unlimited = self.convert_to_string(unlimited)
+        unlimited = self._convert_to_string(unlimited)
 
         data = {
             "name": name,
@@ -43,7 +43,7 @@ class ProductClientAPI(PayStackBaseClientAPI):
             "unlimited": unlimited,
             "quantity": quantity,
         }
-        return self.post_request("/product", data=data)
+        return self._post_request("/product", data=data)
 
     def list_products(
         self,
@@ -62,11 +62,11 @@ class ProductClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to strings
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
-        return self.get_request("/product", params=params)
+        return self._get_request("/product", params=params)
 
     def fetch_product(self, product_id: str) -> dict:
         """Get details of a product
@@ -75,7 +75,7 @@ class ProductClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/product/{product_id}")
+        return self._get_request(f"/product/{product_id}")
 
     def update_product(
         self,
@@ -100,7 +100,7 @@ class ProductClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        unlimited = self.convert_to_string(unlimited)
+        unlimited = self._convert_to_string(unlimited)
 
         data = {
             "name": name,
@@ -110,4 +110,4 @@ class ProductClientAPI(PayStackBaseClientAPI):
             "unlimited": unlimited,
             "quantity": quantity,
         }
-        return self.put_request(f"/product/{product_id}", data=data)
+        return self._put_request(f"/product/{product_id}", data=data)

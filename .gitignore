@@ -15,10 +15,13 @@ dist/
 downloads/
 eggs/
 .eggs/
+examples/
+.idea/
 lib/
 lib64/
 parts/
 sdist/
+tests/
 var/
 wheels/
 share/python-wheels/

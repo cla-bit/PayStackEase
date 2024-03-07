@@ -32,7 +32,7 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"type": event_type, "action": terminal_action, "data": data_object}
-        return await self.post_request(f"/terminal/{terminal_id}/event", data=data)
+        return await self._post_request(f"/terminal/{terminal_id}/event", data=data)
 
     async def commission_terminal(self, serial_number: str) -> dict:
         """Activate debug device by linking it to your integration
@@ -42,7 +42,7 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"serial_number": serial_number}
-        return await self.post_request("/terminal/commission_device", data=data)
+        return await self._post_request("/terminal/commission_device", data=data)
 
     async def decommission_terminal(self, serial_number: str) -> dict:
         """Deactivate debug device by unlinking it from your integration
@@ -52,7 +52,7 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"serial_number": serial_number}
-        return await self.post_request("/terminal/decommission_device", data=data)
+        return await self._post_request("/terminal/decommission_device", data=data)
 
     async def update_terminal(
         self, terminal_id: str, terminal_name: str, terminal_address: str
@@ -66,7 +66,7 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"name": terminal_name, "address": terminal_address}
-        return await self.put_request(f"/terminal/{terminal_id}", data=data)
+        return await self._put_request(f"/terminal/{terminal_id}", data=data)
 
     async def fetch_event_status(self, terminal_id: str, event_id: str) -> dict:
         """Fetch details of a specific event status sent to the terminal
@@ -76,7 +76,7 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/terminal/{terminal_id}/event/{event_id}")
+        return await self._get_request(f"/terminal/{terminal_id}/event/{event_id}")
 
     async def fetch_terminal_status(self, terminal_id: str) -> dict:
         """Fetch the availability of a terminal before sending an event
@@ -85,7 +85,7 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/terminal/{terminal_id}/presence")
+        return await self._get_request(f"/terminal/{terminal_id}/presence")
 
     async def list_terminals(
         self,
@@ -102,7 +102,7 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         params = {"perPage": per_page, "next": next_cursor, "previous": previous_cursor}
-        return await self.get_request("/terminal", params=params)
+        return await self._get_request("/terminal", params=params)
 
     async def fetch_terminal(self, terminal_id: str) -> dict:
         """Get the details of a terminal
@@ -111,4 +111,4 @@ class AsyncTerminalClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/terminal/timeline/{terminal_id}")
+        return await self._get_request(f"/terminal/timeline/{terminal_id}")

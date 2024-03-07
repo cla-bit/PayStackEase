@@ -37,7 +37,7 @@ class RefundClientAPI(PayStackBaseClientAPI):
             "customer_note": customer_note,
             "merchant_note": merchant_note,
         }
-        return self.post_request("/refund", data=data)
+        return self._post_request("/refund", data=data)
 
     def list_refunds(
         self,
@@ -60,8 +60,8 @@ class RefundClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "reference": reference,
@@ -71,7 +71,7 @@ class RefundClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/refund", params=params)
+        return self._get_request("/refund", params=params)
 
     def fetch_refund(self, reference: str) -> dict:
         """Fetch a refund
@@ -80,4 +80,4 @@ class RefundClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/refund/{reference}")
+        return self._get_request(f"/refund/{reference}")

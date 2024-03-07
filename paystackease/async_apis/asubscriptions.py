@@ -29,7 +29,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        start_date = self.convert_to_string(start_date)
+        start_date = self._convert_to_string(start_date)
 
         data = {
             "customer": customer,
@@ -37,7 +37,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
             "authorization": authorization,
             "start_date": start_date,
         }
-        return await self.post_request("/subscription", data=data)
+        return await self._post_request("/subscription", data=data)
 
     async def list_subscriptions(
         self,
@@ -61,7 +61,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
             "customer": customer,
             "plan": plan_code,
         }
-        return await self.get_request("/subscription", params=params)
+        return await self._get_request("/subscription", params=params)
 
     async def fetch_subscription(self, id_or_code: str) -> dict:
         """Get details of a subscription
@@ -70,7 +70,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/subscription/{id_or_code}")
+        return await self._get_request(f"/subscription/{id_or_code}")
 
     async def enable_subscription(self, subscription_code: str, token: str) -> dict:
         """Enable a subscription
@@ -81,7 +81,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"code": subscription_code, "token": token}
-        return await self.post_request("/subscription/enable", data=data)
+        return await self._post_request("/subscription/enable", data=data)
 
     async def disable_subscription(self, subscription_code: str, token: str) -> dict:
         """Disable a subscription
@@ -92,7 +92,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"code": subscription_code, "token": token}
-        return await self.post_request("/subscription/disable", data=data)
+        return await self._post_request("/subscription/disable", data=data)
 
     async def generate_update_subscription(self, subscription_code: str) -> dict:
         """Generate a link for updating the card on subscription
@@ -101,7 +101,9 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.post_request(f"/subscription/{subscription_code}/manage/link")
+        return await self._post_request(
+            f"/subscription/{subscription_code}/manage/link"
+        )
 
     async def send_update_subscription_link(self, subscription_code: str) -> dict:
         """Email a customer a link for updating the card on their subscription
@@ -110,6 +112,6 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.post_request(
+        return await self._post_request(
             f"/subscription/{subscription_code}/manage/email"
         )

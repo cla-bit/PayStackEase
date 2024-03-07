@@ -20,7 +20,7 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         params = {"account_number": account_number, "bank_code": bank_code}
-        return await self.get_request("/bank/resolve", params=params)
+        return await self._get_request("/bank/resolve", params=params)
 
     async def validate_account(
         self,
@@ -55,7 +55,7 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
             "document_type": document_type,
             "document_number": document_number,
         }
-        return await self.post_request("/bank/validate", data=data)
+        return await self._post_request("/bank/validate", data=data)
 
     async def resolve_card_bin(self, bin_code: str) -> dict:
         """Resolve a card BIN
@@ -64,4 +64,4 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/decision/bin/{bin_code}")
+        return await self._get_request(f"/decision/bin/{bin_code}")

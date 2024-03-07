@@ -42,7 +42,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
             "currency": currency,
             "reference": reference,
         }
-        return await self.post_request("/transfer", data=data)
+        return await self._post_request("/transfer", data=data)
 
     async def finalize_transfer(self, transfer_code: str, otp: str) -> dict:
         """Finalize an initiated transfer
@@ -53,7 +53,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"transfer_code": transfer_code, "otp": otp}
-        return await self.post_request("/transfer/finalize_transfer", data=data)
+        return await self._post_request("/transfer/finalize_transfer", data=data)
 
     async def initiate_bulk_transfer(
         self, transfer_source: str, transfers: List[Dict[str, str]]
@@ -66,7 +66,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"source": transfer_source, "transfers": transfers}
-        return await self.post_request("/transfer/bulk", data=data)
+        return await self._post_request("/transfer/bulk", data=data)
 
     async def list_transfers(
         self,
@@ -87,8 +87,8 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -97,7 +97,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return await self.get_request("/transfer", params=params)
+        return await self._get_request("/transfer", params=params)
 
     async def fetch_transfer(self, id_or_code: str) -> dict:
         """Get details of a transfer
@@ -106,7 +106,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/transfer/{id_or_code}")
+        return await self._get_request(f"/transfer/{id_or_code}")
 
     async def verify_transfer(self, reference: str) -> dict:
         """Verify a transfer
@@ -115,4 +115,4 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.post_request(f"/transfer/verify/{reference}")
+        return await self._post_request(f"/transfer/verify/{reference}")

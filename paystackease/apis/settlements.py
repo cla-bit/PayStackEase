@@ -33,8 +33,8 @@ class SettlementClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -44,7 +44,7 @@ class SettlementClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/settlement", params=params)
+        return self._get_request("/settlement", params=params)
 
     def list_settlement_transactions(
         self,
@@ -65,10 +65,10 @@ class SettlementClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
-        return self.get_request(
+        return self._get_request(
             f"/settlement/{settlement_id}/transactions", params=params
         )

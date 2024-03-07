@@ -58,7 +58,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
             "device_id": device_id,
             "metadata": metadata,
         }
-        return self.post_request("/charge", data=data)
+        return self._post_request("/charge", data=data)
 
     def submit_pin(self, pin: int, reference: str) -> dict:
         """Submit a PIN for a charge
@@ -72,7 +72,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
             "pin": pin,
             "reference": reference,
         }
-        return self.post_request("/charge/submit_pin", data=data)
+        return self._post_request("/charge/submit_pin", data=data)
 
     def submit_otp(self, otp: int, reference: str) -> dict:
         """Submit OTP to complete a charge
@@ -86,7 +86,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
             "otp": otp,
             "reference": reference,
         }
-        return self.post_request("/charge/submit_otp", data=data)
+        return self._post_request("/charge/submit_otp", data=data)
 
     def submit_phone(self, phone: str, reference: str) -> dict:
         """Submit a phone number to complete a charge
@@ -100,7 +100,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
             "phone": phone,
             "reference": reference,
         }
-        return self.post_request("/charge/submit_phone", data=data)
+        return self._post_request("/charge/submit_phone", data=data)
 
     def submit_birthday(self, birthday: str, reference: str) -> dict:
         """submit birthday when required
@@ -114,7 +114,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
             "birthday": birthday,
             "reference": reference,
         }
-        return self.post_request("/charge/submit_birthday", data=data)
+        return self._post_request("/charge/submit_birthday", data=data)
 
     def submit_address(
         self, reference: str, address: str, city: str, state: str, zipcode: str
@@ -136,7 +136,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
             "state": state,
             "zip_code": zipcode,
         }
-        return self.post_request("/charge/submit_address", data=data)
+        return self._post_request("/charge/submit_address", data=data)
 
     def check_pending_charge(self, reference: str) -> dict:
         """Check pending charge
@@ -145,4 +145,4 @@ class ChargesClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/charge/{reference}")
+        return self._get_request(f"/charge/{reference}")

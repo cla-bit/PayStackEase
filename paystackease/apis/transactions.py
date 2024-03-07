@@ -65,7 +65,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             "bearer": bearer,
             "metadata": metadata,
         }
-        return self.post_request("/transaction/initialize", data=data)
+        return self._post_request("/transaction/initialize", data=data)
 
     def charge_authorization(
         self,
@@ -99,7 +99,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        queue = self.convert_to_string(queue)
+        queue = self._convert_to_string(queue)
 
         data = {
             "email": email,
@@ -114,7 +114,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             "queue": queue,
             "metadata": metadata,
         }
-        return self.post_request("/transaction/charge_authorization", data=data)
+        return self._post_request("/transaction/charge_authorization", data=data)
 
     def partial_debit(
         self,
@@ -145,7 +145,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             "reference": reference,
             "at_least": at_least,
         }
-        return self.post_request("/transaction/partial_debit", data=data)
+        return self._post_request("/transaction/partial_debit", data=data)
 
     def list_transactions(
         self,
@@ -172,8 +172,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -185,7 +185,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/transaction", params=params)
+        return self._get_request("/transaction", params=params)
 
     def verify_transaction(self, reference: str) -> dict:
         """Verify a transaction by reference
@@ -194,7 +194,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/transaction/verify/{reference}")
+        return self._get_request(f"/transaction/verify/{reference}")
 
     def fetch_transaction(self, transaction_id: int) -> dict:
         """Fetch details of a specific transaction
@@ -203,7 +203,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/transaction/{transaction_id}")
+        return self._get_request(f"/transaction/{transaction_id}")
 
     def transaction_timeline(self, id_or_reference: str) -> dict:
         """Get the timeline of a transaction
@@ -212,7 +212,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/transaction/timeline/{id_or_reference}")
+        return self._get_request(f"/transaction/timeline/{id_or_reference}")
 
     def transaction_totals(
         self,
@@ -231,8 +231,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -240,7 +240,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/transaction/totals", params=params)
+        return self._get_request("/transaction/totals", params=params)
 
     def export_transactions(
         self,
@@ -273,9 +273,9 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date and bool to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
-        settled = self.convert_to_string(settled)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
+        settled = self._convert_to_string(settled)
 
         if isinstance(settled, bool):
             settled = str(settled).lower()
@@ -292,4 +292,4 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/transaction/export", params=params)
+        return self._get_request("/transaction/export", params=params)

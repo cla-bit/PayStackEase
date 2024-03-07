@@ -66,7 +66,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             "bearer": bearer,
             "metadata": metadata,
         }
-        return await self.post_request("/transaction/initialize", data=data)
+        return await self._post_request("/transaction/initialize", data=data)
 
     async def charge_authorization(
         self,
@@ -100,7 +100,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        queue = self.convert_to_string(queue)
+        queue = self._convert_to_string(queue)
 
         data = {
             "email": email,
@@ -115,7 +115,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             "queue": queue,
             "metadata": metadata,
         }
-        return await self.post_request("/transaction/charge_authorization", data=data)
+        return await self._post_request("/transaction/charge_authorization", data=data)
 
     async def partial_debit(
         self,
@@ -146,7 +146,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             "reference": reference,
             "at_least": at_least,
         }
-        return await self.post_request("/transaction/partial_debit", data=data)
+        return await self._post_request("/transaction/partial_debit", data=data)
 
     async def list_transactions(
         self,
@@ -173,8 +173,8 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -186,7 +186,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return await self.get_request("/transaction", params=params)
+        return await self._get_request("/transaction", params=params)
 
     async def verify_transaction(self, reference: str) -> dict:
         """Verify a transaction by reference
@@ -195,7 +195,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/transaction/verify/{reference}")
+        return await self._get_request(f"/transaction/verify/{reference}")
 
     async def fetch_transaction(self, transaction_id: int) -> dict:
         """Fetch details of a specific transaction
@@ -204,7 +204,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/transaction/{transaction_id}")
+        return await self._get_request(f"/transaction/{transaction_id}")
 
     async def transaction_timeline(self, id_or_reference: str) -> dict:
         """Get the timeline of a transaction
@@ -213,7 +213,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/transaction/timeline/{id_or_reference}")
+        return await self._get_request(f"/transaction/timeline/{id_or_reference}")
 
     async def transaction_totals(
         self,
@@ -232,8 +232,8 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -241,7 +241,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return await self.get_request("/transaction/totals", params=params)
+        return await self._get_request("/transaction/totals", params=params)
 
     async def export_transactions(
         self,
@@ -274,9 +274,9 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date and bool to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
-        settled = self.convert_to_string(settled)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
+        settled = self._convert_to_string(settled)
 
         params = {
             "perPage": per_page,
@@ -291,4 +291,4 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return await self.get_request("/transaction/export", params=params)
+        return await self._get_request("/transaction/export", params=params)

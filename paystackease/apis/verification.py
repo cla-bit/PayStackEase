@@ -20,7 +20,7 @@ class VerificationClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         params = {"account_number": account_number, "bank_code": bank_code}
-        return self.get_request("/bank/resolve", params=params)
+        return self._get_request("/bank/resolve", params=params)
 
     def validate_account(
         self,
@@ -39,7 +39,8 @@ class VerificationClientAPI(PayStackBaseClientAPI):
         :param account_type: The account type to validate: personal or business
         :param bank_code: The bank code to validate
         :param country_code: The country code to validate
-        :param document_type: The customer's mode of identity: identityNumber, passportNumber or businessRegistrationNumber
+        :param document_type: The customer's mode of identity:
+        identityNumber, passportNumber or businessRegistrationNumber
         :param document_number: The customer's document number
 
         :return: The response from the API
@@ -54,7 +55,7 @@ class VerificationClientAPI(PayStackBaseClientAPI):
             "document_type": document_type,
             "document_number": document_number,
         }
-        return self.post_request("/bank/validate", data=data)
+        return self._post_request("/bank/validate", data=data)
 
     def resolve_card_bin(self, bin_code: str) -> dict:
         """Resolve a card BIN
@@ -63,4 +64,4 @@ class VerificationClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/decision/bin/{bin_code}")
+        return self._get_request(f"/decision/bin/{bin_code}")

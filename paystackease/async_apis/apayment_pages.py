@@ -48,7 +48,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
             "metadata": metadata,
             "custom_fields": custom_fields,
         }
-        return await self.post_request("/page", data=data)
+        return await self._post_request("/page", data=data)
 
     async def list_payment_pages(
         self,
@@ -67,11 +67,11 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
-        return await self.get_request("/page", params=params)
+        return await self._get_request("/page", params=params)
 
     async def fetch_payment_page(self, page_id_or_slug: str) -> dict:
         """Get details of a payment page
@@ -80,7 +80,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/page/{page_id_or_slug}")
+        return await self._get_request(f"/page/{page_id_or_slug}")
 
     async def update_payment_page(
         self,
@@ -101,7 +101,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        active = self.convert_to_string(active)
+        active = self._convert_to_string(active)
 
         data = {
             "name": name,
@@ -109,7 +109,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
             "amount": amount,
             "active": active,
         }
-        return await self.put_request(f"/page/{page_id_or_slug}", data=data)
+        return await self._put_request(f"/page/{page_id_or_slug}", data=data)
 
     async def check_slug_available(self, page_slug: str) -> dict:
         """Check if a slug is available
@@ -118,7 +118,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/page/check_slug_availability/{page_slug}")
+        return await self._get_request(f"/page/check_slug_availability/{page_slug}")
 
     async def add_products(self, payment_id: int, product: List[int]) -> dict:
         """Add products to a payment page
@@ -129,4 +129,4 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"product": product}
-        return await self.post_request(f"/page/{payment_id}/product", data=data)
+        return await self._post_request(f"/page/{payment_id}/product", data=data)

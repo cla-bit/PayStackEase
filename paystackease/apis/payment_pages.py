@@ -48,7 +48,7 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
             "metadata": metadata,
             "custom_fields": custom_fields,
         }
-        return self.post_request("/page", data=data)
+        return self._post_request("/page", data=data)
 
     def list_payment_pages(
         self,
@@ -67,11 +67,11 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
-        return self.get_request("/page", params=params)
+        return self._get_request("/page", params=params)
 
     def fetch_payment_page(self, page_id_or_slug: str) -> dict:
         """Get details of a payment page
@@ -80,7 +80,7 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/page/{page_id_or_slug}")
+        return self._get_request(f"/page/{page_id_or_slug}")
 
     def update_payment_page(
         self,
@@ -102,7 +102,7 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert bool to string
-        active = self.convert_to_string(active)
+        active = self._convert_to_string(active)
 
         data = {
             "name": name,
@@ -110,7 +110,7 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
             "amount": amount,
             "active": active,
         }
-        return self.put_request(f"/page/{page_id_or_slug}", data=data)
+        return self._put_request(f"/page/{page_id_or_slug}", data=data)
 
     def check_slug_available(self, page_slug: str) -> dict:
         """Check if a slug is available
@@ -119,7 +119,7 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/page/check_slug_availability/{page_slug}")
+        return self._get_request(f"/page/check_slug_availability/{page_slug}")
 
     def add_products(self, payment_id: int, product: List[int]) -> dict:
         """Add products to a payment page
@@ -130,4 +130,4 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"product": product}
-        return self.post_request(f"/page/{payment_id}/product", data=data)
+        return self._post_request(f"/page/{payment_id}/product", data=data)

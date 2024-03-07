@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "paystackease"
-version = "0.1.03"
+version = "0.1.0"
 description = "This is a simple api wrapper for paystack"
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
 maintainers = [
     "petermbachu.bincom <petermbachu.bincom@gmail.com>",
 ]
-readme = "README.md"
 license = "MIT"
+readme = "README.md"
 keywords = ["paystack", "api", "wrapper"]
 classifiers = [
     "Programming Language :: Python :: 3.11",
@@ -36,25 +36,22 @@ text = "Copyright ©2024 Peter Mbachu"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+aiohttp = "^3.9.3"
 requests = "^2.31.0"
-black = "^24.2.0"
-responses = "^0.25.0"
-pytest = "^8.0.1"
-pylint = "^3.0.3"
-pyjwt = "^2.8.0"
-python-decouple = "^3.8"
-aiohttp = "^3.7"
 aioresponses = "^0.7.6"
+responses = "^0.25.0"
+python-decouple = "^3.8"
+pytest = "^8.0.2"
 twine = "^5.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.2.0"
-pylint = "^3.0.3"
+pylint = "^3.1.0"
 
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.0.1"
+pytest = "^8.0.2"
 responses = "^0.25.0"
 
 

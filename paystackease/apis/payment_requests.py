@@ -45,7 +45,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date and bool to string
-        due_date = self.convert_to_string(due_date)
+        due_date = self._convert_to_string(due_date)
 
         data = {
             "customer": customer,
@@ -61,7 +61,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
             "invoice_number": invoice_number,
             "split_code": split_code,
         }
-        return self.post_request("/paymentrequest", data=data)
+        return self._post_request("/paymentrequest", data=data)
 
     def list_payment_requests(
         self,
@@ -88,8 +88,8 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -101,7 +101,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/paymentrequest", params=params)
+        return self._get_request("/paymentrequest", params=params)
 
     def fetch_payment_request(self, id_or_code: str) -> dict:
         """Get details of a payment request on your integration
@@ -110,7 +110,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/paymentrequest/{id_or_code}")
+        return self._get_request(f"/paymentrequest/{id_or_code}")
 
     def verify_payment_request(self, code: str) -> dict:
         """Verify details of a payment request on your integration
@@ -119,7 +119,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/paymentrequest/verify/{code}")
+        return self._get_request(f"/paymentrequest/verify/{code}")
 
     def send_notification(self, code: str) -> dict:
         """Send notification of a payment request to a customer
@@ -128,14 +128,14 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.post_request(f"/paymentrequest/notify/{code}")
+        return self._post_request(f"/paymentrequest/notify/{code}")
 
     def payment_request_total(self) -> dict:
         """Get total of a payment request metric
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request("/paymentrequest/totals")
+        return self._get_request("/paymentrequest/totals")
 
     def finalize_payment_request(self, code: str, send_notification: bool) -> dict:
         """Finalize a draft payment request
@@ -146,7 +146,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"send_notification": send_notification}
-        return self.post_request(f"/paymentrequest/finalize/{code}", data=data)
+        return self._post_request(f"/paymentrequest/finalize/{code}", data=data)
 
     def update_payment_request(
         self,
@@ -181,7 +181,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date and bool to string
-        due_date = self.convert_to_string(due_date)
+        due_date = self._convert_to_string(due_date)
 
         data = {
             "customer": customer,
@@ -196,7 +196,7 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
             "invoice_number": invoice_number,
             "split_code": split_code,
         }
-        return self.put_request(f"/paymentrequest/{id_or_code}", data=data)
+        return self._put_request(f"/paymentrequest/{id_or_code}", data=data)
 
     def archive_payment_request(self, code: str) -> dict:
         """Archive a payment request
@@ -205,4 +205,4 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.post_request(f"/paymentrequest/archive/{code}")
+        return self._post_request(f"/paymentrequest/archive/{code}")

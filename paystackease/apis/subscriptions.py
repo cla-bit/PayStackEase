@@ -29,7 +29,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        start_date = self.convert_to_string(start_date)
+        start_date = self._convert_to_string(start_date)
 
         data = {
             "customer": customer,
@@ -37,7 +37,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
             "authorization": authorization,
             "start_date": start_date,
         }
-        return self.post_request("/subscription", data=data)
+        return self._post_request("/subscription", data=data)
 
     def list_subscriptions(
         self,
@@ -61,7 +61,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
             "customer": customer,
             "plan": plan_code,
         }
-        return self.get_request("/subscription", params=params)
+        return self._get_request("/subscription", params=params)
 
     def fetch_subscription(self, id_or_code: str) -> dict:
         """Get details of a subscription
@@ -70,7 +70,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/subscription/{id_or_code}")
+        return self._get_request(f"/subscription/{id_or_code}")
 
     def enable_subscription(self, subscription_code: str, token: str) -> dict:
         """Enable a subscription
@@ -81,7 +81,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"code": subscription_code, "token": token}
-        return self.post_request("/subscription/enable", data=data)
+        return self._post_request("/subscription/enable", data=data)
 
     def disable_subscription(self, subscription_code: str, token: str) -> dict:
         """Disable a subscription
@@ -92,7 +92,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"code": subscription_code, "token": token}
-        return self.post_request("/subscription/disable", data=data)
+        return self._post_request("/subscription/disable", data=data)
 
     def generate_update_subscription(self, subscription_code: str) -> dict:
         """Generate a link for updating the card on subscription
@@ -101,7 +101,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.post_request(f"/subscription/{subscription_code}/manage/link")
+        return self._post_request(f"/subscription/{subscription_code}/manage/link")
 
     def send_update_subscription_link(self, subscription_code: str) -> dict:
         """Email a customer a link for updating the card on their subscription
@@ -110,4 +110,4 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.post_request(f"/subscription/{subscription_code}/manage/email")
+        return self._post_request(f"/subscription/{subscription_code}/manage/email")

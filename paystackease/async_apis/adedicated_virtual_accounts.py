@@ -47,7 +47,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             "last_name": last_name,
             "phone": phone,
         }
-        return await self.post_request("/dedicated_account", data=data)
+        return await self._post_request("/dedicated_account", data=data)
 
     async def assign_dedicated_virtual_account(
         self,
@@ -94,7 +94,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             "subaccount": subaccount,
             "split_code": split_code,
         }
-        return await self.post_request("/dedicated_account", data=data)
+        return await self._post_request("/dedicated_account", data=data)
 
     async def list_dedicated_account(
         self,
@@ -121,7 +121,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             "bank_id": bank_id,
             "customer": customer_id,
         }
-        return await self.get_request("/dedicated_account", params=params)
+        return await self._get_request("/dedicated_account", params=params)
 
     async def fetch_dedicated_account(self, dedicated_account_id: int) -> dict:
         """Get details of a dedicated virtual account
@@ -130,7 +130,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/dedicated_account/{dedicated_account_id}")
+        return await self._get_request(f"/dedicated_account/{dedicated_account_id}")
 
     async def requery_dedicated_account(
         self,
@@ -147,14 +147,14 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        date_transfer = self.convert_to_string(date_transfer)
+        date_transfer = self._convert_to_string(date_transfer)
 
         params = {
             "account_number": account_number,
             "provider_slug": provider_slug,
             "date": date_transfer,
         }
-        return await self.get_request("/dedicated_account/requery", params=params)
+        return await self._get_request("/dedicated_account/requery", params=params)
 
     async def deactivate_dedicated_account(self, dedicated_account_id: int) -> dict:
         """Deactivate a dedicated virtual account
@@ -163,7 +163,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.delete_request(f"/dedicated_account/{dedicated_account_id}")
+        return await self._delete_request(f"/dedicated_account/{dedicated_account_id}")
 
     async def split_dedicated_account(
         self,
@@ -187,7 +187,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             "subaccount": subaccount,
             "split_code": split_code,
         }
-        return await self.post_request("/dedicated_account/split", data=data)
+        return await self._post_request("/dedicated_account/split", data=data)
 
     async def remove_split_dedicated_account(self, account_number: str) -> dict:
         """Remove a split dedicated virtual account
@@ -199,11 +199,11 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         data = {
             "account_number": account_number,
         }
-        return await self.delete_request("/dedicated_account/split", data=data)
+        return await self._delete_request("/dedicated_account/split", data=data)
 
     async def fetch_bank_providers(self) -> dict:
         """Fetch bank providers
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request("/dedicated_account/available_providers")
+        return await self._get_request("/dedicated_account/available_providers")

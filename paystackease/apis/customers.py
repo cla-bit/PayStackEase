@@ -39,7 +39,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             "phone": phone,
             "metadata": metadata,
         }
-        return self.post_request("/customer", data=data)
+        return self._post_request("/customer", data=data)
 
     def validate_customer(
         self,
@@ -80,7 +80,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             "bank_code": bank_code,
             "account_number": account_number,
         }
-        return self.post_request(f"customer/{email_or_code}/identification", data=data)
+        return self._post_request(f"customer/{email_or_code}/identification", data=data)
 
     def whitelist_blacklist_customer(
         self, email_or_code: str, risk_action: Optional[str] = None
@@ -93,7 +93,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"customer": email_or_code, "risk_action": risk_action}
-        return self.post_request("/customer/set_risk_action", data=data)
+        return self._post_request("/customer/set_risk_action", data=data)
 
     def deactivate_authorization(self, authorization_code: str) -> dict:
         """Deactivate an authorization when the card needs to be forgotten
@@ -103,7 +103,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"authorization_code": authorization_code}
-        return self.post_request("/customer/deactivate_authorization", data=data)
+        return self._post_request("/customer/deactivate_authorization", data=data)
 
     def update_customer(
         self,
@@ -129,7 +129,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             "phone": phone,
             "metadata": metadata,
         }
-        return self.put_request(f"/customer/{customer_code}", data=data)
+        return self._put_request(f"/customer/{customer_code}", data=data)
 
     def fetch_customer(self, email_or_code: str) -> dict:
         """Fetch details of a specific customer
@@ -138,7 +138,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/customer/{email_or_code}")
+        return self._get_request(f"/customer/{email_or_code}")
 
     def list_customers(
         self,
@@ -157,8 +157,8 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date  to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
-        return self.get_request("/customer", params=params)
+        return self._get_request("/customer", params=params)

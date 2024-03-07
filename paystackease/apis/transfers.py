@@ -42,7 +42,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
             "currency": currency,
             "reference": reference,
         }
-        return self.post_request("/transfer", data=data)
+        return self._post_request("/transfer", data=data)
 
     def finalize_transfer(self, transfer_code: str, otp: str) -> dict:
         """Finalize an initiated transfer
@@ -53,7 +53,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"transfer_code": transfer_code, "otp": otp}
-        return self.post_request("/transfer/finalize_transfer", data=data)
+        return self._post_request("/transfer/finalize_transfer", data=data)
 
     def initiate_bulk_transfer(
         self, transfer_source: str, transfers: List[Dict[str, str]]
@@ -66,7 +66,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"source": transfer_source, "transfers": transfers}
-        return self.post_request("/transfer/bulk", data=data)
+        return self._post_request("/transfer/bulk", data=data)
 
     def list_transfers(
         self,
@@ -87,8 +87,8 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -97,7 +97,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
             "from": from_date,
             "to": to_date,
         }
-        return self.get_request("/transfer", params=params)
+        return self._get_request("/transfer", params=params)
 
     def fetch_transfer(self, id_or_code: str) -> dict:
         """Get details of a transfer
@@ -106,7 +106,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.get_request(f"/transfer/{id_or_code}")
+        return self._get_request(f"/transfer/{id_or_code}")
 
     def verify_transfer(self, reference: str) -> dict:
         """Verify a transfer
@@ -115,4 +115,4 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return self.post_request(f"/transfer/verify/{reference}")
+        return self._post_request(f"/transfer/verify/{reference}")

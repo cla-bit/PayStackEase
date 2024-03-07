@@ -39,7 +39,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
             "phone": phone,
             "metadata": metadata,
         }
-        return await self.post_request("/customer", data=data)
+        return await self._post_request("/customer", data=data)
 
     async def validate_customer(
         self,
@@ -80,7 +80,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
             "bank_code": bank_code,
             "account_number": account_number,
         }
-        return await self.post_request(
+        return await self._post_request(
             f"customer/{email_or_code}/identification", data=data
         )
 
@@ -95,7 +95,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"customer": email_or_code, "risk_action": risk_action}
-        return await self.post_request("/customer/set_risk_action", data=data)
+        return await self._post_request("/customer/set_risk_action", data=data)
 
     async def deactivate_authorization(self, authorization_code: str) -> dict:
         """Deactivate an authorization when the card needs to be forgotten
@@ -105,7 +105,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"authorization_code": authorization_code}
-        return await self.post_request("/customer/deactivate_authorization", data=data)
+        return await self._post_request("/customer/deactivate_authorization", data=data)
 
     async def update_customer(
         self,
@@ -131,7 +131,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
             "phone": phone,
             "metadata": metadata,
         }
-        return await self.put_request(f"/customer/{code}", data=data)
+        return await self._put_request(f"/customer/{code}", data=data)
 
     async def fetch_customer(self, email_or_code: str) -> dict:
         """Fetch details of a specific customer
@@ -140,7 +140,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/customer/{email_or_code}")
+        return await self._get_request(f"/customer/{email_or_code}")
 
     async def list_customers(
         self,
@@ -159,8 +159,8 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
-        return await self.get_request("/customer", params=params)
+        return await self._get_request("/customer", params=params)

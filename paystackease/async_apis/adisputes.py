@@ -34,8 +34,8 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -45,7 +45,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
             "transaction": transaction_id,
             "status": status,
         }
-        return await self.get_request("/dispute", params=params)
+        return await self._get_request("/dispute", params=params)
 
     async def fetch_dispute(self, dispute_id: str) -> dict:
         """Fetch details about a dispute
@@ -54,7 +54,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/dispute/{dispute_id}")
+        return await self._get_request(f"/dispute/{dispute_id}")
 
     async def list_transaction_disputes(self, transaction_id: str) -> dict:
         """List disputes for a transaction
@@ -63,7 +63,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        return await self.get_request(f"/dispute/transaction/{transaction_id}")
+        return await self._get_request(f"/dispute/transaction/{transaction_id}")
 
     async def update_dispute(
         self,
@@ -81,7 +81,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         data = {"refund_amount": refund_amount, "uploaded_filename": uploaded_filename}
-        return await self.put_request(f"/dispute/{dispute_id}", data=data)
+        return await self._put_request(f"/dispute/{dispute_id}", data=data)
 
     async def add_evidence(
         self,
@@ -103,7 +103,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :param delivery_date: The delivery date: YYYY-MM-DD
         """
         # convert date to string
-        delivery_date = self.convert_to_string(delivery_date)
+        delivery_date = self._convert_to_string(delivery_date)
 
         data = {
             "customer_email": customer_email,
@@ -113,7 +113,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
             "delivery_address": delivery_address,
             "delivery_date": delivery_date,
         }
-        return await self.post_request(f"/dispute/{dispute_id}/evidence", data=data)
+        return await self._post_request(f"/dispute/{dispute_id}/evidence", data=data)
 
     async def get_upload_url(self, dispute_id: str, uploaded_filename: str) -> dict:
         """Get upload url for dispute evidence
@@ -124,7 +124,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :rtype: dict
         """
         params = {"uploaded_filename": uploaded_filename}
-        return await self.get_request(
+        return await self._get_request(
             f"/dispute/{dispute_id}/upload_url", params=params
         )
 
@@ -155,7 +155,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
             "uploaded_filename": uploaded_filename,
             "evidence": evidence,
         }
-        return await self.put_request(f"/dispute/{dispute_id}/resolve", data=data)
+        return await self._put_request(f"/dispute/{dispute_id}/resolve", data=data)
 
     async def export_disputes(
         self,
@@ -176,8 +176,8 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         Acceptable values: { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
         """
         # convert date to string
-        from_date = self.convert_to_string(from_date)
-        to_date = self.convert_to_string(to_date)
+        from_date = self._convert_to_string(from_date)
+        to_date = self._convert_to_string(to_date)
 
         params = {
             "perPage": per_page,
@@ -187,4 +187,4 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
             "transaction": transaction_id,
             "status": status,
         }
-        return await self.get_request("/dispute/export", params=params)
+        return await self._get_request("/dispute/export", params=params)
