@@ -132,7 +132,7 @@ class AsyncBaseClientAPI:
         data = json.dumps(data) if data else None
         try:
             async with self._session.request(
-                method, url, data=data, params=params, **kwargs
+                method, url=url, data=data, params=params, **kwargs
             ) as response:
                 response_json = await response.json()
                 logger.info("Response Status Code: %s", response.status)

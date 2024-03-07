@@ -123,7 +123,7 @@ class BaseClientAPI:
         try:
             with self._session.request(
                 method,
-                url,
+                url=url,
                 headers=self._headers,
                 data=data,
                 params=params,
