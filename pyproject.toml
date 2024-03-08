@@ -35,7 +35,7 @@ text = "Copyright ©2024 Peter Mbachu"
 
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 aiohttp = "^3.9.3"
 requests = "^2.31.0"
 aioresponses = "^0.7.6"
