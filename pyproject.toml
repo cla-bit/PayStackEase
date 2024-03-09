@@ -44,6 +44,7 @@ python-decouple = "^3.8"
 pytest = "^8.0.2"
 twine = "^5.0.0"
 sphinx = "^7.2.6"
+sphinxawesome-theme = "^5.1.1"
 
 
 [tool.poetry.group.dev.dependencies]
