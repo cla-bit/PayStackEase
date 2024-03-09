@@ -27,7 +27,7 @@ from paystackease.async_apis import (
     atransfers_control,
     averification,
 )
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncPayStackBase(AsyncPayStackBaseClientAPI):

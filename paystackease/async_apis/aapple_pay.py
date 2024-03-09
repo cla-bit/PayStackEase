@@ -4,7 +4,7 @@ The Apple Pay API allows you register your application's top-level domain or sub
 
 from typing import Optional
 
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):

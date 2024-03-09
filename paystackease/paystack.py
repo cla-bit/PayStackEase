@@ -27,7 +27,7 @@ from paystackease.apis import (
     transfers_control,
     verification,
 )
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
 class PayStackBase(PayStackBaseClientAPI):

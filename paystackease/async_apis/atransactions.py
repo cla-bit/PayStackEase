@@ -6,7 +6,7 @@ from datetime import date
 
 from typing import List, Optional, Dict, Any
 
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):

@@ -3,7 +3,7 @@ The Plans API allows you to create and manage installment payment options on you
 """
 
 from typing import Optional
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
 class PlanClientAPI(PayStackBaseClientAPI):
@@ -35,10 +35,6 @@ class PlanClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        # convert bool to string
-        # send_invoices = self._convert_to_string(send_invoices)
-        # send_sms = self._convert_to_string(send_sms)
-
         data = {
             "name": name,
             "amount": amount,

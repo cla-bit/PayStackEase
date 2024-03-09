@@ -2,7 +2,7 @@
 The Integration API allows you manage some settings on your integration.
 """
 
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncIntegrationClientAPI(AsyncPayStackBaseClientAPI):

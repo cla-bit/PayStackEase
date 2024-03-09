@@ -1,17 +1,23 @@
 """
-Base client API for Paystack API with methods for handling HTTP requests, authentication using a secret key,
+Base client API for Paystack API with methods for handling HTTP requests,
+authentication using a secret key,
 constructing HTTP headers, joining URLs with the API base URL, and logging response information.
 """
 
 import json
 import logging
-from datetime import time, date
-from typing import Union
 
+from datetime import date
+from typing import Union
 from urllib.parse import urljoin
 from decouple import config
 
 import requests
+
+from paystackease._errors import (
+    SecretKeyError, TypeValueError, InvalidRequestMethodError, PayStackError
+)
+
 
 logger = logging.getLogger(__name__)
 
@@ -34,8 +40,12 @@ class BaseClientAPI:
 
         # Raise an error if PAYSTACK_SECRET_KEY is not set in the instance or environment variables
         if not self._secret_key:
-            logger.error("Please provide a secret key")
-            raise ValueError("Please provide a secret key")
+            logger.error(
+                "Please provide a secret key or set the environment variable PAYSTACK_SECRET_KEY"
+            )
+            raise SecretKeyError(
+                "Please provide a secret key or set the environment variable PAYSTACK_SECRET_KEY"
+            )
 
         self._session = requests.Session()
 
@@ -68,7 +78,7 @@ class BaseClientAPI:
 
     @staticmethod
     def _convert_to_string(
-        value: Union[bool, date, time, None]
+        value: Union[bool, date, None]
     ) -> Union[str, int, None]:
         """
         Convert the type of value to a string
@@ -89,8 +99,10 @@ class BaseClientAPI:
             return None
         if type(value) in conversion_functions:
             return conversion_functions[type(value)](value)
-        logger.error(f"Unsupported type: %s. Expected type -bool, -date", {type(value)})
-        raise TypeError(f"Unsupported type: {type(value)}")
+        logger.error("Unsupported type: %s Expected type -bool, -date", {type(value)})
+        raise TypeValueError(
+            f"Unsupported type: {type(value)}. Expected type -bool, -date"
+        )
 
     def _request_url(
         self, method: str, url: str, data: dict = None, params: dict = None, **kwargs
@@ -106,9 +118,10 @@ class BaseClientAPI:
         """
         if method.upper() not in self._VALID_HTTP_METHODS:
             logger.error(
-                f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : %s", {method}
+                "Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE : %s",
+                {method},
             )
-            raise ValueError(
+            raise InvalidRequestMethodError(
                 f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
             )
 
@@ -135,7 +148,7 @@ class BaseClientAPI:
                 return response.json()
         except requests.RequestException as error:
             logger.error("Error %s", error)
-            raise
+            raise PayStackError(str(error), response.status_code)
 
 
 class PayStackBaseClientAPI(BaseClientAPI):
@@ -198,4 +211,3 @@ class PayStackBaseClientAPI(BaseClientAPI):
         :return:
         """
         return self._request("DELETE", endpoint, **kwargs)
-

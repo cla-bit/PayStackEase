@@ -3,7 +3,7 @@ The Miscellaneous API are supporting APIs that can be used to provide more detai
 """
 
 from typing import Optional
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
@@ -44,12 +44,6 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        # convert bool to string
-        use_cursor = self._convert_to_string(use_cursor)
-        pay_with_bank_transfer = self._convert_to_string(pay_with_bank_transfer)
-        pay_with_bank = self._convert_to_string(pay_with_bank)
-        enabled_for_verification = self._convert_to_string(enabled_for_verification)
-
         params = {
             "country": country,
             "use_cursor": use_cursor,

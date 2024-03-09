@@ -4,7 +4,7 @@ The Transfer Recipients API allows you to create and manage beneficiaries that y
 
 from datetime import date
 from typing import Optional, Dict, List
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
