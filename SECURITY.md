@@ -2,20 +2,36 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+PayStackEase supports the following version
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| Library      | Version  | Supported |
+|--------------|----------|-----------|
+| Python       | + 3.10.x | ✅         |
+| Aiohttp      | + 3.9.x  | ✅         |
+| Aioresponses | + 0.7.x  | ✅         |
+| Requests     | + 2.30.x | ✅         |
+| Responses    | + 0.25.x | ✅         |
+
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you have any vulnerability issue within our library, please report via the following:
+* **Github Issue**: Open a new issue on Github [here](https://github.com/cla-bit/PayStackEase/issues)
+* **Email**: Alternatively, you can send an email to [security email](mailto:doublep098@gmail.com).
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+We appreciate responsible disclosure to ensure the safety of all users.
+
+## Vulnerability Handling Process
+
+Upon receiving a vulnerability report, our security team will promptly review and acknowledge your submission. 
+We aim to provide an initial response within 72 hours to acknowledge receipt of the report and begin our investigation.
+
+## Vulnerability Assessment
+
+Our team will assess the reported vulnerability to determine its severity, impact, and validity. 
+We may reach out to the reporter for further clarification or details during this process.
+
+## Fixing the Vulnerability
+
+If the reported vulnerability is confirmed, our development team will work diligently to develop and release a fix. 
+We prioritize the security and safety of our users and strive to release patches as quickly as possible.

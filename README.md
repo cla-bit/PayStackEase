@@ -1,6 +1,6 @@
 # PayStackEase Library  ![paystackease](./api_docs/images/paystackease.png)
 
-Paystack is a technology company solving payments problems for ambitious businesses. Our mission is to help businesses in Africa become profitable, envied, and loved. We make it easy for businesses to accept secure payments from multiple local and global payment channels, and then we provide tools to help you retain existing customers, and acquire new ones.
+Paystack is a technology company solving payments problems for ambitious businesses. 
 
 This **PayStackEase API Library** consists of **Paystack API** asynchronous and synchronous wrappers, which can be integrated into python projects to interact with **Paystack**.
 
@@ -12,7 +12,7 @@ Getting Started
 
 You should create a Paystack account to generate a **Paystack Secret Key**. You can see this in the settings page >> API keys and Webhook section.
 
-> ⚠️: **Warning:** Do not expose your secret key or commit your secret keys to git, or use them in client-side code.
+> ⚠️: **Warning:** Do not expose your secret key or commit your secret key to git, or use them in client-side code.
 
 > 💡: **Take Note:**  Public key is to be used from your front-end when integrating using Paystack Inline. In this case you have to use you secret key
 
