@@ -1,4 +1,6 @@
-""" Wrapper for Asynchronous Paystack Dedicated Virtual Account API
+"""
+Wrapper for Asynchronous Paystack Dedicated Virtual Account API
+
 The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 """
 
