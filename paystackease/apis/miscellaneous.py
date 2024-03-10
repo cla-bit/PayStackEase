@@ -13,20 +13,22 @@ class MiscellaneousClientAPI(PayStackBaseClientAPI):
 
     def list_banks(
         self,
-        country: Optional[str] = None,
-        use_cursor: Optional[bool] = False,
-        per_page: Optional[int] = None,
-        pay_with_bank_transfer: Optional[bool] = None,
-        pay_with_bank: Optional[bool] = None,
-        enabled_for_verification: Optional[bool] = None,
-        next_cursor: Optional[str] = None,
-        previous_cursor: Optional[str] = None,
-        gateway: Optional[str] = None,
-        channel_type: Optional[str] = None,
-        currency: Optional[str] = None,
+            country: Optional[str] = None,
+            use_cursor: Optional[bool] = False,
+            per_page: Optional[int] = None,
+            pay_with_bank_transfer: Optional[bool] = None,
+            pay_with_bank: Optional[bool] = None,
+            enabled_for_verification: Optional[bool] = None,
+            next_cursor: Optional[str] = None,
+            previous_cursor: Optional[str] = None,
+            gateway: Optional[str] = None,
+            channel_type: Optional[str] = None,
+            currency: Optional[str] = None,
     ) -> dict:
         """Get a list of all supported banks and their properties
-        :param country: The country to obtain the list of supported banks: Values { country=ghana or country=nigeria }
+
+        :param country: The country to obtain the list of supported banks:
+        Values { country=ghana or country=nigeria }
         :param use_cursor: Use cursor to paginate through the list of supported banks
         :param per_page: The number of records to return per page: 10, 20 or 50
         :param pay_with_bank_transfer: filter for available banks a customer can make a
@@ -36,7 +38,8 @@ class MiscellaneousClientAPI(PayStackBaseClientAPI):
         verification in South Africa. Combine with currency or country filter
         :param next_cursor: The cursor for the next page of results
         :param previous_cursor: The cursor for the previous page of results
-        :param gateway: filters for banks that support a specific payment gateway: { emandate or digitalbankmandate }
+        :param gateway: filters for banks that support a specific payment gateway:
+        { emandate or digitalbankmandate }
         :param currency: filter for banks that support a specific currency
         :param channel_type: Type of financial channel. { Channels.value.value}
         For Ghanaian channels, please use either mobile_money for mobile money channels OR ghipps for bank channels
@@ -61,6 +64,7 @@ class MiscellaneousClientAPI(PayStackBaseClientAPI):
 
     def list_countries(self) -> dict:
         """Get a list of all supported countries and their properties
+
         :return: The response from the API
         :rtype: dict
         """
