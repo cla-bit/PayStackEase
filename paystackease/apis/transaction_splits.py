@@ -7,7 +7,7 @@ across their payout account, and one or more subaccounts.
 
 from datetime import date
 from typing import Optional, List, Dict, Any
-from paystackease.apis.base import PayStackBaseClientAPI
+from paystackease.base import PayStackBaseClientAPI
 
 
 class TransactionSplitClientAPI(PayStackBaseClientAPI):
@@ -32,7 +32,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :param: transaction_split_type: The type of transaction split you want to create [ percentage | flat ]
         :param: currency: [ Currency.value.value ]
         :param: subaccounts: A list of object containing subaccount code and number of shares
-        [{subaccount: ‘ACT_xxxxxxxxxx’, share: xxx},{...}]
+                            [{subaccount: ‘ACT_xxxxxxxxxx’, share: xxx},{...}]
         :param: bearer_type: Any of subaccount | account | all-proportional | all
         :param: bearer_subaccount: Subaccount code
 

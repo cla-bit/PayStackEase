@@ -6,7 +6,7 @@ The Payment Pages API provides a quick and secure way to collect payment for pro
 
 from datetime import date
 from typing import Optional, Dict, List
-from paystackease.apis.base import PayStackBaseClientAPI
+from paystackease.base import PayStackBaseClientAPI
 
 
 class PaymentPagesClientAPI(PayStackBaseClientAPI):
@@ -40,7 +40,7 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
             Page will be accessible at https://paystack.com/pay/page_slug
 
         :param: redirect_url: If you would like Paystack to redirect someplace
-        upon successful payment, specify the URL here.
+                                upon successful payment, specify the URL here.
         :param: metadata: Extra data to configure the payment page including subaccount,logo image, transaction charge
         :param: custom_fields: If you would like to accept custom fields, specify them here.
 

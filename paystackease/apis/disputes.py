@@ -6,7 +6,7 @@ The Disputes API allows you manage transaction disputes on your integration.
 
 from datetime import date
 from typing import Optional
-from paystackease.apis.base import PayStackBaseClientAPI
+from paystackease.base import PayStackBaseClientAPI
 
 
 class DisputesClientAPI(PayStackBaseClientAPI):
@@ -33,7 +33,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param: page:
         :param: transaction_id:
         :param: status: Dispute Status. Acceptable values:
-        { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
+                        { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
 
         :return: The response from the API
         :rtype: dict
@@ -87,7 +87,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param: dispute_id: The dispute id to fetch
         :param: refund_amount: The amount to refund to the customer
         :param: uploaded_filename: filename of attachment returned via
-        response from upload url(GET /dispute/:id/upload_url)
+                                    response from upload url(GET /dispute/:id/upload_url)
 
         :return: The response from the API
         :rtype: dict
@@ -195,7 +195,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param: to_date: The end date to fetch disputes from
         :param: transaction_id: The transaction ID
         :param: status: The dispute status:
-        Acceptable values: { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
+                        Acceptable values: { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
 
         :return: The response from the API
         :rtype: dict

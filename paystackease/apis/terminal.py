@@ -5,7 +5,7 @@ The Terminal API allows you to build delightful in-person payment experiences.
 """
 
 from typing import Optional, Dict
-from paystackease.apis.base import PayStackBaseClientAPI
+from paystackease.base import PayStackBaseClientAPI
 
 
 class TerminalClientAPI(PayStackBaseClientAPI):
@@ -27,11 +27,11 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :param: terminal_id: The terminal iD the event is sent to
         :param: event_type: The type of event to send. We currently support [ invoice | transaction ]
         :param: terminal_action: The action to perform on the terminal
-        [invoice type]:the action can either be [ process || view ]
-         [transaction type], the action can either be [ process || print ].
-         :param: data_object: parameters needed to perform the specified action.
-         [invoice type]: you need to pass {id: invoice_id, reference: offline_reference}.
-         [transaction type], you can pass {id: transaction_id}
+                                    [invoice type]:the action can either be [ process || view ]
+                                    [transaction type], the action can either be [ process || print ].
+        :param: data_object: parameters needed to perform the specified action.
+                            [invoice type]: you need to pass {id: invoice_id, reference: offline_reference}.
+                            [transaction type], you can pass {id: transaction_id}
 
         :return: The response from the API
         :rtype: dict

@@ -6,7 +6,7 @@ The Transfer Recipients API allows you to create and manage beneficiaries that y
 
 from datetime import date
 from typing import Optional, Dict, List
-from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
+from paystackease.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
@@ -32,7 +32,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
         :param: recipient_type: The type of transfer recipient:[ nuban | ghipss | mobile_money | basa ]
         :param: recipient_name: The name of the transfer recipient according to their account registration
         :param: account_number: transfer recipient's account number.
-        Required for all recipient types except authorization
+                                Required for all recipient types except authorization
         :param: bank_code: transfer recipient's bank code. Required for all recipient types except authorization
         :param: description:
         :param: currency: transfer recipient's currency. [Currency.value.value ]
@@ -59,7 +59,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
         Create multiple transfer recipients in batches.
 
         :param: batch: A list of transfer recipient object
-        keys [ { type, name, account_number, bank_code, currency etc. }]
+                        keys [ { type, name, account_number, bank_code, currency etc. }]
 
         :return: The response from the API
         :rtype: dict

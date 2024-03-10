@@ -5,7 +5,7 @@ The Charge API allows you to configure payment channel of your choice when initi
 """
 
 from typing import Optional, Dict, Any
-from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
+from paystackease.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):

@@ -7,7 +7,7 @@ The Transfers API allows you to automate sending money to your customers.
 from datetime import date
 from typing import Optional, List, Dict
 
-from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
+from paystackease.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
@@ -34,7 +34,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :param: currency: The currency of the transfer
         :param: reason: The reason for the transfer
         :param: reference: If specified, the field should be a unique identifier (in lowercase) for the object.
-        Only -,_ and alphanumeric characters allowed.
+                            Only -,_ and alphanumeric characters allowed.
 
         :return: The response from the API
         :rtype: dict

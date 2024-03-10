@@ -73,7 +73,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-paystackease/docs/_build/
+docs/_build/
 
 # PyBuilder
 .pybuilder/

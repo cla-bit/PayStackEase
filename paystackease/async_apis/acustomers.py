@@ -7,7 +7,7 @@ The Customers API allows you to create and manage customers on your integration.
 from datetime import date
 
 from typing import Optional, Dict, Any
-from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
+from paystackease.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
@@ -32,7 +32,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         :param: last_name: The last name of the customer.
         :param: phone: The phone number of the customer.
         :param: metadata: The metadata of the customer in JSON format.
-        (Set key as: {"custom_fields": [{ "label": "First Name", "value": "John" }] })
+                            (Set key as: {"custom_fields": [{ "label": "First Name", "value": "John" }] })
 
         :return: The response from the API
         :rtype: dict

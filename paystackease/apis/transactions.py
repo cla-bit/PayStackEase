@@ -7,7 +7,7 @@ The Transactions API allows you to create and manage payments on your integratio
 from datetime import date
 from typing import List, Optional, Dict, Any
 
-from paystackease.apis.base import PayStackBaseClientAPI
+from paystackease.base import PayStackBaseClientAPI
 
 
 class TransactionClientAPI(PayStackBaseClientAPI):
@@ -36,19 +36,19 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         Initialize a transaction
 
         :param: email:
-        :param: amount:  amount should be in subunit in this case 10000 kobo = 100 naira.
-        Use convert_currency() to convert to subunit
+        :param: amount: amount should be in subunit in this case 10000 kobo = 100 naira.
+                        Use convert_currency() to convert to subunit
         :param: currency:  # Currency.value.value
         :param: reference:
-        :param: callback_url:  # Use this to override the callback url provided on the  dashboard
-            # https://example.com/callback
+        :param: callback_url: # Use this to override the callback url provided on the  dashboard
+                            # https://example.com/callback
         :param: plan:  # If transaction is to create a subscription to a predefined plan, provide plan code here.
         :param: invoice_limit:  # Number of times to charge customer during subscription to plan
         :param: channels:  # [Channels.value.value, Channels.value.value, ...]
         :param: split_code:  # The split code of the transaction split. e.g. SPL_98WF13Eb3w
         :param: subaccount:  # The code for the subaccount that owns the payment. e.g. ACCT_8f4s1eq7ml6rlzj
         :param: transaction_charge: # An amount used to override the split configuration for a
-            # single split payment
+                                    # single split payment
         :param: bearer:  # Who bears Paystack charges? Two options: account, subaccount
         :param: metadata:  # Stringified JSON object of custom data. {"foo": "bar" }
 
@@ -90,8 +90,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         Charge an authorization transaction
 
         :param: email:
-        :param: amount:  amount should be in subunit in this case 10000 kobo = 100 naira.
-        Use convert_currency() to convert to subunit
+        :param: amount: amount should be in subunit in this case 10000 kobo = 100 naira.
+                        Use convert_currency() to convert to subunit
         :param: authorization_code:  # value = AUTH_1234234WRFW
         :param: reference:
         :param: currency:  # value = Currency.value.value
@@ -138,8 +138,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
 
         :param: email:
         :param: authorization_code:  # value = AUTH_1234234WRFW
-        :param: amount:  amount should be in subunit in this case 10000 kobo = 100 naira.
-        Use convert_currency() to convert to subunit
+        :param: amount: amount should be in subunit in this case 10000 kobo = 100 naira.
+                        Use convert_currency() to convert to subunit
         :param: currency:  # value = Currency.value.value
         :param: reference:  # Unique transaction reference.
         :param: at_least:  # Minimum amount to charge

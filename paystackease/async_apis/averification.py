@@ -4,7 +4,7 @@ Wrapper for Asynchronous Paystack Verification APIs
 The Verification API allows you to perform KYC processes.
 """
 
-from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
+from paystackease.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
@@ -47,7 +47,7 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
         :param: bank_code: The bank code to validate
         :param: country_code: The country code to validate
         :param: document_type: The customer's mode of identity:
-        identityNumber, passportNumber or businessRegistrationNumber
+                                identityNumber, passportNumber or businessRegistrationNumber
         :param: document_number: The customer's document number
 
         :return: The response from the API
