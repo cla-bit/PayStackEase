@@ -32,7 +32,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
         return self._post_request("/bulkcharge", data=objects)
 
     def list_bulk_charge_batches(
-        self,
+            self,
             per_page: Optional[int] = None,
             page: Optional[int] = None,
             from_date: Optional[date] = None,
@@ -78,7 +78,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
         return self._get_request(f"/bulkcharge/{id_or_code}")
 
     def fetch_charge_bulk_batch(
-        self,
+            self,
             id_or_code: str,
             status: Optional[str] = None,
             per_page: Optional[int] = None,

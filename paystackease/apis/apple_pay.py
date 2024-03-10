@@ -29,7 +29,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         return self._post_request("/apple-pay/domain", data=data)
 
     def list_domains(
-        self,
+            self,
             use_cursor: Optional[bool] = False,
             next_page: Optional[int] = None,
             previous_page: Optional[int] = None,

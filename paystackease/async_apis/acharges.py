@@ -1,4 +1,6 @@
-""" Wrapper for Asynchronous Paystack Charges API.
+"""
+Wrapper for Asynchronous Paystack Charges API.
+
 The Charge API allows you to configure payment channel of your choice when initiating a payment.
 """
 

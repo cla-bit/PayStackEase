@@ -15,7 +15,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
     """
 
     def create_charge(
-        self,
+            self,
             email: str,
             amount: int,
             pin: Optional[int] = None,
@@ -149,7 +149,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
         return self._post_request("/charge/submit_birthday", data=data)
 
     def submit_address(
-        self, reference: str, address: str, city: str, state: str, zipcode: str
+            self, reference: str, address: str, city: str, state: str, zipcode: str
     ) -> dict:
         """
         Submit address to continue a charge
