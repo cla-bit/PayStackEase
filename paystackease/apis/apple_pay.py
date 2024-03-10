@@ -18,7 +18,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         """
         Register a domain or subdomain for Apple Pay
 
-        :param domain_name  # domain name or subdomain
+        :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
         :rtype: dict
@@ -37,9 +37,9 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         """
         List all registered domains
 
-        :param use_cursor  # use cursor for pagination
-        :param next_page  # next page
-        :param previous_page  # previous page
+        :param: use_cursor  # use cursor for pagination
+        :param: next_page  # next page
+        :param: previous_page  # previous page
 
         :return: The response from the API
         :rtype: dict
@@ -59,7 +59,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         """
         Unregister a domain or subdomain for Apple Pay
 
-        :param domain_name  # domain name or subdomain
+        :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
         :rtype: dict
