@@ -31,8 +31,8 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         """
         Get a list of all supported banks and their properties
 
-        :param: country: The country to obtain the list of supported banks:
-        Values { country=ghana or country=nigeria }
+        :param: country: The country to obtain the list of supported banks.
+                        Values { country=ghana or country=nigeria }
         :param: use_cursor: Use cursor to paginate through the list of supported banks
         :param: per_page: The number of records to return per page: 10, 20 or 50
         :param: pay_with_bank_transfer: filter for available banks a customer can make a transfer to complete a payment
@@ -46,9 +46,9 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         :param: currency: filter for banks that support a specific currency
         :param: channel_type: Type of financial channel. { Channels.value.value}
 
-        note::
+        **note::**
 
-            For Ghanaian channels, please use either mobile_money for mobile money channels OR ghipps for bank channels
+        For Ghanaian channels, please use either mobile_money for mobile money channels OR ghipps for bank channels
 
         :return: The response from the API
         :rtype: dict
