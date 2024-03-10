@@ -2,7 +2,7 @@
 The Verification API allows you to perform KYC processes.
 """
 
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class VerificationClientAPI(PayStackBaseClientAPI):

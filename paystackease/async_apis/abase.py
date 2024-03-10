@@ -1,5 +1,5 @@
 """
-Base client API for Paystack API with methods for handling HTTP requests,
+Async Base client API for Paystack API with methods for handling asynchronous AIOHTTP requests,
 authentication using a secret key,
 constructing HTTP headers, joining URLs with the API base URL, and logging response information.
 """
@@ -12,10 +12,13 @@ from typing import Union
 from urllib.parse import urljoin
 from decouple import config
 
-import requests
+import aiohttp
 
-from paystackease._errors import (
-    SecretKeyError, TypeValueError, InvalidRequestMethodError, PayStackError
+from paystackease.errors import (
+    SecretKeyError,
+    TypeValueError,
+    InvalidRequestMethodError,
+    PayStackError,
 )
 
 
@@ -24,7 +27,7 @@ logger = logging.getLogger(__name__)
 PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 
 
-class BaseClientAPI:
+class AsyncBaseClientAPI:
     """Base Client API for Paystack API"""
 
     _PAYSTACK_API_URL = "https://api.paystack.co/"
@@ -47,9 +50,16 @@ class BaseClientAPI:
                 "Please provide a secret key or set the environment variable PAYSTACK_SECRET_KEY"
             )
 
-        self._session = requests.Session()
+        self._session = aiohttp.ClientSession(
+            headers=self._make_paystack_http_headers()
+        )
 
-        self._headers = self._make_paystack_http_headers()
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, exc_type, exc, tb):
+        if not self._session.closed:
+            await self._session.close()
 
     @classmethod
     def _set_secret_key(cls, secret_key: str) -> None:
@@ -77,9 +87,7 @@ class BaseClientAPI:
         }
 
     @staticmethod
-    def _convert_to_string(
-        value: Union[bool, date, None]
-    ) -> Union[str, int, None]:
+    def _convert_to_string(value: Union[bool, date, None]) -> Union[str, int, None]:
         """
         Convert the type of value to a string
         :param value: The value to be converted
@@ -99,12 +107,12 @@ class BaseClientAPI:
             return None
         if type(value) in conversion_functions:
             return conversion_functions[type(value)](value)
-        logger.error("Unsupported type: %s Expected type -bool, -date", {type(value)})
+        logger.error("Unsupported type: %s. Expected type -bool, -date", {type(value)})
         raise TypeValueError(
             f"Unsupported type: {type(value)}. Expected type -bool, -date"
         )
 
-    def _request_url(
+    async def _request_url(
         self, method: str, url: str, data: dict = None, params: dict = None, **kwargs
     ) -> dict:
         """
@@ -118,7 +126,7 @@ class BaseClientAPI:
         """
         if method.upper() not in self._VALID_HTTP_METHODS:
             logger.error(
-                "Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE : %s",
+                "Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : %s",
                 {method},
             )
             raise InvalidRequestMethodError(
@@ -134,27 +142,22 @@ class BaseClientAPI:
         )
         data = json.dumps(data) if data else None
         try:
-            with self._session.request(
-                method,
-                url=url,
-                headers=self._headers,
-                data=data,
-                params=params,
-                **kwargs,
-                timeout=30,
+            async with self._session.request(
+                method, url=url, data=data, params=params, **kwargs
             ) as response:
-                logger.info("Response Status Code: %s", response.status_code)
-                logger.info("Response JSON: %s", response.json())
-                return response.json()
-        except requests.RequestException as error:
-            logger.error("Error %s", error)
-            raise PayStackError(str(error), response.status_code)
+                response_json = await response.json()
+                logger.info("Response Status Code: %s", response.status)
+                logger.info("Response JSON: %s", response_json)
+                return response_json
+        except aiohttp.ClientError as error:
+            logger.error("Error: %s", error)
+            raise PayStackError(str(error), response.status) from error
 
 
-class PayStackBaseClientAPI(BaseClientAPI):
+class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
     """Requests methods to Paystack API"""
 
-    def _request(
+    async def _request(
         self,
         method: str,
         endpoint: str,
@@ -171,9 +174,11 @@ class PayStackBaseClientAPI(BaseClientAPI):
         :param kwargs:
         :return:
         """
-        return self._request_url(method, endpoint, data=data, params=params, **kwargs)
+        return await self._request_url(
+            method, endpoint, data=data, params=params, **kwargs
+        )
 
-    def _get_request(self, endpoint: str, params: dict = None, **kwargs) -> dict:
+    async def _get_request(self, endpoint: str, params: dict = None, **kwargs) -> dict:
         """
         Makes the GET request to Paystack API
         :param endpoint:
@@ -181,9 +186,9 @@ class PayStackBaseClientAPI(BaseClientAPI):
         :param kwargs:
         :return:
         """
-        return self._request("GET", endpoint, params=params, **kwargs)
+        return await self._request("GET", endpoint, params=params, **kwargs)
 
-    def _post_request(self, endpoint: str, data: dict = None, **kwargs) -> dict:
+    async def _post_request(self, endpoint: str, data: dict = None, **kwargs) -> dict:
         """
         Makes the POST request to Paystack API
         :param endpoint:
@@ -191,9 +196,9 @@ class PayStackBaseClientAPI(BaseClientAPI):
         :param kwargs:
         :return:
         """
-        return self._request("POST", endpoint, data=data, **kwargs)
+        return await self._request("POST", endpoint, data=data, **kwargs)
 
-    def _put_request(self, endpoint: str, data: dict = None, **kwargs) -> dict:
+    async def _put_request(self, endpoint: str, data: dict = None, **kwargs) -> dict:
         """
         Makes the PUT request to Paystack API
         :param endpoint:
@@ -201,13 +206,13 @@ class PayStackBaseClientAPI(BaseClientAPI):
         :param kwargs:
         :return:
         """
-        return self._request("PUT", endpoint, data=data, **kwargs)
+        return await self._request("PUT", endpoint, data=data, **kwargs)
 
-    def _delete_request(self, endpoint: str, **kwargs) -> dict:
+    async def _delete_request(self, endpoint: str, **kwargs) -> dict:
         """
         Makes the DELETE request to Paystack API
         :param endpoint:
         :param kwargs:
         :return:
         """
-        return self._request("DELETE", endpoint, **kwargs)
+        return await self._request("DELETE", endpoint, **kwargs)

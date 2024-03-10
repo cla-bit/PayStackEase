@@ -1,4 +1,4 @@
-# PayStackEase Library  ![paystackease](paystackease/docs/images/paystackease.png)
+# PayStackEase Library  ![paystackease](docs/images/paystackease.png)
 
 Paystack is a technology company solving payments problems for ambitious businesses. 
 

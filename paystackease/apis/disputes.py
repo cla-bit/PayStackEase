@@ -4,7 +4,7 @@ The Disputes API allows you manage transaction disputes on your integration.
 
 from datetime import date
 from typing import Optional
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class DisputesClientAPI(PayStackBaseClientAPI):

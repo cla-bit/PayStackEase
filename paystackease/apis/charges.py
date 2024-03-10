@@ -3,7 +3,7 @@ The Charge API allows you to configure payment channel of your choice when initi
 """
 
 from typing import Optional, Dict, Any
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class ChargesClientAPI(PayStackBaseClientAPI):

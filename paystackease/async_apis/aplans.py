@@ -3,7 +3,7 @@ The Plans API allows you to create and manage installment payment options on you
 """
 
 from typing import Optional
-from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):

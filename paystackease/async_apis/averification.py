@@ -2,7 +2,7 @@
 The Verification API allows you to perform KYC processes.
 """
 
-from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):

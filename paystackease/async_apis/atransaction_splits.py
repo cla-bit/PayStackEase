@@ -5,7 +5,7 @@ across their payout account, and one or more subaccounts.
 
 from datetime import date
 from typing import Optional, List, Dict, Any
-from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):

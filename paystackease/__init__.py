@@ -1,7 +1,9 @@
-from paystackease.apaystack import AsyncPayStackBase
-from paystackease.paystack import PayStackBase
+""" Wrappers for Paystack API calls"""
+
+from paystackease.async_apis.apaystack import AsyncPayStackBase
+from paystackease.apis.paystack import PayStackBase
+from paystackease.helpers import convert_to_subunit
 from paystackease.helpers import (
-    convert_to_subunit,
     AccountType,
     Currency,
     Channels,

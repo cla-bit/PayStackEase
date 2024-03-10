@@ -3,7 +3,7 @@ The Terminal API allows you to build delightful in-person payment experiences.
 """
 
 from typing import Optional, Dict
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class TerminalClientAPI(PayStackBaseClientAPI):

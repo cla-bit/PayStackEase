@@ -2,7 +2,7 @@
 The Transfers Control API allows you manage settings of your transfers.
 """
 
-from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncTransferControlClientAPI(AsyncPayStackBaseClientAPI):

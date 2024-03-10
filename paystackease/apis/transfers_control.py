@@ -2,7 +2,7 @@
 The Transfers Control API allows you manage settings of your transfers.
 """
 
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class TransferControlClientAPI(PayStackBaseClientAPI):

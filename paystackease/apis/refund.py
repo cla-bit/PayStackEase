@@ -4,7 +4,7 @@ The Refunds API allows you to create and manage transaction refunds.
 
 from datetime import date
 from typing import Optional
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class RefundClientAPI(PayStackBaseClientAPI):

@@ -3,7 +3,7 @@ The Miscellaneous API are supporting APIs that can be used to provide more detai
 """
 
 from typing import Optional
-from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):

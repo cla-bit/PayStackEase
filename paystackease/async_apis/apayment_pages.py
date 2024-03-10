@@ -4,7 +4,7 @@ The Payment Pages API provides a quick and secure way to collect payment for pro
 
 from datetime import date
 from typing import Optional, Dict, List
-from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.async_apis.abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):

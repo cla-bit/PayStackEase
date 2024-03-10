@@ -2,7 +2,7 @@
 The Integration API allows you manage some settings on your integration.
 """
 
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class IntegrationClientAPI(PayStackBaseClientAPI):

@@ -4,7 +4,7 @@ The Payment Requests API allows you manage requests for payment of goods and ser
 
 from datetime import date
 from typing import Optional, List, Dict
-from paystackease._base import PayStackBaseClientAPI
+from paystackease.apis.base import PayStackBaseClientAPI
 
 
 class PaymentRequestClientAPI(PayStackBaseClientAPI):

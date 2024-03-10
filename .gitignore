@@ -73,7 +73,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-paystackease/docs/_build/
+docs/_build/
 
 # PyBuilder
 .pybuilder/
@@ -131,6 +131,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+requirements.txt
 
 # Spyder project settings
 .spyderproject
