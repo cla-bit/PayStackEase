@@ -1,6 +1,10 @@
 paystackease API Submodules
 ============================
 
+.. autosummary::
+.. toctree::
+
+
 paystackease.abase module
 -------------------------
 
