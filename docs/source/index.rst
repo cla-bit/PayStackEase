@@ -14,9 +14,14 @@ which can be integrated into python projects to interact with Paystack.
    :caption: Contents:
 
    usage
-   modules
+   submodules
+   paystackease.apis
+   paystackease.async_apis
+   paystackease.helpers
+   errors
    changelog
 
+   howto
 
 
 Indices and tables

@@ -1,8 +1,10 @@
-paystackease.apis package
-=========================
+paystackease APIs Synchronous package
+=======================================
 
-Submodules
-----------
+.. hint::
+    You must have generated a secret key from your paystack account and set the secret key as your environment variable:
+    ``PAYSTACK_SECRET_KEY``.
+
 
 paystackease.apis.apple\_pay module
 -----------------------------------
@@ -12,6 +14,16 @@ paystackease.apis.apple\_pay module
    :undoc-members:
    :show-inheritance:
 
+.. important::
+    The ``paystackease.apis.apple_pay.register_domain`` method can only be called with one domain or subdomain at a time.
+
+.. attention::
+    Ensure you have access to use the Apple Pay endpoint, else call Paystack Customer service.
+
+
+__________________________________________
+
+
 paystackease.apis.bulk\_charges module
 --------------------------------------
 
@@ -19,6 +31,9 @@ paystackease.apis.bulk\_charges module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.charges module
 --------------------------------
@@ -28,6 +43,9 @@ paystackease.apis.charges module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.customers module
 ----------------------------------
 
@@ -35,6 +53,9 @@ paystackease.apis.customers module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.dedicated\_virtual\_accounts module
 -----------------------------------------------------
@@ -44,6 +65,9 @@ paystackease.apis.dedicated\_virtual\_accounts module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.disputes module
 ---------------------------------
 
@@ -51,6 +75,9 @@ paystackease.apis.disputes module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.integration module
 ------------------------------------
@@ -60,6 +87,9 @@ paystackease.apis.integration module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.miscellaneous module
 --------------------------------------
 
@@ -67,6 +97,9 @@ paystackease.apis.miscellaneous module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.payment\_pages module
 ---------------------------------------
@@ -76,6 +109,9 @@ paystackease.apis.payment\_pages module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.payment\_requests module
 ------------------------------------------
 
@@ -83,6 +119,9 @@ paystackease.apis.payment\_requests module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.plans module
 ------------------------------
@@ -92,6 +131,9 @@ paystackease.apis.plans module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.products module
 ---------------------------------
 
@@ -99,6 +141,9 @@ paystackease.apis.products module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.refund module
 -------------------------------
@@ -108,6 +153,9 @@ paystackease.apis.refund module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.settlements module
 ------------------------------------
 
@@ -115,6 +163,9 @@ paystackease.apis.settlements module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.subaccounts module
 ------------------------------------
@@ -124,6 +175,9 @@ paystackease.apis.subaccounts module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.subscriptions module
 --------------------------------------
 
@@ -131,6 +185,9 @@ paystackease.apis.subscriptions module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.terminal module
 ---------------------------------
@@ -140,6 +197,9 @@ paystackease.apis.terminal module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.transaction\_splits module
 --------------------------------------------
 
@@ -147,6 +207,9 @@ paystackease.apis.transaction\_splits module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.transactions module
 -------------------------------------
@@ -156,6 +219,9 @@ paystackease.apis.transactions module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.transfer\_recipients module
 ---------------------------------------------
 
@@ -163,6 +229,9 @@ paystackease.apis.transfer\_recipients module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.apis.transfers module
 ----------------------------------
@@ -172,6 +241,9 @@ paystackease.apis.transfers module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.transfers\_control module
 -------------------------------------------
 
@@ -180,6 +252,9 @@ paystackease.apis.transfers\_control module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.apis.verification module
 -------------------------------------
 
@@ -187,6 +262,9 @@ paystackease.apis.verification module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 Module contents
 ---------------

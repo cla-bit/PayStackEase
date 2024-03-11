@@ -1,8 +1,10 @@
-paystackease.async\_apis package
-================================
+paystackease APIs Asynchronous package
+==============================================
 
-Submodules
-----------
+.. hint::
+    You must have generated a secret key from your paystack account and set the secret key as your environment variable:
+    ``PAYSTACK_SECRET_KEY``.
+
 
 paystackease.async\_apis.aapple\_pay module
 -------------------------------------------
@@ -12,6 +14,15 @@ paystackease.async\_apis.aapple\_pay module
    :undoc-members:
    :show-inheritance:
 
+.. important::
+    The ``paystackease.apis.apple_pay.register_domain`` method can only be called with one domain or subdomain at a time.
+
+.. attention::
+    Ensure you have access to use the Apple Pay endpoint, else call Paystack Customer service.
+
+__________________________________________
+
+
 paystackease.async\_apis.abulk\_charges module
 ----------------------------------------------
 
@@ -19,6 +30,9 @@ paystackease.async\_apis.abulk\_charges module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.acharges module
 ----------------------------------------
@@ -28,6 +42,9 @@ paystackease.async\_apis.acharges module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.acustomers module
 ------------------------------------------
 
@@ -35,6 +52,9 @@ paystackease.async\_apis.acustomers module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.adedicated\_virtual\_accounts module
 -------------------------------------------------------------
@@ -44,6 +64,9 @@ paystackease.async\_apis.adedicated\_virtual\_accounts module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.adisputes module
 -----------------------------------------
 
@@ -51,6 +74,9 @@ paystackease.async\_apis.adisputes module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.aintegration module
 --------------------------------------------
@@ -60,6 +86,9 @@ paystackease.async\_apis.aintegration module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.amiscellaneous module
 ----------------------------------------------
 
@@ -67,6 +96,9 @@ paystackease.async\_apis.amiscellaneous module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.apayment\_pages module
 -----------------------------------------------
@@ -76,6 +108,9 @@ paystackease.async\_apis.apayment\_pages module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.apayment\_requests module
 --------------------------------------------------
 
@@ -83,6 +118,9 @@ paystackease.async\_apis.apayment\_requests module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.aplans module
 --------------------------------------
@@ -92,6 +130,9 @@ paystackease.async\_apis.aplans module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.aproducts module
 -----------------------------------------
 
@@ -99,6 +140,9 @@ paystackease.async\_apis.aproducts module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.arefund module
 ---------------------------------------
@@ -108,6 +152,9 @@ paystackease.async\_apis.arefund module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.asettlements module
 --------------------------------------------
 
@@ -115,6 +162,9 @@ paystackease.async\_apis.asettlements module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.asubaccounts module
 --------------------------------------------
@@ -124,6 +174,9 @@ paystackease.async\_apis.asubaccounts module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.asubscriptions module
 ----------------------------------------------
 
@@ -131,6 +184,9 @@ paystackease.async\_apis.asubscriptions module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.aterminal module
 -----------------------------------------
@@ -140,6 +196,9 @@ paystackease.async\_apis.aterminal module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.atransaction\_splits module
 ----------------------------------------------------
 
@@ -147,6 +206,9 @@ paystackease.async\_apis.atransaction\_splits module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.atransactions module
 ---------------------------------------------
@@ -156,6 +218,9 @@ paystackease.async\_apis.atransactions module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.atransfer\_recipients module
 -----------------------------------------------------
 
@@ -163,6 +228,9 @@ paystackease.async\_apis.atransfer\_recipients module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 paystackease.async\_apis.atransfers module
 ------------------------------------------
@@ -172,6 +240,9 @@ paystackease.async\_apis.atransfers module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.atransfers\_control module
 ---------------------------------------------------
 
@@ -180,6 +251,9 @@ paystackease.async\_apis.atransfers\_control module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.async\_apis.averification module
 ---------------------------------------------
 
@@ -187,6 +261,9 @@ paystackease.async\_apis.averification module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 Module contents
 ---------------

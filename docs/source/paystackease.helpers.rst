@@ -1,8 +1,6 @@
-paystackease.helpers package
-============================
+paystackease helpers package
+=================================
 
-Submodules
-----------
 
 paystackease.helpers.convert module
 -----------------------------------
@@ -12,6 +10,9 @@ paystackease.helpers.convert module
    :undoc-members:
    :show-inheritance:
 
+__________________________________________
+
+
 paystackease.helpers.tool\_kit module
 -------------------------------------
 
@@ -19,6 +20,9 @@ paystackease.helpers.tool\_kit module
    :members:
    :undoc-members:
    :show-inheritance:
+
+__________________________________________
+
 
 Module contents
 ---------------

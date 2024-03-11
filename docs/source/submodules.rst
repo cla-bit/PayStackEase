@@ -1,18 +1,5 @@
-paystackease package
-====================
-
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   paystackease.apis
-   paystackease.async_apis
-   paystackease.helpers
-
-Submodules
-----------
+paystackease API Submodules
+============================
 
 paystackease.abase module
 -------------------------
@@ -38,14 +25,6 @@ paystackease.base module
    :undoc-members:
    :show-inheritance:
 
-paystackease.errors module
---------------------------
-
-.. automodule:: paystackease.errors
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 paystackease.paystack module
 ----------------------------
 
@@ -53,6 +32,7 @@ paystackease.paystack module
    :members:
    :undoc-members:
    :show-inheritance:
+
 
 Module contents
 ---------------

@@ -1,6 +1,13 @@
 Usage
 ========
 
+.. toctree::
+    :maxdepth: 2
+    :caption: Example Usage
+
+    example
+
+
 Installation
 ------------
 
@@ -41,7 +48,7 @@ To use paystackease:
     Create an account on Paystack or login if you already have an account,
     to generate a secret key for your application to interact with Paystack.
 
-    You can create an account on Paystack here https://paystack.com/
+    You can create an account on Paystack here: `Paystack Create Account`_
 
     After which, go to your settings page >> API keys and Webhook section
 
@@ -53,3 +60,5 @@ To use paystackease:
     Public key is to be used from your front-end when integrating using Paystack Inline. In this case you have to use you secret key
 
     Set your environment variable as *PAYSTACK_SECRET_KEY*
+
+.. _Paystack Create Account: https://paystack.com/
