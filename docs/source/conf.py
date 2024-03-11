@@ -42,4 +42,3 @@ html_theme_options = {
 }
 
 latex_engine = 'pdflatex'
-
