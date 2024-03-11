@@ -4,7 +4,7 @@ aiosignal==1.3.1
 alabaster==0.7.16
 anyascii==0.3.2
 astroid==3.1.0
-attrs==18.2.0
+attrs==23.2.0
 Babel==2.14.0
 beautifulsoup4==4.12.3
 black==24.2.0
@@ -12,6 +12,7 @@ certifi==2024.2.2
 cffi==1.16.0
 charset-normalizer==3.3.2
 click==8.1.7
+colorama==0.4.6
 cryptography==42.0.5
 dill==0.3.8
 docutils==0.20.1
@@ -25,6 +26,7 @@ jaraco.classes==3.3.1
 jeepney==0.8.0
 Jinja2==3.1.3
 keyring==24.3.1
+livereload==2.6.3
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
 mccabe==0.7.0
@@ -35,7 +37,7 @@ mypy-extensions==1.0.0
 nh3==0.2.15
 packaging==24.0
 pathspec==0.12.1
--e git+https://github.com/cla-bit/PayStackEase.git@1da0939be4046b68e5a2956e464a2c437e245969#egg=paystackease
+-e git+https://github.com/cla-bit/PayStackEase.git@b75b32822ea7fb19fe102441177b79008eb4ebb7#egg=paystackease
 pdflatex==0.1.3
 pkginfo==1.10.0
 platformdirs==4.2.0
@@ -58,6 +60,7 @@ six==1.16.0
 snowballstemmer==2.2.0
 soupsieve==2.5
 Sphinx==7.2.6
+sphinx-autobuild==2024.2.4
 sphinx-rtd-theme==2.0.0
 sphinxawesome-theme==5.1.1
 sphinxcontrib-applehelp==1.0.8
@@ -68,6 +71,7 @@ sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.7
 sphinxcontrib-serializinghtml==1.1.10
 tomlkit==0.12.4
+tornado==6.4
 twine==5.0.0
 urllib3==2.2.1
 yarl==1.9.4
