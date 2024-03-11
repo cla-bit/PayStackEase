@@ -1,5 +1,5 @@
-from paystackease.helpers._convert import convert_to_subunit
-from paystackease.helpers._tool_kit import (
+from paystackease.helpers.convert import convert_to_subunit
+from paystackease.helpers.tool_kit import (
     AccountType,
     Currency,
     Channels,

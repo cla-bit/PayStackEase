@@ -2,7 +2,7 @@
 This holds function to convert to subunits in NGN, GHS, USD, ZAR and KES
 """
 
-from paystackease.helpers._tool_kit import Currency
+from paystackease.helpers.tool_kit import Currency
 
 
 def convert_to_subunit(amount: int, currency: Currency) -> int:
