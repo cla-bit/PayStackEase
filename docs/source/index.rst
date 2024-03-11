@@ -15,8 +15,8 @@ which can be integrated into python projects to interact with Paystack.
 
    usage
    modules
+   changelog
 
-.. index:: <entries>
 
 
 Indices and tables
