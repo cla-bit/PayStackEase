@@ -43,14 +43,14 @@ responses = "^0.25.0"
 python-decouple = "^3.8"
 pytest = "^8.0.2"
 twine = "^5.0.0"
-pdflatex = "^0.1.3"
-sphinx-autobuild = "^2024.2.4"
 
 
 [tool.poetry.group.docs.dependencies]
+pdflatex = "^0.1.3"
 sphinx = "^7.2.6"
 sphinx-rtd-theme = "^2.0.0"
 sphinxawesome-theme = "^5.1.1"
+sphinx-autobuild = "^2024.2.4"
 
 
 [tool.poetry.group.dev.dependencies]
