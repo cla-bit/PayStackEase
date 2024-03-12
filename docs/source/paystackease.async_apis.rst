@@ -1,7 +1,7 @@
 paystackease APIs Asynchronous package
 ==============================================
 
-.. hint::
+.. important::
     You must have generated a secret key from your paystack account and set the secret key as your environment variable:
     ``PAYSTACK_SECRET_KEY``.
 

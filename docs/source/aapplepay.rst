@@ -1,14 +1,14 @@
 paystackease.async\_apis.aapple\_pay module
 -------------------------------------------
 
-.. py:currentmodule:: paystackease.async_apis.aapple_pay
+.. :py:currentmodule:: paystackease.async_apis.aapple_pay
 
 .. attention::
     Ensure you have access to use the Apple Pay endpoint, else call Paystack Customer service.
 
-Wrapper class for Asynchronous Paystack Apple Pay API.
+Wrapper class for Asynchronous Paystack Apple Pay API. The Apple Pay API allows you register your application’s top-level domain or subdomain.
 
-The Apple Pay API allows you register your application’s top-level domain or subdomain.
+------------------------------------------------------------------------------
 
 .. py:class:: AsyncApplePayClientAPI(secret_key: str = None)
 

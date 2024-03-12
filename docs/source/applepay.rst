@@ -6,10 +6,9 @@ paystackease.apis.apple\_pay module
 .. attention::
     Ensure you have access to use the Apple Pay endpoint, else call Paystack Customer service.
 
+Wrapper class for Paystack Apple Pay API. The Apple Pay API allows you register your application’s top-level domain or subdomain.
 
-Wrapper class for Paystack Apple Pay API.
-
-The Apple Pay API allows you register your application’s top-level domain or subdomain.
+------------------------------------------------------------------------------
 
 .. py:class:: ApplePayClientAPI(secret_key: str = None)
 
