@@ -11,7 +11,6 @@ paystackease API Submodules
    paystack
 
 
-
 Module contents
 ---------------
 
