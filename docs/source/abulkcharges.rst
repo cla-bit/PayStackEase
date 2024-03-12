@@ -3,6 +3,7 @@ paystackease.async\_apis.abulk\_charges module
 
 .. py:currentmodule:: paystackease.async_apis.abulk_charges
 
+
 Wrapper for Asynchronous Paystack Bulk Charges API.
 
 The Bulk Charges API allows you to create and manage multiple recurring payments from your customers.
