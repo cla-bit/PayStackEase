@@ -10,19 +10,7 @@ paystackease APIs Asynchronous package
    :maxdepth: 2
 
    aapplepay
-
-__________________________________________
-
-
-paystackease.async\_apis.abulk\_charges module
-----------------------------------------------
-
-.. automodule:: paystackease.async_apis.abulk_charges
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   abulkcharges
 
 
 paystackease.async\_apis.acharges module

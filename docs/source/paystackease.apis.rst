@@ -10,19 +10,7 @@ paystackease APIs Synchronous package
    :maxdepth: 2
 
    applepay
-
-__________________________________________
-
-
-paystackease.apis.bulk\_charges module
---------------------------------------
-
-.. automodule:: paystackease.apis.bulk_charges
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   bulkcharges
 
 
 paystackease.apis.charges module

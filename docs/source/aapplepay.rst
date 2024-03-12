@@ -18,6 +18,8 @@ The Apple Pay API allows you register your application’s top-level domain or s
 
     .. py:method:: async list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ dict
 
+        List all domains registered with the Apple Pay API.
+
         :param use_cursor: Use cursor for pagination (default: False).
         :type use_cursor: bool, optional
         :param next_page: Next page.
@@ -30,6 +32,8 @@ The Apple Pay API allows you register your application’s top-level domain or s
 
     .. py:method:: async register_domain(domain_name: str)→ dict
 
+        Register a domain with the Apple Pay API.
+
         :param domain_name: The domain name.
         :type domain_name: str
 
@@ -40,6 +44,8 @@ The Apple Pay API allows you register your application’s top-level domain or s
         The :py:meth:`~paystackease.async_apis.aapple_pay.AsyncApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.
 
     .. py:method:: async unregister_domain(domain_name: str)→ dict
+
+        Unregister a domain with the Apple Pay API.
 
         :param domain_name: The domain name.
         :type domain_name: str
