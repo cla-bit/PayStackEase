@@ -3,6 +3,7 @@ paystackease API Submodules
 
 .. autosummary::
 .. toctree::
+   :maxdepth: 4
 
    abase
    apaystack
