@@ -38,7 +38,7 @@ The Apple Pay API allows you register your application’s top-level domain or s
         :rtype: dict
 
     .. important::
-        The `register_domain` method can only be called with one domain or subdomain at a time.
+        The :py:meth:`~paystackease.apis.apple_pay.ApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.
 
     .. py:method:: unregister_domain(domain_name: str)→ dict
 
