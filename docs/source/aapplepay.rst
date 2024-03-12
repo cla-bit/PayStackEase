@@ -1,23 +1,22 @@
-paystackease.apis.apple\_pay module
------------------------------------
+paystackease.async\_apis.aapple\_pay module
+-------------------------------------------
 
-.. :py:currentmodule:: paystackease.apis.apple_pay
+.. py:currentmodule:: paystackease.async_apis.aapple_pay
 
 .. attention::
     Ensure you have access to use the Apple Pay endpoint, else call Paystack Customer service.
 
-
-Wrapper class for Paystack Apple Pay API.
+Wrapper class for Asynchronous Paystack Apple Pay API.
 
 The Apple Pay API allows you register your application’s top-level domain or subdomain.
 
-.. py:class:: ApplePayClientAPI(secret_key: str = None)
+.. py:class:: AsyncApplePayClientAPI(secret_key: str = None)
 
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
+    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Apple Pay API Reference: `Apple Pay`_
 
-    .. py:method:: list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ dict
+    .. py:method:: async list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ dict
 
         :param use_cursor: Use cursor for pagination (default: False).
         :type use_cursor: bool, optional
@@ -29,7 +28,7 @@ The Apple Pay API allows you register your application’s top-level domain or s
         :return: The response from the API.
         :rtype: dict
 
-    .. py:method:: register_domain(domain_name: str)→ dict
+    .. py:method:: async register_domain(domain_name: str)→ dict
 
         :param domain_name: The domain name.
         :type domain_name: str
@@ -38,9 +37,9 @@ The Apple Pay API allows you register your application’s top-level domain or s
         :rtype: dict
 
     .. important::
-        The :py:meth:`~paystackease.apis.apple_pay.ApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.
+        The :py:meth:`~paystackease.async_apis.aapple_pay.AsyncApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.
 
-    .. py:method:: unregister_domain(domain_name: str)→ dict
+    .. py:method:: async unregister_domain(domain_name: str)→ dict
 
         :param domain_name: The domain name.
         :type domain_name: str

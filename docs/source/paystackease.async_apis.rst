@@ -5,20 +5,11 @@ paystackease APIs Asynchronous package
     You must have generated a secret key from your paystack account and set the secret key as your environment variable:
     ``PAYSTACK_SECRET_KEY``.
 
+.. autosummary::
+.. toctree::
+   :maxdepth: 2
 
-paystackease.async\_apis.aapple\_pay module
--------------------------------------------
-
-.. automodule:: paystackease.async_apis.aapple_pay
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. important::
-    The ``paystackease.apis.apple_pay.register_domain`` method can only be called with one domain or subdomain at a time.
-
-.. attention::
-    Ensure you have access to use the Apple Pay endpoint, else call Paystack Customer service.
+   aapplepay
 
 __________________________________________
 

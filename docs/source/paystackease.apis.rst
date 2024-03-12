@@ -1,17 +1,15 @@
 paystackease APIs Synchronous package
 =======================================
 
+.. hint::
+    You must have generated a secret key from your paystack account and set the secret key as your environment variable:
+    ``PAYSTACK_SECRET_KEY``.
+
 .. autosummary::
 .. toctree::
    :maxdepth: 2
 
    applepay
-
-
-.. hint::
-    You must have generated a secret key from your paystack account and set the secret key as your environment variable:
-    ``PAYSTACK_SECRET_KEY``.
-
 
 __________________________________________
 
