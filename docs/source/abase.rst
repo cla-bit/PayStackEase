@@ -7,5 +7,17 @@ authentication using a secret key, constructing HTTP headers,
 joining URLs with the API base URL, and logging response information.
 
 
-..  autoclass:: paystackease.abase.AsyncBaseClientAPI
-    :members:
+..  py:class:: paystackease.abase.AsyncBaseClientAPI(secret_key: str = None)
+
+    Bases: :py:class:`~object`
+
+    Base Client API for Paystack API
+
+
+..  py:class:: paystackease.abase.AsyncPayStackBaseClientAPI(secret_key: str = None)
+
+
+    Bases: :py:class:`~paystackease.abase.AsyncBaseClientAPI`
+
+    Requests methods to Paystack API
+
