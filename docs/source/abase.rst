@@ -15,6 +15,7 @@ joining URLs with the API base URL, and logging response information.
 
     Base Client API for Paystack API
 
+----------------------------------------------------------------
 
 ..  py:class:: AsyncPayStackBaseClientAPI(secret_key: str = None)
 
