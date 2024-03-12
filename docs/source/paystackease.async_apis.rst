@@ -11,32 +11,11 @@ paystackease APIs Asynchronous package
 
    aapplepay
    abulkcharges
+   acharges
+   acustomers
 
 
-
-----------------------------------------------
-
-
-paystackease.async\_apis.acharges module
-----------------------------------------
-
-.. automodule:: paystackease.async_apis.acharges
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.acustomers module
-------------------------------------------
-
-.. automodule:: paystackease.async_apis.acustomers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+===========================================================
 
 
 paystackease.async\_apis.adedicated\_virtual\_accounts module

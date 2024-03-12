@@ -11,30 +11,10 @@ paystackease APIs Synchronous package
 
    applepay
    bulkcharges
+   charges
+   customers
 
-
-----------------------------------------------
-
-paystackease.apis.charges module
---------------------------------
-
-.. automodule:: paystackease.apis.charges
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.customers module
-----------------------------------
-
-.. automodule:: paystackease.apis.customers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+========================================================
 
 
 paystackease.apis.dedicated\_virtual\_accounts module
