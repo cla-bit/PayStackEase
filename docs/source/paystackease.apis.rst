@@ -19,28 +19,8 @@ paystackease APIs Synchronous package
    miscellaneous
    paymentpages
    paymentrequests
-
-
-paystackease.apis.plans module
-------------------------------
-
-.. automodule:: paystackease.apis.plans
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.products module
----------------------------------
-
-.. automodule:: paystackease.apis.products
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   plans
+   products
 
 
 paystackease.apis.refund module
