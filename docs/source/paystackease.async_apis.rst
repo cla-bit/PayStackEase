@@ -15,28 +15,8 @@ paystackease APIs Asynchronous package
    acustomers
    adedicatedvirtualaccounts
    adisputes
-
-
-paystackease.async\_apis.aintegration module
---------------------------------------------
-
-.. automodule:: paystackease.async_apis.aintegration
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.amiscellaneous module
-----------------------------------------------
-
-.. automodule:: paystackease.async_apis.amiscellaneous
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   aintegration
+   amiscellaneous
 
 
 paystackease.async\_apis.apayment\_pages module

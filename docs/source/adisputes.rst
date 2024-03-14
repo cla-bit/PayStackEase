@@ -6,6 +6,8 @@ paystackease.async\_apis.adisputes module
 
 Wrapper for Asynchronous Paystack Disputes API The Disputes API allows you manage transaction disputes on your integration.
 
+You can use the tool kit in the helpers module as reference: :ref:`helpers`
+
 --------------------------------------------------------------------------------
 
 

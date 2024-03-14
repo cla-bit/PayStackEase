@@ -15,28 +15,8 @@ paystackease APIs Synchronous package
    customers
    dedicatedvirtualaccounts
    disputes
-
-
-paystackease.apis.integration module
-------------------------------------
-
-.. automodule:: paystackease.apis.integration
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.miscellaneous module
---------------------------------------
-
-.. automodule:: paystackease.apis.miscellaneous
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   integration
+   miscellaneous
 
 
 paystackease.apis.payment\_pages module

@@ -1,6 +1,7 @@
 paystackease helpers package
 =================================
 
+.. _helpers:
 
 paystackease.helpers.convert module
 -----------------------------------
