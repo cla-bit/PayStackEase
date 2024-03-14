@@ -17,28 +17,8 @@ paystackease APIs Synchronous package
    disputes
    integration
    miscellaneous
-
-
-paystackease.apis.payment\_pages module
----------------------------------------
-
-.. automodule:: paystackease.apis.payment_pages
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.payment\_requests module
-------------------------------------------
-
-.. automodule:: paystackease.apis.payment_requests
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   paymentpages
+   paymentrequests
 
 
 paystackease.apis.plans module

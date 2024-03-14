@@ -17,17 +17,7 @@ paystackease APIs Asynchronous package
    adisputes
    aintegration
    amiscellaneous
-
-
-paystackease.async\_apis.apayment\_pages module
------------------------------------------------
-
-.. automodule:: paystackease.async_apis.apayment_pages
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   apaymentpages
 
 
 paystackease.async\_apis.apayment\_requests module
