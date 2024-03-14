@@ -40,8 +40,7 @@ Wrapper class for Paystack Apple Pay API. The Apple Pay API allows you register 
         :return: The response from the API.
         :rtype: dict
 
-    .. important::
-        The :py:meth:`~paystackease.apis.apple_pay.ApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.
+
 
     .. py:method:: unregister_domain(domain_name: str)→ dict
 
@@ -55,3 +54,7 @@ Wrapper class for Paystack Apple Pay API. The Apple Pay API allows you register 
 
 
 .. _Apple Pay: https://paystack.com/docs/api/apple-pay/
+
+.. important::
+
+    The :py:meth:`~paystackease.apis.apple_pay.ApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.

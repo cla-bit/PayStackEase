@@ -13,30 +13,8 @@ paystackease APIs Synchronous package
    bulkcharges
    charges
    customers
-
-========================================================
-
-
-paystackease.apis.dedicated\_virtual\_accounts module
------------------------------------------------------
-
-.. automodule:: paystackease.apis.dedicated_virtual_accounts
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.disputes module
----------------------------------
-
-.. automodule:: paystackease.apis.disputes
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   dedicatedvirtualaccounts
+   disputes
 
 
 paystackease.apis.integration module

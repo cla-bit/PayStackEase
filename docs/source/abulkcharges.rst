@@ -43,12 +43,6 @@ Wrapper for Asynchronous Paystack Bulk Charges API. The Bulk Charges API allows 
         :return: The response from the API.
         :rtype: dict
 
-        .. note::
-
-            ``Date and Time format``: 2016-09-24T00:00:05.000Z, 2016-09-21
-
-            ``status``: STATUS.value.value
-
     .. py:method:: async initiate_bulk_charge(objects: List[Dict[str, str]] = None)→ dict
 
         Initiate a bulk charge
@@ -83,10 +77,6 @@ Wrapper for Asynchronous Paystack Bulk Charges API. The Bulk Charges API allows 
         :return: The response from the API.
         :rtype: dict
 
-        .. note::
-
-            ``Date and Time format``: 2016-09-24T00:00:05.000Z, 2016-09-21
-
     .. py:method:: async pause_bulk_charge_batch(batch_code: str)→ dict
 
         Pause a bulk charge of a specific batch
@@ -109,3 +99,9 @@ Wrapper for Asynchronous Paystack Bulk Charges API. The Bulk Charges API allows 
 
 
 .. _Bulk Charges: https://paystack.com/docs/api/bulk-charge/
+
+.. note::
+
+    ``Date and Time format``: 2016-09-24T00:00:05.000Z, 2016-09-21
+
+    ``status``: STATUS.value.value

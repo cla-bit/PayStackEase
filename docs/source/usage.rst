@@ -7,6 +7,7 @@ Usage
 
     example
 
+.. _installation:
 
 Installation
 ------------

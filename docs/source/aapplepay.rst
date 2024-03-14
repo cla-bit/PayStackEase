@@ -40,8 +40,7 @@ Wrapper class for Asynchronous Paystack Apple Pay API. The Apple Pay API allows 
         :return: The response from the API.
         :rtype: dict
 
-    .. important::
-        The :py:meth:`~paystackease.async_apis.aapple_pay.AsyncApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.
+
 
     .. py:method:: async unregister_domain(domain_name: str)→ dict
 
@@ -55,3 +54,7 @@ Wrapper class for Asynchronous Paystack Apple Pay API. The Apple Pay API allows 
 
 
 .. _Apple Pay: https://paystack.com/docs/api/apple-pay/
+
+.. important::
+
+    The :py:meth:`~paystackease.async_apis.aapple_pay.AsyncApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.

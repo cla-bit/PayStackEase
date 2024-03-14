@@ -13,31 +13,8 @@ paystackease APIs Asynchronous package
    abulkcharges
    acharges
    acustomers
-
-
-===========================================================
-
-
-paystackease.async\_apis.adedicated\_virtual\_accounts module
--------------------------------------------------------------
-
-.. automodule:: paystackease.async_apis.adedicated_virtual_accounts
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.adisputes module
------------------------------------------
-
-.. automodule:: paystackease.async_apis.adisputes
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   adedicatedvirtualaccounts
+   adisputes
 
 
 paystackease.async\_apis.aintegration module
