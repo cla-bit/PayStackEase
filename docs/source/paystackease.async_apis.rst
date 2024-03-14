@@ -24,61 +24,11 @@ paystackease APIs Asynchronous package
    arefund
    asettlements
    asubaccounts
-
-
-paystackease.async\_apis.asubscriptions module
-----------------------------------------------
-
-.. automodule:: paystackease.async_apis.asubscriptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.aterminal module
------------------------------------------
-
-.. automodule:: paystackease.async_apis.aterminal
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.atransaction\_splits module
-----------------------------------------------------
-
-.. automodule:: paystackease.async_apis.atransaction_splits
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.atransactions module
----------------------------------------------
-
-.. automodule:: paystackease.async_apis.atransactions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.atransfer\_recipients module
------------------------------------------------------
-
-.. automodule:: paystackease.async_apis.atransfer_recipients
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   asubscriptions
+   aterminal
+   atransactionsplits
+   atransactions
+   atransferrecipients
 
 
 paystackease.async\_apis.atransfers module

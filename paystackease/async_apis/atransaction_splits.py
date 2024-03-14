@@ -50,7 +50,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         return await self._post_request("/split", data=data)
 
     async def add_or_update_subaccount_split(
-            self, split_id, subaccount: str, transaction_share: int
+            self, split_id: str, subaccount: str, transaction_share: int
     ) -> dict:
         """
         Add a Subaccount to a Transaction Split, or update the share of
@@ -66,7 +66,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         data = {"subaccount": subaccount, "share": transaction_share}
         return await self._post_request(f"/split/{split_id}/subaccount/add", data=data)
 
-    async def remove_sub_account_split(self, split_id, subaccount: str) -> dict:
+    async def remove_sub_account_split(self, split_id: str, subaccount: str) -> dict:
         """
         Remove a Sub Account from a transaction split
 

@@ -24,61 +24,11 @@ paystackease APIs Synchronous package
    refund
    settlements
    subaccounts
-
-
-paystackease.apis.subscriptions module
---------------------------------------
-
-.. automodule:: paystackease.apis.subscriptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.terminal module
----------------------------------
-
-.. automodule:: paystackease.apis.terminal
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.transaction\_splits module
---------------------------------------------
-
-.. automodule:: paystackease.apis.transaction_splits
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.transactions module
--------------------------------------
-
-.. automodule:: paystackease.apis.transactions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.transfer\_recipients module
----------------------------------------------
-
-.. automodule:: paystackease.apis.transfer_recipients
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   subscriptions
+   terminal
+   transactionsplits
+   transactions
+   transferrecipients
 
 
 paystackease.apis.transfers module
