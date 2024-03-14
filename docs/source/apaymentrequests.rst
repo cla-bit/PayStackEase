@@ -1,21 +1,21 @@
-paystackease.apis.payment\_requests module
-------------------------------------------
+paystackease.async\_apis.apayment\_requests module
+--------------------------------------------------
 
-.. :py:currentmodule:: paystackease.apis.payment_requests
+.. :py:currentmodule:: paystackease.async_apis.apayment_requests
 
 
-Wrapper for Paystack Payment Requests API. The Payment Requests API allows you manage requests for payment of goods and services.
+Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API allows you manage requests for payment of goods and services.
 
 ---------------------------------------------------
 
 
-.. py:class:: PaymentRequestClientAPI(secret_key: str = None)
+.. py:class:: AsyncPaymentRequestClientAPI(secret_key: str = None)
 
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
+    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Payment Request API Reference: `Payment Requests`_
 
-    .. py:method:: archive_payment_request(code: str)→ dict
+    .. py:method:: async archive_payment_request(code: str)→ dict
 
         Archive a payment request
 
@@ -25,7 +25,7 @@ Wrapper for Paystack Payment Requests API. The Payment Requests API allows you m
         :return: The response from the API.
         :rtype: dict
 
-    .. py:method:: create_payment_request(customer: str, amount: int, draft: bool, has_invoice: bool, send_notification: bool, due_date: date | None = None, description: str | None = None, line_items: List[Dict[str, str]] | None = None, tax: List[Dict[str, str]] | None = None, currency: str | None = None, invoice_number: int | None = None, split_code: str | None = None)→ dict
+    .. py:method:: async create_payment_request(customer: str, amount: int, draft: bool, has_invoice: bool, send_notification: bool, due_date: date | None = None, description: str | None = None, line_items: List[Dict[str, str]] | None = None, tax: List[Dict[str, str]] | None = None, currency: str | None = None, invoice_number: int | None = None, split_code: str | None = None)→ dict
 
         Create a payment request for a transaction
 
@@ -63,7 +63,7 @@ Wrapper for Paystack Payment Requests API. The Payment Requests API allows you m
 
         ``tax`` is in this format: [{“name”:”VAT”, “amount”:200}]
 
-    .. py:method:: fetch_payment_request(id_or_code: str)→ dict
+    .. py:method:: async fetch_payment_request(id_or_code: str)→ dict
 
         Fetch a payment request
 
@@ -73,7 +73,7 @@ Wrapper for Paystack Payment Requests API. The Payment Requests API allows you m
         :return: The response from the API.
         :rtype: dict
 
-    .. py:method:: finalize_payment_request(code: str, send_notification: bool)→ dict
+    .. py:method:: async finalize_payment_request(code: str, send_notification: bool)→ dict
 
         Finalize a payment request
 
@@ -85,7 +85,7 @@ Wrapper for Paystack Payment Requests API. The Payment Requests API allows you m
         :return: The response from the API.
         :rtype: dict
 
-    .. py:method:: list_payment_requests(per_page: int | None = None, page: int | None = None, customer: str | None = None, status: str | None = None, currency: str | None = None, include_archive: str | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_payment_requests(per_page: int | None = None, page: int | None = None, customer: str | None = None, status: str | None = None, currency: str | None = None, include_archive: str | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
 
         List payment requests
 
@@ -109,14 +109,14 @@ Wrapper for Paystack Payment Requests API. The Payment Requests API allows you m
         :return: The response from the API
         :rtype: dict
 
-    .. py:method:: payment_request_total()→ dict
+    .. py:method:: async payment_request_total()→ dict
 
         Get the total number of payment requests
 
         :return: The response from the API
         :rtype: dict
 
-    .. py:method:: send_notification(code: str)→ dict
+    .. py:method:: async send_notification(code: str)→ dict
 
         Send a notification to a payment request to a customer
 
@@ -126,7 +126,7 @@ Wrapper for Paystack Payment Requests API. The Payment Requests API allows you m
         :return: The response from the API.
         :rtype: dict
 
-    .. py:method:: update_payment_request(id_or_code: str, customer: str | None = None, amount: int | None = None, description: str | None = None, line_items: List[Dict[str, str]] | None = None, tax: List[Dict[str, str]] | None = None, currency: str | None = None, due_date: date | None = None, send_notification: bool | None = None, draft: bool | None = None, invoice_number: int | None = None, split_code: str | None = None)→ dict
+    .. py:method:: async update_payment_request(id_or_code: str, customer: str | None = None, amount: int | None = None, description: str | None = None, line_items: List[Dict[str, str]] | None = None, tax: List[Dict[str, str]] | None = None, currency: str | None = None, due_date: date | None = None, send_notification: bool | None = None, draft: bool | None = None, invoice_number: int | None = None, split_code: str | None = None)→ dict
 
         Update a payment request
 
@@ -158,7 +158,7 @@ Wrapper for Paystack Payment Requests API. The Payment Requests API allows you m
         :return: The response from the API
         :rtype: dict
 
-    .. py:method:: verify_payment_request(code: str)→ dict
+    .. py:method:: async verify_payment_request(code: str)→ dict
 
         Verify a payment request
 
