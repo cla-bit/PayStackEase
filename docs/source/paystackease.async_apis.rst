@@ -21,39 +21,9 @@ paystackease APIs Asynchronous package
    apaymentrequests
    aplans
    aproducts
-
-
-paystackease.async\_apis.arefund module
----------------------------------------
-
-.. automodule:: paystackease.async_apis.arefund
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.asettlements module
---------------------------------------------
-
-.. automodule:: paystackease.async_apis.asettlements
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.asubaccounts module
---------------------------------------------
-
-.. automodule:: paystackease.async_apis.asubaccounts
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   arefund
+   asettlements
+   asubaccounts
 
 
 paystackease.async\_apis.asubscriptions module

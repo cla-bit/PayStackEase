@@ -21,39 +21,9 @@ paystackease APIs Synchronous package
    paymentrequests
    plans
    products
-
-
-paystackease.apis.refund module
--------------------------------
-
-.. automodule:: paystackease.apis.refund
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.settlements module
-------------------------------------
-
-.. automodule:: paystackease.apis.settlements
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.subaccounts module
-------------------------------------
-
-.. automodule:: paystackease.apis.subaccounts
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   refund
+   settlements
+   subaccounts
 
 
 paystackease.apis.subscriptions module
