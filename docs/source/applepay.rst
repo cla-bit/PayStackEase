@@ -1,5 +1,6 @@
-paystackease.apis.apple\_pay module
------------------------------------
+===========================================
+Apple Pay Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.apple_pay
 

@@ -1,5 +1,6 @@
-paystackease.apis.customers module
-----------------------------------
+===========================================
+Customers Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.customers
 

@@ -1,5 +1,6 @@
-paystackease.apis.plans module
-------------------------------
+===========================================
+Plan Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.plans
 

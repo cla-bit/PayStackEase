@@ -1,5 +1,6 @@
-paystackease.apis.subaccounts module
-------------------------------------
+===========================================
+SubAccounts Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.subaccounts
 

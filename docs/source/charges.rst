@@ -1,5 +1,6 @@
-paystackease.apis.charges module
---------------------------------
+===========================================
+Charge Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.charges
 

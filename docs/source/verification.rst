@@ -1,5 +1,6 @@
-paystackease.apis.verification module
--------------------------------------
+===========================================
+Verification Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.verification
 

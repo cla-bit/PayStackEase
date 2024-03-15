@@ -1,5 +1,6 @@
-paystackease.apis.miscellaneous module
---------------------------------------
+===========================================
+Miscellaneous Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.miscellaneous
 

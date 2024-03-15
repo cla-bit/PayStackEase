@@ -1,5 +1,6 @@
-paystackease.apis.settlements module
-------------------------------------
+===========================================
+Settlements Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.settlements
 

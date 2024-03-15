@@ -1,5 +1,6 @@
-paystackease.apis.payment\_pages module
----------------------------------------
+===========================================
+Payment Pages Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.payment_pages
 

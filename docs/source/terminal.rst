@@ -1,5 +1,6 @@
-paystackease.apis.terminal module
----------------------------------
+===========================================
+Terminal Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.terminal
 

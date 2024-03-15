@@ -1,5 +1,6 @@
-paystackease.apis.payment\_requests module
-------------------------------------------
+===========================================
+Payment Requests Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.payment_requests
 

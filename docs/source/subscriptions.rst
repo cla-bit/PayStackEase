@@ -1,5 +1,6 @@
-paystackease.apis.subscriptions module
---------------------------------------
+===========================================
+Subscriptions Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.subscriptions
 

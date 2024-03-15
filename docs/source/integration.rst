@@ -1,5 +1,6 @@
-paystackease.apis.integration module
-------------------------------------
+===========================================
+Integration Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.integration
 

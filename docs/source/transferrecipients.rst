@@ -1,5 +1,6 @@
-paystackease.apis.transfer\_recipients module
----------------------------------------------
+===========================================
+Transfer Recipients Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.transfer_recipients
 

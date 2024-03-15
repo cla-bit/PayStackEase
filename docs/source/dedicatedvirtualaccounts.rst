@@ -1,5 +1,6 @@
-paystackease.apis.dedicated\_virtual\_accounts module
------------------------------------------------------
+===========================================
+Dedicated Virtual Accounts Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.dedicated_virtual_accounts
 

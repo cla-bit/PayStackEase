@@ -1,5 +1,6 @@
-paystackease.apis.bulk\_charges module
---------------------------------------
+===========================================
+Bulk Charges Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.bulk_charges
 

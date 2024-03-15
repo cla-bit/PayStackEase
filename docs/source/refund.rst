@@ -1,5 +1,6 @@
-paystackease.apis.refund module
--------------------------------
+===========================================
+Refund Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.refund
 

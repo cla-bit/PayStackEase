@@ -1,5 +1,6 @@
-paystackease.apis.transactions module
--------------------------------------
+===========================================
+Transactions Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.transactions
 

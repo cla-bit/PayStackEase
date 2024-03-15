@@ -1,5 +1,6 @@
-paystackease.apis.products module
----------------------------------
+===========================================
+Products Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.products
 

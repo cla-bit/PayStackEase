@@ -1,5 +1,6 @@
-paystackease.apis.disputes module
----------------------------------
+===========================================
+Disputes Module
+===========================================
 
 .. :py:currentmodule:: paystackease.apis.disputes
 
