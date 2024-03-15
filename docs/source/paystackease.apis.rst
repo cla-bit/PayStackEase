@@ -29,39 +29,9 @@ paystackease APIs Synchronous package
    transactionsplits
    transactions
    transferrecipients
-
-
-paystackease.apis.transfers module
-----------------------------------
-
-.. automodule:: paystackease.apis.transfers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.transfers\_control module
--------------------------------------------
-
-.. automodule:: paystackease.apis.transfers_control
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.apis.verification module
--------------------------------------
-
-.. automodule:: paystackease.apis.verification
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   transfers
+   transferscontrol
+   verification
 
 
 Module contents
