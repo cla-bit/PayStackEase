@@ -1,5 +1,6 @@
-paystackease.async\_apis.aplans module
---------------------------------------
+===========================================
+Async Plan Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.aplans
 

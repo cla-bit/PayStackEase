@@ -1,5 +1,6 @@
-paystackease.async\_apis.aterminal module
------------------------------------------
+===========================================
+Async Terminal Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.aterminal
 

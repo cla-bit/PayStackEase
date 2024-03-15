@@ -1,5 +1,6 @@
-paystackease.async\_apis.asettlements module
---------------------------------------------
+===========================================
+Async Settlements Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.asettlements
 

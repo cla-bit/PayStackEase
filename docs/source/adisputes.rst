@@ -1,5 +1,6 @@
-paystackease.async\_apis.adisputes module
------------------------------------------
+===========================================
+Async Disputes Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.adisputes
 

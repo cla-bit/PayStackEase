@@ -1,5 +1,6 @@
-paystackease.async\_apis.asubscriptions module
-----------------------------------------------
+===========================================
+Async Subscriptions Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.asubscriptions
 

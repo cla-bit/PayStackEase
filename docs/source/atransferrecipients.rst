@@ -1,5 +1,6 @@
-paystackease.async\_apis.atransfer\_recipients module
------------------------------------------------------
+===========================================
+Async Transfer Recipients Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.atransfer_recipients
 

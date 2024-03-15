@@ -1,5 +1,6 @@
-paystackease.async\_apis.aintegration module
---------------------------------------------
+===========================================
+Async Integration Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.aintegration
 

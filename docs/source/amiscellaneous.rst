@@ -1,5 +1,6 @@
-paystackease.async\_apis.amiscellaneous module
-----------------------------------------------
+===========================================
+Async Miscellaneous Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.amiscellaneous
 

@@ -1,5 +1,6 @@
-paystackease.async\_apis.acustomers module
-------------------------------------------
+=========================
+Async Customers Module
+=========================
 
 .. :py:currentmodule:: paystackease.async_apis.acustomers
 

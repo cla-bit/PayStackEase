@@ -1,5 +1,6 @@
-paystackease.async\_apis.aapple\_pay module
--------------------------------------------
+=========================
+Async Apple Pay Module
+=========================
 
 .. :py:currentmodule:: paystackease.async_apis.aapple_pay
 

@@ -1,5 +1,6 @@
-paystackease.async\_apis.averification module
----------------------------------------------
+===========================================
+Async Verification Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.averification
 

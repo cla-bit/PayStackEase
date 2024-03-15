@@ -1,5 +1,6 @@
-paystackease.async\_apis.apayment\_pages module
------------------------------------------------
+===========================================
+Async Payment Pages Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.apayment_pages
 

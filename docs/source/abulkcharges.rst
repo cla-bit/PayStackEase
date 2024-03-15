@@ -1,5 +1,6 @@
-paystackease.async\_apis.abulk\_charges module
-----------------------------------------------
+=========================
+Async Bulk Charges Module
+=========================
 
 .. :py:currentmodule:: paystackease.async_apis.abulk_charges
 

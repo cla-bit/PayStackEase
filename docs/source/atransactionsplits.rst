@@ -1,5 +1,6 @@
-paystackease.async\_apis.atransaction\_splits module
-----------------------------------------------------
+===========================================
+Async Transaction Splits Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.atransaction_splits
 

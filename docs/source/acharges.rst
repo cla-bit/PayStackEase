@@ -1,5 +1,6 @@
-paystackease.async\_apis.acharges module
-----------------------------------------
+=========================
+Async Charge Module
+=========================
 
 .. :py:currentmodule:: paystackease.async_apis.acharges
 

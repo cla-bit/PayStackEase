@@ -1,5 +1,6 @@
-paystackease.async\_apis.aproducts module
------------------------------------------
+===========================================
+Async Products Module
+===========================================
 
 .. :py:currentmodule:: paystackease.async_apis.aproducts
 
