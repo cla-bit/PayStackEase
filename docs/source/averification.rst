@@ -9,7 +9,7 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
 
 -----------------------------------------------------
 
-.. py:class:: AsyncVerificationClientAPI(secret_key: str = None)[source]
+.. py:class:: AsyncVerificationClientAPI(secret_key: str = None)
 
     Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 

@@ -8,7 +8,7 @@ Wrapper for Paystack Verification APIs The Verification API allows you to perfor
 
 -----------------------------------------------------
 
-.. py:class:: VerificationClientAPI(secret_key: str = None)[source]
+.. py:class:: VerificationClientAPI(secret_key: str = None)
 
     Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 

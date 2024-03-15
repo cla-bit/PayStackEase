@@ -42,8 +42,11 @@ You can create a new account or login to your account to the the secret key: `Pa
    verification
 
 
+-----------------------------------------------------------
+
 .. _Paystack: https://paystack.com/
 
+---------------
 Module contents
 ---------------
 This is a package for the synchronous Paystack modules
