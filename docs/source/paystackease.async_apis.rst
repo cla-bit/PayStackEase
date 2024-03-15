@@ -1,9 +1,17 @@
-paystackease APIs Asynchronous package
-==============================================
+===========================================
+PayStackEase APIs Asynchronous package
+===========================================
+
+This offers a comprehensive suite of modules tailored to streamline integration with Paystack's payment services.
+Each modular asynchronous operations inherits the ``AsyncPayStackBaseClientAPI``, provides developers with a
+powerful toolkit to build robust, scalable, and feature-rich applications that leverage Paystack's payment solutions effectively.
+
 
 .. important::
     You must have generated a secret key from your paystack account and set the secret key as your environment variable:
     ``PAYSTACK_SECRET_KEY``.
+
+You can create a new account or login to your account to the the secret key: `Paystack`_
 
 .. autosummary::
 .. toctree::
@@ -34,8 +42,11 @@ paystackease APIs Asynchronous package
    averification
 
 
+.. _Paystack: https://paystack.com/
+
 Module contents
 ---------------
+This is a package for the asynchronous Paystack modules
 
 .. automodule:: paystackease.async_apis
    :members:
