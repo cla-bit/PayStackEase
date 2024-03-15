@@ -29,39 +29,9 @@ paystackease APIs Asynchronous package
    atransactionsplits
    atransactions
    atransferrecipients
-
-
-paystackease.async\_apis.atransfers module
-------------------------------------------
-
-.. automodule:: paystackease.async_apis.atransfers
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.atransfers\_control module
----------------------------------------------------
-
-.. automodule:: paystackease.async_apis.atransfers_control
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
-
-
-paystackease.async\_apis.averification module
----------------------------------------------
-
-.. automodule:: paystackease.async_apis.averification
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-__________________________________________
+   atransfers
+   atransferscontrol
+   averification
 
 
 Module contents
