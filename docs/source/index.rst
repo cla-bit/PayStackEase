@@ -19,7 +19,26 @@ This library is intended for developers familiar with Python and the Paystack AP
 
 **Getting Started**
 
-* Install using pip: `pip install paystackease`
+As at the writing of this documentation, paystackease is still on *TestPYPI* platform, as it is still under tests for best performance.
+You can get started by downloading any of the source files here: https://test.pypi.org/project/paystackease/#files
+
+* Install using pip:
+   * Built Distribution file (.whl files) i.e the wheel file:
+
+      .. code-block:: console
+
+         >>> pip install paystackease-0.1.2-py3-none-any.whl
+
+   * Source Distribution file (.tar.gz files):
+
+      .. code-block:: console
+
+         >>> pip install paystackease-0.1.2.tar.gz
+
+   .. note::
+
+      It is recommended to install the wheels package (.whl)
+
 * Detailed usage guide: https://paystackease.readthedocs.io/en/latest/
 * Official Paystack Documentation: https://paystack.com/docs/api
 * Contributing guidelines: https://github.com/cla-bit/PayStackEase/blob/master/CONTRIBUTING.md
