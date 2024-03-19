@@ -6,10 +6,10 @@ The Transfer Recipients API allows you to create and manage beneficiaries that y
 
 from datetime import date
 from typing import Optional, Dict, List
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class TransferRecipientsClientAPI(_PayStackBaseClientAPI):
+class TransferRecipientsClientAPI(PayStackBaseClientAPI):
     """
     Paystack Transfer Recipients API
     Reference: https://paystack.com/docs/api/transfer-recipient/
