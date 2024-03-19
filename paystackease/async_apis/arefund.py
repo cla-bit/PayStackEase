@@ -6,10 +6,10 @@ The Refunds API allows you to create and manage transaction refunds.
 
 from datetime import date
 from typing import Optional
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncRefundClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Refund API
     Reference: https://paystack.com/docs/api/refund/
