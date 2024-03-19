@@ -1,3 +1,5 @@
+""" Wrappers for synchronous API calls to Paystack"""
+
 from paystackease.apis.apple_pay import ApplePayClientAPI
 from paystackease.apis.bulk_charges import BulkChargesClientAPI
 from paystackease.apis.charges import ChargesClientAPI
