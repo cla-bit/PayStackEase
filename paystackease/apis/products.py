@@ -6,10 +6,10 @@ The Products API allows you to create and manage inventories on your integration
 
 from datetime import date
 from typing import Optional
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class ProductClientAPI(_PayStackBaseClientAPI):
+class ProductClientAPI(PayStackBaseClientAPI):
     """
     Paystack Product API
     Reference: https://paystack.com/docs/api/product/
