@@ -4,10 +4,10 @@ Wrapper for Asynchronous Paystack Integration API
 The Integration API allows you manage some settings on your integration.
 """
 
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import _AsyncPayStackBaseClientAPI
 
 
-class AsyncIntegrationClientAPI(AsyncPayStackBaseClientAPI):
+class AsyncIntegrationClientAPI(_AsyncPayStackBaseClientAPI):
     """
     Paystack Integration API
     Reference: https://paystack.com/docs/api/integration/

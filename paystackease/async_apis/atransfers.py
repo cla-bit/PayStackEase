@@ -7,10 +7,10 @@ The Transfers API allows you to automate sending money to your customers.
 from datetime import date
 from typing import Optional, List, Dict
 
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import _AsyncPayStackBaseClientAPI
 
 
-class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
+class AsyncTransfersClientAPI(_AsyncPayStackBaseClientAPI):
     """
     Paystack Transfers API
     Reference: https://paystack.com/docs/api/transfer/

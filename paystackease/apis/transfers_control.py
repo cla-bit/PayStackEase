@@ -4,10 +4,10 @@ Wrapper for Paystack Transfer Control APIs
 The Transfers Control API allows you manage settings of your transfers.
 """
 
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import _PayStackBaseClientAPI
 
 
-class TransferControlClientAPI(PayStackBaseClientAPI):
+class TransferControlClientAPI(_PayStackBaseClientAPI):
     """
     Paystack Transfers Control API
     Reference: https://paystack.com/docs/api/transfer-control/

@@ -6,10 +6,10 @@ The Payment Pages API provides a quick and secure way to collect payment for pro
 
 from datetime import date
 from typing import Optional, Dict, List
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import _AsyncPayStackBaseClientAPI
 
 
-class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
+class AsyncPaymentPagesClientAPI(_AsyncPayStackBaseClientAPI):
     """
     Paystack Payment Pages API
     Reference: https://paystack.com/docs/api/page/

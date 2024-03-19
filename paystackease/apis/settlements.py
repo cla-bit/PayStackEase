@@ -6,10 +6,10 @@ The Settlements API allows you to gain insights into payouts made by Paystack to
 
 from datetime import date
 from typing import Optional
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import _PayStackBaseClientAPI
 
 
-class SettlementClientAPI(PayStackBaseClientAPI):
+class SettlementClientAPI(_PayStackBaseClientAPI):
     """
     Paystack Settlement API
     Reference: https://paystack.com/docs/api/settlement/

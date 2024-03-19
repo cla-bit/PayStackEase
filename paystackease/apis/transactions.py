@@ -7,10 +7,10 @@ The Transactions API allows you to create and manage payments on your integratio
 from datetime import date
 from typing import List, Optional, Dict, Any
 
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import _PayStackBaseClientAPI
 
 
-class TransactionClientAPI(PayStackBaseClientAPI):
+class TransactionClientAPI(_PayStackBaseClientAPI):
     """
     Paystack Transaction API
     Reference: https://paystack.com/docs/api/transaction/

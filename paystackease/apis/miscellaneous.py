@@ -5,10 +5,10 @@ The Miscellaneous API are supporting APIs that can be used to provide more detai
 """
 
 from typing import Optional
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import _PayStackBaseClientAPI
 
 
-class MiscellaneousClientAPI(PayStackBaseClientAPI):
+class MiscellaneousClientAPI(_PayStackBaseClientAPI):
     """
     Paystack Miscellaneous API
     Reference: https://paystack.com/docs/api/miscellaneous/

@@ -6,10 +6,10 @@ The Bulk Charges API allows you to create and manage multiple recurring payments
 from datetime import date
 
 from typing import List, Dict, Optional
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import _PayStackBaseClientAPI
 
 
-class BulkChargesClientAPI(PayStackBaseClientAPI):
+class BulkChargesClientAPI(_PayStackBaseClientAPI):
     """
     Paystack Bulk Charges API
     Reference: https://paystack.com/docs/api/bulk-charge/

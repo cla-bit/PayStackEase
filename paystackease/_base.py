@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 
 
-class BaseClientAPI:
+class _BaseClientAPI:
     """Base Client API for Paystack API"""
 
     _PAYSTACK_API_URL = "https://api.paystack.co/"
@@ -152,7 +152,7 @@ class BaseClientAPI:
             raise PayStackError(str(error), response.status_code) from error
 
 
-class PayStackBaseClientAPI(BaseClientAPI):
+class _PayStackBaseClientAPI(_BaseClientAPI):
     """Requests methods to Paystack API"""
 
     def _request(

@@ -4,10 +4,10 @@ Wrapper for Paystack Integration API
 The Integration API allows you manage some settings on your integration.
 """
 
-from paystackease.base import PayStackBaseClientAPI
+from paystackease._base import _PayStackBaseClientAPI
 
 
-class IntegrationClientAPI(PayStackBaseClientAPI):
+class IntegrationClientAPI(_PayStackBaseClientAPI):
     """
     Paystack Integration API
     Reference: https://paystack.com/docs/api/integration/

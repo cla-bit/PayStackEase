@@ -7,10 +7,10 @@ The Customers API allows you to create and manage customers on your integration.
 from datetime import date
 
 from typing import Optional, Dict, Any
-from paystackease.abase import AsyncPayStackBaseClientAPI
+from paystackease._abase import _AsyncPayStackBaseClientAPI
 
 
-class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
+class AsyncCustomerClientAPI(_AsyncPayStackBaseClientAPI):
     """
     Paystack Customer API
     Reference: https://paystack.com/docs/api/customer/
