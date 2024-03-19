@@ -7,10 +7,10 @@ Subaccounts can be used to split payment between two accounts (your main account
 
 from datetime import date
 from typing import Optional, Dict, List, Any
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class SubAccountClientAPI(_PayStackBaseClientAPI):
+class SubAccountClientAPI(PayStackBaseClientAPI):
     """
     Paystack SubAccount API
     Reference: https://paystack.com/docs/api/subaccount/
