@@ -6,10 +6,10 @@ The Payment Requests API allows you manage requests for payment of goods and ser
 
 from datetime import date
 from typing import Optional, List, Dict
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncPaymentRequestClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Payment Request API
     Reference: https://paystack.com/docs/api/payment-request/
