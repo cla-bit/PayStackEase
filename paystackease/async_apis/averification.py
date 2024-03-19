@@ -4,10 +4,10 @@ Wrapper for Asynchronous Paystack Verification APIs
 The Verification API allows you to perform KYC processes.
 """
 
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncVerificationClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Verification API
     Reference: https://paystack.com/docs/api/verification/
