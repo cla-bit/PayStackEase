@@ -8,10 +8,10 @@ from datetime import date
 
 from typing import List, Optional, Dict, Any
 
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncTransactionClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Transaction API
     Reference: https://paystack.com/docs/api/transaction/
