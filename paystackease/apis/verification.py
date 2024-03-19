@@ -4,10 +4,10 @@ Wrapper for Paystack Verification APIs
 The Verification API allows you to perform KYC processes.
 """
 
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class VerificationClientAPI(_PayStackBaseClientAPI):
+class VerificationClientAPI(PayStackBaseClientAPI):
     """
     Paystack Verification API
     Reference: https://paystack.com/docs/api/verification/
