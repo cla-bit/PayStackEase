@@ -5,10 +5,10 @@ The Plans API allows you to create and manage installment payment options on you
 """
 
 from typing import Optional
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class PlanClientAPI(_PayStackBaseClientAPI):
+class PlanClientAPI(PayStackBaseClientAPI):
     """
     Paystack Plan API
     Reference: https://paystack.com/docs/api/plan/
