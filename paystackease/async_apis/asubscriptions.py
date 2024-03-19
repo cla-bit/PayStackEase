@@ -6,10 +6,10 @@ The Subscriptions API allows you to create and manage recurring payment on your 
 
 from datetime import date
 from typing import Optional
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncSubscriptionClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Subscription API
     Reference: https://paystack.com/docs/api/subscription/
