@@ -7,10 +7,10 @@ across their payout account, and one or more subaccounts.
 
 from datetime import date
 from typing import Optional, List, Dict, Any
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class TransactionSplitClientAPI(_PayStackBaseClientAPI):
+class TransactionSplitClientAPI(PayStackBaseClientAPI):
     """
     Paystack Transaction Split API
     Reference: https://paystack.com/docs/api/split/
