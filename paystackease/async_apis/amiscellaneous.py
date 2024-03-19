@@ -5,10 +5,10 @@ The Miscellaneous API are supporting APIs that can be used to provide more detai
 """
 
 from typing import Optional
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncMiscellaneousClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Miscellaneous API
     Reference: https://paystack.com/docs/api/miscellaneous/
