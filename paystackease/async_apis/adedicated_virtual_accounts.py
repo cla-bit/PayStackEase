@@ -6,10 +6,10 @@ The Dedicated Virtual Account API enables Nigerian merchants to manage unique pa
 
 from datetime import date
 from typing import Optional
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncDedicatedVirtualAccountClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Dedicated Virtual Account API
     Reference: https://paystack.com/docs/api/dedicated-virtual-account/
