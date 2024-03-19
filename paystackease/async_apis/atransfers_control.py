@@ -4,10 +4,10 @@ Wrapper for Asynchronous Paystack Transfer Control APIs
 The Transfers Control API allows you manage settings of your transfers.
 """
 
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncTransferControlClientAPI(_AsyncPayStackBaseClientAPI):
+class AsyncTransferControlClientAPI(AsyncPayStackBaseClientAPI):
     """
     Paystack Transfers Control API
     Reference: https://paystack.com/docs/api/transfer-control/
