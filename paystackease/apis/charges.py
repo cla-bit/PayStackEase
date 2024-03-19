@@ -5,10 +5,10 @@ The Charge API allows you to configure payment channel of your choice when initi
 """
 
 from typing import Optional, Dict, Any
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class ChargesClientAPI(_PayStackBaseClientAPI):
+class ChargesClientAPI(PayStackBaseClientAPI):
     """
     Paystack Charges API
     Reference: https://paystack.com/docs/api/charge/
