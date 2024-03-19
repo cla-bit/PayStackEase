@@ -35,14 +35,14 @@ text = "Copyright ©2024 Peter Mbachu"
 
 
 [tool.poetry.dependencies]
-python = "^3.10"
-aiohttp = "^3.9.3"
-requests = "^2.31.0"
-aioresponses = "^0.7.6"
-responses = "^0.25.0"
+python = "^3.9"
+aiohttp = "^3.8"
+requests = "^2.31"
+aioresponses = "^0.7"
+responses = "^0.25"
 python-decouple = "^3.8"
-pytest = "^8.0.2"
-twine = "^5.0.0"
+pytest = "^8.0"
+twine = "^5.0"
 
 
 [tool.poetry.group.docs.dependencies]
@@ -54,13 +54,13 @@ sphinx-autobuild = "^2024.2.4"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.2.0"
-pylint = "^3.1.0"
+black = "^24.2"
+pylint = "^3.1"
 
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.0.2"
-responses = "^0.25.0"
+pytest = "^8.0"
+responses = "^0.25"
 
 
 [tool.pytest.ini_options]
