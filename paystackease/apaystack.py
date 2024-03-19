@@ -27,10 +27,10 @@ from paystackease.async_apis import (
     atransfers_control,
     averification,
 )
-from paystackease._abase import _AsyncPayStackBaseClientAPI
+from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
-class AsyncPayStackBase(_AsyncPayStackBaseClientAPI):
+class AsyncPayStackBase(AsyncPayStackBaseClientAPI):
     """AsyncPayStackBase acts as a wrapper around various client APIs to
     interact with the PayStack API
     """

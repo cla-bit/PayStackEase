@@ -27,10 +27,10 @@ from paystackease.apis import (
     transfers_control,
     verification,
 )
-from paystackease._base import _PayStackBaseClientAPI
+from paystackease._base import PayStackBaseClientAPI
 
 
-class PayStackBase(_PayStackBaseClientAPI):
+class PayStackBase(PayStackBaseClientAPI):
     """PayStackBase acts as a wrapper around various client APIs to
     interact with the PayStack API
     """
