@@ -3,6 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. toctree::
+   :maxdepth: 4
+   :caption: Contents:
+
+   usage
+   submodules
+   paystackease.apis
+   paystackease.async_apis
+   paystackease.helpers
+   errors
+   changelog
+   howto
+
 ==================================================
 PayStackEase: Simplified Paystack Integration.
 ==================================================
@@ -11,7 +24,7 @@ PayStackEase: Simplified Paystack Integration.
 It provides both asynchronous and synchronous wrappers for various Paystack functionalities,
 making it easier to integrate payment processing into your Python projects.
 
----------------------------------------------------------------
+
 
 -------------------
 Prerequisites
@@ -26,7 +39,7 @@ Before you get started with **paystackease** library, ensure you have the follow
 .. _Paystack Create Account: https://paystack.com
 
 ---------------------
-**Target Audience**
+Target Audience
 ---------------------
 
 This library is intended for developers familiar with Python and the Paystack API.
@@ -57,18 +70,7 @@ You can get started by downloading any of the source files here: https://test.py
 * Official Paystack Documentation: https://paystack.com/docs/api
 * Contributing guidelines: https://github.com/cla-bit/PayStackEase/blob/master/CONTRIBUTING.md
 
-.. toctree::
-   :maxdepth: 4
-   :caption: Contents:
-
-   usage
-   submodules
-   paystackease.apis
-   paystackease.async_apis
-   paystackease.helpers
-   errors
-   changelog
-   howto
+----------------------------------------------------------------------
 
 Indices and tables
 ==================
