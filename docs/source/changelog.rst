@@ -1,5 +1,6 @@
+-----------
 Changelog
-===========
+-----------
 
 All notable changes to **paystackease** will be documented in this file.
 

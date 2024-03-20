@@ -1,6 +1,6 @@
-===========================================
+-------------------------------------------
 PayStackEase APIs Asynchronous package
-===========================================
+-------------------------------------------
 
 This offers a comprehensive suite of modules tailored to streamline integration with Paystack's payment services.
 Each modular asynchronous operations inherits the ``AsyncPayStackBaseClientAPI``, provides developers with a

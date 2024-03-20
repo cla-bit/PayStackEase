@@ -1,6 +1,6 @@
-===========================================
+-------------------------------------------
 PayStackEase APIs Synchronous package
-===========================================
+-------------------------------------------
 
 This offers a comprehensive suite of modules tailored to streamline integration with Paystack's payment services.
 Each modular synchronous operations inherits the ``PayStackBaseClientAPI``, provides developers with a
