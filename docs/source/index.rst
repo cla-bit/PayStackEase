@@ -11,6 +11,19 @@ PayStackEase: Simplified Paystack Integration.
 It provides both asynchronous and synchronous wrappers for various Paystack functionalities,
 making it easier to integrate payment processing into your Python projects.
 
+.. toctree::
+   :maxdepth: 4
+   :caption: Contents:
+
+   usage
+   submodules
+   paystackease.apis
+   paystackease.async_apis
+   paystackease.helpers
+   errors
+   changelog
+   howto
+
 
 -------------------
 Prerequisites
@@ -56,18 +69,6 @@ You can get started by downloading any of the source files here: https://test.py
 * Official Paystack Documentation: https://paystack.com/docs/api
 * Contributing guidelines: https://github.com/cla-bit/PayStackEase/blob/master/CONTRIBUTING.md
 
-.. toctree::
-   :maxdepth: 4
-   :caption: Contents:
-
-   usage
-   submodules
-   paystackease.apis
-   paystackease.async_apis
-   paystackease.helpers
-   errors
-   changelog
-   howto
 
 Indices and tables
 ==================
