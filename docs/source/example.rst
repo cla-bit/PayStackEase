@@ -2,7 +2,7 @@
 How to use paystackease
 ========================
 
-Go checkout how to install paystackease :ref:`installation`.
+Go checkout how to install paystackease :doc:`install`.
 
 
 .. hint::
