@@ -7,7 +7,7 @@ Wrappers for Paystack API calls which includes the asynchronous and synchronous 
 
 .. autosummary::
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
    :caption: Contents:
 
    apaystack
