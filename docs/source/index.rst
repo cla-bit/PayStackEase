@@ -32,7 +32,7 @@ This library is intended for developers familiar with Python and the Paystack AP
 
 ---------------------------------------------------
 
-Getting Started
+**Getting Started**
 
 As at the writing of this documentation, paystackease is still on *TestPYPI* platform, as it is still under tests for best performance.
 You can get started by downloading any of the source files here: https://test.pypi.org/project/paystackease/#files
@@ -58,7 +58,8 @@ You can get started by downloading any of the source files here: https://test.py
 * Official Paystack Documentation: https://paystack.com/docs/api
 * Contributing guidelines: https://github.com/cla-bit/PayStackEase/blob/master/CONTRIBUTING.md
 
-----------------------------------------------------------------------------
+
+====================================================================
 
 .. toctree::
    :maxdepth: 1
