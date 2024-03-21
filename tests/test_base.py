@@ -14,7 +14,7 @@ def test_base_url(base_client):
     assert base_client._PAYSTACK_API_URL == "https://api.paystack.co/"
 
 
-def test__secret_key(base_client):
+def test_secret_key():
     """ Test for secret key"""
     secret_key = "sk_secret_key"
     client = BaseClientAPI(secret_key)
