@@ -6,5 +6,5 @@ Usage
    :maxdepth: 2
    :caption: Contents
 
-    example
-    install
+   example
+   install
