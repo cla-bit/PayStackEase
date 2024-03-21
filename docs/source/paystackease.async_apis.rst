@@ -15,7 +15,7 @@ You can create a new account or login to your account to the the secret key: `Pa
 
 .. autosummary::
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
    aapplepay
    abulkcharges
