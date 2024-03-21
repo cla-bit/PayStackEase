@@ -30,7 +30,9 @@ Target Audience
 
 This library is intended for developers familiar with Python and the Paystack API.
 
-**Getting Started**
+
+Getting Started
+----------------------
 
 As at the writing of this documentation, paystackease is still on *TestPYPI* platform, as it is still under tests for best performance.
 You can get started by downloading any of the source files here: https://test.pypi.org/project/paystackease/#files
