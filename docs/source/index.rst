@@ -12,9 +12,7 @@ PayStackEase: Simplified Paystack Integration.
 It provides both asynchronous and synchronous wrappers for various Paystack functionalities,
 making it easier to integrate payment processing into your Python projects.
 
-----------------------------------------------------
 
--------------------
 Prerequisites
 -------------------
 
@@ -26,7 +24,7 @@ Before you get started with **paystackease** library, ensure you have the follow
 
 .. _Paystack Create Account: https://paystack.com
 
----------------------
+
 Target Audience
 ---------------------
 
