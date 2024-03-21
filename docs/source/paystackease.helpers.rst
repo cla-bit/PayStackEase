@@ -6,7 +6,7 @@ This contains the functionality to ease the pain of knowing what values to use.
 
 .. autosummary::
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
    convert
    toolkit
