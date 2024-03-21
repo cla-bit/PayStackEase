@@ -36,7 +36,7 @@ mypy-extensions==1.0.0
 nh3==0.2.15
 packaging==24.0
 pathspec==0.12.1
--e git+https://github.com/cla-bit/PayStackEase.git@50adaae30ef9b2a310513900d4490881e1633b6e#egg=paystackease
+-e git+https://github.com/cla-bit/PayStackEase.git@3421ce3a591b85f7c39a7580a547f99d83087145#egg=paystackease
 pdflatex==0.1.3
 pkginfo==1.10.0
 platformdirs==4.2.0

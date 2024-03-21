@@ -7,7 +7,7 @@ from paystackease.apis.apple_pay import ApplePayClientAPI
 
 
 @pytest.fixture
-def async_base_client():
+async def async_base_client():
     """ Async base client fixture"""
     return AsyncBaseClientAPI(secret_key="sk_secret_key")
 
