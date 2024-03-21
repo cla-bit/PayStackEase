@@ -9,7 +9,6 @@ from paystackease.errors import SecretKeyError
 from tests.conftest import base_client, paystack_request_client
 
 
-@responses.activate
 def test_base_url(base_client):
     """ Test base url"""
     assert base_client._PAYSTACK_API_URL == "https://api.paystack.co/"
@@ -33,7 +32,6 @@ def test_convert_to_string(base_client):
     assert base_client._convert_to_string(True) == "true"
 
 
-@responses.activate
 def test_make_paystack_http_headers(base_client):
     """Tests for make paystack http headers"""
     secret_key = "sk_secret_key"
