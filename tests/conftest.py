@@ -1,12 +1,13 @@
 """ Fixtures for testing purposes """
 
 import pytest
+# import pytest_asyncio
 from paystackease._abase import AsyncBaseClientAPI, AsyncPayStackBaseClientAPI
 from paystackease._base import BaseClientAPI, PayStackBaseClientAPI
 from paystackease.apis.apple_pay import ApplePayClientAPI
 
 
-@pytest.fixture
+@pytest_asyncio
 async def async_base_client():
     """ Async base client fixture"""
     return AsyncBaseClientAPI(secret_key="sk_secret_key")

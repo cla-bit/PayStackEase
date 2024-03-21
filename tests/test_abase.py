@@ -48,23 +48,24 @@ async def test_make_paystack_http_headers(async_base_client):
     assert headers["content-type"] == "application/json"
 
 
-# @responses.activate
-# def test_request_url(base_client):
-#     """Tests for request url"""
-#     response_data = {"status": "success"}
-#     responses.add(
-#         responses.GET,
-#         "https://api.paystack.co/test",
-#         json=response_data,
-#         status=200,
-#     )
-#     # asserting that the request url is correct
-#     response = base_client._request_url("GET", "test")
-#     assert len(responses.calls) == 1
-#     assert responses.calls[0].request.url == "https://api.paystack.co/test"
-#     assert response == response_data
-#
-#
+@pytest.mark.asyncio
+@aioresponses
+def test_request_url(base_client):
+    """Tests for request url"""
+    response_data = {"status": "success"}
+    responses.add(
+        responses.GET,
+        "https://api.paystack.co/test",
+        json=response_data,
+        status=200,
+    )
+    # asserting that the request url is correct
+    response = base_client._request_url("GET", "test")
+    assert len(responses.calls) == 1
+    assert responses.calls[0].request.url == "https://api.paystack.co/test"
+    assert response == response_data
+
+
 # @responses.activate
 # def test_get_request(paystack_request_client):
 #     """ Test the get request method"""
