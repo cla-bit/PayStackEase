@@ -4,7 +4,7 @@ Usage
 
 .. toctree::
     :maxdepth: 2
-    :caption: Example Usage
+    :caption: Contents
 
     example
     install
