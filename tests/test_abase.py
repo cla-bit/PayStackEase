@@ -34,7 +34,6 @@ async def test_secret_key():
 @pytest.mark.asyncio
 async def test_convert_to_string(async_base_client):
     """Tests for convert to string"""
-    # async_client_instance = await async_base_client
     assert async_base_client._convert_to_string(True) == "true"
 
 
@@ -42,7 +41,6 @@ async def test_convert_to_string(async_base_client):
 async def test_make_paystack_http_headers(async_base_client):
     """Tests for make paystack http headers"""
     secret_key = "sk_secret_key"
-    # async_client_instance = await async_base_client
     headers = async_base_client._make_paystack_http_headers()
     assert headers["Authorization"] == f"Bearer {secret_key}"
     assert headers["content-type"] == "application/json"
