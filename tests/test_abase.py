@@ -11,7 +11,6 @@ from tests.conftest import async_base_client
 @pytest.mark.asyncio
 async def test_base_url(async_base_client):
     """ Test base url"""
-    # async_client_instance = await async_base_client
     base_url = async_base_client._PAYSTACK_API_URL
     assert base_url == "https://api.paystack.co/"
 
@@ -24,11 +23,11 @@ async def test_secret_key():
     assert client._secret_key == secret_key
 
 
-# @pytest.mark.asyncio
-# async def test_no_secret_key():
-#     """ Test for no secret key"""
-#     with pytest.raises(SecretKeyError):
-#         AsyncBaseClientAPI()
+@pytest.mark.asyncio
+async def test_no_secret_key():
+    """ Test for no secret key"""
+    with pytest.raises(SecretKeyError):
+        AsyncBaseClientAPI()
 
 
 @pytest.mark.asyncio
