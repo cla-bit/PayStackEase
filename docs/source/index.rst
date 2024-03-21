@@ -12,9 +12,9 @@ PayStackEase: Simplified Paystack Integration.
 It provides both asynchronous and synchronous wrappers for various Paystack functionalities,
 making it easier to integrate payment processing into your Python projects.
 
+----------------------------------------------------
 
-Prerequisites
--------------------
+**Prerequisites**
 
 Before you get started with **paystackease** library, ensure you have the following requirements:
 
@@ -24,15 +24,15 @@ Before you get started with **paystackease** library, ensure you have the follow
 
 .. _Paystack Create Account: https://paystack.com
 
+----------------------------------------------
 
-Target Audience
----------------------
+**Target Audience**
 
 This library is intended for developers familiar with Python and the Paystack API.
 
+---------------------------------------------------
 
 Getting Started
-----------------------
 
 As at the writing of this documentation, paystackease is still on *TestPYPI* platform, as it is still under tests for best performance.
 You can get started by downloading any of the source files here: https://test.pypi.org/project/paystackease/#files
