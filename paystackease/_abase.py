@@ -151,7 +151,7 @@ class AsyncBaseClientAPI:
                 return response_json
         except aiohttp.ClientError as error:
             logger.error("Error: %s", error)
-            raise PayStackError(str(error), response.status) from error
+            raise PayStackError(str(error)) from error
 
 
 class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):

@@ -47,78 +47,72 @@ async def test_make_paystack_http_headers(async_base_client):
 @pytest.mark.asyncio
 async def test_request_url(async_base_client):
     """Tests for request url"""
-    async with async_base_client._session:
-        with aioresponses() as mock_client:
-            mock_response = {"status": "success"}
-            mock_client.get(
-                "https://api.paystack.co/test",
-                payload=mock_response,
-                status=200,
-            )
-            response = await async_base_client._request_url("GET", "/test")
-            assert response == mock_response
-            mock_client.assert_called()
+    with aioresponses() as mock_client:
+        mock_response = {"status": "success"}
+        mock_client.get(
+            "https://api.paystack.co/test",
+            payload=mock_response,
+            status=200,
+        )
+        response = await async_base_client._request_url("GET", "/test")
+        assert response == mock_response
+        mock_client.assert_called()
 
 
 @pytest.mark.asyncio
 async def test_get_request(async_paystack_base_client):
     """ Test the get request method"""
-    async with async_paystack_base_client._session:
-        with aioresponses() as mock_client:
-            mock_response = {"status": "success"}
-            mock_data = {"key": "value"}
-            mock_client.get(
-                "https://api.paystack.co/test",
-                payload=mock_response,
-                status=200,
-            )
-            response = await async_paystack_base_client._get_request("test", params=mock_data)
-            assert response == mock_response
+    with aioresponses() as mock_client:
+        mock_response = {"status": "success"}
+        mock_client.get(
+            "https://api.paystack.co/test",
+            payload=mock_response,
+            status=200,
+        )
+        response = await async_paystack_base_client._get_request("test")
+        assert response == mock_response
 
 
 @pytest.mark.asyncio
 async def test_post_request(async_paystack_base_client):
     """ Test the get request method"""
-    async with async_paystack_base_client._session:
-        with aioresponses() as mock_client:
-            mock_response = {"status": "success"}
-            mock_data = {"key": "value"}
-            mock_client.post(
-                "https://api.paystack.co/test",
-                payload=mock_response,
-                status=200,
-            )
-            response = await async_paystack_base_client._post_request("test", data=mock_data)
-            assert response == mock_response
+    with aioresponses() as mock_client:
+        mock_response = {"status": "success"}
+        mock_data = {"key": "value"}
+        mock_client.post(
+            "https://api.paystack.co/test",
+            payload=mock_response,
+            status=200,
+        )
+        response = await async_paystack_base_client._post_request("test", data=mock_data)
+        assert response == mock_response
 
 
 @pytest.mark.asyncio
 async def test_put_request(async_paystack_base_client):
     """ Test the get request method"""
-    async with async_paystack_base_client._session:
-        with aioresponses() as mock_client:
-            mock_response = {"status": "success"}
-            mock_data = {"key": "value"}
-            mock_client.put(
-                "https://api.paystack.co/test",
-                payload=mock_response,
-                status=200,
-            )
-            response = await async_paystack_base_client._put_request("test", data=mock_data)
-            assert response == mock_response
+    with aioresponses() as mock_client:
+        mock_response = {"status": "success"}
+        mock_data = {"key": "value"}
+        mock_client.put(
+            "https://api.paystack.co/test",
+            payload=mock_response,
+            status=200,
+        )
+        response = await async_paystack_base_client._put_request("test", data=mock_data)
+        assert response == mock_response
 
 
 @pytest.mark.asyncio
 async def test_delete_request(async_paystack_base_client):
     """ Test the get request method"""
-    async with async_paystack_base_client._session:
-        with aioresponses() as mock_client:
-            mock_response = {"status": "success"}
-            mock_data = {"key": "value"}
-            mock_client.delete(
-                "https://api.paystack.co/test",
-                payload=mock_response,
-                status=200,
-            )
-            response = await async_paystack_base_client._delete_request("test", data=mock_data)
-            assert response == mock_response
+    with aioresponses() as mock_client:
+        mock_response = {"status": "success"}
+        mock_data = {"key": "value"}
+        mock_client.delete(
+            "https://api.paystack.co/test",
+            payload=mock_response,
+            status=200,
+        )
+        response = await async_paystack_base_client._delete_request("test", data=mock_data)
+        assert response == mock_response

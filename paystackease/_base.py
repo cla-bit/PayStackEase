@@ -149,7 +149,7 @@ class BaseClientAPI:
                 return response.json()
         except requests.RequestException as error:
             logger.error("Error %s", error)
-            raise PayStackError(str(error), response.status_code) from error
+            raise PayStackError(str(error)) from error
 
 
 class PayStackBaseClientAPI(BaseClientAPI):

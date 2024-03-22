@@ -10,13 +10,15 @@ from paystackease.apis.apple_pay import ApplePayClientAPI
 @pytest_asyncio.fixture
 async def async_base_client():
     """ Async base client fixture"""
-    return AsyncBaseClientAPI(secret_key="sk_secret_key")
+    async with AsyncBaseClientAPI(secret_key="sk_secret_key") as client:
+        yield client
 
 
 @pytest_asyncio.fixture
 async def async_paystack_base_client():
     """ Paystack async request client fixture"""
-    return AsyncPayStackBaseClientAPI(secret_key="sk_secret_key")
+    async with AsyncPayStackBaseClientAPI(secret_key="sk_secret_key") as client:
+        yield client
 
 
 @pytest.fixture
