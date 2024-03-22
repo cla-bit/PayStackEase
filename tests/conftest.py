@@ -13,6 +13,12 @@ async def async_base_client():
     return AsyncBaseClientAPI(secret_key="sk_secret_key")
 
 
+@pytest_asyncio.fixture
+async def async_paystack_base_client():
+    """ Paystack async request client fixture"""
+    return AsyncPayStackBaseClientAPI(secret_key="sk_secret_key")
+
+
 @pytest.fixture
 def base_client():
     """ Base client fixture"""
