@@ -1,6 +1,8 @@
 """ Tests for synchronous Bulk Charges """
 
 import json
+import urllib.parse
+from datetime import date
 import pytest
 import responses
 from tests.conftest import bulk_charges_client
@@ -35,37 +37,47 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
 
 
 @pytest.mark.parametrize(
-    "per_page", "page", "from_date", "to_date", [
-        (True, 1, 1),  # Testing with all parameters provided
-        (False, 1, 2),  # Testing with all parameters provided
-        (True, None, None),  # Testing with only use_cursor parameter provided
-        (False, None, None),  # Testing with only use_cursor parameter provided
-    ]
+    "per_page, page, from_date, to_date",
+    [
+        (
+            10,
+            1,
+            date(2024, 2, 23),
+            date(2024, 2, 23),
+        )
+    ],
 )
 @responses.activate
-def test_list_domains(apple_pay_client, use_cursor, next_page, previous_page):
-    """
-    This function tests the behavior of the list_domains method with various combinations
-    of parameters, including scenarios where some parameters are None.
-    """
-    url = "https://api.paystack.co/apple-pay/domain"
+def test_list_bulk_charge_batches(
+    bulk_charges_client, per_page, page, from_date, to_date
+):
+    """Tests for list_bulk_charge_batches"""
+    url = "https://api.paystack.co/bulkcharge"
     response_data = {"status": "success"}
+
+    url_params = {
+        "perPage": per_page,
+        "page": page,
+        "from": from_date,
+        "to": to_date,
+    }
+    # Construct the expected URL with parameters
+    expected_url = f"{url}?{'&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)}"
 
     # mock the API response
     responses.add(
         responses.GET,
-        url,
-        status=200,
+        expected_url,
         json=response_data,
+        status=200,
     )
-    response = apple_pay_client.list_domains(use_cursor, next_page, previous_page)
-    expected_params = {
-        "use_cursor": str(use_cursor).lower(),
-        "next": next_page,
-        "previous": previous_page,
-    }
+    # You can make some parameters optional in both the response and expected params
+    response = bulk_charges_client.list_bulk_charge_batches(
+        per_page=per_page,
+        page=page,
+        from_date=from_date,
+        to_date=to_date,
+    )
     assert len(responses.calls) == 1
-    assert responses.calls[0].request.url == url + "?" + "&".join(
-        f"{key}={value}" for key, value in expected_params.items() if value is not None
-    )
-    assert response is not None
+    assert responses.calls[0].request.url == expected_url
+    assert response == response_data
