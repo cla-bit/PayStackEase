@@ -2,7 +2,7 @@
 
 import pytest
 import pytest_asyncio
-
+from aioresponses import aioresponses
 from paystackease._abase import AsyncBaseClientAPI, AsyncPayStackBaseClientAPI
 from paystackease._base import BaseClientAPI, PayStackBaseClientAPI
 from paystackease.apis.apple_pay import ApplePayClientAPI
@@ -28,6 +28,13 @@ async def async_apple_pay_client():
     """ Apple pay client fixture"""
     async with AsyncApplePayClientAPI(secret_key="sk_secret_key") as client:
         yield client
+
+
+@pytest_asyncio.fixture
+async def mocked_responses():
+    """ Mocked responses fixture"""
+    with aioresponses() as mocked:
+        yield mocked
 
 
 @pytest.fixture
