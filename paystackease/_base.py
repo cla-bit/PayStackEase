@@ -34,7 +34,7 @@ class BaseClientAPI:
     _VALID_HTTP_METHODS = {"GET", "POST", "PUT", "DELETE"}
 
     # pylint: disable=too-few-public-methods
-    def __init__(self, secret_key: str = None) -> None:
+    def __init__(self, secret_key: str = None):
         self._secret_key = secret_key
 
         # Default to PAYSTACK_SECRET_KEY if not provided in the instance
