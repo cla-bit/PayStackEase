@@ -9,7 +9,10 @@ from paystackease.apis import (
     apple_pay,
     bulk_charges
 )
-from paystackease.async_apis import AsyncApplePayClientAPI
+from paystackease.async_apis import (
+    aapple_pay,
+    abulk_charges
+)
 
 
 @pytest_asyncio.fixture
@@ -29,7 +32,14 @@ async def async_paystack_base_client():
 @pytest_asyncio.fixture
 async def async_apple_pay_client():
     """ Apple pay client fixture"""
-    async with AsyncApplePayClientAPI(secret_key="sk_secret_key") as client:
+    async with aapple_pay.AsyncApplePayClientAPI(secret_key="sk_secret_key") as client:
+        yield client
+
+
+@pytest_asyncio.fixture
+async def async_bulk_charges_client():
+    """ Bulk Charges client fixture"""
+    async with abulk_charges.AsyncBulkChargesClientAPI(secret_key="sk_secret_key") as client:
         yield client
 
 

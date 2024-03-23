@@ -1,9 +1,7 @@
 """ Tests for synchronous Apple Pay """
 
-import json
 import pytest
 
-from aioresponses import aioresponses
 from tests.conftest import async_apple_pay_client, mocked_responses
 
 
