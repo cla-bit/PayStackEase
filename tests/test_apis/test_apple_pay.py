@@ -23,23 +23,25 @@ def test_list_domains(apple_pay_client, use_cursor, next_page, previous_page):
     url = "https://api.paystack.co/apple-pay/domain"
     response_data = {"status": "success"}
 
-    # mock the API response
-    responses.add(
-        responses.GET,
-        url,
-        status=200,
-        json=response_data,
-    )
-    response = apple_pay_client.list_domains(use_cursor, next_page, previous_page)
-    expected_params = {
+    # Construct the expected URL with parameters
+    url_params = {
         "use_cursor": str(use_cursor).lower(),
         "next": next_page,
         "previous": previous_page,
     }
-    assert len(responses.calls) == 1
-    assert responses.calls[0].request.url == url + "?" + "&".join(
-        f"{key}={value}" for key, value in expected_params.items() if value is not None
+    # Construct the expected URL with parameters
+    expected_url = f"{url}?{'&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)}"
+
+    # mock the API response
+    responses.add(
+        responses.GET,
+        expected_url,
+        status=200,
+        json=response_data,
     )
+    response = apple_pay_client.list_domains(use_cursor, next_page, previous_page)
+    assert len(responses.calls) == 1
+    assert responses.calls[0].request.url == expected_url
     assert response is not None
 
 
@@ -51,6 +53,7 @@ def test_register_domain(apple_pay_client, domain_name):
     """
     url = "https://api.paystack.co/apple-pay/domain"
     response_data = {"status": "success"}
+    expected_data = {"domainName": domain_name}
 
     # mock the API response
     responses.add(
@@ -60,7 +63,6 @@ def test_register_domain(apple_pay_client, domain_name):
         json=response_data,
     )
     response = apple_pay_client.register_domain(domain_name=domain_name)
-    expected_data = {"domainName": domain_name}
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
     assert json.loads(responses.calls[0].request.body) == expected_data

@@ -5,7 +5,10 @@ import pytest_asyncio
 from aioresponses import aioresponses
 from paystackease._abase import AsyncBaseClientAPI, AsyncPayStackBaseClientAPI
 from paystackease._base import BaseClientAPI, PayStackBaseClientAPI
-from paystackease.apis.apple_pay import ApplePayClientAPI
+from paystackease.apis import (
+    apple_pay,
+    bulk_charges
+)
 from paystackease.async_apis import AsyncApplePayClientAPI
 
 
@@ -52,4 +55,10 @@ def paystack_request_client():
 @pytest.fixture
 def apple_pay_client():
     """ Apple pay client fixture"""
-    return ApplePayClientAPI(secret_key="sk_secret_key")
+    return apple_pay.ApplePayClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def bulk_charges_client():
+    """ Bulk Charges client fixture"""
+    return bulk_charges.BulkChargesClientAPI(secret_key="sk_secret_key")
