@@ -34,7 +34,7 @@ async def test_initialize_bulk_charges(async_bulk_charges_client, mocked_respons
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "per_page, page, from_date, to_date",
+    ("per_page", "page", "from_date", "to_date"),
     [
         (10, 1, date(2024, 2, 23), date(2024, 2, 23)),
         (None, None, None, None),
@@ -54,7 +54,8 @@ async def test_list_bulk_charge_batches(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    expected_url = f"{url}?{'&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)}"
+    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
+    expected_url = url + ('?' + query_string if query_string else '')
 
     # mock the API response
     mocked_responses.get(
@@ -91,15 +92,10 @@ async def test_fetch_bulk_charge_batch(async_bulk_charges_client, mocked_respons
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "status, per_page, page, from_date, to_date",
+    ("status", "per_page", "page", "from_date", "to_date"),
     [
-        (
-            STATUS.SUCCESS.value,
-            10,
-            1,
-            date(2024, 2, 23),
-            date(2024, 2, 23),
-        )
+        (STATUS.SUCCESS.value, 10, 1, date(2024, 2, 23), date(2024, 2, 23)),
+        (None, None, None, None, None),
     ],
 )
 async def test_fetch_charge_bulk_batch(
@@ -117,7 +113,8 @@ async def test_fetch_charge_bulk_batch(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    expected_url = f"{url}?{'&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)}"
+    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
+    expected_url = url + ('?' + query_string if query_string else '')
 
     mocked_responses.get(
         expected_url,

@@ -7,7 +7,11 @@ from tests.conftest import async_apple_pay_client, mocked_responses
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "use_cursor, next_page, previous_page", [(True, 1, 1), (False, 1, 2), (True, None, None), (False, None, None)]
+    ("use_cursor", "next_page", "previous_page"),
+    [(True, 1, 1),
+     (False, 1, 2),
+     (True, None, None),
+     (False, None, None)]
 )
 async def test_list_domains(async_apple_pay_client, mocked_responses, use_cursor, next_page, previous_page):
     """
@@ -24,7 +28,8 @@ async def test_list_domains(async_apple_pay_client, mocked_responses, use_cursor
         "previous": previous_page,
     }
     # Construct the expected URL with parameters
-    expected_url = f"{url}?{'&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)}"
+    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
+    expected_url = url + ('?' + query_string if query_string else '')
 
     # mock the API response
     mocked_responses.get(

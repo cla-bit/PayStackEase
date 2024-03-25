@@ -40,12 +40,8 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
 @pytest.mark.parametrize(
     "per_page, page, from_date, to_date",
     [
-        (
-            10,
-            1,
-            date(2024, 2, 23),
-            date(2024, 2, 23),
-        )
+        (10, 1, date(2024, 2, 23), date(2024, 2, 23)),
+        (None, None, None, None)
     ],
 )
 @responses.activate
@@ -63,7 +59,8 @@ def test_list_bulk_charge_batches(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    expected_url = f"{url}?{'&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)}"
+    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
+    expected_url = url + ('?' + query_string if query_string else '')
 
     # mock the API response
     responses.add(
@@ -103,15 +100,10 @@ def test_fetch_bulk_charge_batch(bulk_charges_client):
 
 
 @pytest.mark.parametrize(
-    "status, per_page, page, from_date, to_date",
+    ("status", "per_page", "page", "from_date", "to_date"),
     [
-        (
-            STATUS.SUCCESS.value,
-            10,
-            1,
-            date(2024, 2, 23),
-            date(2024, 2, 23),
-        )
+        (STATUS.SUCCESS.value, 10, 1, date(2024, 2, 23), date(2024, 2, 23)),
+        (None, None, None, None, None)
     ],
 )
 # pylint: disable=too-many-arguments
@@ -131,7 +123,8 @@ def test_fetch_charge_bulk_batch(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    expected_url = f"{url}?{'&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)}"
+    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
+    expected_url = url + ('?' + query_string if query_string else '')
 
     responses.add(
         responses.GET,
