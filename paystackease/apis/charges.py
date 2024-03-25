@@ -3,7 +3,7 @@ Wrapper for Paystack Charges API.
 
 The Charge API allows you to configure payment channel of your choice when initiating a payment.
 """
-
+from datetime import date
 from typing import Optional, Dict, Any
 from paystackease._base import PayStackBaseClientAPI
 
@@ -128,7 +128,7 @@ class ChargesClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request("/charge/submit_phone", data=data)
 
-    def submit_birthday(self, birthday: str, reference: str) -> dict:
+    def submit_birthday(self, birthday: date, reference: str) -> dict:
         """
         Submit birthday when required
 
@@ -142,6 +142,8 @@ class ChargesClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
+        birthday = self._convert_to_string(birthday)
+
         data = {
             "birthday": birthday,
             "reference": reference,

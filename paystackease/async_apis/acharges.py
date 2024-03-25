@@ -3,7 +3,7 @@ Wrapper for Asynchronous Paystack Charges API.
 
 The Charge API allows you to configure payment channel of your choice when initiating a payment.
 """
-
+from datetime import date
 from typing import Optional, Dict, Any
 from paystackease._abase import AsyncPayStackBaseClientAPI
 
@@ -128,7 +128,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/charge/submit_phone", data=data)
 
-    async def submit_birthday(self, birthday: str, reference: str) -> dict:
+    async def submit_birthday(self, birthday: date, reference: str) -> dict:
         """
         Submit birthday when required
 
@@ -142,6 +142,8 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
+        birthday = self._convert_to_string(birthday)
+
         data = {
             "birthday": birthday,
             "reference": reference,
