@@ -118,7 +118,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_dedicated_account(
             self,
-            active: Optional[bool] = None,
+            active: Optional[bool] = True,
             currency: Optional[str] = None,
             provider_slug: Optional[str] = None,
             bank_id: Optional[str] = None,
