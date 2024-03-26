@@ -1,16 +1,19 @@
 # PayStackEase Library  ![paystackease](docs/images/paystackease.png)
 
-Paystack is a technology company solving payments problems for ambitious businesses. 
+--------------------------------------------------------------------
 
-This **PayStackEase API Library** consists of **Paystack API** asynchronous and synchronous wrappers, which can be integrated into python projects to interact with **Paystack**.
+**PayStackEase API Library**  is a Python library that simplifies interacting with the Paystack API. 
+It provides both asynchronous and synchronous wrappers for various Paystack functionalities, 
+making it easier to integrate payment processing into your Python projects.
 
-> 📝: Read more on paystack api: https://paystack.com/docs/api/
+> 📝: Read more on paystack api documentation: https://paystack.com/docs/api/
+
+> 📝: Read more on paystackease api documentation: https://paystackease.readthedocs.io/en/latest/
 
 
-Getting Started
-================================================================
+## Getting Started
 
-You should create a Paystack account to generate a **Paystack Secret Key**. You can see this in the settings page >> API keys and Webhook section.
+You should create a Paystack account to generate a **Paystack Secret Key**. You can see this in the *settings page >> API keys and Webhook section*.
 
 > ⚠️: **Warning:** Do not expose your secret key or commit your secret key to git, or use them in client-side code.
 
@@ -18,25 +21,72 @@ You should create a Paystack account to generate a **Paystack Secret Key**. You 
 
 > ✅: **Good**: Set your secret key in environment variables as seen: *PAYSTACK_SECRET_KEY=your-secret-key*
 
-# Install paystackease library:
+
+## Create a Virtual Environment
+
+1. For Windows:
+
+    * Create virtual environment
+
+        ```
+            py -m venv <environment_name>
+       ```
+    * Activate the virtual environment
+
+        ```
+            <environment_name>\Scripts\activate
+       ```
+
+2. For Unix/MacOS
+
+    * Create virtual environment
+
+        ```
+            python3 -m venv <environment_name>
+       ```
+    * Activate the virtual environment
+
+        ```
+            <environment_name>/bin/activate
+       ```
+
+----------------------------------------------------------------------
+
+## Install paystackease library:
+
+
 * #### Install paystackease using pip.
+
 > pip install paystackease
 
 or Download the wheel distribution file and install using pip
+
 >  pip install paystackease-0.1.2-py3-none-any.whl 
 
-or Download the source distribution file, change directory and install using pip
-> cd 
-> 
+or Download the source distribution file, and install using pip
+
 > pip install paystackease-0.1.2.tar.gz 
 
-or clone from the github repository:
+or clone from the github repository, unzip and install:
+
 > git clone https://github.com/cla-bit/PayStackEase.git
 
-# Making a Transaction
+> cd PayStackEase
 
-If after setting your secret key in environment variables, all you need to do is use the transaction API to make a transaction. 
-To make a transaction or initialize a transaction:
+> pip install paystackease
+
+----------------------------------------------------------------------
+
+## API usage
+
+-------------------------------------------------------
+
+### Making a Transaction [Synchronous]
+
+If after setting your secret key in environment variables, for a synchronous transaction process 
+all you need to do is use the transaction API to make a transaction. 
+
+To create a transaction or initialize a transaction:
 
 * import the Paystack API wrapper.
 
