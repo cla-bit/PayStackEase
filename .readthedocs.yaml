@@ -23,3 +23,15 @@ formats: all
 # python:
 #     install:
 #     - requirements: requirements.txt
+
+python:
+  install:
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
+  system_packages:
+    - python3-venv
+  post:
+    - pip install poetry
+    - poetry install --no-root --extras docs
