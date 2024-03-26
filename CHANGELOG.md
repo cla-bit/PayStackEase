@@ -9,3 +9,4 @@ All notable changes to **paystackease** will be documented in this file.
 - **Deprecated:** Description of deprecated features or functionalities.
 - **Removed:** Description of removed features or functionalities.
 - **Security:** Description of security fixes or improvements.
+

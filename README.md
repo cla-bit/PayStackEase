@@ -164,6 +164,7 @@ Similar to calling the PayStackBase, you can also call other tools to make your 
     
     print(val1)
 ```
+
 > "identityNumber"
 
 Others are: ***EventType, Interval, MobileMoney, PWT, QRCODE, RecipientType, ResendOTP, Resolution, RiskAction, SplitType, STATUS, and USSD***.
