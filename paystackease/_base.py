@@ -7,7 +7,7 @@ constructing HTTP headers, joining URLs with the API base URL, and logging respo
 import json
 import logging
 
-from datetime import date
+from datetime import date, datetime
 from typing import Union
 from urllib.parse import urljoin
 from decouple import config
@@ -93,16 +93,17 @@ class BaseClientAPI:
         # each supported type is mapped to its corresponding conversion function
         conversion_functions = {
             bool: lambda val: str(val).lower(),
-            date: lambda val: val.strftime("%Y-%m-%d %H:%M:%S"),
+            date: lambda val: val.strftime("%Y-%m-%d"),
+            datetime: lambda val: val.strftime("%Y-%m-%d %H:%M:%S"),  # Added a datetime
         }
 
         if value is None:
             return None
         if type(value) in conversion_functions:
             return conversion_functions[type(value)](value)
-        logger.error("Unsupported type: %s Expected type -bool, -date", {type(value)})
+        logger.error("Unsupported type: %s Expected type -bool, -date, -datetime", {type(value)})
         raise TypeValueError(
-            f"Unsupported type: {type(value)}. Expected type -bool, -date"
+            f"Unsupported type: {type(value)}. Expected type -bool, -date, -datetime"
         )
 
     def _request_url(
