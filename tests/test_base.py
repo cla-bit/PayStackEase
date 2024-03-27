@@ -1,4 +1,5 @@
 """ Tests for the BaseClientAPI and PayStackClientAPI methods """
+from datetime import date, datetime
 
 import pytest
 import responses
@@ -30,6 +31,9 @@ def test_no_secret_key():
 def test_convert_to_string(base_client):
     """Tests for convert to string"""
     assert base_client._convert_to_string(True) == "true"
+    assert base_client._convert_to_string(False) == "false"
+    assert base_client._convert_to_string(date.today()) == date.today().strftime("%Y-%m-%d")
+    assert base_client._convert_to_string(datetime.today()) == datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 
 
 def test_make_paystack_http_headers(base_client):

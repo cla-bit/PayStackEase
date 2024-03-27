@@ -1,6 +1,8 @@
 """ Tests for the AsyncBaseClientAPI and AsyncPayStackClientAPI methods """
+
 import pytest
 from aioresponses import aioresponses
+from datetime import datetime, date
 
 from paystackease._abase import AsyncBaseClientAPI
 from paystackease.errors import SecretKeyError
@@ -33,6 +35,9 @@ async def test_no_secret_key():
 async def test_convert_to_string(async_base_client):
     """Tests for convert to string"""
     assert async_base_client._convert_to_string(True) == "true"
+    assert async_base_client._convert_to_string(False) == "false"
+    assert async_base_client._convert_to_string(date.today()) == date.today().strftime("%Y-%m-%d")
+    assert async_base_client._convert_to_string(datetime.today()) == datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 
 
 @pytest.mark.asyncio
