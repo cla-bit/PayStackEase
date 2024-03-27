@@ -10,13 +10,7 @@ The **PayStackBase** class serves as a comprehensive wrapper around various clie
 to interact with the PayStack API synchronously. It encapsulates individual client APIs for different aspects of PayStack
 services, such as payments, customers, disputes, and more, simplifying the integration process and promoting code organization.
 
-
-..  py:class:: PayStackBase(secret_key=None)
-
-    Bases: :py:class:`PayStackBaseClientAPI`
-
-    PayStackBase acts as a wrapper around various client APIs to interact with the PayStack API
-
+------------------------
 
 **USAGE**
 
@@ -24,10 +18,14 @@ services, such as payments, customers, disputes, and more, simplifying the integ
 
     >>> from paystackease import PayStackBase
 
-    >>> paystack = PayStackBase()
-    >>> response = paystack.apple_pay.register_domain(domain_name="your-domain-name-here")
 
-    >>> print(f"Response: {response}")
+    >>> def paystack_client():
+    >>>     paystack = PayStackBase()
+    >>>     response = paystack.apple_pay.register_domain(domain_name="your-domain-name-here")
+    >>>     print(f"Response: {response}")
+
+
+    >>> paystack_client()
 
 
 .. note::

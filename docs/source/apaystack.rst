@@ -10,24 +10,23 @@ The **AsyncPayStackBase** class serves as a comprehensive wrapper around various
 to interact with the PayStack API asynchronously. It encapsulates individual client APIs for different aspects of PayStack
 services, such as payments, customers, disputes, and more, simplifying the integration process and promoting code organization.
 
-
-..  py:class:: AsyncPayStackBase(secret_key=None)
-
-    Bases: :py:class:`AsyncPayStackBaseClientAPI`
-
-    AsyncPayStackBase acts as a wrapper around various client APIs to interact with the PayStack API
-
+-----------------------------
 
 **USAGE**
 
 .. code-block:: python
 
+    >>> import asyncio
     >>> from paystackease import AsyncPayStackBase
 
-    >>> async with AsyncPayStackBase() as paystack:
-    >>>     response = await paystack.apple_pay.register_domain(domain_name="your-domain-name-here")
 
-    >>>     print(f"Response: {response}")
+    >>> async def paystack_client():
+    >>>     async with AsyncPayStackBase() as paystack:
+    >>>         response = await paystack.apple_pay.register_domain(domain_name="your-domain-name-here")
+    >>>         print(f"Response: {response}")
+
+
+    >>> asyncio.run(paystack_client())
 
 
 .. note::
