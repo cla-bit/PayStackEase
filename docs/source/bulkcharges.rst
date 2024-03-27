@@ -25,7 +25,7 @@ Wrapper for Synchronous Paystack Bulk Charges API. The Bulk Charges API allows y
         :return: The response from the API.
         :rtype: dict
 
-    .. py:method:: fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
 
         Fetch a bulk charge of a specific batch
 
@@ -33,9 +33,9 @@ Wrapper for Synchronous Paystack Bulk Charges API. The Bulk Charges API allows y
         :type id_or_code: str
         :param status: The status of the bulk charge batch.
         :type status: str, optional
-        :param per_page: The number of records to return per page.
+        :param per_page: The number of records to return per page (default: 50).
         :type per_page: int, optional
-        :param page: The page to return.
+        :param page: The page to return (default: 1).
         :type page: int, optional
         :param from_date: The starting date of the bulk charge batch.
         :type from_date: date, optional
@@ -63,13 +63,13 @@ Wrapper for Synchronous Paystack Bulk Charges API. The Bulk Charges API allows y
 
             A list of dictionary with ``authorization codes``, ``amount`` and ``reference`` as keys
 
-    .. py:method:: list_bulk_charge_batches(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
 
         List bulk charge batches
 
-        :param per_page: The number of records to return per page.
+        :param per_page: The number of records to return per page (default: 50).
         :type per_page: int, optional
-        :param page: The page to return.
+        :param page: The page to return (default: 1).
         :type page: int, optional
         :param from_date: The starting date of the bulk charge batch.
         :type from_date: date, optional

@@ -6,8 +6,9 @@ The Bulk Charges API allows you to create and manage multiple recurring payments
 
 from datetime import date
 
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.helpers.tool_kit import STATUS
 
 
 class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
@@ -34,8 +35,8 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_bulk_charge_batches(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
     ) -> dict:
@@ -81,9 +82,9 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
     async def fetch_charge_bulk_batch(
             self,
             id_or_code: str,
-            status: Optional[str] = None,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            status: Union[STATUS, None] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
     ) -> dict:
@@ -111,7 +112,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
         to_date = self._convert_to_string(to_date)
 
         params = {
-            "status": status,
+            "status": status if status is not None else None,
             "perPage": per_page,
             "page": page,
             "from": from_date,
