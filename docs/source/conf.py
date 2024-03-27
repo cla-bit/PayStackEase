@@ -41,9 +41,12 @@ html_theme_options = {
     "collapse_navigation": False,
     "display_version": True,
 }
+html_logo = "_static/logo-paystackease.png"
+
 
 latex_engine = 'pdflatex'
 latex_element = {
     'papersize': 'letterpaper',
     'pointsize': '12pt',
 }
+latex_logo = "_static/logo-paystackease.png"
