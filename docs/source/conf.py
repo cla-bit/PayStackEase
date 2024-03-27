@@ -42,6 +42,7 @@ html_theme_options = {
     "display_version": True,
 }
 html_logo = "_static/logo-paystackease.png"
+html_favicon = "_static/favicon.png"
 
 
 latex_engine = 'pdflatex'
