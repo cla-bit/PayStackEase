@@ -5,7 +5,12 @@ Bulk Charges Module
 .. :py:currentmodule:: paystackease.apis.bulk_charges
 
 
-Wrapper for Synchronous Paystack Bulk Charges API. The Bulk Charges API allows you to create and manage multiple recurring payments from your customers.
+Wrapper for Synchronous Paystack Bulk Charges API. The Bulk Charges API allows you to
+create and manage multiple recurring payments from your customers.
+
+To access the Bulk Charges API methods, you need to call the ``bulk_charges`` instance method from ``PayStackBase``.
+
+Check example on :doc:`paystack`
 
 ------------------------------------------------------------------------------
 
