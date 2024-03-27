@@ -1,14 +1,22 @@
-# PayStackEase Library  ![paystackease](docs/images/paystackease.png)
+# PayStackEase Library  
+
+<div style="text-align: center;">
+
+![paystackease](docs/images/logo-paystackease.png)
+
+</div>
 
 --------------------------------------------------------------------
+
+
 
 **PayStackEase API Library**  is a Python library that simplifies interacting with the Paystack API. 
 It provides both asynchronous and synchronous wrappers for various Paystack functionalities, 
 making it easier to integrate payment processing into your Python projects.
 
-> 📝: Read more on paystack api documentation: https://paystack.com/docs/api/
+> 📝: Read more on paystack api documentation: [Paystack API DOCUMENTATION](https://paystack.com/docs/api/)
 
-> 📝: Read more on paystackease api documentation: https://paystackease.readthedocs.io/en/latest/
+> 📝: Read more on paystackease api documentation: [PayStackEase DOCUMENTATION](https://paystackease.readthedocs.io/en/latest/)
 
 
 ## Getting Started
