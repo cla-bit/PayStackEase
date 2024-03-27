@@ -9,6 +9,11 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11"
+  jobs:
+    post_create_environment:
+      - pip install poetry
+    post_install:
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --with docs
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
@@ -20,6 +25,3 @@ formats: all
 # Optional but recommended, declare the Python requirements required
 # to build your documentation
 # See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
-python:
-    install:
-    - requirements: requirements.txt
