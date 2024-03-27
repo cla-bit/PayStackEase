@@ -6,8 +6,9 @@
 
 </div>
 
---------------------------------------------------------------------
+------
 
+![Python Versions](https://img.shields.io/badge/python-3.9|3.10|3.11|3.12-blue) ![License](https://img.shields.io/pypi/l/paystackease)
 
 
 **PayStackEase API Library**  is a Python library that simplifies interacting with the Paystack API. 
@@ -69,11 +70,11 @@ You should create a Paystack account to generate a **Paystack Secret Key**. You 
 
 or Download the wheel distribution file and install using pip
 
->  pip install paystackease-0.1.2-py3-none-any.whl 
+>  pip install paystackease-0.1.3-py3-none-any.whl 
 
 or Download the source distribution file, and install using pip
 
-> pip install paystackease-0.1.2.tar.gz 
+> pip install paystackease-0.1.3.tar.gz 
 
 or clone from the github repository, unzip and install:
 
