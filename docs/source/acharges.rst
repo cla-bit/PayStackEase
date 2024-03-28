@@ -4,8 +4,12 @@ Async Charge Module
 
 .. :py:currentmodule:: paystackease.async_apis.acharges
 
+Wrapper for Asynchronous Paystack Charges API. The Charge API allows you to configure payment
+channel of your choice when initiating a payment.
 
-Wrapper for Asynchronous Paystack Charges API. The Charge API allows you to configure payment channel of your choice when initiating a payment.
+To access the Charges API methods, you need to call the ``charges`` instance method from ``AsyncPayStackBase``.
+
+Check example on :doc:`apaystack`
 
 ------------------------------------------------------------------------------------
 
@@ -61,20 +65,6 @@ Wrapper for Asynchronous Paystack Charges API. The Charge API allows you to conf
         :return: The response from the API.
         :rtype: dict
 
-    .. attention::
-
-        A. Do not send or use the following if charging an authorization code:
-            * `bank`
-            * `ussd`
-            * `mobile_money`
-
-        B. Do not send or use the following if charging an authorization code, bank or card:
-            * `ussd`
-            * `mobile_money`
-
-        C. Send with a non-reusable authorization code:
-            * `pin`
-
     .. py:method:: async submit_address(reference: str, address: str, city: str, state: str, zipcode: str)→ dict
 
         Submit address to continue a charge
@@ -93,21 +83,17 @@ Wrapper for Asynchronous Paystack Charges API. The Charge API allows you to conf
         :return: The response from the API.
         :rtype: dict
 
-    .. py:method:: async submit_birthday(birthday: str, reference: str)→ dict
+    .. py:method:: async submit_birthday(birthday: date, reference: str)→ dict
 
         Submit birthday when required
 
         :param birthday: The birthday of the customer
-        :type birthday: str
+        :type birthday: date
         :param reference: The reference of the charge
         :type reference: str
 
         :return: The response from the API.
         :rtype: dict
-
-    .. note::
-
-        Birthday submitted by user e.g. 2016-09-21
 
     .. py:method:: async submit_otp(otp: int, reference: str)→ dict
 
@@ -147,3 +133,21 @@ Wrapper for Asynchronous Paystack Charges API. The Charge API allows you to conf
 
 
 .. _Charges: https://paystack.com/docs/api/charge/
+
+In creating a charge, there are rules guiding this as well to ensure a successful API request to PayStack,
+of which they are as follows:
+
+A. Do not send or use the following if charging an authorization code:
+    * `bank`
+    * `ussd`
+    * `mobile_money`
+
+B. Do not send or use the following if charging an authorization code, bank or card:
+    * `ussd`
+    * `mobile_money`
+
+C. Send with a non-reusable authorization code:
+    * `pin`
+
+Kindly note that authorization_code are gotten after a successful card transaction. Check here to read more
+:doc:`atransactions`.
