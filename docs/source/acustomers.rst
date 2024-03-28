@@ -27,7 +27,7 @@ Wrapper for Asynchronous Paystack Customers API. The Customers API allows you to
         :type last_name: str
         :param phone: The customer's phone number.
         :type phone: str
-        :param metadata: The metadata of the customer in JSON format. (Set key as: {“custom_fields”: [{ “label”: “First Name”, “value”: “John” }] })
+        :param metadata: The metadata of the customer in JSON format.
         :type metadata: dict, optional
 
         :return: The response from the API.
@@ -53,13 +53,13 @@ Wrapper for Asynchronous Paystack Customers API. The Customers API allows you to
         :return: The response from the API
         :rtype: dict
 
-    .. py:method:: async list_customers(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_customers(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
 
         List customers.
 
-        :param per_page: The number of customers to return per page.
+        :param per_page: The number of customers to return per page (default: 50).
         :type per_page: int, optional
-        :param page: The page to return.
+        :param page: The page to return (default: 1).
         :type page: int, optional
         :param from_date: The customer's from date.
         :type from_date: date, optional
@@ -97,7 +97,7 @@ Wrapper for Asynchronous Paystack Customers API. The Customers API allows you to
         :type first_name: str
         :param last_name: The customer's last name.
         :type last_name: str
-        :param account_type: The type of account. Only bank_account is currently supported.
+        :param account_type: The type of account. Only ``"bank_account"`` is currently supported.
         :type account_type: str
         :param country: The country of the customer. 2-letter country code of identification issuer
         :type country: str
@@ -121,12 +121,34 @@ Wrapper for Asynchronous Paystack Customers API. The Customers API allows you to
 
         :param email_or_code: The customer's code.
         :type email_or_code: str
-        :param risk_action: The action to take on the customer. value: RiskAction.value.value = “allow” pr “deny”
+        :param risk_action: The action to take on the customer
         :type risk_action: str, optional
 
         :return: The response from the API
         :rtype: dict
 
 
-
 .. _Customer: https://paystack.com/docs/api/customer/
+
+In creating a customer, the metadata parameter is of the `custom_fields` metadata type. See more on :doc:`metadata`.
+
+.. code-block:: console
+
+    >>> {
+    >>>     "metadata": {
+    >>>         'custom_fields': [{'label': 'First Name', 'value': 'John'}]
+    >>>     }
+    >>> }
+
+The ``risk_action`` parameter takes in a string value of the Risk Action enum member. See more on :doc:`toolkit`
+
+.. code-block:: python
+
+    >>> from paystackease import RiskAction
+    >>> risk_action = RiskAction.DENY.value
+    >>> print(risk_action)
+
+.. code-block:: console
+
+    $ python
+    >>> 'deny'
