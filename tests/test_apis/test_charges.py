@@ -1,7 +1,7 @@
 """ Test for chares """
 
 import json
-from datetime import date
+from datetime import date, datetime
 import pytest
 import responses
 
@@ -15,12 +15,12 @@ from tests.conftest import charges_client
     [
         ("test-email@gmail.com", 10000, 1234, "AUTH_test1234", "test-ref1234",
          "test-device-id", None,
-         {"account_expires_at": "2023-09-12T13:10:00Z"}, {"provider": "visa"},
+         {"account_expires_at": date.today().strftime("%Y-%m-%d")}, {"provider": "visa"},
          None, None, {"nickname": "tester"}
          ),
         ("test-email@gmail.com", 10000, 1234, None, "test-ref1234",
          "test-device-id", {"code": "123", "account_number": "0000000000"},
-         {"account_expires_at": "2023-09-12T13:10:00Z"}, {"provider": "visa"},
+         {"account_expires_at": datetime.today().strftime("%Y-%m-%d")}, {"provider": "visa"},
          None, None, {"nickname": "tester"}
          )
     ],
