@@ -12,7 +12,9 @@ from tests.conftest import customers_client
     ("email", "first_name", "last_name", "phone", "metadata"),
     [
         ("test@email.com", "test", "test", "08012345678", {"nickname": "tester"}),
-        ("test@email.com", "test", "test", "08012345678", None)
+        ("test@email.com", "test", "test", "08012345678", None),
+        ("test@email.com", "test", "test", "08012345678", {"nickname": [{"nickname": "tester"}]})
+
     ]
 )
 @responses.activate

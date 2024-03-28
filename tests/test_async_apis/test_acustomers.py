@@ -11,7 +11,9 @@ from tests.conftest import async_customers_client, mocked_responses
     ("email", "first_name", "last_name", "phone", "metadata"),
     [
         ("test@email.com", "test", "test", "08012345678", {"nickname": "tester"}),
-        ("test@email.com", "test", "test", "08012345678", None)
+        ("test@email.com", "test", "test", "08012345678", None),
+        ("test@email.com", "test", "test", "08012345678", {"nickname": [{"nickname": "tester"}]})
+
     ]
 )
 async def test_create_customer(async_customers_client, mocked_responses, email, first_name, last_name, phone, metadata):
