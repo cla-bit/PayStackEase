@@ -6,8 +6,9 @@ The Customers API allows you to create and manage customers on your integration.
 
 from datetime import date
 
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.helpers.tool_kit import RiskAction
 
 
 class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
@@ -90,7 +91,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         return await self._post_request(f"customer/{email_or_code}/identification", data=data)
 
     async def whitelist_blacklist_customer(
-            self, email_or_code: str, risk_action: Optional[str] = None
+            self, email_or_code: str, risk_action: Union[RiskAction, None] = None
     ) -> dict:
         """
         Whitelist or blacklist a customer
@@ -101,7 +102,10 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        data = {"customer": email_or_code, "risk_action": risk_action}
+        data = {
+            "customer": email_or_code,
+            "risk_action": risk_action if risk_action is not None else None
+        }
         return await self._post_request("/customer/set_risk_action", data=data)
 
     async def deactivate_authorization(self, authorization_code: str) -> dict:

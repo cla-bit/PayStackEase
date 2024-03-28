@@ -6,7 +6,8 @@ The Customers API allows you to create and manage customers on your integration.
 
 from datetime import date
 
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Union
+from paystackease.helpers.tool_kit import RiskAction
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -90,7 +91,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         return self._post_request(f"customer/{email_or_code}/identification", data=data)
 
     def whitelist_blacklist_customer(
-            self, email_or_code: str, risk_action: Optional[str] = None
+            self, email_or_code: str, risk_action: Union[RiskAction, None] = None
     ) -> dict:
         """
         Whitelist or blacklist a customer
@@ -101,7 +102,10 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :return: The response from the API
         :rtype: dict
         """
-        data = {"customer": email_or_code, "risk_action": risk_action}
+        data = {
+            "customer": email_or_code,
+            "risk_action": risk_action if risk_action is not None else None
+        }
         return self._post_request("/customer/set_risk_action", data=data)
 
     def deactivate_authorization(self, authorization_code: str) -> dict:
