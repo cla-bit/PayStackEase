@@ -1,10 +1,8 @@
-===========================================
+==================
 Apple Pay Module
-===========================================
+==================
 
 .. :py:currentmodule:: paystackease.apis.apple_pay
-
-----------
 
 Wrapper class for Paystack Apple Pay API. The Apple Pay API allows you register your application’s
 top-level domain or subdomain.
