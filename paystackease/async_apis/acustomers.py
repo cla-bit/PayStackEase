@@ -157,8 +157,8 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_customers(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
     ) -> dict:
