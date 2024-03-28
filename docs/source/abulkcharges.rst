@@ -35,7 +35,7 @@ Check example on :doc:`apaystack`
 
         :param id_or_code: An ID or code for the charge whose batches you want to retrieve
         :type id_or_code: str
-        :param status: The status of the bulk charge batch.
+        :param status: The status of the bulk charge batch. The ``STATUS`` enum value is passed in here.
         :type status: str, optional
         :param per_page: The number of records to return per page (default: 50).
         :type per_page: int, optional
@@ -58,14 +58,6 @@ Check example on :doc:`apaystack`
 
         :return: The response from the API.
         :rtype: dict
-
-        .. code-block::
-
-            [{"authorization_code": "123456", "amount": 1000, "reference": "123456" }]
-
-        .. important::
-
-            A list of dictionary with ``authorization codes``, ``amount`` and ``reference`` as keys
 
     .. py:method:: async list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
 
@@ -106,8 +98,53 @@ Check example on :doc:`apaystack`
 
 .. _Bulk Charges: https://paystack.com/docs/api/bulk-charge/
 
+When passing the ``status`` parameter, you can pass the string value of the
+``STATUS`` enum member as the type hint is a string, as seen:
+
+.. code-block:: python
+
+    >>> from paystackease import STATUS
+
+    >>> status = STATUS.PENDING.value
+
+    >>> print(status)
+
+.. code-block:: console
+
+    $ python
+    >>> 'pending'
+
+
+In initiating a bulk charge, the values being passed into the dictionary as keys are:
+``authorization_code``, ``amount`` and ``reference``. These keys are passed alongside with their values into a
+List. You can initiate multiple bulk charge at the same time also. The ``authorization_code`` is gotten after a successful card transaction.
+The ``reference`` is a unique set of characters you can create as your desired choice.
+
+You can also check to ensure that the amount passed into is in subunit. See the documentation
+on :doc:`convert`.
+
+**For example**
+
+.. code-block:: python
+
+    >>> import asyncio
+    >>> from paystackease import AsyncPayStackBase
+
+    >>> objects = [
+    { "authorization_code": "AUTH_test1234", "amount": 10000, "reference": "test1234" },
+    { "authorization_code": "AUTH_tester4176", "amount": 2000, "reference": "tester1234" },
+    ]
+
+    >>> async def paystack_client():
+    >>>     async with AsyncPayStackBase() as client:
+    >>>         response = await client.bulk_charges.initiate_bulk_charge(objects)
+    >>>         print(response)
+
+
+    >>> asyncio.run(paystack_client())
+
+
 .. note::
 
-    ``Date and Time format``: 2016-09-24T00:00:05.000Z, 2016-09-21
-
-    ``status``: STATUS.value.value
+    The date format is given as: `2016-09-21`. Later on we will include passing datetime also.
+    Ensure you use the ``date`` module by importing it from ``datetime``.
