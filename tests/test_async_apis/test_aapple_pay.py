@@ -23,7 +23,7 @@ async def test_list_domains(async_apple_pay_client, mocked_responses, use_cursor
 
     # Construct the expected URL with parameters
     url_params = {
-        "use_cursor": str(use_cursor).lower(),
+        "use_cursor": str(use_cursor),
         "next": next_page,
         "previous": previous_page,
     }
