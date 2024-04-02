@@ -92,7 +92,7 @@ class BaseClientAPI:
         """
         # each supported type is mapped to its corresponding conversion function
         conversion_functions = {
-            bool: lambda val: str(val).lower(),
+            bool: lambda val: str(val),
             date: lambda val: val.strftime("%Y-%m-%d"),
             datetime: lambda val: val.strftime("%Y-%m-%d %H:%M:%S"),  # Added a datetime
         }
