@@ -13,6 +13,7 @@ from urllib.parse import urljoin
 from decouple import config
 
 import requests
+from requests import Response
 
 from paystackease.errors import (
     SecretKeyError,
@@ -107,8 +108,8 @@ class BaseClientAPI:
         )
 
     def _request_url(
-        self, method: str, url: str, data: dict = None, params: dict = None, **kwargs
-    ) -> dict:
+        self, method: str, url: str, data: Union[dict, list] = None, params: dict = None, **kwargs
+    ) -> Response:
         """
         Handles the request to Paystack API
         :param method:
@@ -160,10 +161,10 @@ class PayStackBaseClientAPI(BaseClientAPI):
         self,
         method: str,
         endpoint: str,
-        data: dict = None,
+        data: Union[dict, list] = None,
         params: dict = None,
         **kwargs,
-    ) -> dict:
+    ) -> Response:
         """
         Handles the request to Paystack API
         :param method:
@@ -175,7 +176,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request_url(method, endpoint, data=data, params=params, **kwargs)
 
-    def _get_request(self, endpoint: str, params: dict = None, **kwargs) -> dict:
+    def _get_request(self, endpoint: str, params: dict = None, **kwargs) -> Response:
         """
         Makes the GET request to Paystack API
         :param endpoint:
@@ -185,7 +186,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request("GET", endpoint, params=params, **kwargs)
 
-    def _post_request(self, endpoint: str, data: dict = None, **kwargs) -> dict:
+    def _post_request(self, endpoint: str, data: Union[dict, list] = None, **kwargs) -> Response:
         """
         Makes the POST request to Paystack API
         :param endpoint:
@@ -195,7 +196,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request("POST", endpoint, data=data, **kwargs)
 
-    def _put_request(self, endpoint: str, data: dict = None, **kwargs) -> dict:
+    def _put_request(self, endpoint: str, data: Union[dict, list] = None, **kwargs) -> Response:
         """
         Makes the PUT request to Paystack API
         :param endpoint:
@@ -205,7 +206,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request("PUT", endpoint, data=data, **kwargs)
 
-    def _delete_request(self, endpoint: str, **kwargs) -> dict:
+    def _delete_request(self, endpoint: str, **kwargs) -> Response:
         """
         Makes the DELETE request to Paystack API
         :param endpoint:
