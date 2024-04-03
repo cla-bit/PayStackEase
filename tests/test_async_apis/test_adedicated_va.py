@@ -104,7 +104,8 @@ async def test_assign_dvs(async_dva_client, mocked_responses, email, first_name,
     ("active", "currency", "provider_slug", "bank_id", "customer_id"),
     [
         (True, "NGN", "wema-bank", "737", "CUST_test1234"),
-        (True, None, None, None, None)
+        (True, None, None, None, None),
+        (False, None, None, None, None),
     ]
 )
 async def test_list_dvas(async_dva_client, mocked_responses, active, currency, provider_slug, bank_id, customer_id):
@@ -128,7 +129,7 @@ async def test_list_dvas(async_dva_client, mocked_responses, active, currency, p
         payload=response_data,
     )
     response = await async_dva_client.list_dedicated_account(
-        active=str(active),
+        active=active,
         currency=currency,
         provider_slug=provider_slug,
         bank_id=bank_id,

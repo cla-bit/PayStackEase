@@ -111,7 +111,8 @@ def test_assign_dvs(dva_client, email, first_name, last_name, phone,
     ("active", "currency", "provider_slug", "bank_id", "customer_id"),
     [
         (True, "NGN", "wema-bank", "737", "CUST_test1234"),
-        (True, None, None, None, None)
+        (True, None, None, None, None),
+        (False, None, None, None, None),
     ]
 )
 @responses.activate
