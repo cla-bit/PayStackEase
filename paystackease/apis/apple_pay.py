@@ -23,7 +23,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: object
+        :rtype: Response object
         """
         data = {
             "domainName": domain_name,
@@ -44,7 +44,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         :param: previous_page  # previous page
 
         :return: The response from the API
-        :rtype: object
+        :rtype: Response object
         """
 
         # convert bool to string
@@ -64,7 +64,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: object
+        :rtype: Response object
         """
         data = {
             "domainName": domain_name,
