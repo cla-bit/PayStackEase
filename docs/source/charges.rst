@@ -11,11 +11,7 @@ To access the Charges API methods, you need to call the ``charges`` instance met
 
 Check example on :doc:`paystack`
 
-------------------------------------------------------------------------------------
-
-.. important::
-    Mobile Money is only available in Ghana and Kenya
-
+-----------
 
 .. py:class:: ChargesClientAPI(secret_key: str = None)
 
@@ -23,7 +19,7 @@ Check example on :doc:`paystack`
 
     Paystack Charges API Reference: `Charges`_
 
-    .. py:method:: check_pending_charge(reference: str)→ dict
+    .. py:method:: check_pending_charge(reference: str)→ Response
 
         Check pending charge
 
@@ -31,9 +27,9 @@ Check example on :doc:`paystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: create_charge(email: str, amount: int, pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = None, metadata: Dict[str, str] | None = None)→ dict
+    .. py:method:: create_charge(email: str, amount: int, pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = None, metadata: Dict[str, str] | None = None)→ Response
 
         Create a new charge
 
@@ -63,9 +59,9 @@ Check example on :doc:`paystack`
         :type metadata: dict, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: submit_address(reference: str, address: str, city: str, state: str, zipcode: str)→ dict
+    .. py:method:: submit_address(reference: str, address: str, city: str, state: str, zipcode: str)→ Response
 
         Submit address to continue a charge
 
@@ -81,9 +77,9 @@ Check example on :doc:`paystack`
         :type zipcode: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: submit_birthday(birthday: date, reference: str)→ dict
+    .. py:method:: submit_birthday(birthday: date, reference: str)→ Response
 
         Submit birthday when required
 
@@ -93,9 +89,9 @@ Check example on :doc:`paystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: submit_otp(otp: int, reference: str)→ dict
+    .. py:method:: submit_otp(otp: int, reference: str)→ Response
 
         Submit otp to complete a charge
 
@@ -105,9 +101,9 @@ Check example on :doc:`paystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: submit_phone(phone: str, reference: str)→ dict
+    .. py:method:: submit_phone(phone: str, reference: str)→ Response
 
         Submit a phone number to complete a charge
 
@@ -117,9 +113,9 @@ Check example on :doc:`paystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: submit_pin(pin: int, reference: str)→ dict
+    .. py:method:: submit_pin(pin: int, reference: str)→ Response
 
         Submit a PIN for a charge
 
@@ -129,10 +125,75 @@ Check example on :doc:`paystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Charges: https://paystack.com/docs/api/charge/
+
+The ``bank`` parameter is an dictionary with the following set as keys: ``code`` and ``account_number``.
+This feature is only available in **Nigeria**.
+
+**See example**:
+
+.. code-block:: python
+
+    >>> "bank": {
+    >>>     "code": "057",
+    >>>     "account_number": "1234567890"
+    >>> }
+
+The ``bank_transfer`` parameter is an dictionary with the PWT enum string value set as key: ``PWT.ACCOUNT_EXPIRES_AT.value``.
+This feature is only available in **Nigeria** and contact support@paystack.com to enable it on their integration.
+
+**See example**:
+
+.. code-block:: python
+
+    >>> "bank_transfer": {
+    >>>     "account_expires_at": "2023-09-12T13:10:00Z"
+    >>> }
+
+The ``qr`` parameter is an dictionary with key set to: ``provider``.
+This feature is only available in **South Africa** and **Nigeria**.
+
+**See example**:
+
+.. code-block:: python
+
+    >>> "qr": {
+    >>>     "provider": "visa"  # Nigeria provider. For South Africa provider use "scan-to-pay"
+    >>> }
+
+.. note::
+
+    The scan-to-pay provider supports both SnapScan and Scan to Pay (formerly Masterpass) supported apps for completing a payment.
+
+The ``ussd`` parameter is an dictionary with key set to: ``type``.
+This feature is only available in **Nigeria**.
+
+**See example**:
+
+.. code-block:: python
+
+    >>> "ussd": {
+    >>>     "type": "737"
+    >>> }
+
+The ``mobile_money`` parameter is an dictionary with the following set as keys: ``phone`` and ``provider``.
+This feature is only available in **Ghana** and *Kenya**.
+
+**See example**:
+
+.. code-block:: python
+
+    >>> "mobile_money": {
+    >>>     "phone": "0551234987",
+    >>>     "provider": "mtn"
+    >>> }
+
+The ``metadata`` parameter is a JSON object that uses the ``custom_fields`` type of metadata.
+See :doc:`metadata` for more information.
+
 
 In creating a charge, there are rules guiding this as well to ensure a successful API request to PayStack,
 of which they are as follows:
