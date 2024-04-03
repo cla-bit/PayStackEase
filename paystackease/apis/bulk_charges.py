@@ -5,7 +5,7 @@ The Bulk Charges API allows you to create and manage multiple recurring payments
 from requests import Response
 
 from datetime import date
-from typing import List, Dict, Optional, Union
+from typing import List, Dict, Optional
 
 from paystackease._base import PayStackBaseClientAPI
 from paystackease.helpers.tool_kit import STATUS
@@ -82,7 +82,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
     def fetch_charge_bulk_batch(
             self,
             id_or_code: str,
-            status: Union[STATUS, None] = None,
+            status: Optional[STATUS] = None,
             per_page: Optional[int] = 50,
             page: Optional[int] = 1,
             from_date: Optional[date] = None,

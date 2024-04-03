@@ -8,7 +8,7 @@ from aiohttp import ClientResponse
 
 from datetime import date
 
-from typing import List, Dict, Optional, Union
+from typing import List, Dict, Optional
 from paystackease._abase import AsyncPayStackBaseClientAPI
 from paystackease.helpers.tool_kit import STATUS
 
@@ -84,7 +84,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
     async def fetch_charge_bulk_batch(
             self,
             id_or_code: str,
-            status: Union[STATUS, None] = None,
+            status: Optional[STATUS] = None,
             per_page: Optional[int] = 50,
             page: Optional[int] = 1,
             from_date: Optional[date] = None,
