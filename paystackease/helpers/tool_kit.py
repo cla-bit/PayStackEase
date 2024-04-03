@@ -67,6 +67,12 @@ class EventType(Enum):
     TRANSACTION = "transaction"
 
 
+class GateWay(Enum):
+    """ Gateway supported bt Paystack"""
+    E_MANDATE = "emandate"
+    DIGITAL_BANK_MANDATE = "digitalbankmandate"
+
+
 class Interval(Enum):
     """Interval supported by Paystack."""
 
