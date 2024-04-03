@@ -80,7 +80,7 @@ class BaseClientAPI:
         }
 
     @staticmethod
-    def _convert_to_string(value: Union[bool, date, None]) -> Union[str, int, None]:
+    def _convert_to_string(value: Union[bool, date, datetime, None]) -> Union[str, int, None]:
         """
         Convert the type of value to a string
         :param value: The value to be converted
