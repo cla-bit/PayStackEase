@@ -34,6 +34,12 @@ class Channels(Enum):
     USSD = "ussd"
 
 
+class DVABank(Enum):
+    """DVA_BANK supported by Paystack."""
+    WEMA_BANK = "wema-bank"
+    TITAN = "titan-paystack"
+
+
 class DocumentType(Enum):
     """Customer’s mode of identity."""
 
