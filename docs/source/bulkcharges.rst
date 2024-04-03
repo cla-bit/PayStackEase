@@ -19,7 +19,7 @@ Check example on :doc:`paystack`
 
     Paystack Bulk Charges API Reference: `Bulk Charges`_
 
-    .. py:method:: fetch_bulk_charge_batch(id_or_code: str)→ dict
+    .. py:method:: fetch_bulk_charge_batch(id_or_code: str)→ Response
 
         Fetch a bulk charge of a specific batch
 
@@ -27,9 +27,9 @@ Check example on :doc:`paystack`
         :type id_or_code: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         Fetch a bulk charge of a specific batch
 
@@ -47,9 +47,9 @@ Check example on :doc:`paystack`
         :type to_date: date, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: initiate_bulk_charge(objects: List[Dict[str, str]] = None)→ dict
+    .. py:method:: initiate_bulk_charge(objects: List[Dict[str, str]])→ Response
 
         Initiate a bulk charge
 
@@ -57,9 +57,9 @@ Check example on :doc:`paystack`
         :type objects: List[Dict[str, str]]
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List bulk charge batches
 
@@ -73,9 +73,9 @@ Check example on :doc:`paystack`
         :type to_date: date, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: pause_bulk_charge_batch(batch_code: str)→ dict
+    .. py:method:: pause_bulk_charge_batch(batch_code: str)→ Response
 
         Pause a bulk charge of a specific batch
 
@@ -83,9 +83,9 @@ Check example on :doc:`paystack`
         :type batch_code: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: resume_bulk_charge_batch(batch_code: str)→ dict
+    .. py:method:: resume_bulk_charge_batch(batch_code: str)→ Response
 
         Resume a bulk charge of a specific batch
 
@@ -93,7 +93,7 @@ Check example on :doc:`paystack`
         :type batch_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Bulk Charges: https://paystack.com/docs/api/bulk-charge/

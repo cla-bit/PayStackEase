@@ -19,7 +19,7 @@ Check example on :doc:`apaystack`
 
     Paystack Bulk Charges API Reference: `Bulk Charges`_
 
-    .. py:method:: async fetch_bulk_charge_batch(id_or_code: str)→ dict
+    .. py:method:: async fetch_bulk_charge_batch(id_or_code: str)→ ClientResponse
 
         Fetch a bulk charge of a specific batch
 
@@ -27,9 +27,9 @@ Check example on :doc:`apaystack`
         :type id_or_code: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         Fetch a bulk charge of a specific batch
 
@@ -47,9 +47,9 @@ Check example on :doc:`apaystack`
         :type to_date: date, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async initiate_bulk_charge(objects: List[Dict[str, str]] = None)→ dict
+    .. py:method:: async initiate_bulk_charge(objects: List[Dict[str, str]])→ ClientResponse
 
         Initiate a bulk charge
 
@@ -57,9 +57,9 @@ Check example on :doc:`apaystack`
         :type objects: List[Dict[str, str]]
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         List bulk charge batches
 
@@ -73,9 +73,9 @@ Check example on :doc:`apaystack`
         :type to_date: date, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async pause_bulk_charge_batch(batch_code: str)→ dict
+    .. py:method:: async pause_bulk_charge_batch(batch_code: str)→ ClientResponse
 
         Pause a bulk charge of a specific batch
 
@@ -83,9 +83,9 @@ Check example on :doc:`apaystack`
         :type batch_code: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async resume_bulk_charge_batch(batch_code: str)→ dict
+    .. py:method:: async resume_bulk_charge_batch(batch_code: str)→ ClientResponse
 
         Resume a bulk charge of a specific batch
 
@@ -93,7 +93,7 @@ Check example on :doc:`apaystack`
         :type batch_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
 .. _Bulk Charges: https://paystack.com/docs/api/bulk-charge/
