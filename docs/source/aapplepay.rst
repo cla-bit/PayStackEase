@@ -19,7 +19,7 @@ See how to call the instance here: :doc:`apaystack`
 
     Paystack Apple Pay API Reference: `Apple Pay`_
 
-    .. py:method:: async list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ dict
+    .. py:method:: async list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ ClientResponse
 
         List all domains registered with the Apple Pay API.
 
@@ -31,9 +31,9 @@ See how to call the instance here: :doc:`apaystack`
         :type previous_page: int, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async register_domain(domain_name: str)→ dict
+    .. py:method:: async register_domain(domain_name: str)→ ClientResponse
 
         Register a domain with the Apple Pay API.
 
@@ -41,11 +41,9 @@ See how to call the instance here: :doc:`apaystack`
         :type domain_name: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-
-
-    .. py:method:: async unregister_domain(domain_name: str)→ dict
+    .. py:method:: async unregister_domain(domain_name: str)→ ClientResponse
 
         Unregister a domain with the Apple Pay API.
 
@@ -53,7 +51,7 @@ See how to call the instance here: :doc:`apaystack`
         :type domain_name: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
 .. _Apple Pay: https://paystack.com/docs/api/apple-pay/
