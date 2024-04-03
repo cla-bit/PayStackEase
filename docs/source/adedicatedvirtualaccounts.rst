@@ -7,7 +7,7 @@ Async Dedicated Virtual Accounts Module
 
 Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 
----------------------------------------------------------------
+-----------
 
 .. note::
 
@@ -20,14 +20,7 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
 
     Paystack Customer API Reference: `Dedicated Virtual Account`_
 
-    .. important::
-
-        The ``preferred_bank`` parameter currently support Wema Bank and Titan Paystack.
-
-        The ``country`` parameter currently accepts NG only.
-
-
-    .. py:method:: async assign_dedicated_virtual_account(email: str, first_name: str, last_name: str, phone: str, preferred_bank: str, country: str, account_number: str | None = None, bvn: str | None = None, bank_code: str | None = None, subaccount: str | None = None, split_code: str | None = None)→ dict
+    .. py:method:: async assign_dedicated_virtual_account(email: str, first_name: str, last_name: str, phone: str, preferred_bank: str, country: str, account_number: str | None = None, bvn: str | None = None, bank_code: str | None = None, subaccount: str | None = None, split_code: str | None = None)→ ClientResponse
 
         Ensure Dedicated NUBAN is available for your business. Contact Paystack Support
 
@@ -55,9 +48,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type split_code: str, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async create_virtual_account(customer_id_or_code: str, preferred_bank: str | None = None, subaccount: str | None = None, split_code: str | None = None, first_name: str | None = None, last_name: str | None = None, phone: str | None = None)→ dict
+    .. py:method:: async create_virtual_account(customer_id_or_code: str, preferred_bank: str | None = None, subaccount: str | None = None, split_code: str | None = None, first_name: str | None = None, last_name: str | None = None, phone: str | None = None)→ ClientResponse
 
         Create a dedicated virtual account for existing customers. Currently, support Wema Bank and Titan Paystack.
 
@@ -77,9 +70,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type phone: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async deactivate_dedicated_account(dedicated_account_id: int)→ dict
+    .. py:method:: async deactivate_dedicated_account(dedicated_account_id: int)→ ClientResponse
 
         Deactivate a dedicated virtual account
 
@@ -87,16 +80,16 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type dedicated_account_id: int
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_bank_providers()→ dict
+    .. py:method:: async fetch_bank_providers()→ ClientResponse
 
         Fetch bank providers
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_dedicated_account(dedicated_account_id: int)→ dict
+    .. py:method:: async fetch_dedicated_account(dedicated_account_id: int)→ ClientResponse
 
         Get details of a dedicated virtual account
 
@@ -104,13 +97,13 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type dedicated_account_id: int
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_dedicated_account(active: bool | None = None, currency: str | None = None, provider_slug: str | None = None, bank_id: str | None = None, customer_id: str | None = None)→ dict
+    .. py:method:: async list_dedicated_account(active: bool | None = True, currency: str | None = None, provider_slug: str | None = None, bank_id: str | None = None, customer_id: str | None = None)→ ClientResponse
 
         List dedicated accounts
 
-        :param active: Shows the status of the dedicated virtual account
+        :param active: Shows the status of the dedicated virtual account. (default: True)
         :type active: bool, optional
         :param currency: The currency of the dedicated virtual account
         :type currency: str, optional
@@ -122,9 +115,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type customer_id: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async remove_split_dedicated_account(account_number: str)→ dict
+    .. py:method:: async remove_split_dedicated_account(account_number: str)→ ClientResponse
 
         Remove a split dedicated virtual account
 
@@ -132,9 +125,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type account_number: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async requery_dedicated_account(account_number: str | None = None, provider_slug: str | None = None, date_transfer: date | None = None)→ dict
+    .. py:method:: async requery_dedicated_account(account_number: str | None = None, provider_slug: str | None = None, date_transfer: date | None = None)→ ClientResponse
 
         Requery a dedicated virtual account for new transactions
 
@@ -146,7 +139,13 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type date_transfer: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
 .. _Dedicated Virtual Account: https://paystack.com/docs/api/dedicated-virtual-account/
+
+.. important::
+
+    The ``preferred_bank`` parameter currently support Wema Bank and Titan Paystack.
+
+    The ``country`` parameter currently accepts NG only.

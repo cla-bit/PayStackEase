@@ -7,7 +7,7 @@ Dedicated Virtual Accounts Module
 
 Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 
----------------------------------------------------------------
+-------------
 
 .. note::
 
@@ -20,14 +20,7 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
 
     Paystack Customer API Reference: `Dedicated Virtual Account`_
 
-    .. important::
-
-        The ``preferred_bank`` parameter currently support Wema Bank and Titan Paystack.
-
-        The ``country`` parameter currently accepts NG only.
-
-
-    .. py:method:: assign_dedicated_virtual_account(email: str, first_name: str, last_name: str, phone: str, preferred_bank: str, country: str, account_number: str | None = None, bvn: str | None = None, bank_code: str | None = None, subaccount: str | None = None, split_code: str | None = None)→ dict
+    .. py:method:: assign_dedicated_virtual_account(email: str, first_name: str, last_name: str, phone: str, preferred_bank: str, country: str, account_number: str | None = None, bvn: str | None = None, bank_code: str | None = None, subaccount: str | None = None, split_code: str | None = None)→ Response
 
         Ensure Dedicated NUBAN is available for your business. Contact Paystack Support
 
@@ -55,9 +48,9 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
         :type split_code: str, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: create_virtual_account(customer_id_or_code: str, preferred_bank: str | None = None, subaccount: str | None = None, split_code: str | None = None, first_name: str | None = None, last_name: str | None = None, phone: str | None = None)→ dict
+    .. py:method:: create_virtual_account(customer_id_or_code: str, preferred_bank: str | None = None, subaccount: str | None = None, split_code: str | None = None, first_name: str | None = None, last_name: str | None = None, phone: str | None = None)→ Response
 
         Create a dedicated virtual account for existing customers. Currently, support Wema Bank and Titan Paystack.
 
@@ -77,9 +70,9 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
         :type phone: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: deactivate_dedicated_account(dedicated_account_id: int)→ dict
+    .. py:method:: deactivate_dedicated_account(dedicated_account_id: int)→ Response
 
         Deactivate a dedicated virtual account
 
@@ -87,16 +80,16 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
         :type dedicated_account_id: int
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_bank_providers()→ dict
+    .. py:method:: fetch_bank_providers()→ Response
 
         Fetch bank providers
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_dedicated_account(dedicated_account_id: int)→ dict
+    .. py:method:: fetch_dedicated_account(dedicated_account_id: int)→ Response
 
         Get details of a dedicated virtual account
 
@@ -104,13 +97,13 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
         :type dedicated_account_id: int
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_dedicated_account(active: bool | None = None, currency: str | None = None, provider_slug: str | None = None, bank_id: str | None = None, customer_id: str | None = None)→ dict
+    .. py:method:: list_dedicated_account(active: bool | None = False, currency: str | None = None, provider_slug: str | None = None, bank_id: str | None = None, customer_id: str | None = None)→ Response
 
         List dedicated accounts
 
-        :param active: Shows the status of the dedicated virtual account
+        :param active: Shows the status of the dedicated virtual account. (default: True)
         :type active: bool, optional
         :param currency: The currency of the dedicated virtual account
         :type currency: str, optional
@@ -122,9 +115,9 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
         :type customer_id: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: remove_split_dedicated_account(account_number: str)→ dict
+    .. py:method:: remove_split_dedicated_account(account_number: str)→ Response
 
         Remove a split dedicated virtual account
 
@@ -132,9 +125,9 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
         :type account_number: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: requery_dedicated_account(account_number: str | None = None, provider_slug: str | None = None, date_transfer: date | None = None)→ dict
+    .. py:method:: requery_dedicated_account(account_number: str | None = None, provider_slug: str | None = None, date_transfer: date | None = None)→ Response
 
         Requery a dedicated virtual account for new transactions
 
@@ -146,7 +139,14 @@ Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account
         :type date_transfer: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Dedicated Virtual Account: https://paystack.com/docs/api/dedicated-virtual-account/
+
+
+.. important::
+
+    The ``preferred_bank`` parameter currently support Wema Bank and Titan Paystack.
+
+    The ``country`` parameter currently accepts NG only.
