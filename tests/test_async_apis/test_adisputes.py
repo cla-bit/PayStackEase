@@ -3,6 +3,7 @@
 from datetime import date
 import pytest
 
+from paystackease.helpers.tool_kit import DisputeStatus, Resolution
 from tests.conftest import async_disputes_client, mocked_responses
 
 
@@ -10,7 +11,7 @@ from tests.conftest import async_disputes_client, mocked_responses
 @pytest.mark.parametrize(
     ("from_date", "to_date", "per_page", "page", "transaction_id", "status"),
     [
-        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "TRANS_1234qwer", "pending"),
+        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "TRANS_1234qwer", DisputeStatus.RESOLVED.value),
         (None, None, None, None, None, None)
     ]
 )
@@ -185,8 +186,8 @@ async def test_get_upload_url(async_disputes_client, mocked_responses, uploaded_
 @pytest.mark.parametrize(
     ("resolution", "message", "refund_amount", "uploaded_filename", "evidence"),
     [
-        ("merchant-accepted", "Resolved", 1000, "test_asd1234.pdf", 1234),
-        ("merchant-accepted", "Resolved", 1000, "test_asd1234.pdf", None),
+        (Resolution.DECLINED.value, "Resolved", 1000, "test_asd1234.pdf", 1234),
+        (Resolution.MERCHANT.value, "Resolved", 1000, "test_asd1234.pdf", None),
     ]
 )
 async def test_resolve_dispute(async_disputes_client, mocked_responses, resolution, message, refund_amount, uploaded_filename, evidence):
@@ -223,7 +224,7 @@ async def test_resolve_dispute(async_disputes_client, mocked_responses, resoluti
     ("per_page", "page", "from_date", "to_date", "transaction_id", "status"),
     [
         (1, 20, date(2012, 12, 12), date(2012, 12, 12),
-         "TRANS_test1234", "awaiting-merchant-feedback"),
+         "TRANS_test1234", DisputeStatus.BANK_FEEDBACK.value),
         (None, None, None, None, None, None)
     ]
 )

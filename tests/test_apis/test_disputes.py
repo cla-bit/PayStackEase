@@ -5,13 +5,14 @@ from datetime import date
 import pytest
 import responses
 
+from paystackease.helpers.tool_kit import DisputeStatus, Resolution
 from tests.conftest import disputes_client
 
 
 @pytest.mark.parametrize(
     ("from_date", "to_date", "per_page", "page", "transaction_id", "status"),
     [
-        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "TRANS_1234qwer", "pending"),
+        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "TRANS_1234qwer", DisputeStatus.MERCHANT_FEEDBACK.value),
         (None, None, None, None, None, None)
     ]
 )
@@ -200,8 +201,8 @@ def test_get_upload_url(disputes_client, uploaded_filename):
 @pytest.mark.parametrize(
     ("resolution", "message", "refund_amount", "uploaded_filename", "evidence"),
     [
-        ("merchant-accepted", "Resolved", 1000, "test_asd1234.pdf", 1234),
-        ("merchant-accepted", "Resolved", 1000, "test_asd1234.pdf", None),
+        (Resolution.MERCHANT.value, "Resolved", 1000, "test_asd1234.pdf", 1234),
+        (Resolution.DECLINED.value, "Resolved", 1000, "test_asd1234.pdf", None),
     ]
 )
 @responses.activate
@@ -241,7 +242,7 @@ def test_resolve_dispute(disputes_client, resolution, message, refund_amount, up
     ("per_page", "page", "from_date", "to_date", "transaction_id", "status"),
     [
         (1, 20, date(2012, 12, 12), date(2012, 12, 12),
-         "TRANS_test1234", "awaiting-merchant-feedback"),
+         "TRANS_test1234", DisputeStatus.PENDING.value),
         (None, None, None, None, None, None)
     ]
 )
