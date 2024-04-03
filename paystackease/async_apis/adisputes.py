@@ -3,10 +3,12 @@ Wrapper for Asynchronous Paystack Disputes API
 
 The Disputes API allows you manage transaction disputes on your integration.
 """
+from aiohttp import ClientResponse
 
 from datetime import date
 from typing import Optional
 from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease.helpers.tool_kit import DisputeStatus, Resolution
 
 
 class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
@@ -19,11 +21,11 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
             self,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             transaction_id: Optional[str] = None,
-            status: Optional[str] = None,
-    ) -> dict:
+            status: Optional[DisputeStatus] = None,
+    ) -> ClientResponse:
         """
         List disputes filed against you
 
@@ -36,7 +38,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
                         { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to string
@@ -53,25 +55,25 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/dispute", params=params)
 
-    async def fetch_dispute(self, dispute_id: str) -> dict:
+    async def fetch_dispute(self, dispute_id: str) -> ClientResponse:
         """
         Fetch details about a dispute
 
         :param: dispute_id: The dispute ID to fetch
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/dispute/{dispute_id}")
 
-    async def list_transaction_disputes(self, transaction_id: str) -> dict:
+    async def list_transaction_disputes(self, transaction_id: str) -> ClientResponse:
         """
         List disputes for a transaction
 
         :param: transaction_id: The transaction id to fetch
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/dispute/transaction/{transaction_id}")
 
@@ -80,7 +82,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
             dispute_id: str,
             refund_amount: int,
             uploaded_filename: Optional[str] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Update details of a dispute
 
@@ -90,7 +92,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
                                     response from upload url(GET /dispute/:id/upload_url)
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {"refund_amount": refund_amount, "uploaded_filename": uploaded_filename}
         return await self._put_request(f"/dispute/{dispute_id}", data=data)
@@ -104,7 +106,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
             service_details: str,
             delivery_address: Optional[str] = None,
             delivery_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Add evidence to a dispute
 
@@ -117,7 +119,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :param: delivery_date: The delivery date: YYYY-MM-DD
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to string
@@ -133,7 +135,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request(f"/dispute/{dispute_id}/evidence", data=data)
 
-    async def get_upload_url(self, dispute_id: str, uploaded_filename: str) -> dict:
+    async def get_upload_url(self, dispute_id: str, uploaded_filename: str) -> ClientResponse:
         """
         Get upload url for dispute evidence
 
@@ -141,7 +143,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :param: uploaded_filename: The file name, with its extension, that you want to upload. e.g. filename.pdf
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         params = {"uploaded_filename": uploaded_filename}
         return await self._get_request(f"/dispute/{dispute_id}/upload_url", params=params)
@@ -149,12 +151,12 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
     async def resolve_dispute(
             self,
             dispute_id: str,
-            resolution: str,
+            resolution: Resolution,
             message: str,
             refund_amount: int,
             uploaded_filename: str,
             evidence: Optional[int] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Resolve a dispute
 
@@ -166,7 +168,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
         :param: evidence: The evidence id for fraud claims
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {
             "resolution": resolution,
@@ -179,13 +181,13 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
 
     async def export_disputes(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
             transaction_id: Optional[str] = None,
-            status: Optional[str] = None,
-    ) -> dict:
+            status: Optional[DisputeStatus] = None,
+    ) -> ClientResponse:
         """
         Export disputes
 
@@ -198,7 +200,7 @@ class AsyncDisputesClientAPI(AsyncPayStackBaseClientAPI):
                         Acceptable values: { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to string
