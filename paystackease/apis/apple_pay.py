@@ -4,6 +4,8 @@ Wrapper class for Paystack Apple Pay API.
 The Apple Pay API allows you register your application's top-level domain or subdomain.
 """
 
+from requests import Response
+
 from typing import Optional
 from paystackease._base import PayStackBaseClientAPI
 
@@ -14,14 +16,14 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/apple-pay/
     """
 
-    def register_domain(self, domain_name: str) -> dict:
+    def register_domain(self, domain_name: str) -> Response:
         """
         Register a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: object
         """
         data = {
             "domainName": domain_name,
@@ -33,7 +35,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
             use_cursor: Optional[bool] = False,
             next_page: Optional[int] = None,
             previous_page: Optional[int] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List all registered domains
 
@@ -42,7 +44,7 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         :param: previous_page  # previous page
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: object
         """
 
         # convert bool to string
@@ -55,14 +57,14 @@ class ApplePayClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/apple-pay/domain", params=params)
 
-    def unregister_domain(self, domain_name: str) -> dict:
+    def unregister_domain(self, domain_name: str) -> Response:
         """
         Unregister a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: object
         """
         data = {
             "domainName": domain_name,

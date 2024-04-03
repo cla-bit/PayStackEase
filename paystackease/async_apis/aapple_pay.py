@@ -4,6 +4,8 @@ Wrapper class for Asynchronous Paystack Apple Pay API.
 The Apple Pay API allows you register your application's top-level domain or subdomain.
 """
 
+from aiohttp import ClientResponse
+
 from typing import Optional
 from paystackease._abase import AsyncPayStackBaseClientAPI
 
@@ -14,14 +16,14 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/apple-pay/
     """
 
-    async def register_domain(self, domain_name: str) -> dict:
+    async def register_domain(self, domain_name: str) -> ClientResponse:
         """
         Register a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: object
         """
         data = {
             "domainName": domain_name,
@@ -33,7 +35,7 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
             use_cursor: Optional[bool] = False,
             next_page: Optional[int] = None,
             previous_page: Optional[int] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List all registered domains
 
@@ -42,7 +44,7 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
         :param: previous_page  # previous page
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: object
         """
 
         # convert bool to string
@@ -55,14 +57,14 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/apple-pay/domain", params=params)
 
-    async def unregister_domain(self, domain_name: str) -> dict:
+    async def unregister_domain(self, domain_name: str) -> ClientResponse:
         """
         Unregister a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: object
         """
         data = {
             "domainName": domain_name,
