@@ -2,10 +2,11 @@
 
 The Bulk Charges API allows you to create and manage multiple recurring payments from your customers.
 """
+from requests import Response
 
 from datetime import date
-
 from typing import List, Dict, Optional, Union
+
 from paystackease._base import PayStackBaseClientAPI
 from paystackease.helpers.tool_kit import STATUS
 
@@ -16,7 +17,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    def initiate_bulk_charge(self, objects: List[Dict[str, str]] = None) -> dict:
+    def initiate_bulk_charge(self, objects: List[Dict[str, str]]) -> Response:
         """
         Send an array of objects with authorization codes and amount
 
@@ -28,7 +29,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
             [{"authorization_code": "123456", "amount": 1000, "reference": "123456" }]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._post_request("/bulkcharge", data=objects)
 
@@ -38,7 +39,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
             page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List all bulk charges
 
@@ -52,7 +53,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
             Date Time format: 2016-09-24T00:00:05.000Z, 2016-09-21
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # Convert date to string
@@ -67,14 +68,14 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/bulkcharge", params=params)
 
-    def fetch_bulk_charge_batch(self, id_or_code: str) -> dict:
+    def fetch_bulk_charge_batch(self, id_or_code: str) -> Response:
         """
         Fetch a bulk charge of a specific batch
 
         :param: id_or_code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/bulkcharge/{id_or_code}")
 
@@ -86,7 +87,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
             page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Fetch a bulk charge of a specific batch
 
@@ -103,7 +104,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
             status: STATUS.value.value
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # Convert date to string
@@ -119,24 +120,24 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request(f"/bulkcharge/{id_or_code}/charges", params=params)
 
-    def pause_bulk_charge_batch(self, batch_code: str) -> dict:
+    def pause_bulk_charge_batch(self, batch_code: str) -> Response:
         """
         Pause a bulk charge of a specific batch
 
         :param: batch_code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/bulkcharge/pause/{batch_code}")
 
-    def resume_bulk_charge_batch(self, batch_code: str) -> dict:
+    def resume_bulk_charge_batch(self, batch_code: str) -> Response:
         """
         Resume a bulk charge of a specific batch
 
         :param: batch_code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/bulkcharge/resume/{batch_code}")

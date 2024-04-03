@@ -4,6 +4,8 @@ Wrapper for Asynchronous Paystack Bulk Charges API.
 The Bulk Charges API allows you to create and manage multiple recurring payments from your customers.
 """
 
+from aiohttp import ClientResponse
+
 from datetime import date
 
 from typing import List, Dict, Optional, Union
@@ -17,7 +19,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    async def initiate_bulk_charge(self, objects: List[Dict[str, str]] = None) -> dict:
+    async def initiate_bulk_charge(self, objects: List[Dict[str, str]]) -> ClientResponse:
         """
         Send an array of objects with authorization codes and amount
 
@@ -29,7 +31,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
             [{"authorization_code": "123456", "amount": 1000, "reference": "123456" }]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._post_request("/bulkcharge", data=objects)
 
@@ -39,7 +41,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
             page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List all bulk charges
 
@@ -53,7 +55,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
             Date Time format: 2016-09-24T00:00:05.000Z, 2016-09-21
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # Convert date to string
@@ -68,14 +70,14 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/bulkcharge", params=params)
 
-    async def fetch_bulk_charge_batch(self, id_or_code: str) -> dict:
+    async def fetch_bulk_charge_batch(self, id_or_code: str) -> ClientResponse:
         """
         Fetch a bulk charge of a specific batch
 
         :param: id_or_code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/bulkcharge/{id_or_code}")
 
@@ -87,7 +89,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
             page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Fetch a bulk charge of a specific batch
 
@@ -104,7 +106,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
             status: STATUS.value.value
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # Convert date to string
@@ -120,24 +122,24 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request(f"/bulkcharge/{id_or_code}/charges", params=params)
 
-    async def pause_bulk_charge_batch(self, batch_code: str) -> dict:
+    async def pause_bulk_charge_batch(self, batch_code: str) -> ClientResponse:
         """
         Pause a bulk charge of a specific batch
 
         :param: batch_code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/bulkcharge/pause/{batch_code}")
 
-    async def resume_bulk_charge_batch(self, batch_code: str) -> dict:
+    async def resume_bulk_charge_batch(self, batch_code: str) -> ClientResponse:
         """
         Resume a bulk charge of a specific batch
 
         :param: batch_code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/bulkcharge/resume/{batch_code}")
