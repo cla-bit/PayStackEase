@@ -5,6 +5,7 @@ from datetime import date, datetime
 import pytest
 import responses
 
+from paystackease.helpers.tool_kit import PWT, QRCODE, USSD, MobileMoney
 from tests.conftest import charges_client
 
 
@@ -15,13 +16,13 @@ from tests.conftest import charges_client
     [
         ("test-email@gmail.com", 10000, 1234, "AUTH_test1234", "test-ref1234",
          "test-device-id", None,
-         {"account_expires_at": date.today().strftime("%Y-%m-%d")}, {"provider": "visa"},
-         None, None, {"nickname": "tester"}
+         {PWT.ACCOUNT_EXPIRES_AT.value: date.today().strftime("%Y-%m-%d")}, {"provider": QRCODE.VISA.value},
+         None, None, {"custom_fields": [{"value": "test", "display_name": "test-display", "variable_name": "test-variable"}]}
          ),
         ("test-email@gmail.com", 10000, 1234, None, "test-ref1234",
          "test-device-id", {"code": "123", "account_number": "0000000000"},
-         {"account_expires_at": datetime.today().strftime("%Y-%m-%d")}, {"provider": "visa"},
-         None, None, {"nickname": "tester"}
+         {PWT.ACCOUNT_EXPIRES_AT.value: datetime.today().strftime("%Y-%m-%d")}, {"provider": QRCODE.SCAN_TO_PAY.value},
+         None, None, {"custom_fields": [{"value": "test", "display_name": "test-display", "variable_name": "test-variable"}]}
          )
     ],
 
