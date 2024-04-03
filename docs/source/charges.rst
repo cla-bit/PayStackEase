@@ -130,7 +130,7 @@ Check example on :doc:`paystack`
 
 .. _Charges: https://paystack.com/docs/api/charge/
 
-The ``bank`` parameter is an dictionary with the following set as keys: ``code`` and ``account_number``.
+The ``bank`` parameter is a dictionary with the following set as keys: ``code`` and ``account_number``.
 This feature is only available in **Nigeria**.
 
 **See example**:
@@ -142,7 +142,7 @@ This feature is only available in **Nigeria**.
     >>>     "account_number": "1234567890"
     >>> }
 
-The ``bank_transfer`` parameter is an dictionary with the PWT enum string value set as key: ``PWT.ACCOUNT_EXPIRES_AT.value``.
+The ``bank_transfer`` parameter is a dictionary with the PWT enum string value set as key: ``PWT.ACCOUNT_EXPIRES_AT.value``.
 This feature is only available in **Nigeria** and contact support@paystack.com to enable it on their integration.
 
 **See example**:
@@ -153,7 +153,7 @@ This feature is only available in **Nigeria** and contact support@paystack.com t
     >>>     "account_expires_at": "2023-09-12T13:10:00Z"
     >>> }
 
-The ``qr`` parameter is an dictionary with key set to: ``provider``.
+The ``qr`` parameter is a dictionary with key set to: ``provider``.
 This feature is only available in **South Africa** and **Nigeria**.
 
 **See example**:
@@ -168,7 +168,7 @@ This feature is only available in **South Africa** and **Nigeria**.
 
     The scan-to-pay provider supports both SnapScan and Scan to Pay (formerly Masterpass) supported apps for completing a payment.
 
-The ``ussd`` parameter is an dictionary with key set to: ``type``.
+The ``ussd`` parameter is a dictionary with key set to: ``type``.
 This feature is only available in **Nigeria**.
 
 **See example**:
@@ -179,7 +179,7 @@ This feature is only available in **Nigeria**.
     >>>     "type": "737"
     >>> }
 
-The ``mobile_money`` parameter is an dictionary with the following set as keys: ``phone`` and ``provider``.
+The ``mobile_money`` parameter is a dictionary with the following set as keys: ``phone`` and ``provider``.
 This feature is only available in **Ghana** and *Kenya**.
 
 **See example**:
