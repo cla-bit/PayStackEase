@@ -34,10 +34,12 @@ class Channels(Enum):
     USSD = "ussd"
 
 
-class DVABank(Enum):
-    """DVA_BANK supported by Paystack."""
-    WEMA_BANK = "wema-bank"
-    TITAN = "titan-paystack"
+class DisputeStatus(Enum):
+    """Dispute status."""
+    MERCHANT_FEEDBACK = "awaiting-merchant-feedback"
+    BANK_FEEDBACK = "awaiting-bank-feedback"
+    PENDING = "pending"
+    RESOLVED = "resolved"
 
 
 class DocumentType(Enum):
@@ -46,6 +48,12 @@ class DocumentType(Enum):
     IDENTITY_NUMBER = "identityNumber"
     PASSPORT_NUMBER = "passportNumber"
     BUSINESS_REG_NUMBER = "businessRegistrationNumber"
+
+
+class DVABank(Enum):
+    """DVA_BANK supported by Paystack."""
+    WEMA_BANK = "wema-bank"
+    TITAN = "titan-paystack"
 
 
 class EFT(Enum):
@@ -107,7 +115,7 @@ class ResendOTP(Enum):
 
 
 class Resolution(Enum):
-    MERCHANT = ("merchant-accepted",)
+    MERCHANT = "merchant-accepted"
     DECLINED = "declined"
 
 
