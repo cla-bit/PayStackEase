@@ -19,7 +19,7 @@ Check example on :doc:`paystack`
 
     Paystack Customer API Reference: `Customer`_
 
-    .. py:method:: create_customer(email: str, first_name: str, last_name: str, phone: str, metadata: Dict[str, Any] | None = None)→ dict
+    .. py:method:: create_customer(email: str, first_name: str, last_name: str, phone: str, metadata: Dict[str, Any] | None = None)→ Response
 
         Create a new customer.
 
@@ -35,9 +35,9 @@ Check example on :doc:`paystack`
         :type metadata: dict, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: deactivate_authorization(authorization_code: str)→ dict
+    .. py:method:: deactivate_authorization(authorization_code: str)→ Response
 
         Deactivate an authorization.
 
@@ -45,9 +45,9 @@ Check example on :doc:`paystack`
         :type authorization_code: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_customer(email_or_code: str)→ dict
+    .. py:method:: fetch_customer(email_or_code: str)→ Response
 
         Fetch a customer.
 
@@ -55,9 +55,9 @@ Check example on :doc:`paystack`
         :type email_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_customers(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_customers(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List customers.
 
@@ -71,9 +71,9 @@ Check example on :doc:`paystack`
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: update_customer(customer_code: str, first_name: str | None = None, last_name: str | None = None, phone: str | None = None, metadata: Dict[str, Any] | None = None)→ dict
+    .. py:method:: update_customer(customer_code: str, first_name: str | None = None, last_name: str | None = None, phone: str | None = None, metadata: Dict[str, Any] | None = None)→ Response
 
         Update a customer.
 
@@ -89,9 +89,9 @@ Check example on :doc:`paystack`
         :type metadata: dict, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: validate_customer(email_or_code: str, first_name: str, last_name: str, account_type: str, country: str, bank_code: str, account_number: str, bvn: str, customer_id_num: str | None = None, middle_name: str | None = None)→ dict
+    .. py:method:: validate_customer(email_or_code: str, first_name: str, last_name: str, account_type: str, country: str, bank_code: str, account_number: str, bvn: str, customer_id_num: str | None = None, middle_name: str | None = None)→ Response
 
         Validate a customer.
 
@@ -117,9 +117,9 @@ Check example on :doc:`paystack`
         :type middle_name: str, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: whitelist_blacklist_customer(email_or_code: str, risk_action: str | None = None)→ dict
+    .. py:method:: whitelist_blacklist_customer(email_or_code: str, risk_action: str | None = None)→ Response
 
         Whitelist or blacklist a customer.
 
@@ -129,22 +129,22 @@ Check example on :doc:`paystack`
         :type risk_action: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Customer: https://paystack.com/docs/api/customer/
 
-In creating a customer, the metadata parameter is of the `custom_fields` metadata type. See more on :doc:`metadata`.
+In creating a customer, the ``metadata`` parameter is of the ``key-value pair`` metadata type. See more on :doc:`metadata`.
 
 .. code-block:: console
 
     >>> {
     >>>     "metadata": {
-    >>>         'custom_fields': [{'label': 'First Name', 'value': 'John'}]
+    >>>         'key': "value"
     >>>     }
     >>> }
 
-The ``risk_action`` parameter takes in a string value of the Risk Action enum member. See more on :doc:`toolkit`
+The ``risk_action`` parameter takes in a string value of the ``Risk Action`` enum member. See more on :doc:`toolkit`
 
 .. code-block:: python
 

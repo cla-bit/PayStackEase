@@ -134,17 +134,17 @@ Check example on :doc:`apaystack`
 
 .. _Customer: https://paystack.com/docs/api/customer/
 
-In creating a customer, the metadata parameter is of the `custom_fields` metadata type. See more on :doc:`metadata`.
+In creating a customer, the ``metadata`` parameter is of the ``key-value pair`` metadata type. See more on :doc:`metadata`.
 
 .. code-block:: console
 
     >>> {
     >>>     "metadata": {
-    >>>         'custom_fields': [{'label': 'First Name', 'value': 'John'}]
+    >>>         'key': "value"
     >>>     }
     >>> }
 
-The ``risk_action`` parameter takes in a string value of the Risk Action enum member. See more on :doc:`toolkit`
+The ``risk_action`` parameter takes in a string value of the ``Risk Action`` enum member. See more on :doc:`toolkit`
 
 .. code-block:: python
 
