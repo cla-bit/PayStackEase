@@ -42,6 +42,12 @@ class DocumentType(Enum):
     BUSINESS_REG_NUMBER = "businessRegistrationNumber"
 
 
+class EFT(Enum):
+    """EFT supported by Paystack."""
+
+    OZOW = "ozow"
+
+
 class EventType(Enum):
     INVOICE = "invoice"
     TRANSACTION = "transaction"
