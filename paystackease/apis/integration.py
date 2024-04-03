@@ -3,7 +3,7 @@ Wrapper for Paystack Integration API
 
 The Integration API allows you manage some settings on your integration.
 """
-
+from requests import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -13,16 +13,16 @@ class IntegrationClientAPI(PayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/integration/
     """
 
-    def fetch_timeout(self) -> dict:
+    def fetch_timeout(self) -> Response:
         """
         Fetch payment session timeout
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request("/integration/payment_session_timeout")
 
-    def update_timeout(self, timeout: int) -> dict:
+    def update_timeout(self, timeout: int) -> Response:
         """
         Update payment session timeout
 
@@ -33,7 +33,7 @@ class IntegrationClientAPI(PayStackBaseClientAPI):
             timeout is in seconds. Set 0 to cancel the timeout
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         data = {"timeout": timeout}
