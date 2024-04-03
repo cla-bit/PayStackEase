@@ -3,6 +3,7 @@ Wrapper for Paystack Dedicated Virtual Account API
 
 The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 """
+from requests import Response
 
 from datetime import date
 from typing import Optional
@@ -27,7 +28,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
             first_name: Optional[str] = None,
             last_name: Optional[str] = None,
             phone: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Create a dedicated virtual account for existing customers.
         Currently, support Wema Bank and Titan Paystack.
@@ -46,7 +47,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         :param: phone: Phone number of the customer
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "customer": customer_id_or_code,
@@ -72,7 +73,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
             bank_code: Optional[str] = None,
             subaccount: Optional[str] = None,
             split_code: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         create a customer, validate the customer, and assign a DVA to the customer
 
@@ -99,7 +100,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         :param: split_code: Split code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "email": email,
@@ -123,7 +124,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
             provider_slug: Optional[str] = None,
             bank_id: Optional[str] = None,
             customer_id: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List dedicated accounts
 
@@ -134,8 +135,11 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         :param: customer_id: Customer ID of the dedicated virtual account
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
+        # convert date to string
+        active = self._convert_to_string(active)
+
         params = {
             "active": active,
             "currency": currency,
@@ -145,14 +149,14 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/dedicated_account", params=params)
 
-    def fetch_dedicated_account(self, dedicated_account_id: int) -> dict:
+    def fetch_dedicated_account(self, dedicated_account_id: int) -> Response:
         """
         Get details of a dedicated virtual account
 
         :param: dedicated_account_id: Dedicated account ID
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/dedicated_account/{dedicated_account_id}")
 
@@ -161,7 +165,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
             account_number: Optional[str] = None,
             provider_slug: Optional[str] = None,
             date_transfer: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Requery a dedicated virtual account for new transactions
 
@@ -170,7 +174,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         :param: date_transfer: Date of when the transfer was made
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert date to string
@@ -183,14 +187,14 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/dedicated_account/requery", params=params)
 
-    def deactivate_dedicated_account(self, dedicated_account_id: int) -> dict:
+    def deactivate_dedicated_account(self, dedicated_account_id: int) -> Response:
         """
         Deactivate a dedicated virtual account
 
         :param: dedicated_account_id: Dedicated account ID
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._delete_request(f"/dedicated_account/{dedicated_account_id}")
 
@@ -200,7 +204,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
             subaccount: Optional[str] = None,
             split_code: Optional[str] = None,
             preferred_bank: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Split a dedicated virtual account transaction with one or more accounts
 
@@ -210,7 +214,7 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         :param: preferred_bank: Preferred bank for the virtual account
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "customer": customer_id_or_code,
@@ -220,25 +224,25 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request("/dedicated_account/split", data=data)
 
-    def remove_split_dedicated_account(self, account_number: str) -> dict:
+    def remove_split_dedicated_account(self, account_number: str) -> Response:
         """
         Remove a split dedicated virtual account
 
         :param: account_number: the account number of the dedicated virtual account
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "account_number": account_number,
         }
         return self._delete_request("/dedicated_account/split", data=data)
 
-    def fetch_bank_providers(self) -> dict:
+    def fetch_bank_providers(self) -> Response:
         """
         Fetch bank providers
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request("/dedicated_account/available_providers")
