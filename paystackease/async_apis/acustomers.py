@@ -3,10 +3,11 @@ Wrapper for Asynchronous Paystack Customers API.
 
 The Customers API allows you to create and manage customers on your integration.
 """
+from aiohttp import ClientResponse
 
 from datetime import date
 
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any
 from paystackease._abase import AsyncPayStackBaseClientAPI
 from paystackease.helpers.tool_kit import RiskAction
 
@@ -24,7 +25,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
             last_name: str,
             phone: str,
             metadata: Optional[Dict[str, Any]] = None
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Create a customer
 
@@ -59,7 +60,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
             bvn: str,
             customer_id_num: Optional[str] = None,
             middle_name: Optional[str] = None
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Validate a customer's identity
 
@@ -91,8 +92,8 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         return await self._post_request(f"customer/{email_or_code}/identification", data=data)
 
     async def whitelist_blacklist_customer(
-            self, email_or_code: str, risk_action: Union[RiskAction, None] = None
-    ) -> dict:
+            self, email_or_code: str, risk_action: Optional[RiskAction] = None
+    ) -> ClientResponse:
         """
         Whitelist or blacklist a customer
 
@@ -108,7 +109,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/customer/set_risk_action", data=data)
 
-    async def deactivate_authorization(self, authorization_code: str) -> dict:
+    async def deactivate_authorization(self, authorization_code: str) -> ClientResponse:
         """
         Deactivate an authorization when the card needs to be forgotten
 
@@ -127,7 +128,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
             last_name: Optional[str] = None,
             phone: Optional[str] = None,
             metadata: Optional[Dict[str, Any]] = None
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Update a customer
 
@@ -148,7 +149,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._put_request(f"/customer/{customer_code}", data=data)
 
-    async def fetch_customer(self, email_or_code: str) -> dict:
+    async def fetch_customer(self, email_or_code: str) -> ClientResponse:
         """
         Fetch details of a specific customer
 
@@ -165,7 +166,7 @@ class AsyncCustomerClientAPI(AsyncPayStackBaseClientAPI):
             page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List all customers
 

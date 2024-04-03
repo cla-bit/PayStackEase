@@ -3,10 +3,11 @@ Wrapper for Paystack Customers API.
 
 The Customers API allows you to create and manage customers on your integration.
 """
+from requests import Response
 
 from datetime import date
 
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any
 from paystackease.helpers.tool_kit import RiskAction
 from paystackease._base import PayStackBaseClientAPI
 
@@ -24,7 +25,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             last_name: str, 
             phone: str, 
             metadata: Optional[Dict[str, Any]] = None
-    ) -> dict:
+    ) -> Response:
         """
         Create a customer
 
@@ -59,7 +60,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             bvn: str,
             customer_id_num: Optional[str] = None,
             middle_name: Optional[str] = None
-    ) -> dict:
+    ) -> Response:
         """
         Validate a customer's identity
 
@@ -91,8 +92,8 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         return self._post_request(f"customer/{email_or_code}/identification", data=data)
 
     def whitelist_blacklist_customer(
-            self, email_or_code: str, risk_action: Union[RiskAction, None] = None
-    ) -> dict:
+            self, email_or_code: str, risk_action: Optional[RiskAction] = None
+    ) -> Response:
         """
         Whitelist or blacklist a customer
 
@@ -108,7 +109,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request("/customer/set_risk_action", data=data)
 
-    def deactivate_authorization(self, authorization_code: str) -> dict:
+    def deactivate_authorization(self, authorization_code: str) -> Response:
         """
         Deactivate an authorization when the card needs to be forgotten
 
@@ -127,7 +128,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             last_name: Optional[str] = None,
             phone: Optional[str] = None,
             metadata: Optional[Dict[str, Any]] = None
-    ) -> dict:
+    ) -> Response:
         """
         Update a customer
 
@@ -148,7 +149,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         }
         return self._put_request(f"/customer/{customer_code}", data=data)
 
-    def fetch_customer(self, email_or_code: str) -> dict:
+    def fetch_customer(self, email_or_code: str) -> Response:
         """
         Fetch details of a specific customer
 
@@ -165,7 +166,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List all customers
 
