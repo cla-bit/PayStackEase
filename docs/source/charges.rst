@@ -29,7 +29,7 @@ Check example on :doc:`paystack`
         :return: The response from the API.
         :rtype: Response object
 
-    .. py:method:: create_charge(email: str, amount: int, pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = None, metadata: Dict[str, str] | None = None)→ Response
+    .. py:method:: create_charge(email: str, amount: int, pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = None, metadata: Dict[str, List[Dict[str, str]]] | None = None)→ Response
 
         Create a new charge
 
