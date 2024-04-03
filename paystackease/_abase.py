@@ -142,6 +142,7 @@ class AsyncBaseClientAPI:
             else None
         )
         data = json.dumps(data) if data else None
+        
         try:
             async with self._session.request(
                 method, url=url, data=data, params=params, **kwargs
