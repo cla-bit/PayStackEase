@@ -3,9 +3,11 @@ Wrapper for Paystack Miscellaneous API.
 
 The Miscellaneous API are supporting APIs that can be used to provide more details to other APIs.
 """
+from requests import Response
 
 from typing import Optional
 from paystackease._base import PayStackBaseClientAPI
+from paystackease.helpers.tool_kit import GateWay, Channels
 
 
 class MiscellaneousClientAPI(PayStackBaseClientAPI):
@@ -18,16 +20,16 @@ class MiscellaneousClientAPI(PayStackBaseClientAPI):
             self,
             country: Optional[str] = None,
             use_cursor: Optional[bool] = False,
-            per_page: Optional[int] = None,
-            pay_with_bank_transfer: Optional[bool] = None,
-            pay_with_bank: Optional[bool] = None,
-            enabled_for_verification: Optional[bool] = None,
+            per_page: Optional[int] = 50,
+            pay_with_bank_transfer: Optional[bool] = False,
+            pay_with_bank: Optional[bool] = False,
+            enabled_for_verification: Optional[bool] = False,
             next_cursor: Optional[str] = None,
             previous_cursor: Optional[str] = None,
-            gateway: Optional[str] = None,
-            channel_type: Optional[str] = None,
+            gateway: Optional[GateWay] = None,
+            channel_type: Optional[Channels] = None,
             currency: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Get a list of all supported banks and their properties
 
@@ -51,7 +53,7 @@ class MiscellaneousClientAPI(PayStackBaseClientAPI):
         For Ghanaian channels, please use either mobile_money for mobile money channels OR ghipps for bank channels
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         params = {
             "country": country,
@@ -68,23 +70,23 @@ class MiscellaneousClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/bank", params=params)
 
-    def list_countries(self) -> dict:
+    def list_countries(self) -> Response:
         """
         Get a list of all supported countries and their properties
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request("/country")
 
-    def list_states(self, country: str) -> dict:
+    def list_states(self, country: str) -> Response:
         """
         Get a list of all supported states and their properties
 
         :param: country: The country code from which to obtain the list of supported states
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         params = {"country": country}
         return self._get_request("/address_verification/states", params=params)
