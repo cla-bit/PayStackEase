@@ -11,7 +11,7 @@ from tests.conftest import payment_pages_client
 @pytest.mark.parametrize(
     ("name", "description", "amount", "split_code", "page_slug", "redirect_url", "metadata", "custom_fields"),
     [
-        ("test-page", "Testing", 1000, "SPLIT_test1234", "test-page-slug", "http://test-redirect.com", {"page_nickname": "tester_page"}, ["test-any-other"]),
+        ("test-page", "Testing", 1000, "SPLIT_test1234", "test-page-slug", "http://test-redirect.com", {"page_nickname": "tester_page"}, [{"page_nickname": "tester_page"}]),
         ("test-page", None, None, None, None, None, None, None),
     ]
 )
@@ -127,7 +127,7 @@ def test_update_page(payment_pages_client, name, description, amount, active):
         "name": name,
         "description": description,
         "amount": amount,
-        "active": str(active).lower(),
+        "active": str(active),
     }
 
     responses.add(
