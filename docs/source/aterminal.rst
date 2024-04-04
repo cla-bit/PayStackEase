@@ -6,7 +6,7 @@ Async Terminal Module
 
 Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to build delightful in-person payment experiences.
 
-----------------------------------------------------
+--------------
 
 .. py:class:: AsyncTerminalClientAPI(secret_key: str = None)
 
@@ -14,7 +14,7 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
 
     Paystack Terminal API Reference: `Terminal`_
 
-    .. py:method:: async commission_terminal(serial_number: str)→ dict
+    .. py:method:: async commission_terminal(serial_number: str)→ ClientResponse
 
         Activate debug device by linking it to your integration
 
@@ -22,9 +22,9 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
         :type serial_number: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async decommission_terminal(serial_number: str)→ dict
+    .. py:method:: async decommission_terminal(serial_number: str)→ ClientResponse
 
         Deactivate debug device by unlinking it from your integration
 
@@ -32,9 +32,9 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
         :type serial_number: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_event_status(terminal_id: str, event_id: str)→ dict
+    .. py:method:: async fetch_event_status(terminal_id: str, event_id: str)→ ClientResponse
 
         Fetch details of a specific event status sent to the terminal
 
@@ -44,9 +44,9 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
         :type event_id: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_terminal(terminal_id: str)→ dict
+    .. py:method:: async fetch_terminal(terminal_id: str)→ ClientResponse
 
         Get details of a terminal
 
@@ -54,9 +54,9 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
         :type terminal_id: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_terminal_status(terminal_id: str)→ dict
+    .. py:method:: async fetch_terminal_status(terminal_id: str)→ ClientResponse
 
         Fetch the availability of a terminal before sending an event
 
@@ -64,23 +64,23 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
         :type terminal_id: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_terminals(per_page: int, next_cursor: str | None = None, previous_cursor: str | None = None)→ dict
+    .. py:method:: async list_terminals(per_page: int = 50, next_cursor: bool | None = True, previous_cursor: bool | None = True)→ ClientResponse
 
         List the Terminals available on your integration
 
-        :param per_page: The number of terminal records per page
+        :param per_page: The number of terminal records per page. (default: 50)
         :type per_page: int, optional
-        :param next_cursor:
-        :type next_cursor: str, optional
-        :param previous_cursor:
-        :type previous_cursor: str, optional
+        :param next_cursor: (default: True)
+        :type next_cursor: bool, optional
+        :param previous_cursor: (default: True)
+        :type previous_cursor: bool, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async send_event(terminal_id: str, event_type: str, terminal_action: str, data_object: Dict[str, str])→ dict
+    .. py:method:: async send_event(terminal_id: str, event_type: str, terminal_action: str, data_object: Dict[str, str])→ ClientResponse
 
         Send an event from your application to the Paystack Terminal
 
@@ -93,17 +93,9 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
         :param data_object: parameters needed to perform the specified action.
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. note::
-
-        If you pass ``invoice type`` as the ``event_type``, the action can either be [ ``process`` || ``view`` ].
-
-        For ``transaction type`` as the ``event_type``, the action can either be [ ``process`` || ``print`` ].
-
-        For data_object follow as suited: ``[invoice type]: you need to pass {id: invoice_id, reference: offline_reference}. [transaction type], you can pass {id: transaction_id}``
-
-    .. py:method:: async update_terminal(terminal_id: str, terminal_name: str, terminal_address: str)→ dict
+    .. py:method:: async update_terminal(terminal_id: str, terminal_name: str, terminal_address: str)→ ClientResponse
 
         Update details of the terminal
 
@@ -115,7 +107,16 @@ Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to 
         :type terminal_address: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
+
+.. note::
+
+    If you pass ``invoice type`` as the ``event_type``, the action can either be [ ``process`` || ``view`` ].
+    For ``transaction type`` as the ``event_type``, the action can either be [ ``process`` || ``print`` ].
+
+    **Use the string values of the ``EventType`` and ``EventAction``.**
+
+    For data_object follows as suited: ``[invoice type]``: you need to pass ``{id: invoice_id, reference: offline_reference}``. ``[transaction type]``, you can pass ``{id: transaction_id}``
 
 
 .. _Terminal: https://paystack.com/docs/api/terminal/
