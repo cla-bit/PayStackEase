@@ -7,7 +7,7 @@ Transfer Recipients Module
 
 Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows you to create and manage beneficiaries that you send money to.
 
--------------------------------------------------------------
+----------------
 
 .. py:class:: TransferRecipientsClientAPI(secret_key: str = None)
 
@@ -15,17 +15,17 @@ Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows
 
     Paystack Transfer Recipients API Reference: `Transfer Recipients`_
 
-    .. py:method:: bulk_create_transfer_recipient(batch: List[Dict[str, str]])→ dict
+    .. py:method:: bulk_create_transfer_recipient(batch: List[Dict[str, Any]])→ Response
 
         Create multiple transfer recipients in batches.
 
         :param batch: A list of transfer recipient dict keys [ { ``type``, ``name``, ``account_number``, ``bank_code``, ``currency`` etc. }]
-        :type batch: List[Dict[str, str]]
+        :type batch: List[Dict[str, Any]]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: create_transfer_recipients(recipient_type: str, recipient_name: str, account_number: str, bank_code: str, description: str | None = None, currency: str | None = None, authorization_code: str | None = None, metadata: Dict[str, str] | None = None)→ dict
+    .. py:method:: create_transfer_recipients(recipient_type: str, recipient_name: str, account_number: str, bank_code: str, description: str | None = None, currency: str | None = None, authorization_code: str | None = None, metadata: Dict[str, Any] | None = None)→ Response
 
         Create a transfer recipient
 
@@ -47,9 +47,9 @@ Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows
         :type metadata: dict, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: delete_transfer_recipient(id_or_code: str)→ dict
+    .. py:method:: delete_transfer_recipient(id_or_code: str)→ Response
 
         Delete a transfer recipient
 
@@ -57,9 +57,9 @@ Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_transfer_recipient(id_or_code: str)→ dict
+    .. py:method:: fetch_transfer_recipient(id_or_code: str)→ Response
 
         Fetch details of a transfer recipient
 
@@ -67,9 +67,9 @@ Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_transfer_recipients(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_transfer_recipients(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List of all transfer recipients
 
@@ -83,9 +83,9 @@ Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: update_transfer_recipient(id_or_code: str, recipient_name: str, recipient_email: str | None = None)→ dict
+    .. py:method:: update_transfer_recipient(id_or_code: str, recipient_name: str, recipient_email: str | None = None)→ Response
 
         Update a transfer recipient
 
@@ -97,7 +97,7 @@ Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows
         :type recipient_email: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Transfer Recipients: https://paystack.com/docs/api/transfer-recipient/

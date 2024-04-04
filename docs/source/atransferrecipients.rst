@@ -15,17 +15,17 @@ Wrapper for Asynchronous Paystack Transfer Recipient APIs. The Transfer Recipien
 
     Paystack Transfer Recipients API Reference: `Transfer Recipients`_
 
-    .. py:method:: async bulk_create_transfer_recipient(batch: List[Dict[str, str]])→ dict
+    .. py:method:: async bulk_create_transfer_recipient(batch: List[Dict[str, Any]])→ ClientResponse
 
         Create multiple transfer recipients in batches.
 
         :param batch: A list of transfer recipient dict keys [ { ``type``, ``name``, ``account_number``, ``bank_code``, ``currency`` etc. }]
-        :type batch: List[Dict[str, str]]
+        :type batch: List[Dict[str, Any]]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async create_transfer_recipients(recipient_type: str, recipient_name: str, account_number: str, bank_code: str, description: str | None = None, currency: str | None = None, authorization_code: str | None = None, metadata: Dict[str, str] | None = None)→ dict
+    .. py:method:: async create_transfer_recipients(recipient_type: str, recipient_name: str, account_number: str, bank_code: str, description: str | None = None, currency: str | None = None, authorization_code: str | None = None, metadata: Dict[str, str] | None = None)→ ClientResponse
 
         Create a transfer recipient
 
@@ -47,9 +47,9 @@ Wrapper for Asynchronous Paystack Transfer Recipient APIs. The Transfer Recipien
         :type metadata: dict, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async delete_transfer_recipient(id_or_code: str)→ dict
+    .. py:method:: async delete_transfer_recipient(id_or_code: str)→ ClientResponse
 
         Delete a transfer recipient
 
@@ -57,9 +57,9 @@ Wrapper for Asynchronous Paystack Transfer Recipient APIs. The Transfer Recipien
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_transfer_recipient(id_or_code: str)→ dict
+    .. py:method:: async fetch_transfer_recipient(id_or_code: str)→ ClientResponse
 
         Fetch details of a transfer recipient
 
@@ -67,9 +67,9 @@ Wrapper for Asynchronous Paystack Transfer Recipient APIs. The Transfer Recipien
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_transfer_recipients(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_transfer_recipients(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         List of all transfer recipients
 
@@ -83,9 +83,9 @@ Wrapper for Asynchronous Paystack Transfer Recipient APIs. The Transfer Recipien
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async update_transfer_recipient(id_or_code: str, recipient_name: str, recipient_email: str | None = None)→ dict
+    .. py:method:: async update_transfer_recipient(id_or_code: str, recipient_name: str, recipient_email: str | None = None)→ ClientResponse
 
         Update a transfer recipient
 
@@ -97,7 +97,7 @@ Wrapper for Asynchronous Paystack Transfer Recipient APIs. The Transfer Recipien
         :type recipient_email: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
 .. _Transfer Recipients: https://paystack.com/docs/api/transfer-recipient/
