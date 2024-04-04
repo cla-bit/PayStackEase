@@ -13,7 +13,7 @@ from tests.conftest import transactions_client
      "subaccount", "transaction_charge", "bearer", "metadata"),
     [
         ("test@email.com", 10000, "NGN", "test-reference", "https://example.com/callback", "PLAN_test1234", 10,
-         ["ussd", "card"], "SPLIT_test123", "SUBACCT_test123", 100, "account", {"status": "success"}),
+         ["ussd", "card"], "SPLIT_test123", "SUBACCT_test123", 100, "account", {"status": "success", "custom": ["test-reference", "test-reference", "test-reference"]}),
         ("test@email.com", 10000, None, None, None, None, None, None, None, None, None, None, None)
     ]
 )
@@ -87,7 +87,7 @@ def test_charge_authorization(transactions_client, email, amount, authorization_
         "subaccount": subaccount,
         "transaction_charge": transaction_charge,
         "bearer": bearer,
-        "queue": str(queue).lower(),
+        "queue": str(queue),
         "metadata": metadata,
     }
     responses.add(
@@ -317,7 +317,7 @@ def test_export_transactions(transactions_client, customer, currency, amount, st
         "currency": currency,
         "amount": amount,
         "status": status,
-        "settled": str(settled).lower(),
+        "settled": str(settled),
         "settlement": settlement,
         "payment_page": payment_page,
         "from": from_date,
