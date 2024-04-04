@@ -7,9 +7,11 @@ Transactions Module
 
 Wrapper for Paystack Transactions API. The Transactions API allows you to create and manage payments on your integration.
 
-You can use the tool kit in the helpers module as reference: :doc:`paystackease.helpers`
+.. note::
 
--------------------------------------------------------
+    You can use ``convert_currency()`` to convert to subunit. ``Authorization code`` are generated upon a successful card transaction.
+
+--------------
 
 .. py:class:: TransactionClientAPI(secret_key: str = None)
 
@@ -17,11 +19,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
 
     Paystack Transaction API Reference: `Transaction`_
 
-    .. note::
-
-        You can use ``convert_currency()`` to convert to subunit. ``Authorization code`` are generated upon a successful card transaction.
-
-    .. py:method:: charge_authorization(email: str, amount: int, authorization_code: str, reference: str | None = None, currency: str | None = None, channels: List[str] | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, queue: bool | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ dict
+    .. py:method:: charge_authorization(email: str, amount: int, authorization_code: str, reference: str | None = None, currency: str | None = None, channels: List[str] | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, queue: bool | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ Response
 
         Charge an authorization transaction
 
@@ -49,9 +47,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type metadata: Dict[str, List[Dict[str, Any]]]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: export_transactions(per_page: int | None = None, page: int | None = None, customer: int | None = None, currency: str | None = None, amount: int | None = None, status: str | None = None, settled: bool | None = None, settlement: int | None = None, payment_page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: export_transactions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, currency: str | None = None, amount: int | None = None, status: str | None = None, settled: bool | None = None, settlement: int | None = None, payment_page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
 
         Export transactions
 
@@ -79,9 +77,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_transaction(transaction_id: int)→ dict
+    .. py:method:: fetch_transaction(transaction_id: int)→ Response
 
         Fetch details of a specific transaction
 
@@ -89,9 +87,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type transaction_id: int
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: initialize(email: str, amount: int, currency: str | None = None, reference: str | None = None, callback_url: str | None = None, plan: str | None = None, invoice_limit: int | None = None, channels: List[str] | None = None, split_code: str | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, metadata: Dict[str, str] | None = None)→ dict
+    .. py:method:: initialize(email: str, amount: int, currency: str | None = None, reference: str | None = None, callback_url: str | None = None, plan: str | None = None, invoice_limit: int | None = None, channels: List[str] | None = None, split_code: str | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, metadata: Dict[str, Any] | None = None)→ Response
 
         Initiate a transaction
 
@@ -123,9 +121,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type metadata: dict, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_transactions(per_page: int | None = None, page: int | None = None, customer: int | None = None, terminal_id: str | None = None, amount: int | None = None, status: str | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_transactions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, terminal_id: str | None = None, amount: int | None = None, status: str | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List all transactions
 
@@ -147,9 +145,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: partial_debit(email: str, authorization_code: str, amount: int, currency: str, reference: str | None = None, at_least: int | None = None)→ dict
+    .. py:method:: partial_debit(email: str, authorization_code: str, amount: int, currency: str, reference: str | None = None, at_least: int | None = None)→ Response
 
         Charge a partial debit transaction
 
@@ -167,24 +165,24 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type at_least: int, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: transaction_timeline(id_or_reference: str)→ dict
+    .. py:method:: transaction_timeline(id_or_reference: str)→ Response
 
         Get the timeline of a transaction
 
         :param id_or_reference: The id or reference of the transaction you want to get
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: transaction_totals(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: transaction_totals(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         Get total of all transactions
 
-        :param per_page: The number of transaction records to return per page.
+        :param per_page: The number of transaction records to return per page. (default: 50)
         :type per_page: int, optional
-        :param page: The page to return.
+        :param page: The page to return. (default: 1)
         :type page: int, optional
         :param from_date: A timestamp from which to start listing transaction
         :type from_date: date, optional
@@ -192,9 +190,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: verify_transaction(reference: str)→ dict
+    .. py:method:: verify_transaction(reference: str)→ Response
 
         Verify a transaction by reference
 
@@ -202,7 +200,8 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type reference: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
+You can use the tool kit in the helpers module as reference: :doc:`toolkit`
 
 .. _Transaction: https://paystack.com/docs/api/transaction/
