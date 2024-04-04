@@ -174,6 +174,13 @@ class STATUS(Enum):
     PROCESSING = "processing"
 
 
+class TransactionStatus(Enum):
+    """Transaction status supported by Paystack."""
+    FAILED = "failed"
+    SUCCESS = "success"
+    ABANDONED = "abandoned"
+
+
 class USSD(Enum):
     """USSD supported by Paystack."""
 
