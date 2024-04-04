@@ -7,9 +7,7 @@ Async Plan Module
 
 Wrapper for Asynchronous Paystack Plans API The Plans API allows you to create and manage installment payment options on your integration.
 
-You can use the tool kit in the helpers module as reference: :doc:`paystackease.helpers`
-
-------------------------------------------------------------
+---------
 
 .. py:class:: AsyncPlanClientAPI(secret_key: str = None)
 
@@ -17,7 +15,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
 
     Paystack Plan API Reference: `Plans`_
 
-    .. py:method:: async create_plan(name: str, amount: int, interval: str, currency: str, invoice_limit: int, send_invoices: bool, send_sms: bool, description: str | None = None)→ dict[source]
+    .. py:method:: async create_plan(name: str, amount: int, interval: str, currency: str, invoice_limit: int, send_invoices: bool, send_sms: bool, description: str | None = None)→ ClientResponse
 
         Create a plan
 
@@ -25,7 +23,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type name: str
         :param amount: The amount of the plan
         :type amount: int
-        :param interval: The interval of the plan. Values: ``Interval.value.value``
+        :param interval: The interval of the plan
         :type interval: str
         :param currency: The currency of the plan
         :type currency: str
@@ -39,9 +37,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type description: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_plan(id_or_code: str)→ dict
+    .. py:method:: async fetch_plan(id_or_code: str)→ ClientResponse
 
         Fetch a plan
 
@@ -49,9 +47,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_plans(per_page: int | None = None, page: int | None = None, status: str | None = None, interval: str | None = None, amount: int | None = None)→ dict
+    .. py:method:: async list_plans(per_page: int | None = 50, page: int | None = 1, status: str | None = None, interval: str | None = None, amount: int | None = None)→ ClientResponse
 
         List plans
 
@@ -67,9 +65,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type amount: int, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async update_plan(id_or_code: str, name: str, amount: int, interval: str, send_invoices: bool, send_sms: bool, currency: str, invoice_limit: int, description: str | None = None)→ dict
+    .. py:method:: async update_plan(id_or_code: str, name: str, amount: int, interval: str, send_invoices: bool, send_sms: bool, currency: str, invoice_limit: int, description: str | None = None)→ ClientResponse
 
         Update a plan
 
@@ -79,7 +77,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type name: str
         :param amount: The amount of the plan
         :type amount: int
-        :param interval: The interval of the plan. Values: ``Interval.value.value``
+        :param interval: The interval of the plan.
         :type interval: str
         :param send_invoices: Whether or not to send invoices
         :type send_invoices: bool
@@ -93,7 +91,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type description: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
+
+You can use the tool kit in the helpers module as reference to get the string value of the Interval enum class to pass into the ``interval`` parameter :doc:`toolkit`
 
 .. _Plans: https://paystack.com/docs/api/plan/
