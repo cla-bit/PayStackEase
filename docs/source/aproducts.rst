@@ -16,7 +16,7 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
 
     Paystack Product API Reference: `Products`_
 
-    .. py:method:: async create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ dict[source]
+    .. py:method:: async create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ ClientResponse
 
         Create a product
 
@@ -34,9 +34,9 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_product(product_id: str)→ dict
+    .. py:method:: async fetch_product(product_id: str)→ ClientResponse
 
         Fetch a product
 
@@ -44,15 +44,15 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type product_id: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_products(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_products(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         List products
 
-        :param per_page: The number of products to return per page
+        :param per_page: The number of products to return per page. (default: 50)
         :type per_page: int, optional
-        :param page: The page to return
+        :param page: The page to return. (default: 1)
         :type page: int, optional
         :param from_date: The date from which to list products
         :type from_date: date, optional
@@ -60,9 +60,9 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ dict
+    .. py:method:: async update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ ClientResponse
 
         Update a product
 
@@ -82,7 +82,7 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
 .. _Products: https://paystack.com/docs/api/product/

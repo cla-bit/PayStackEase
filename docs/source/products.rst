@@ -16,7 +16,7 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
 
     Paystack Product API Reference: `Products`_
 
-    .. py:method:: create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ dict[source]
+    .. py:method:: create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ Response
 
         Create a product
 
@@ -34,9 +34,9 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_product(product_id: str)→ dict
+    .. py:method:: fetch_product(product_id: str)→ Response
 
         Fetch a product
 
@@ -44,15 +44,15 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type product_id: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_products(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_products(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List products
 
-        :param per_page: The number of products to return per page
+        :param per_page: The number of products to return per page. (default: 50)
         :type per_page: int, optional
-        :param page: The page to return
+        :param page: The page to return. (default: 1)
         :type page: int, optional
         :param from_date: The date from which to list products
         :type from_date: date, optional
@@ -60,9 +60,9 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ dict
+    .. py:method:: update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ Response
 
         Update a product
 
@@ -82,7 +82,7 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Products: https://paystack.com/docs/api/product/
