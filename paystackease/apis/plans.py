@@ -3,8 +3,10 @@ Wrapper for Paystack Plans API
 
 The Plans API allows you to create and manage installment payment options on your integration.
 """
+from requests import Response
 
 from typing import Optional
+from paystackease.helpers.tool_kit import Interval
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -18,13 +20,13 @@ class PlanClientAPI(PayStackBaseClientAPI):
             self,
             name: str,
             amount: int,
-            interval: str,
+            interval: Interval,
             currency: str,
             invoice_limit: int,
             send_invoices: bool,
             send_sms: bool,
             description: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Create a plan
 
@@ -38,8 +40,12 @@ class PlanClientAPI(PayStackBaseClientAPI):
         :param: invoice_limit: Invoice limit of the plan
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
+        # convert to strings
+        send_invoices = self._convert_to_string(send_invoices)
+        send_sms = self._convert_to_string(send_sms)
+
         data = {
             "name": name,
             "amount": amount,
@@ -54,12 +60,12 @@ class PlanClientAPI(PayStackBaseClientAPI):
 
     def list_plans(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             status: Optional[str] = None,
-            interval: Optional[str] = None,
+            interval: Optional[Interval] = None,
             amount: Optional[int] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List all the plans
 
@@ -70,7 +76,7 @@ class PlanClientAPI(PayStackBaseClientAPI):
         :param: amount
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         params = {
             "perPage": per_page,
@@ -81,14 +87,14 @@ class PlanClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/plan", params=params)
 
-    def fetch_plan(self, id_or_code: str) -> dict:
+    def fetch_plan(self, id_or_code: str) -> Response:
         """
         Get details of a plan
 
         :param: id_or_code: ID or Code of the plan
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/plan/{id_or_code}")
 
@@ -97,13 +103,13 @@ class PlanClientAPI(PayStackBaseClientAPI):
             id_or_code: str,
             name: str,
             amount: int,
-            interval: str,
+            interval: Interval,
             send_invoices: bool,
             send_sms: bool,
             currency: str,
             invoice_limit: int,
             description: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Update a plan detail
 
@@ -118,8 +124,11 @@ class PlanClientAPI(PayStackBaseClientAPI):
         :param: invoice_limit:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
+        # convert to strings
+        send_invoices = self._convert_to_string(send_invoices)
+        send_sms = self._convert_to_string(send_sms)
 
         data = {
             "name": name,
