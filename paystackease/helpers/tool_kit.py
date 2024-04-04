@@ -139,6 +139,14 @@ class RiskAction(Enum):
     DENY = "deny"
 
 
+class SettlementSchedule(Enum):
+    """ Schedule"""
+    AUTO = "auto"
+    WEEKLY = "weekly"
+    MANUAL = "manual"
+    MONTHLY = "monthly"
+
+
 class SplitType(Enum):
     PERCENTAGE = "percentage"
     FLAT = "flat"
