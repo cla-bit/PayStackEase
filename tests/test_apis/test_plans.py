@@ -25,8 +25,8 @@ def test_create_plan(plans_client, name, amount, interval, currency, invoice_lim
         "amount": amount,
         "interval": interval,
         "description": description,
-        "send_invoices": send_invoices,
-        "send_sms": send_sms,
+        "send_invoices": str(send_invoices),
+        "send_sms": str(send_sms),
         "currency": currency,
         "invoice_limit": invoice_limit,
     }
@@ -130,8 +130,8 @@ def test_update_plan(plans_client, name, amount, interval, send_invoices, send_s
         "amount": amount,
         "interval": interval,
         "description": description,
-        "send_invoices": send_invoices,
-        "send_sms": send_sms,
+        "send_invoices": str(send_invoices),
+        "send_sms": str(send_sms),
         "currency": currency,
         "invoice_limit": invoice_limit,
     }

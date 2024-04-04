@@ -25,8 +25,8 @@ async def test_create_plan(async_plans_client, mocked_responses, name, amount, i
         "amount": amount,
         "interval": interval,
         "description": description,
-        "send_invoices": send_invoices,
-        "send_sms": send_sms,
+        "send_invoices": str(send_invoices),
+        "send_sms": str(send_sms),
         "currency": currency,
         "invoice_limit": invoice_limit,
     }
@@ -123,8 +123,8 @@ async def test_update_plan(async_plans_client, mocked_responses, name, amount, i
         "amount": amount,
         "interval": interval,
         "description": description,
-        "send_invoices": send_invoices,
-        "send_sms": send_sms,
+        "send_invoices": str(send_invoices),
+        "send_sms": str(send_sms),
         "currency": currency,
         "invoice_limit": invoice_limit,
     }
