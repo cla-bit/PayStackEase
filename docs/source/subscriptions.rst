@@ -7,7 +7,7 @@ Subscriptions Module
 
 Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to create and manage recurring payment on your integration.
 
-------------------------------------------------------------
+----------
 
 .. py:class:: SubscriptionClientAPI(secret_key: str = None)
 
@@ -15,7 +15,7 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
 
     Paystack Subscription API Reference: `Subscriptions`_
 
-    .. py:method:: create_subscription(customer: str, plan_code: str, authorization: str, start_date: date | None = None)→ dict
+    .. py:method:: create_subscription(customer: str, plan_code: str, authorization: str, start_date: date | None = None)→ Response
 
         Create a subscription
 
@@ -29,9 +29,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type start_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: disable_subscription(subscription_code: str, token: str)→ dict
+    .. py:method:: disable_subscription(subscription_code: str, token: str)→ Response
 
         Disable a subscription
 
@@ -41,9 +41,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type token: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: enable_subscription(subscription_code: str, token: str)→ dict
+    .. py:method:: enable_subscription(subscription_code: str, token: str)→ Response
 
         Enable a subscription
 
@@ -53,9 +53,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type token: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_subscription(id_or_code: str)→ dict
+    .. py:method:: fetch_subscription(id_or_code: str)→ Response
 
         Get details of a subscription
 
@@ -63,9 +63,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: generate_update_subscription(subscription_code: str)→ dict
+    .. py:method:: generate_update_subscription(subscription_code: str)→ Response
 
         Generate a link for updating the card on subscription
 
@@ -73,15 +73,15 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type subscription_code: str
 
         :return: The response from thw API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_subscriptions(per_page: int | None = None, page: int | None = None, customer: int | None = None, plan_code: int | None = None)→ dict
+    .. py:method:: list_subscriptions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, plan_code: int | None = None)→ Response
 
         List all subscriptions
 
-        :param per_page: The number of subscriptions per page
+        :param per_page: The number of subscriptions per page. (default: 50)
         :type per_page: int, optional
-        :param page: The page number
+        :param page: The page number. (default: 1)
         :type page: int, optional
         :param customer: The customer number
         :type customer: int, optional
@@ -89,9 +89,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type plan_code: int, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: send_update_subscription_link(subscription_code: str)→ dict
+    .. py:method:: send_update_subscription_link(subscription_code: str)→ Response
 
         Email a customer a link for updating the card on their subscription
 
@@ -99,7 +99,7 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type subscription_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Subscriptions: https://paystack.com/docs/api/subscription/
