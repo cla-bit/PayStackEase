@@ -7,7 +7,7 @@ Verification Module
 
 Wrapper for Paystack Verification APIs The Verification API allows you to perform KYC processes.
 
------------------------------------------------------
+-------------
 
 .. py:class:: VerificationClientAPI(secret_key: str = None)
 
@@ -15,7 +15,7 @@ Wrapper for Paystack Verification APIs The Verification API allows you to perfor
 
     Paystack Verification API Reference: `Verification`_
 
-    .. py:method:: resolve_account(account_number: str, bank_code: str)→ dict
+    .. py:method:: resolve_account(account_number: str, bank_code: str)→ Response
 
         Confirm an account belongs to the right customer. This feature is available to business in Nigeria and Ghana.
 
@@ -25,10 +25,10 @@ Wrapper for Paystack Verification APIs The Verification API allows you to perfor
         :type bank_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
-    .. py:method:: resolve_card_bin(bin_code: str)→ dict
+    .. py:method:: resolve_card_bin(bin_code: str)→ Response
 
         Resolve a card BIN
 
@@ -36,10 +36,10 @@ Wrapper for Paystack Verification APIs The Verification API allows you to perfor
         :type bin_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
-    .. py:method:: validate_account(account_name: str, account_number: str, account_type: str, bank_code: str, country_code: str, document_type: str, document_number: str)→ dict
+    .. py:method:: validate_account(account_name: str, account_number: str, account_type: str, bank_code: str, country_code: str, document_type: str, document_number: str)→ Response
 
         Confirm the authenticity of a customer’s account number before sending money. This feature is only available to businesses in South Africa.
 
@@ -59,6 +59,6 @@ Wrapper for Paystack Verification APIs The Verification API allows you to perfor
         :type document_number: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 .. _Verification: https://paystack.com/docs/api/verification/

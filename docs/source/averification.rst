@@ -7,7 +7,7 @@ Async Verification Module
 
 Wrapper for Asynchronous Paystack Verification APIs The Verification API allows you to perform KYC processes.
 
------------------------------------------------------
+------------------
 
 .. py:class:: AsyncVerificationClientAPI(secret_key: str = None)
 
@@ -15,7 +15,7 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
 
     Paystack Verification API Reference: `Verification`_
 
-    .. py:method:: async resolve_account(account_number: str, bank_code: str)→ dict
+    .. py:method:: async resolve_account(account_number: str, bank_code: str)→ ClientResponse
 
         Confirm an account belongs to the right customer. This feature is available to business in Nigeria and Ghana.
 
@@ -25,10 +25,10 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
         :type bank_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
-    .. py:method:: async resolve_card_bin(bin_code: str)→ dict
+    .. py:method:: async resolve_card_bin(bin_code: str)→ ClientResponse
 
         Resolve a card BIN
 
@@ -36,10 +36,10 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
         :type bin_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
-    .. py:method:: async validate_account(account_name: str, account_number: str, account_type: str, bank_code: str, country_code: str, document_type: str, document_number: str)→ dict
+    .. py:method:: async validate_account(account_name: str, account_number: str, account_type: str, bank_code: str, country_code: str, document_type: str, document_number: str)→ ClientResponse
 
         Confirm the authenticity of a customer’s account number before sending money. This feature is only available to businesses in South Africa.
 
@@ -59,6 +59,6 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
         :type document_number: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 .. _Verification: https://paystack.com/docs/api/verification/
