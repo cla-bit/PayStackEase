@@ -3,11 +3,11 @@ Wrapper for Asynchronous Paystack Transactions API
 
 The Transactions API allows you to create and manage payments on your integration.
 """
+from aiohttp import ClientResponse
 
 from datetime import date
-
-from typing import List, Optional, Dict, Any
-
+from typing import List, Optional, Dict, Any, Union
+from paystackease.helpers.tool_kit import TransactionStatus, Channels, Bearer, Currency
 from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
@@ -21,18 +21,18 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             self,
             email: str,
             amount: int,
-            currency: Optional[str] = None,
+            currency: Optional[Currency] = None,
             reference: Optional[str] = None,
             callback_url: Optional[str] = None,
             plan: Optional[str] = None,
             invoice_limit: Optional[int] = None,
-            channels: Optional[List[str]] = None,
+            channels: Optional[Union[List[Channels], None]] = None,
             split_code: Optional[str] = None,
             subaccount: Optional[str] = None,
             transaction_charge: Optional[int] = None,
-            bearer: Optional[str] = None,
-            metadata: Optional[Dict[str, str]] = None,
-    ) -> dict:
+            bearer: Optional[Bearer] = None,
+            metadata: Optional[Dict[str, Any]] = None,
+    ) -> ClientResponse:
         """
         Initialize a transaction
 
@@ -54,7 +54,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :param: metadata:  # Stringified JSON object of custom data. {"foo": "bar" }
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {
             "email": email,
@@ -79,14 +79,14 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             amount: int,
             authorization_code: str,
             reference: Optional[str] = None,
-            currency: Optional[str] = None,
+            currency: Optional[Currency] = None,
             channels: Optional[List[str]] = None,
             subaccount: Optional[str] = None,
             transaction_charge: Optional[int] = None,
             bearer: Optional[str] = None,
-            queue: Optional[bool] = None,
+            queue: Optional[bool] = True,
             metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Charge an authorization transaction
 
@@ -104,7 +104,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :param: metadata:  # Stringified JSON object of custom data. {"foo": "bar" }
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert bool to string
@@ -133,7 +133,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
             currency: str,
             reference: Optional[str] = None,
             at_least: Optional[int] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Charge a partial debit transaction
 
@@ -146,7 +146,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :param: at_least:  # Minimum amount to charge
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {
             "email": email,
@@ -160,15 +160,15 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_transactions(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             customer: Optional[int] = None,
             terminal_id: Optional[str] = None,
             amount: Optional[int] = None,
-            status: Optional[str] = None,
+            status: Optional[TransactionStatus] = None,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List all transactions
 
@@ -182,7 +182,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date:  # A timestamp at which to stop listing transaction 2016-09-24T00:00:05.000Z
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to string
@@ -201,46 +201,46 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/transaction", params=params)
 
-    async def verify_transaction(self, reference: str) -> dict:
+    async def verify_transaction(self, reference: str) -> ClientResponse:
         """
         Verify a transaction by reference
 
         :param: reference:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/transaction/verify/{reference}")
 
-    async def fetch_transaction(self, transaction_id: int) -> dict:
+    async def fetch_transaction(self, transaction_id: int) -> ClientResponse:
         """
         Fetch details of a specific transaction
 
         :param: transaction_id:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/transaction/{transaction_id}")
 
-    async def transaction_timeline(self, id_or_reference: str) -> dict:
+    async def transaction_timeline(self, id_or_reference: str) -> ClientResponse:
         """
         Get the timeline of a transaction
 
         :param: id_or_reference:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/transaction/timeline/{id_or_reference}")
 
     async def transaction_totals(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Get totals of all transactions
 
@@ -250,7 +250,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to string
@@ -267,18 +267,18 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
 
     async def export_transactions(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             customer: Optional[int] = None,
             currency: Optional[str] = None,
             amount: Optional[int] = None,
-            status: Optional[str] = None,
-            settled: Optional[bool] = None,
+            status: Optional[TransactionStatus] = None,
+            settled: Optional[bool] = True,
             settlement: Optional[int] = None,
             payment_page: Optional[int] = None,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Export transactions
 
@@ -295,7 +295,7 @@ class AsyncTransactionClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date:  # 2016-09-24T00:00:05.000Z
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date and bool to string
