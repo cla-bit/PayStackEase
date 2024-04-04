@@ -17,7 +17,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
 
     Paystack Refund API Reference: `Refund`_
 
-    .. py:method:: create_refund(transaction_ref_or_id: str, amount: int | None = None, currency: str | None = None, customer_note: str | None = None, merchant_note: str | None = None)→ dict[source]
+    .. py:method:: create_refund(transaction_ref_or_id: str, amount: int | None = None, currency: str | None = None, customer_note: str | None = None, merchant_note: str | None = None)→ Response
 
         Create a refund
 
@@ -25,7 +25,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type transactin_ref_or_id: str
         :param amount: The amount to refund
         :type amount: int, optional
-        :param currency: The currency to refund. Values: ``Currency.value.value``
+        :param currency: The currency to refund.
         :type currency: str, optional
         :param customer_note: The customer note or reason
         :type custome_note: str, optional
@@ -33,9 +33,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type merchant_note: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_refund(reference: str)→ dict
+    .. py:method:: fetch_refund(reference: str)→ Response
 
         Fetch a refund
 
@@ -43,9 +43,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type reference: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_refunds(reference: str | None = None, currency: str | None = None, per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_refunds(reference: str | None = None, currency: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List refunds
 
@@ -63,7 +63,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Refund: https://paystack.com/docs/api/refund/

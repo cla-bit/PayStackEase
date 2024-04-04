@@ -7,9 +7,7 @@ Async Refund Module
 
 Wrapper for Asynchronous Paystack Refund API. The Refunds API allows you to create and manage transaction refunds.
 
-You can use the tool kit in the helpers module as reference: :doc:`paystackease.helpers`
-
---------------------------------------------------------------------
+----------
 
 .. py:class:: AsyncRefundClientAPI(secret_key: str = None)
 
@@ -17,7 +15,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
 
     Paystack Refund API Reference: `Refund`_
 
-    .. py:method:: async create_refund(transaction_ref_or_id: str, amount: int | None = None, currency: str | None = None, customer_note: str | None = None, merchant_note: str | None = None)→ dict[source]
+    .. py:method:: async create_refund(transaction_ref_or_id: str, amount: int | None = None, currency: str | None = None, customer_note: str | None = None, merchant_note: str | None = None)→ ClientResponse
 
         Create a refund
 
@@ -25,7 +23,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type transactin_ref_or_id: str
         :param amount: The amount to refund
         :type amount: int, optional
-        :param currency: The currency to refund. Values: ``Currency.value.value``
+        :param currency: The currency to refund.
         :type currency: str, optional
         :param customer_note: The customer note or reason
         :type custome_note: str, optional
@@ -33,9 +31,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type merchant_note: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async fetch_refund(reference: str)→ dict
+    .. py:method:: async fetch_refund(reference: str)→ ClientResponse
 
         Fetch a refund
 
@@ -43,9 +41,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type reference: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_refunds(reference: str | None = None, currency: str | None = None, per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_refunds(reference: str | None = None, currency: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         List refunds
 
@@ -63,7 +61,8 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
+You can use the tool kit in the helpers module as reference to pass the string value of Currency: :doc:`toolkit`
 
 .. _Refund: https://paystack.com/docs/api/refund/
