@@ -7,8 +7,7 @@ Payment Pages Module
 
 Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick and secure way to collect payment for products.
 
---------------------------------------------------------------
-
+-----------
 
 .. py:class:: PaymentPagesClientAPI(secret_key: str = None)
 
@@ -16,7 +15,7 @@ Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick a
 
     Paystack Miscellaneous API Reference: `Payment Pages`_
 
-    .. py:method:: add_products(payment_id: int, product: List[int])→ dict
+    .. py:method:: add_products(payment_id: int, product: List[int])→ Response
 
         Add products to a payment page
 
@@ -26,9 +25,9 @@ Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick a
         :type product: list
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: check_slug_available(page_slug: str)→ dict
+    .. py:method:: check_slug_available(page_slug: str)→ Response
 
         Check if a page slug is available
 
@@ -36,9 +35,9 @@ Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick a
         :type page_slug: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: create_payment_page(name: str, description: str | None = None, amount: int | None = None, split_code: str | None = None, page_slug: str | None = None, redirect_url: str | None = None, metadata: Dict[str, str] | None = None, custom_fields: List[str] | None = None)→ dict
+    .. py:method:: create_payment_page(name: str, description: str | None = None, amount: int | None = None, split_code: str | None = None, page_slug: str | None = None, redirect_url: str | None = None, metadata: Dict[str, Any] | None = None, custom_fields: List[Dict[str, Any]] | None = None)→ Response
 
         Create a new payment page
 
@@ -54,19 +53,15 @@ Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick a
         :type page_slug: str, optional
         :param redirect_url: If you would like Paystack to redirect someplace upon successful payment, specify the URL here.
         :type redirect_url: str, optional
-        :param metadata:  Extra data to configure the payment page including subaccount,logo image, transaction charge
+        :param metadata:  Extra data to configure the payment page.
         :type metadata: dict, optional
         :param custom_fields: List of custom fields you would like to add to the payment page
         :type custom_fields: list, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-        .. note::
-
-            Page will be accessible at ``https://paystack.com/pay/page_slug``
-
-    .. py:method:: fetch_payment_page(page_id_or_slug: str)→ dict
+    .. py:method:: fetch_payment_page(page_id_or_slug: str)→ Response
 
         Fetch a payment page
 
@@ -74,9 +69,9 @@ Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick a
         :type page_id_or_slug: str
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_payment_pages(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_payment_pages(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List all payment pages
 
@@ -90,9 +85,9 @@ Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick a
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: update_payment_page(page_id_or_slug: str, name: str | None = None, description: str | None = None, amount: int | None = None, active: bool | None = None)→ dict
+    .. py:method:: update_payment_page(page_id_or_slug: str, name: str | None = None, description: str | None = None, amount: int | None = None, active: bool | None = None)→ Response
 
         Update a payment page
 
@@ -104,11 +99,18 @@ Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick a
         :type description: str, optional
         :param amount: Amount of the payment page
         :type amount: int, optional
-        :param active: Whether the payment page url should be deactivated or not. Set False to deativate
+        :param active: Whether the payment page url should be deactivated or not. Set False to deactivate
         :type active: bool, optional
 
         :return: The response from the API.
-        :rtype: dict
+        :rtype: Response object
 
 
 .. _Payment Pages: https://paystack.com/docs/api/page/
+
+.. note::
+
+    The ``page_slug`` parameter in the ``create_payment_page`` method will be accessible at ``https://paystack.com/pay/[page_slug]``
+
+    The ``metadata`` can include subaccount, logo image, transaction charge etc. See documentation on how to set
+the ``custom_fields`` parameter: :doc:`metadata`.
