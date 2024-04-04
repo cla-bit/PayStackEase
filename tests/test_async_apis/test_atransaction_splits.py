@@ -108,7 +108,7 @@ async def test_list_transaction_splits(async_transaction_splits_client, mocked_r
     response_data = {"status": "success"}
     url_params = {
         "name": split_name,
-        "active": str(active).lower(),
+        "active": str(active),
         "sort_by": sort_by,
         "perPage": per_page,
         "page": page,
@@ -168,7 +168,7 @@ async def test_update_split(async_transaction_splits_client, mocked_responses, t
     response_data = {"status": "success"}
     expected_data = {
         "name": transaction_split_name,
-        "active": str(active).lower(),
+        "active": str(active),
         "bearer_type": bearer_type,
         "bearer_subaccount": bearer_subaccount,
     }

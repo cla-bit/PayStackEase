@@ -117,7 +117,7 @@ def test_list_transaction_splits(transaction_splits_client, split_name, active, 
     response_data = {"status": "success"}
     url_params = {
         "name": split_name,
-        "active": str(active).lower(),
+        "active": str(active),
         "sort_by": sort_by,
         "perPage": per_page,
         "page": page,
@@ -181,7 +181,7 @@ def test_update_split(transaction_splits_client, transaction_split_name, active,
     response_data = {"status": "success"}
     expected_data = {
         "name": transaction_split_name,
-        "active": str(active).lower(),
+        "active": str(active),
         "bearer_type": bearer_type,
         "bearer_subaccount": bearer_subaccount,
     }
