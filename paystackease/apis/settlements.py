@@ -3,10 +3,12 @@ Wrapper for Paystack Settlements API
 
 The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
 """
+from requests import Response
 
 from datetime import date
 from typing import Optional
 from paystackease._base import PayStackBaseClientAPI
+from paystackease.helpers.tool_kit import STATUS
 
 
 class SettlementClientAPI(PayStackBaseClientAPI):
@@ -17,13 +19,13 @@ class SettlementClientAPI(PayStackBaseClientAPI):
 
     def list_settlements(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
-            status: Optional[str] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
+            status: Optional[STATUS] = None,
             subaccount: Optional[str] = None,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List settlements made to your settlement accounts
 
@@ -35,7 +37,7 @@ class SettlementClientAPI(PayStackBaseClientAPI):
         :param: to_date: A timestamp from which to start listing settlements e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert date to string
@@ -55,11 +57,11 @@ class SettlementClientAPI(PayStackBaseClientAPI):
     def list_settlement_transactions(
             self,
             settlement_id: int,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Get the transactions that make up a particular settlement
 
@@ -70,7 +72,7 @@ class SettlementClientAPI(PayStackBaseClientAPI):
         :param: to_date: A timestamp from which to start listing settlements
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         
         note::
 
