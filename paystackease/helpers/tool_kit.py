@@ -12,6 +12,12 @@ class AccountType(Enum):
     BUSINESS = "business"
 
 
+class Bearer(Enum):
+    """Bearer supported by Paystack."""
+    ACCOUNT = "account"
+    SUB_ACCOUNT = "subaccount"
+
+
 class Currency(Enum):
     """Currencies supported by Paystack."""
 
