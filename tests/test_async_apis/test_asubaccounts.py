@@ -122,7 +122,7 @@ async def test_update_subaccount(async_subaccounts_client, mocked_responses, bus
         "business_name": business_name,
         "settlement_bank": settlement_bank,
         "account_number": account_number,
-        "active": str(active).lower(),
+        "active": str(active),
         "percentage_charge": percent_charge,
         "description": description,
         "primary_contact_email": primary_contact_email,
