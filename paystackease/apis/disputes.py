@@ -3,11 +3,11 @@ Wrapper for Paystack Disputes API
 
 The Disputes API allows you manage transaction disputes on your integration.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
 from paystackease._base import PayStackBaseClientAPI
+from paystackease._utils import Response
 from paystackease.helpers.tool_kit import DisputeStatus, Resolution
 
 
@@ -19,12 +19,12 @@ class DisputesClientAPI(PayStackBaseClientAPI):
 
     def list_disputes(
             self,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            transaction_id: Optional[str] = None,
-            status: Optional[DisputeStatus] = None,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            transaction_id: Optional[Union[str, None]] = None,
+            status: Optional[Union[DisputeStatus, None]] = None,
     ) -> Response:
         """
         List disputes filed against you
@@ -81,7 +81,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             self,
             dispute_id: str,
             refund_amount: int,
-            uploaded_filename: Optional[str] = None,
+            uploaded_filename: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Update details of a dispute
@@ -104,8 +104,8 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             customer_name: str,
             customer_phone: str,
             service_details: str,
-            delivery_address: Optional[str] = None,
-            delivery_date: Optional[date] = None,
+            delivery_address: Optional[Union[str, None]] = None,
+            delivery_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         Add evidence to a dispute
@@ -155,7 +155,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             message: str,
             refund_amount: int,
             uploaded_filename: str,
-            evidence: Optional[int] = None,
+            evidence: Optional[Union[int, None]] = None,
     ) -> Response:
         """
         Resolve a dispute
@@ -181,12 +181,12 @@ class DisputesClientAPI(PayStackBaseClientAPI):
 
     def export_disputes(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-            transaction_id: Optional[str] = None,
-            status: Optional[DisputeStatus] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+            transaction_id: Optional[Union[str, None]] = None,
+            status: Optional[Union[DisputeStatus, None]] = None,
     ) -> Response:
         """
         Export disputes
