@@ -95,6 +95,12 @@ class MobileMoney(Enum):
     M_PESA = "mpesa"
 
 
+class PayMentRequestStatus(Enum):
+    """ Payment request status supported by Paystack"""
+    DRAFT = "draft"
+    PENDING = "pending"
+
+
 class PWT(Enum):
     """PWT supported by Paystack."""
 
