@@ -3,6 +3,7 @@ Wrapper for Paystack Subscriptions API
 
 The Subscriptions API allows you to create and manage recurring payment on your integration.
 """
+from aiohttp import ClientResponse
 
 from datetime import date
 from typing import Optional
@@ -21,7 +22,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
             plan_code: str,
             authorization: str,
             start_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Create a subscription
 
@@ -31,7 +32,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :param: start_date: Start date of the subscription
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to string
@@ -51,7 +52,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
             page: Optional[int] = None,
             customer: Optional[int] = None,
             plan_code: Optional[int] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List all the subscriptions
 
@@ -61,7 +62,7 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :param: plan_code:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         params = {
             "perPage": per_page,
@@ -71,18 +72,18 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/subscription", params=params)
 
-    async def fetch_subscription(self, id_or_code: str) -> dict:
+    async def fetch_subscription(self, id_or_code: str) -> ClientResponse:
         """
         Get details of a subscription
 
         :param: id_or_code: ID or Code of the subscription
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/subscription/{id_or_code}")
 
-    async def enable_subscription(self, subscription_code: str, token: str) -> dict:
+    async def enable_subscription(self, subscription_code: str, token: str) -> ClientResponse:
         """
         Enable a subscription
 
@@ -90,12 +91,12 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :param: token: Email token of the customer
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {"code": subscription_code, "token": token}
         return await self._post_request("/subscription/enable", data=data)
 
-    async def disable_subscription(self, subscription_code: str, token: str) -> dict:
+    async def disable_subscription(self, subscription_code: str, token: str) -> ClientResponse:
         """
         Disable a subscription
 
@@ -103,29 +104,29 @@ class AsyncSubscriptionClientAPI(AsyncPayStackBaseClientAPI):
         :param: token: Email token of the customer
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {"code": subscription_code, "token": token}
         return await self._post_request("/subscription/disable", data=data)
 
-    async def generate_update_subscription(self, subscription_code: str) -> dict:
+    async def generate_update_subscription(self, subscription_code: str) -> ClientResponse:
         """
         Generate a link for updating the card on subscription
 
         :param: subscription_code: Code of the subscription
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._post_request(f"/subscription/{subscription_code}/manage/link")
 
-    async def send_update_subscription_link(self, subscription_code: str) -> dict:
+    async def send_update_subscription_link(self, subscription_code: str) -> ClientResponse:
         """
         Email a customer a link for updating the card on their subscription
 
         :param: subscription_code: Code of the subscription
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._post_request(f"/subscription/{subscription_code}/manage/email")
