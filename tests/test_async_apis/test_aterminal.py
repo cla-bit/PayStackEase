@@ -5,6 +5,7 @@ from datetime import date
 import pytest
 import responses
 
+from paystackease.helpers.tool_kit import EventAction, EventType
 from tests.conftest import async_terminal_client, mocked_responses
 
 
@@ -12,7 +13,7 @@ from tests.conftest import async_terminal_client, mocked_responses
 @pytest.mark.parametrize(
     ("event_type", "terminal_action", "data_obj"),
     [
-        ("invoice", "process", {"id": "invoice_id", "reference": "offline_reference"}),
+        (EventType.TRANSACTION.value, EventAction.PRINT.value, {"id": "transaction_id", "reference": "offline_reference"}),
     ]
 )
 async def test_create_event(async_terminal_client, mocked_responses, event_type, terminal_action, data_obj):
@@ -86,8 +87,8 @@ async def test_decommission(async_terminal_client, mocked_responses, serial_numb
 @pytest.mark.parametrize(
     ("per_page", "next_cursor", "prev_cursor"),
     [
-        (1, "next", "prev"),
-        (3, None, None)
+        (1, True, False),
+        (3, False, True)
     ]
 )
 async def test_list_terminals(async_terminal_client, mocked_responses, per_page, next_cursor, prev_cursor):
@@ -96,8 +97,8 @@ async def test_list_terminals(async_terminal_client, mocked_responses, per_page,
     response_data = {"status": "success"}
     url_params = {
         "perPage": per_page,
-        "next": next_cursor,
-        "previous": prev_cursor,
+        "next": str(next_cursor),
+        "previous": str(prev_cursor),
     }
     # Construct the expected URL with parameters
     query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
