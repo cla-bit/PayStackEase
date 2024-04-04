@@ -3,9 +3,11 @@ Wrapper for Paystack Terminal APIs
 
 The Terminal API allows you to build delightful in-person payment experiences.
 """
+from requests import Response
 
 from typing import Optional, Dict
 from paystackease._base import PayStackBaseClientAPI
+from paystackease.helpers.tool_kit import EventAction, EventType
 
 
 class TerminalClientAPI(PayStackBaseClientAPI):
@@ -17,10 +19,10 @@ class TerminalClientAPI(PayStackBaseClientAPI):
     def send_event(
             self,
             terminal_id: str,
-            event_type: str,
-            terminal_action: str,
+            event_type: EventType,
+            terminal_action: EventAction,
             data_object: Dict[str, str],
-    ) -> dict:
+    ) -> Response:
         """
         Send an event from your application to the Paystack Terminal
 
@@ -34,38 +36,38 @@ class TerminalClientAPI(PayStackBaseClientAPI):
                             [transaction type], you can pass {id: transaction_id}
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"type": event_type, "action": terminal_action, "data": data_object}
         return self._post_request(f"/terminal/{terminal_id}/event", data=data)
 
-    def commission_terminal(self, serial_number: str) -> dict:
+    def commission_terminal(self, serial_number: str) -> Response:
         """
         Activate debug device by linking it to your integration
 
         :param: serial_number: The serial number of the device
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"serial_number": serial_number}
         return self._post_request("/terminal/commission_device", data=data)
 
-    def decommission_terminal(self, serial_number: str) -> dict:
+    def decommission_terminal(self, serial_number: str) -> Response:
         """
         Deactivate debug device by unlinking it from your integration
 
         :param: serial_number: The serial number of the device
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"serial_number": serial_number}
         return self._post_request("/terminal/decommission_device", data=data)
 
     def update_terminal(
             self, terminal_id: str, terminal_name: str, terminal_address: str
-    ) -> dict:
+    ) -> Response:
         """
         Update details of a terminal
 
@@ -74,12 +76,12 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :param: terminal_address: Address of the terminal
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"name": terminal_name, "address": terminal_address}
         return self._put_request(f"/terminal/{terminal_id}", data=data)
 
-    def fetch_event_status(self, terminal_id: str, event_id: str) -> dict:
+    def fetch_event_status(self, terminal_id: str, event_id: str) -> Response:
         """
         Fetch details of a specific event status sent to the terminal
 
@@ -87,27 +89,27 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :param: event_id: The event id sent to the terminal
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/terminal/{terminal_id}/event/{event_id}")
 
-    def fetch_terminal_status(self, terminal_id: str) -> dict:
+    def fetch_terminal_status(self, terminal_id: str) -> Response:
         """
         Fetch the availability of a terminal before sending an event
 
         :param: terminal_id: The terminal iD the event is sent to
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/terminal/{terminal_id}/presence")
 
     def list_terminals(
             self,
-            per_page: int,
-            next_cursor: Optional[str] = None,
-            previous_cursor: Optional[str] = None,
-    ) -> dict:
+            per_page: int = 50,
+            next_cursor: Optional[bool] = True,
+            previous_cursor: Optional[bool] = True,
+    ) -> Response:
         """
         List the Terminals available on your integration
 
@@ -116,18 +118,22 @@ class TerminalClientAPI(PayStackBaseClientAPI):
         :param: previous_cursor:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
+        # convert to strings
+        next_cursor = self._convert_to_string(next_cursor)
+        previous_cursor = self._convert_to_string(previous_cursor)
+
         params = {"perPage": per_page, "next": next_cursor, "previous": previous_cursor}
         return self._get_request("/terminal", params=params)
 
-    def fetch_terminal(self, terminal_id: str) -> dict:
+    def fetch_terminal(self, terminal_id: str) -> Response:
         """
         Get the details of a terminal
 
         :param: terminal_id: The terminal iD the event is sent to
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/terminal/timeline/{terminal_id}")
