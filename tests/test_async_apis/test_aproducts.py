@@ -24,7 +24,7 @@ async def test_create_payment_request(async_products_client, mocked_responses, n
         "description": description,
         "price": amount,
         "currency": currency,
-        "unlimited": str(unlimited).lower(),
+        "unlimited": str(unlimited),
         "quantity": quantity,
     }
     mocked_responses.post(
@@ -106,7 +106,7 @@ async def test_fetch_payment_request(async_products_client, mocked_responses):
         ("Test", "Testing", 10000, "NGN", False, None)
     ]
 )
-async def test_create_payment_request(async_products_client, mocked_responses, name, description, amount, currency, unlimited, quantity):
+async def test_update_payment_request(async_products_client, mocked_responses, name, description, amount, currency, unlimited, quantity):
     """ Test for synchronous Customers """
     product_id = "test-product_id"
     url = f"https://api.paystack.co/product/{product_id}"
@@ -116,7 +116,7 @@ async def test_create_payment_request(async_products_client, mocked_responses, n
         "description": description,
         "price": amount,
         "currency": currency,
-        "unlimited": str(unlimited).lower(),
+        "unlimited": str(unlimited),
         "quantity": quantity,
     }
 

@@ -25,7 +25,7 @@ def test_create_payment_request(products_client, name, description, amount, curr
         "description": description,
         "price": amount,
         "currency": currency,
-        "unlimited": str(unlimited).lower(),
+        "unlimited": str(unlimited),
         "quantity": quantity,
     }
     responses.add(
@@ -114,7 +114,7 @@ def test_fetch_payment_request(products_client):
     ]
 )
 @responses.activate
-def test_create_payment_request(products_client, name, description, amount, currency, unlimited, quantity):
+def test_update_payment_request(products_client, name, description, amount, currency, unlimited, quantity):
     """ Test for synchronous Customers """
     product_id = "test-product_id"
     url = f"https://api.paystack.co/product/{product_id}"
@@ -124,7 +124,7 @@ def test_create_payment_request(products_client, name, description, amount, curr
         "description": description,
         "price": amount,
         "currency": currency,
-        "unlimited": str(unlimited).lower(),
+        "unlimited": str(unlimited),
         "quantity": quantity,
     }
 
