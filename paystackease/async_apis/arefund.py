@@ -3,6 +3,7 @@ Wrapper for Asynchronous Paystack Refund API
 
 The Refunds API allows you to create and manage transaction refunds.
 """
+from aiohttp import ClientResponse
 
 from datetime import date
 from typing import Optional
@@ -22,7 +23,7 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
             currency: Optional[str] = None,
             customer_note: Optional[str] = None,
             merchant_note: Optional[str] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Create a refund
 
@@ -33,7 +34,7 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         :param: merchant_note: The merchant note or reason
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {
             "transaction": transaction_ref_or_id,
@@ -48,11 +49,11 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
             self,
             reference: Optional[str] = None,
             currency: Optional[str] = None,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List refunds
 
@@ -64,7 +65,7 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date: A timestamp at which to stop listing refund
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
         note::
 
@@ -85,13 +86,13 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/refund", params=params)
 
-    async def fetch_refund(self, reference: str) -> dict:
+    async def fetch_refund(self, reference: str) -> ClientResponse:
         """
         Fetch a refund
 
         :param: reference: The transaction reference to fetch for the refund
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/refund/{reference}")
