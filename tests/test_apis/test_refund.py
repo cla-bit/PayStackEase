@@ -11,13 +11,21 @@ from tests.conftest import refund_client
 @pytest.mark.parametrize(
     ("transaction_ref_id", "amount", "currency", "customer_note", "merchant_note"),
     [
-        ("TRANS_testing", 100000, "NGN", "Testing Customer Note", "Testing Merchant Note"),
-        ("TRANS_testing", None, None, None, None)
-    ]
+        (
+            "TRANS_testing",
+            100000,
+            "NGN",
+            "Testing Customer Note",
+            "Testing Merchant Note",
+        ),
+        ("TRANS_testing", None, None, None, None),
+    ],
 )
 @responses.activate
-def test_create_refund(refund_client, transaction_ref_id, amount, currency, customer_note, merchant_note):
-    """ Test for synchronous Customers """
+def test_create_refund(
+    refund_client, transaction_ref_id, amount, currency, customer_note, merchant_note
+):
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/refund"
     response_data = {"status": "success"}
     expected_data = {
@@ -50,12 +58,14 @@ def test_create_refund(refund_client, transaction_ref_id, amount, currency, cust
     ("reference", "currency", "from_date", "to_date", "per_page", "page"),
     [
         ("REF_testing1234", "NGN", date(2012, 12, 12), date(2012, 12, 12), 1, 10),
-        (None, None, None, None, None, None)
-    ]
+        (None, None, None, None, None, None),
+    ],
 )
 @responses.activate
-def test_list_refunds(refund_client, reference, currency, from_date, to_date, per_page, page):
-    """ Test for synchronous Customers """
+def test_list_refunds(
+    refund_client, reference, currency, from_date, to_date, per_page, page
+):
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/refund"
     response_data = {"status": "success"}
     url_params = {
@@ -67,8 +77,10 @@ def test_list_refunds(refund_client, reference, currency, from_date, to_date, pe
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -91,7 +103,7 @@ def test_list_refunds(refund_client, reference, currency, from_date, to_date, pe
 
 @responses.activate
 def test_fetch_refund(refund_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     ref_id = "test-ref-id"
     url = f"https://api.paystack.co/refund/{ref_id}"
     response_data = {"status": "success"}

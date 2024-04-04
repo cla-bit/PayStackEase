@@ -8,12 +8,11 @@ from tests.conftest import async_apple_pay_client, mocked_responses
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     ("use_cursor", "next_page", "previous_page"),
-    [(True, 1, 1),
-     (False, 1, 2),
-     (True, None, None),
-     (False, None, None)]
+    [(True, 1, 1), (False, 1, 2), (True, None, None), (False, None, None)],
 )
-async def test_list_domains(async_apple_pay_client, mocked_responses, use_cursor, next_page, previous_page):
+async def test_list_domains(
+    async_apple_pay_client, mocked_responses, use_cursor, next_page, previous_page
+):
     """
     This function tests the behavior of the list_domains method with various combinations
     of parameters, including scenarios where some parameters are None.
@@ -28,23 +27,25 @@ async def test_list_domains(async_apple_pay_client, mocked_responses, use_cursor
         "previous": previous_page,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     # mock the API response
-    mocked_responses.get(
-        expected_url,
-        status=200,
-        payload=response_data
+    mocked_responses.get(expected_url, status=200, payload=response_data)
+    response = await async_apple_pay_client.list_domains(
+        use_cursor, next_page, previous_page
     )
-    response = await async_apple_pay_client.list_domains(use_cursor, next_page, previous_page)
     mocked_responses.assert_called()
     assert response is not None
 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("domain_name", ["test-apple-domain-name"])
-async def test_async_register_domain(async_apple_pay_client, mocked_responses, domain_name):
+async def test_async_register_domain(
+    async_apple_pay_client, mocked_responses, domain_name
+):
     """
     This function tests the behavior of the register_domains method with domain_name
     """
@@ -66,7 +67,9 @@ async def test_async_register_domain(async_apple_pay_client, mocked_responses, d
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("domain_name", ["test-apple-domain-name"])
-async def test_async_unregister_domain(async_apple_pay_client, mocked_responses, domain_name):
+async def test_async_unregister_domain(
+    async_apple_pay_client, mocked_responses, domain_name
+):
     """
     This function tests the behavior of the register_domains method with domain_name
     """

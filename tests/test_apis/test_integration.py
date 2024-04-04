@@ -10,7 +10,7 @@ from tests.conftest import integration_client
 
 @responses.activate
 def test_fetch_timeout(integration_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/integration/payment_session_timeout"
     response_data = {"status": "success"}
 
@@ -29,12 +29,10 @@ def test_fetch_timeout(integration_client):
 @pytest.mark.parametrize(("timeout",), [(10,), (20,), (30,)])
 @responses.activate
 def test_update_dispute(integration_client, timeout):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/integration/payment_session_timeout"
     response_data = {"status": "success"}
-    expected_data = {
-        "timeout":  timeout
-    }
+    expected_data = {"timeout": timeout}
 
     responses.add(
         responses.PUT,

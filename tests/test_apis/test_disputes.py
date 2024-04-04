@@ -12,13 +12,22 @@ from tests.conftest import disputes_client
 @pytest.mark.parametrize(
     ("from_date", "to_date", "per_page", "page", "transaction_id", "status"),
     [
-        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "TRANS_1234qwer", DisputeStatus.MERCHANT_FEEDBACK.value),
-        (None, None, None, None, None, None)
-    ]
+        (
+            date(2012, 12, 12),
+            date(2012, 12, 12),
+            1,
+            10,
+            "TRANS_1234qwer",
+            DisputeStatus.MERCHANT_FEEDBACK.value,
+        ),
+        (None, None, None, None, None, None),
+    ],
 )
 @responses.activate
-def test_list_disputes(disputes_client, from_date, to_date, per_page, page, transaction_id, status):
-    """ Test for synchronous Customers """
+def test_list_disputes(
+    disputes_client, from_date, to_date, per_page, page, transaction_id, status
+):
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/dispute"
     response_data = {"status": "success"}
     url_params = {
@@ -30,8 +39,10 @@ def test_list_disputes(disputes_client, from_date, to_date, per_page, page, tran
         "status": status,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -45,7 +56,7 @@ def test_list_disputes(disputes_client, from_date, to_date, per_page, page, tran
         from_date=from_date,
         to_date=to_date,
         transaction_id=transaction_id,
-        status=status
+        status=status,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
@@ -54,7 +65,7 @@ def test_list_disputes(disputes_client, from_date, to_date, per_page, page, tran
 
 @responses.activate
 def test_fetch_dispute(disputes_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     dispute_id = "test-dispute-id"
     url = f"https://api.paystack.co/dispute/{dispute_id}"
     response_data = {"status": "success"}
@@ -73,7 +84,7 @@ def test_fetch_dispute(disputes_client):
 
 @responses.activate
 def test_list_trans_disputes(disputes_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     transaction_id = "test-dispute-id"
     url = f"https://api.paystack.co/dispute/transaction/{transaction_id}"
     response_data = {"status": "success"}
@@ -91,15 +102,11 @@ def test_list_trans_disputes(disputes_client):
 
 
 @pytest.mark.parametrize(
-    ("refund_amount", "uploaded_file"),
-    [
-        (10000, "123qweasd.pdf"),
-        (1000, None)
-    ]
+    ("refund_amount", "uploaded_file"), [(10000, "123qweasd.pdf"), (1000, None)]
 )
 @responses.activate
 def test_update_dispute(disputes_client, refund_amount, uploaded_file):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     dispute_id = "test-dispute-id"
     url = f"https://api.paystack.co/dispute/{dispute_id}"
     response_data = {"status": "success"}
@@ -117,7 +124,7 @@ def test_update_dispute(disputes_client, refund_amount, uploaded_file):
     response = disputes_client.update_dispute(
         dispute_id=dispute_id,
         refund_amount=refund_amount,
-        uploaded_filename=uploaded_file
+        uploaded_filename=uploaded_file,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
@@ -126,18 +133,37 @@ def test_update_dispute(disputes_client, refund_amount, uploaded_file):
 
 
 @pytest.mark.parametrize(
-    ("customer_email", "customer_name", "customer_phone", "service_details",
-     "delivery_address", "delivery_date"),
+    (
+        "customer_email",
+        "customer_name",
+        "customer_phone",
+        "service_details",
+        "delivery_address",
+        "delivery_date",
+    ),
     [
-        ("test@email.com", "test", "08012345678", "Testing", "Testing address", date(2012, 12, 12)),
+        (
+            "test@email.com",
+            "test",
+            "08012345678",
+            "Testing",
+            "Testing address",
+            date(2012, 12, 12),
+        ),
         ("test@email.com", "test", "08012345678", "Testing", None, None),
-    ]
+    ],
 )
 @responses.activate
-def test_add_evidence(disputes_client, customer_email, customer_name,
-                      customer_phone, service_details, delivery_address,
-                      delivery_date):
-    """ Test for synchronous Customers """
+def test_add_evidence(
+    disputes_client,
+    customer_email,
+    customer_name,
+    customer_phone,
+    service_details,
+    delivery_address,
+    delivery_date,
+):
+    """Test for synchronous Customers"""
     dispute_id = "test-dispute-id"
     url = f"https://api.paystack.co/dispute/{dispute_id}/evidence"
     response_data = {"status": "success"}
@@ -173,15 +199,17 @@ def test_add_evidence(disputes_client, customer_email, customer_name,
 @pytest.mark.parametrize(("uploaded_filename",), [("1234qwerasdf.pdf",)])
 @responses.activate
 def test_get_upload_url(disputes_client, uploaded_filename):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     dispute_id = "test-dispute-id"
     url = f"https://api.paystack.co/dispute/{dispute_id}/upload_url"
     response_data = {"status": "success"}
     url_params = {"uploaded_filename": uploaded_filename}
 
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -190,8 +218,7 @@ def test_get_upload_url(disputes_client, uploaded_filename):
         json=response_data,
     )
     response = disputes_client.get_upload_url(
-        dispute_id=dispute_id,
-        uploaded_filename=uploaded_filename
+        dispute_id=dispute_id, uploaded_filename=uploaded_filename
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
@@ -203,11 +230,13 @@ def test_get_upload_url(disputes_client, uploaded_filename):
     [
         (Resolution.MERCHANT.value, "Resolved", 1000, "test_asd1234.pdf", 1234),
         (Resolution.DECLINED.value, "Resolved", 1000, "test_asd1234.pdf", None),
-    ]
+    ],
 )
 @responses.activate
-def test_resolve_dispute(disputes_client, resolution, message, refund_amount, uploaded_filename, evidence):
-    """ Test for synchronous Customers """
+def test_resolve_dispute(
+    disputes_client, resolution, message, refund_amount, uploaded_filename, evidence
+):
+    """Test for synchronous Customers"""
     dispute_id = "test-dispute-id"
     url = f"https://api.paystack.co/dispute/{dispute_id}/resolve"
     response_data = {"status": "success"}
@@ -230,7 +259,7 @@ def test_resolve_dispute(disputes_client, resolution, message, refund_amount, up
         message=message,
         refund_amount=refund_amount,
         uploaded_filename=uploaded_filename,
-        evidence=evidence
+        evidence=evidence,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
@@ -241,15 +270,22 @@ def test_resolve_dispute(disputes_client, resolution, message, refund_amount, up
 @pytest.mark.parametrize(
     ("per_page", "page", "from_date", "to_date", "transaction_id", "status"),
     [
-        (1, 20, date(2012, 12, 12), date(2012, 12, 12),
-         "TRANS_test1234", DisputeStatus.PENDING.value),
-        (None, None, None, None, None, None)
-    ]
+        (
+            1,
+            20,
+            date(2012, 12, 12),
+            date(2012, 12, 12),
+            "TRANS_test1234",
+            DisputeStatus.PENDING.value,
+        ),
+        (None, None, None, None, None, None),
+    ],
 )
 @responses.activate
-def test_export_dispute(disputes_client, per_page, page, from_date, to_date,
-                        transaction_id, status):
-    """ Test for synchronous Customers """
+def test_export_dispute(
+    disputes_client, per_page, page, from_date, to_date, transaction_id, status
+):
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/dispute/export"
     response_data = {"status": "success"}
     url_params = {
@@ -262,8 +298,10 @@ def test_export_dispute(disputes_client, per_page, page, from_date, to_date,
     }
 
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -277,7 +315,7 @@ def test_export_dispute(disputes_client, per_page, page, from_date, to_date,
         from_date=from_date,
         to_date=to_date,
         transaction_id=transaction_id,
-        status=status
+        status=status,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url

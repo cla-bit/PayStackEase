@@ -10,23 +10,22 @@ from paystackease import STATUS
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "objects", [
-        [{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]
-    ]
+    "objects",
+    [[{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]],
 )
-async def test_initialize_bulk_charges(async_bulk_charges_client, mocked_responses, objects):
+async def test_initialize_bulk_charges(
+    async_bulk_charges_client, mocked_responses, objects
+):
     """
     This function tests the behavior of the initialize_bulk_charges method
     """
     url = "https://api.paystack.co/bulkcharge"
-    expected_data = [{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]
+    expected_data = [
+        {"authorization_code": "123456", "amount": 1000, "reference": "123456"}
+    ]
 
     # mock the API response
-    mocked_responses.post(
-        url,
-        status=200,
-        payload=expected_data
-    )
+    mocked_responses.post(url, status=200, payload=expected_data)
     response = await async_bulk_charges_client.initiate_bulk_charge(objects=objects)
     mocked_responses.assert_called()
     assert response is not None
@@ -54,8 +53,10 @@ async def test_list_bulk_charge_batches(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     # mock the API response
     mocked_responses.get(
@@ -85,7 +86,9 @@ async def test_fetch_bulk_charge_batch(async_bulk_charges_client, mocked_respons
         payload=response_data,
         status=200,
     )
-    response = await async_bulk_charges_client.fetch_bulk_charge_batch(id_or_code=id_or_code)
+    response = await async_bulk_charges_client.fetch_bulk_charge_batch(
+        id_or_code=id_or_code
+    )
     mocked_responses.assert_called()
     assert response is not None
 
@@ -99,7 +102,13 @@ async def test_fetch_bulk_charge_batch(async_bulk_charges_client, mocked_respons
     ],
 )
 async def test_fetch_charge_bulk_batch(
-    async_bulk_charges_client, mocked_responses, status, per_page, page, from_date, to_date
+    async_bulk_charges_client,
+    mocked_responses,
+    status,
+    per_page,
+    page,
+    from_date,
+    to_date,
 ):
     """Tests for fetch_charge_bulk_batch"""
     response_data = {"status": "success"}
@@ -113,8 +122,10 @@ async def test_fetch_charge_bulk_batch(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     mocked_responses.get(
         expected_url,
@@ -145,7 +156,9 @@ async def test_pause_bulk_charge(async_bulk_charges_client, mocked_responses):
         payload=response_data,
         status=200,
     )
-    response = await async_bulk_charges_client.pause_bulk_charge_batch(batch_code="test")
+    response = await async_bulk_charges_client.pause_bulk_charge_batch(
+        batch_code="test"
+    )
     mocked_responses.assert_called()
     assert response is not None
 
@@ -162,6 +175,8 @@ async def test_resume_bulk_charge(async_bulk_charges_client, mocked_responses):
         payload=response_data,
         status=200,
     )
-    response = await async_bulk_charges_client.resume_bulk_charge_batch(batch_code="test")
+    response = await async_bulk_charges_client.resume_bulk_charge_batch(
+        batch_code="test"
+    )
     mocked_responses.assert_called()
     assert response is not None

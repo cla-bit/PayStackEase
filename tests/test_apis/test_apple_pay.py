@@ -7,12 +7,13 @@ from tests.conftest import apple_pay_client
 
 
 @pytest.mark.parametrize(
-    ("use_cursor", "next_page", "previous_page"), [
+    ("use_cursor", "next_page", "previous_page"),
+    [
         (True, 1, 1),  # Testing with all parameters provided
         (False, 1, 2),  # Testing with all parameters provided
         (True, None, None),  # Testing with only use_cursor parameter provided
         (False, None, None),  # Testing with only use_cursor parameter provided
-    ]
+    ],
 )
 @responses.activate
 def test_list_domains(apple_pay_client, use_cursor, next_page, previous_page):
@@ -30,8 +31,10 @@ def test_list_domains(apple_pay_client, use_cursor, next_page, previous_page):
         "previous": previous_page,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     # mock the API response
     responses.add(

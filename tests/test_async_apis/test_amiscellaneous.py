@@ -8,18 +8,52 @@ from tests.conftest import async_miscellaneous_client, mocked_responses
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    ("country", "use_cursor", "per_page", "pay_with_bank_transfer", "pay_with_bank",
-     "enabled_for_notification", "next_cursor", "previous_cursor", "gateway",
-     "channel_type", "currency"),
+    (
+        "country",
+        "use_cursor",
+        "per_page",
+        "pay_with_bank_transfer",
+        "pay_with_bank",
+        "enabled_for_notification",
+        "next_cursor",
+        "previous_cursor",
+        "gateway",
+        "channel_type",
+        "currency",
+    ),
     [
-        ("ghana", "True", 1, "True", "True", "True", "next", "previous", "emandate", "mobile_money", "NGN"),
-        (None, None, None, None, None, None, None, None, None, None, None)
-    ]
+        (
+            "ghana",
+            "True",
+            1,
+            "True",
+            "True",
+            "True",
+            "next",
+            "previous",
+            "emandate",
+            "mobile_money",
+            "NGN",
+        ),
+        (None, None, None, None, None, None, None, None, None, None, None),
+    ],
 )
-async def test_list_banks(async_miscellaneous_client, mocked_responses, country, use_cursor, per_page, pay_with_bank_transfer,
-                    pay_with_bank, enabled_for_notification, next_cursor,
-                    previous_cursor, gateway, channel_type, currency):
-    """ Test for synchronous Customers """
+async def test_list_banks(
+    async_miscellaneous_client,
+    mocked_responses,
+    country,
+    use_cursor,
+    per_page,
+    pay_with_bank_transfer,
+    pay_with_bank,
+    enabled_for_notification,
+    next_cursor,
+    previous_cursor,
+    gateway,
+    channel_type,
+    currency,
+):
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/bank"
     response_data = {"status": "success"}
     url_params = {
@@ -36,8 +70,10 @@ async def test_list_banks(async_miscellaneous_client, mocked_responses, country,
         "currency": currency,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     mocked_responses.get(
         expected_url,
@@ -64,7 +100,7 @@ async def test_list_banks(async_miscellaneous_client, mocked_responses, country,
 
 @pytest.mark.asyncio
 async def test_countries(async_miscellaneous_client, mocked_responses):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/country"
     response_data = {"status": "success"}
 
@@ -81,13 +117,17 @@ async def test_countries(async_miscellaneous_client, mocked_responses):
 @pytest.mark.asyncio
 @pytest.mark.parametrize(("country",), [("NG",), ("US",)])
 async def test_states(async_miscellaneous_client, mocked_responses, country):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/address_verification/states"
     response_data = {"status": "success"}
-    url_params = {"country": country,}
+    url_params = {
+        "country": country,
+    }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     mocked_responses.get(
         expected_url,

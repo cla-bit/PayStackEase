@@ -10,33 +10,99 @@ from tests.conftest import charges_client
 
 
 @pytest.mark.parametrize(
-    ("email", "amount", "pin", "authorization_code", "reference",
-     "device_id", "bank", "bank_transfer", "qr", "ussd", "mobile_money", "metadata"
-     ),
+    (
+        "email",
+        "amount",
+        "pin",
+        "authorization_code",
+        "reference",
+        "device_id",
+        "bank",
+        "bank_transfer",
+        "qr",
+        "ussd",
+        "mobile_money",
+        "metadata",
+    ),
     [
-        ("test-email@gmail.com", 10000, 1234, "AUTH_test1234", "test-ref1234",
-         "test-device-id", None,
-         {PWT.ACCOUNT_EXPIRES_AT.value: date.today().strftime("%Y-%m-%d")}, {"provider": QRCODE.VISA.value},
-         None, None, {"custom_fields": [{"value": "test", "display_name": "test-display", "variable_name": "test-variable"}]}
-         ),
-        ("test-email@gmail.com", 10000, 1234, None, "test-ref1234",
-         "test-device-id", {"code": "123", "account_number": "0000000000"},
-         {PWT.ACCOUNT_EXPIRES_AT.value: datetime.today().strftime("%Y-%m-%d")}, {"provider": QRCODE.SCAN_TO_PAY.value},
-         None, None, {"custom_fields": [{"value": "test", "display_name": "test-display", "variable_name": "test-variable"}]}
-         )
+        (
+            "test-email@gmail.com",
+            10000,
+            1234,
+            "AUTH_test1234",
+            "test-ref1234",
+            "test-device-id",
+            None,
+            {PWT.ACCOUNT_EXPIRES_AT.value: date.today().strftime("%Y-%m-%d")},
+            {"provider": QRCODE.VISA.value},
+            None,
+            None,
+            {
+                "custom_fields": [
+                    {
+                        "value": "test",
+                        "display_name": "test-display",
+                        "variable_name": "test-variable",
+                    }
+                ]
+            },
+        ),
+        (
+            "test-email@gmail.com",
+            10000,
+            1234,
+            None,
+            "test-ref1234",
+            "test-device-id",
+            {"code": "123", "account_number": "0000000000"},
+            {PWT.ACCOUNT_EXPIRES_AT.value: datetime.today().strftime("%Y-%m-%d")},
+            {"provider": QRCODE.SCAN_TO_PAY.value},
+            None,
+            None,
+            {
+                "custom_fields": [
+                    {
+                        "value": "test",
+                        "display_name": "test-display",
+                        "variable_name": "test-variable",
+                    }
+                ]
+            },
+        ),
     ],
-
 )
 @responses.activate
-def test_create_charge(charges_client, email, amount, pin, authorization_code,
-                       reference, device_id, bank, bank_transfer, qr, ussd,
-                       mobile_money, metadata):
+def test_create_charge(
+    charges_client,
+    email,
+    amount,
+    pin,
+    authorization_code,
+    reference,
+    device_id,
+    bank,
+    bank_transfer,
+    qr,
+    ussd,
+    mobile_money,
+    metadata,
+):
     url = "https://api.paystack.co/charge"
     response_data = {"status": "success"}
-    expected_data = {"email": email, "amount": amount, "pin": pin,
-                     "authorization_code": authorization_code, "reference": reference,
-                     "device_id": device_id, "bank": bank, "bank_transfer": bank_transfer,
-                     "qr": qr, "ussd": ussd, "mobile_money": mobile_money, "metadata": metadata}
+    expected_data = {
+        "email": email,
+        "amount": amount,
+        "pin": pin,
+        "authorization_code": authorization_code,
+        "reference": reference,
+        "device_id": device_id,
+        "bank": bank,
+        "bank_transfer": bank_transfer,
+        "qr": qr,
+        "ussd": ussd,
+        "mobile_money": mobile_money,
+        "metadata": metadata,
+    }
     responses.add(
         responses.POST,
         url,
@@ -154,8 +220,10 @@ def test_submit_address(charges_client):
     reference = "test-reference1234"
     expected_data = {
         "reference": reference,
-        "address": address, "city": city, "state": state,
-        "zip_code": zipcode
+        "address": address,
+        "city": city,
+        "state": state,
+        "zip_code": zipcode,
     }
     responses.add(
         responses.POST,
@@ -164,8 +232,7 @@ def test_submit_address(charges_client):
         json=response_data,
     )
     response = charges_client.submit_address(
-        reference=reference, address=address,
-        city=city, state=state, zipcode=zipcode
+        reference=reference, address=address, city=city, state=state, zipcode=zipcode
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url

@@ -10,7 +10,7 @@ from tests.conftest import transfers_control_client
 
 @responses.activate
 def test_check_balance(transfers_control_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/balance"
     response_data = {"status": "success"}
     responses.add(
@@ -27,7 +27,7 @@ def test_check_balance(transfers_control_client):
 
 @responses.activate
 def test_fetch_balance(transfers_control_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/balance/ledger"
     response_data = {"status": "success"}
     responses.add(
@@ -43,14 +43,11 @@ def test_fetch_balance(transfers_control_client):
 
 
 @pytest.mark.parametrize(
-    ("transfer_code", "reason"),
-    [
-        ("test-transfer-code", "test-reason")
-    ]
+    ("transfer_code", "reason"), [("test-transfer-code", "test-reason")]
 )
 @responses.activate
 def test_resend_otp(transfers_control_client, transfer_code, reason):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/transfer/resend_otp"
     response_data = {"status": "success"}
     expected_data = {"transfer_code": transfer_code, "reason": reason}
@@ -60,7 +57,9 @@ def test_resend_otp(transfers_control_client, transfer_code, reason):
         status=200,
         json=response_data,
     )
-    response = transfers_control_client.resend_otp(transfer_code=transfer_code, reason=reason)
+    response = transfers_control_client.resend_otp(
+        transfer_code=transfer_code, reason=reason
+    )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
     assert json.loads(responses.calls[0].request.body) == expected_data
@@ -69,7 +68,7 @@ def test_resend_otp(transfers_control_client, transfer_code, reason):
 
 @responses.activate
 def test_disable_otp(transfers_control_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/transfer/disable_otp"
     response_data = {"status": "success"}
     responses.add(
@@ -85,15 +84,10 @@ def test_disable_otp(transfers_control_client):
     assert response is not None
 
 
-@pytest.mark.parametrize(
-    ("otp"),
-    [
-        ("test-otp-123")
-    ]
-)
+@pytest.mark.parametrize(("otp"), [("test-otp-123")])
 @responses.activate
 def test_finalize_disable_otp(transfers_control_client, otp):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/transfer/disable_otp_finalize"
     response_data = {"status": "success"}
     expected_data = {"otp": otp}
@@ -112,7 +106,7 @@ def test_finalize_disable_otp(transfers_control_client, otp):
 
 @responses.activate
 def test_enable_otp(transfers_control_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/transfer/enable_otp"
     response_data = {"status": "success"}
     responses.add(

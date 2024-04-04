@@ -12,17 +12,19 @@ from tests.conftest import verification_client
     ("account_number", "bank_code"),
     [
         ("0000000000", "053"),
-    ]
+    ],
 )
 @responses.activate
 def test_resolve_account(verification_client, account_number, bank_code):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/bank/resolve"
     response_data = {"status": "success"}
     url_params = {"account_number": account_number, "bank_code": bank_code}
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -30,7 +32,9 @@ def test_resolve_account(verification_client, account_number, bank_code):
         status=200,
         json=response_data,
     )
-    response = verification_client.resolve_account(account_number=account_number, bank_code=bank_code)
+    response = verification_client.resolve_account(
+        account_number=account_number, bank_code=bank_code
+    )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
     assert response is not None
@@ -38,7 +42,7 @@ def test_resolve_account(verification_client, account_number, bank_code):
 
 @responses.activate
 def test_resolve_card(verification_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     bin_code = "test-bin-code"
     url = f"https://api.paystack.co/decision/bin/{bin_code}"
     response_data = {"status": "success"}
@@ -55,14 +59,39 @@ def test_resolve_card(verification_client):
 
 
 @pytest.mark.parametrize(
-    ("account_name", "account_number", "account_type", "bank_code", "country_code", "document_type", "document_number"),
+    (
+        "account_name",
+        "account_number",
+        "account_type",
+        "bank_code",
+        "country_code",
+        "document_type",
+        "document_number",
+    ),
     [
-        ("Test Account", "0000000000", "personal", "053", "NGN", "identityNumber", "RDF1234TEST")
-    ]
+        (
+            "Test Account",
+            "0000000000",
+            "personal",
+            "053",
+            "NGN",
+            "identityNumber",
+            "RDF1234TEST",
+        )
+    ],
 )
 @responses.activate
-def test_validate_account(verification_client, account_name, account_number, account_type, bank_code, country_code, document_type, document_number):
-    """ Test for synchronous Customers """
+def test_validate_account(
+    verification_client,
+    account_name,
+    account_number,
+    account_type,
+    bank_code,
+    country_code,
+    document_type,
+    document_number,
+):
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/bank/validate"
     response_data = {"status": "success"}
     expected_data = {

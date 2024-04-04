@@ -11,13 +11,22 @@ from tests.conftest import settlements_client
 @pytest.mark.parametrize(
     ("status", "subaccounts", "from_date", "to_date", "per_page", "page"),
     [
-        (STATUS.PENDING.value, "SUB_ACCT_testing1234", date(2012, 12, 12), date(2012, 12, 12), 1, 10),
-        (None, None, None, None, None, None)
-    ]
+        (
+            STATUS.PENDING.value,
+            "SUB_ACCT_testing1234",
+            date(2012, 12, 12),
+            date(2012, 12, 12),
+            1,
+            10,
+        ),
+        (None, None, None, None, None, None),
+    ],
 )
 @responses.activate
-def test_list_settlement(settlements_client, status, subaccounts, from_date, to_date, per_page, page):
-    """ Test for synchronous Customers """
+def test_list_settlement(
+    settlements_client, status, subaccounts, from_date, to_date, per_page, page
+):
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/settlement"
     response_data = {"status": "success"}
     url_params = {
@@ -29,8 +38,10 @@ def test_list_settlement(settlements_client, status, subaccounts, from_date, to_
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -53,14 +64,11 @@ def test_list_settlement(settlements_client, status, subaccounts, from_date, to_
 
 @pytest.mark.parametrize(
     ("from_date", "to_date", "per_page", "page"),
-    [
-        (date(2012, 12, 12), date(2012, 12, 12), 1, 10),
-        (None, None, None, None)
-    ]
+    [(date(2012, 12, 12), date(2012, 12, 12), 1, 10), (None, None, None, None)],
 )
 @responses.activate
 def test_list_settlement_trans(settlements_client, from_date, to_date, per_page, page):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     settlement_id = "testing_id"
     url = f"https://api.paystack.co/settlement/{settlement_id}/transactions"
     response_data = {"status": "success"}
@@ -71,8 +79,10 @@ def test_list_settlement_trans(settlements_client, from_date, to_date, per_page,
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,

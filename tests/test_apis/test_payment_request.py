@@ -10,17 +10,55 @@ from tests.conftest import payment_requests_client
 
 
 @pytest.mark.parametrize(
-    ("customer", "amount", "draft", "has_invoice", "send_notification", "due_date", "description", "line_items", "tax", "currency", "invoice_number", "split_code"),
+    (
+        "customer",
+        "amount",
+        "draft",
+        "has_invoice",
+        "send_notification",
+        "due_date",
+        "description",
+        "line_items",
+        "tax",
+        "currency",
+        "invoice_number",
+        "split_code",
+    ),
     [
-        ("Test", 10000, True, True, True, date(2012, 12, 12), "Testing",
-         [{"name":"item 1", "amount":2000, "quantity": 1}], [{"name":"VAT", "amount":200}], "NGN", 1234, "SPLIT_test1234"),
-        ("Test", 10000, True, True, True, None, None, None, None, None, None, None)
-    ]
+        (
+            "Test",
+            10000,
+            True,
+            True,
+            True,
+            date(2012, 12, 12),
+            "Testing",
+            [{"name": "item 1", "amount": 2000, "quantity": 1}],
+            [{"name": "VAT", "amount": 200}],
+            "NGN",
+            1234,
+            "SPLIT_test1234",
+        ),
+        ("Test", 10000, True, True, True, None, None, None, None, None, None, None),
+    ],
 )
 @responses.activate
-def test_create_payment_request(payment_requests_client, customer, amount, draft, has_invoice, send_notification, due_date, description,
-                      line_items, tax, currency, invoice_number, split_code):
-    """ Test for synchronous Customers """
+def test_create_payment_request(
+    payment_requests_client,
+    customer,
+    amount,
+    draft,
+    has_invoice,
+    send_notification,
+    due_date,
+    description,
+    line_items,
+    tax,
+    currency,
+    invoice_number,
+    split_code,
+):
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/paymentrequest"
     response_data = {"status": "success"}
     expected_data = {
@@ -55,7 +93,7 @@ def test_create_payment_request(payment_requests_client, customer, amount, draft
         tax=tax,
         currency=currency,
         invoice_number=invoice_number,
-        split_code=split_code
+        split_code=split_code,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
@@ -64,15 +102,43 @@ def test_create_payment_request(payment_requests_client, customer, amount, draft
 
 
 @pytest.mark.parametrize(
-    ("from_date", "to_date", "per_page", "page", "customer", "status", "currency", "include_archive"),
+    (
+        "from_date",
+        "to_date",
+        "per_page",
+        "page",
+        "customer",
+        "status",
+        "currency",
+        "include_archive",
+    ),
     [
-        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "Test", PayMentRequestStatus.PENDING.value, "NGN", True),
-        (None, None, None, None, None, None, None, True)
-    ]
+        (
+            date(2012, 12, 12),
+            date(2012, 12, 12),
+            1,
+            10,
+            "Test",
+            PayMentRequestStatus.PENDING.value,
+            "NGN",
+            True,
+        ),
+        (None, None, None, None, None, None, None, True),
+    ],
 )
 @responses.activate
-def test_list_payment_requests(payment_requests_client, from_date, to_date, per_page, page, customer, status, currency, include_archive):
-    """ Test for synchronous Customers """
+def test_list_payment_requests(
+    payment_requests_client,
+    from_date,
+    to_date,
+    per_page,
+    page,
+    customer,
+    status,
+    currency,
+    include_archive,
+):
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/paymentrequest"
     response_data = {"status": "success"}
     url_params = {
@@ -86,8 +152,10 @@ def test_list_payment_requests(payment_requests_client, from_date, to_date, per_
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -103,7 +171,7 @@ def test_list_payment_requests(payment_requests_client, from_date, to_date, per_
         customer=customer,
         status=status,
         currency=currency,
-        include_archive=include_archive
+        include_archive=include_archive,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
@@ -112,7 +180,7 @@ def test_list_payment_requests(payment_requests_client, from_date, to_date, per_
 
 @responses.activate
 def test_fetch_payment_request(payment_requests_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     payment_id = "test-payment-id"
     url = f"https://api.paystack.co/paymentrequest/{payment_id}"
     response_data = {"status": "success"}
@@ -131,7 +199,7 @@ def test_fetch_payment_request(payment_requests_client):
 
 @responses.activate
 def test_verify_payment(payment_requests_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     payment_code = "test-payment-code"
     url = f"https://api.paystack.co/paymentrequest/verify/{payment_code}"
     response_data = {"status": "success"}
@@ -150,7 +218,7 @@ def test_verify_payment(payment_requests_client):
 
 @responses.activate
 def test_send_notification(payment_requests_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     payment_code = "test-payment-code"
     url = f"https://api.paystack.co/paymentrequest/notify/{payment_code}"
     response_data = {"status": "success"}
@@ -169,7 +237,7 @@ def test_send_notification(payment_requests_client):
 
 @responses.activate
 def test_request_totals(payment_requests_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/paymentrequest/totals"
     response_data = {"status": "success"}
 
@@ -188,7 +256,7 @@ def test_request_totals(payment_requests_client):
 @pytest.mark.parametrize(("notice",), [(True,), (False,)])
 @responses.activate
 def test_finalize_payment(payment_requests_client, notice):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     payment_code = "test-payment-code"
     url = f"https://api.paystack.co/paymentrequest/finalize/{payment_code}"
     response_data = {"status": "success"}
@@ -199,7 +267,9 @@ def test_finalize_payment(payment_requests_client, notice):
         status=200,
         json=response_data,
     )
-    response = payment_requests_client.finalize_payment_request(code=payment_code, send_notification=notice)
+    response = payment_requests_client.finalize_payment_request(
+        code=payment_code, send_notification=notice
+    )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
     assert json.loads(responses.calls[0].request.body) == expected_data
@@ -207,18 +277,53 @@ def test_finalize_payment(payment_requests_client, notice):
 
 
 @pytest.mark.parametrize(
-    ("customer", "amount", "draft", "send_notification", "due_date", "description", "line_items", "tax", "currency", "invoice_number", "split_code"),
+    (
+        "customer",
+        "amount",
+        "draft",
+        "send_notification",
+        "due_date",
+        "description",
+        "line_items",
+        "tax",
+        "currency",
+        "invoice_number",
+        "split_code",
+    ),
     [
-        ("Test", 10000, True, True, date(2012, 12, 12), "Testing",
-         [{"name":"item 1", "amount":2000, "quantity": 1}], [{"name":"VAT", "amount":200}], "NGN", 1234, "SPLIT_test1234"),
+        (
+            "Test",
+            10000,
+            True,
+            True,
+            date(2012, 12, 12),
+            "Testing",
+            [{"name": "item 1", "amount": 2000, "quantity": 1}],
+            [{"name": "VAT", "amount": 200}],
+            "NGN",
+            1234,
+            "SPLIT_test1234",
+        ),
         ("Test", 10000, True, True, None, None, None, None, None, None, None),
-        (None, None, True, True, None, None, None, None, None, None, None)
-    ]
+        (None, None, True, True, None, None, None, None, None, None, None),
+    ],
 )
 @responses.activate
-def test_update_payment_request(payment_requests_client, customer, amount, draft, send_notification, due_date, description, line_items,
-                                tax, currency, invoice_number, split_code):
-    """ Test for synchronous Customers """
+def test_update_payment_request(
+    payment_requests_client,
+    customer,
+    amount,
+    draft,
+    send_notification,
+    due_date,
+    description,
+    line_items,
+    tax,
+    currency,
+    invoice_number,
+    split_code,
+):
+    """Test for synchronous Customers"""
     payment_id_code = "test-payment-id-code"
     url = f"https://api.paystack.co/paymentrequest/{payment_id_code}"
     response_data = {"status": "success"}
@@ -254,7 +359,7 @@ def test_update_payment_request(payment_requests_client, customer, amount, draft
         send_notification=send_notification,
         draft=draft,
         invoice_number=invoice_number,
-        split_code=split_code
+        split_code=split_code,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
@@ -264,7 +369,7 @@ def test_update_payment_request(payment_requests_client, customer, amount, draft
 
 @responses.activate
 def test_archive_request(payment_requests_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     payment_code = "test-payment_code"
     url = f"https://api.paystack.co/paymentrequest/archive/{payment_code}"
     response_data = {"status": "success"}

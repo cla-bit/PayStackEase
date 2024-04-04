@@ -10,14 +10,34 @@ from tests.conftest import async_plans_client, mocked_responses
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    ("name", "amount", "interval", "currency", "invoice_limit", "send_invoices", "send_sms", "description"),
+    (
+        "name",
+        "amount",
+        "interval",
+        "currency",
+        "invoice_limit",
+        "send_invoices",
+        "send_sms",
+        "description",
+    ),
     [
-        ("Test", 10000, "annually", 'NGN', 10, True, True, "Testing"),
-        ("Test", 10000, "annually", 'NGN', 10, True, True, None),
-    ]
+        ("Test", 10000, "annually", "NGN", 10, True, True, "Testing"),
+        ("Test", 10000, "annually", "NGN", 10, True, True, None),
+    ],
 )
-async def test_create_plan(async_plans_client, mocked_responses, name, amount, interval, currency, invoice_limit, send_invoices, send_sms, description):
-    """ Test for synchronous Customers """
+async def test_create_plan(
+    async_plans_client,
+    mocked_responses,
+    name,
+    amount,
+    interval,
+    currency,
+    invoice_limit,
+    send_invoices,
+    send_sms,
+    description,
+):
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/plan"
     response_data = {"status": "success"}
     expected_data = {
@@ -52,13 +72,12 @@ async def test_create_plan(async_plans_client, mocked_responses, name, amount, i
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     ("per_page", "page", "status", "interval", "amount"),
-    [
-        (1, 10, "pending", "annually", 1000),
-        (None, None, None, None, None)
-    ]
+    [(1, 10, "pending", "annually", 1000), (None, None, None, None, None)],
 )
-async def test_list_plans(async_plans_client, mocked_responses, per_page, page, status, interval, amount):
-    """ Test for synchronous Customers """
+async def test_list_plans(
+    async_plans_client, mocked_responses, per_page, page, status, interval, amount
+):
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/plan"
     response_data = {"status": "success"}
     url_params = {
@@ -69,8 +88,10 @@ async def test_list_plans(async_plans_client, mocked_responses, per_page, page, 
         "amount": amount,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     mocked_responses.get(
         expected_url,
@@ -90,7 +111,7 @@ async def test_list_plans(async_plans_client, mocked_responses, per_page, page, 
 
 @pytest.mark.asyncio
 async def test_fetch_plan(async_plans_client, mocked_responses):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     plan_id = "test-plan-id"
     url = f"https://api.paystack.co/plan/{plan_id}"
     response_data = {"status": "success"}
@@ -107,14 +128,34 @@ async def test_fetch_plan(async_plans_client, mocked_responses):
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    ("name", "amount", "interval", "send_invoices", "send_sms", "currency", "invoice_limit", "description"),
+    (
+        "name",
+        "amount",
+        "interval",
+        "send_invoices",
+        "send_sms",
+        "currency",
+        "invoice_limit",
+        "description",
+    ),
     [
         ("Test", 10000, "annually", True, True, "NGN", 10, "Testing"),
         ("Test", 10000, "annually", True, True, "NGN", 10, None),
-    ]
+    ],
 )
-async def test_update_plan(async_plans_client, mocked_responses, name, amount, interval, send_invoices, send_sms, currency, invoice_limit, description):
-    """ Test for synchronous Customers """
+async def test_update_plan(
+    async_plans_client,
+    mocked_responses,
+    name,
+    amount,
+    interval,
+    send_invoices,
+    send_sms,
+    currency,
+    invoice_limit,
+    description,
+):
+    """Test for synchronous Customers"""
     plan_id_code = "test-plan-id-code"
     url = f"https://api.paystack.co/plan/{plan_id_code}"
     response_data = {"status": "success"}
@@ -147,4 +188,3 @@ async def test_update_plan(async_plans_client, mocked_responses, name, amount, i
     )
     mocked_responses.assert_called()
     assert response is not None
-

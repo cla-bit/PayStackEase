@@ -12,12 +12,28 @@ from tests.conftest import async_settlements_client, mocked_responses
 @pytest.mark.parametrize(
     ("status", "subaccounts", "from_date", "to_date", "per_page", "page"),
     [
-        (STATUS.FAILED.value, "SUB_ACCT_testing1234", date(2012, 12, 12), date(2012, 12, 12), 1, 10),
-        (None, None, None, None, None, None)
-    ]
+        (
+            STATUS.FAILED.value,
+            "SUB_ACCT_testing1234",
+            date(2012, 12, 12),
+            date(2012, 12, 12),
+            1,
+            10,
+        ),
+        (None, None, None, None, None, None),
+    ],
 )
-async def test_list_settlement(async_settlements_client, mocked_responses, status, subaccounts, from_date, to_date, per_page, page):
-    """ Test for synchronous Customers """
+async def test_list_settlement(
+    async_settlements_client,
+    mocked_responses,
+    status,
+    subaccounts,
+    from_date,
+    to_date,
+    per_page,
+    page,
+):
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/settlement"
     response_data = {"status": "success"}
     url_params = {
@@ -29,8 +45,10 @@ async def test_list_settlement(async_settlements_client, mocked_responses, statu
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     mocked_responses.get(
         expected_url,
@@ -52,13 +70,12 @@ async def test_list_settlement(async_settlements_client, mocked_responses, statu
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     ("from_date", "to_date", "per_page", "page"),
-    [
-        (date(2012, 12, 12), date(2012, 12, 12), 1, 10),
-        (None, None, None, None)
-    ]
+    [(date(2012, 12, 12), date(2012, 12, 12), 1, 10), (None, None, None, None)],
 )
-async def test_list_settlement_trans(async_settlements_client, mocked_responses, from_date, to_date, per_page, page):
-    """ Test for synchronous Customers """
+async def test_list_settlement_trans(
+    async_settlements_client, mocked_responses, from_date, to_date, per_page, page
+):
+    """Test for synchronous Customers"""
     settlement_id = "testing_id"
     url = f"https://api.paystack.co/settlement/{settlement_id}/transactions"
     response_data = {"status": "success"}
@@ -69,8 +86,10 @@ async def test_list_settlement_trans(async_settlements_client, mocked_responses,
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     mocked_responses.get(
         expected_url,

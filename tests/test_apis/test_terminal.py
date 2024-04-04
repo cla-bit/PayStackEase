@@ -11,12 +11,16 @@ from tests.conftest import terminal_client
 @pytest.mark.parametrize(
     ("event_type", "terminal_action", "data_obj"),
     [
-        (EventType.INVOICE.value, EventAction.PROCESS.value, {"id": "invoice_id", "reference": "offline_reference"}),
-    ]
+        (
+            EventType.INVOICE.value,
+            EventAction.PROCESS.value,
+            {"id": "invoice_id", "reference": "offline_reference"},
+        ),
+    ],
 )
 @responses.activate
 def test_create_event(terminal_client, event_type, terminal_action, data_obj):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     terminal_id = "test-terminal-id"
     url = f"https://api.paystack.co/terminal/{terminal_id}/event"
     response_data = {"status": "success"}
@@ -31,7 +35,7 @@ def test_create_event(terminal_client, event_type, terminal_action, data_obj):
         terminal_id=terminal_id,
         event_type=event_type,
         terminal_action=terminal_action,
-        data_object=data_obj
+        data_object=data_obj,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
@@ -44,11 +48,11 @@ def test_create_event(terminal_client, event_type, terminal_action, data_obj):
     [
         ("123qwe456",),
         ("12zxvsdqwer23",),
-    ]
+    ],
 )
 @responses.activate
 def test_commission(terminal_client, serial_number):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/terminal/commission_device"
     response_data = {"status": "success"}
     expected_data = {"serial_number": serial_number}
@@ -70,11 +74,11 @@ def test_commission(terminal_client, serial_number):
     [
         ("123qwe456",),
         ("12zxvsdqwer23",),
-    ]
+    ],
 )
 @responses.activate
 def test_decommission(terminal_client, serial_number):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = f"https://api.paystack.co/terminal/decommission_device"
     response_data = {"status": "success"}
     expected_data = {"serial_number": serial_number}
@@ -96,11 +100,11 @@ def test_decommission(terminal_client, serial_number):
     [
         (1, True, False),
         (3, False, False),
-    ]
+    ],
 )
 @responses.activate
 def test_list_terminals(terminal_client, per_page, next_cursor, prev_cursor):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     url = "https://api.paystack.co/terminal"
     response_data = {"status": "success"}
     url_params = {
@@ -109,8 +113,10 @@ def test_list_terminals(terminal_client, per_page, next_cursor, prev_cursor):
         "previous": str(prev_cursor),
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
@@ -119,9 +125,7 @@ def test_list_terminals(terminal_client, per_page, next_cursor, prev_cursor):
         json=response_data,
     )
     response = terminal_client.list_terminals(
-        per_page=per_page,
-        next_cursor=next_cursor,
-        previous_cursor=prev_cursor
+        per_page=per_page, next_cursor=next_cursor, previous_cursor=prev_cursor
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
@@ -130,7 +134,7 @@ def test_list_terminals(terminal_client, per_page, next_cursor, prev_cursor):
 
 @responses.activate
 def test_fetch_event_status(terminal_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     terminal_id = "test-terminal-id"
     event_id = "test-event-id"
     url = f"https://api.paystack.co/terminal/{terminal_id}/event/{event_id}"
@@ -142,7 +146,9 @@ def test_fetch_event_status(terminal_client):
         status=200,
         json=response_data,
     )
-    response = terminal_client.fetch_event_status(terminal_id=terminal_id, event_id=event_id)
+    response = terminal_client.fetch_event_status(
+        terminal_id=terminal_id, event_id=event_id
+    )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
     assert response is not None
@@ -150,7 +156,7 @@ def test_fetch_event_status(terminal_client):
 
 @responses.activate
 def test_fetch_terminal_status(terminal_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     terminal_id = "test-terminal-id"
     url = f"https://api.paystack.co/terminal/{terminal_id}/presence"
     response_data = {"status": "success"}
@@ -169,7 +175,7 @@ def test_fetch_terminal_status(terminal_client):
 
 @responses.activate
 def test_fetch_terminal(terminal_client):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     terminal_id = "test-terminal-id"
     url = f"https://api.paystack.co/terminal/timeline/{terminal_id}"
     response_data = {"status": "success"}
@@ -190,11 +196,11 @@ def test_fetch_terminal(terminal_client):
     ("terminal_name", "terminal_address"),
     [
         ("Testing-terminal", "Testing-address"),
-    ]
+    ],
 )
 @responses.activate
 def test_update_terminal(terminal_client, terminal_name, terminal_address):
-    """ Test for synchronous Customers """
+    """Test for synchronous Customers"""
     terminal_id = "test-terminal_id"
     url = f"https://api.paystack.co/terminal/{terminal_id}"
     response_data = {"status": "success"}
@@ -209,7 +215,7 @@ def test_update_terminal(terminal_client, terminal_name, terminal_address):
     response = terminal_client.update_terminal(
         terminal_id=terminal_id,
         terminal_name=terminal_name,
-        terminal_address=terminal_address
+        terminal_address=terminal_address,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url

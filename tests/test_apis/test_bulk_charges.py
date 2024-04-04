@@ -10,9 +10,8 @@ from tests.conftest import bulk_charges_client
 
 
 @pytest.mark.parametrize(
-    "objects", [
-        [{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]
-    ]
+    "objects",
+    [[{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]],
 )
 @responses.activate
 def test_initiate_bulk_charge(bulk_charges_client, objects):
@@ -31,7 +30,9 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
         json=response_data,
     )
     response = bulk_charges_client.initiate_bulk_charge(objects=objects)
-    expected_params = [{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]
+    expected_params = [
+        {"authorization_code": "123456", "amount": 1000, "reference": "123456"}
+    ]
     assert len(responses.calls) == 1
     assert json.loads(responses.calls[0].request.body) == expected_params
     assert response is not None
@@ -39,10 +40,7 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
 
 @pytest.mark.parametrize(
     "per_page, page, from_date, to_date",
-    [
-        (10, 1, date(2024, 2, 23), date(2024, 2, 23)),
-        (None, None, None, None)
-    ],
+    [(10, 1, date(2024, 2, 23), date(2024, 2, 23)), (None, None, None, None)],
 )
 @responses.activate
 def test_list_bulk_charge_batches(
@@ -59,8 +57,10 @@ def test_list_bulk_charge_batches(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     # mock the API response
     responses.add(
@@ -103,7 +103,7 @@ def test_fetch_bulk_charge_batch(bulk_charges_client):
     ("status", "per_page", "page", "from_date", "to_date"),
     [
         (STATUS.SUCCESS.value, 10, 1, date(2024, 2, 23), date(2024, 2, 23)),
-        (None, None, None, None, None)
+        (None, None, None, None, None),
     ],
 )
 # pylint: disable=too-many-arguments
@@ -123,8 +123,10 @@ def test_fetch_charge_bulk_batch(
         "to": to_date,
     }
     # Construct the expected URL with parameters
-    query_string = '&'.join(f'{key}={value}' for key, value in url_params.items() if value is not None)
-    expected_url = url + ('?' + query_string if query_string else '')
+    query_string = "&".join(
+        f"{key}={value}" for key, value in url_params.items() if value is not None
+    )
+    expected_url = url + ("?" + query_string if query_string else "")
 
     responses.add(
         responses.GET,
