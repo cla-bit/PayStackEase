@@ -2,12 +2,12 @@
 
 The Bulk Charges API allows you to create and manage multiple recurring payments from your customers.
 """
-from requests import Response
 
 from datetime import date
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Optional, Any, Union
 
 from paystackease._base import PayStackBaseClientAPI
+from paystackease._utils import Response
 from paystackease.helpers.tool_kit import STATUS
 
 
@@ -35,10 +35,10 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
 
     def list_bulk_charge_batches(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List all bulk charges
@@ -82,11 +82,11 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
     def fetch_charge_bulk_batch(
             self,
             id_or_code: str,
-            status: Optional[STATUS] = None,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            status: Optional[Union[STATUS, None]] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         Fetch a bulk charge of a specific batch
@@ -112,7 +112,7 @@ class BulkChargesClientAPI(PayStackBaseClientAPI):
         to_date = self._convert_to_string(to_date)
 
         params = {
-            "status": status if status is not None else None,
+            "status": status,
             "perPage": per_page,
             "page": page,
             "from": from_date,
