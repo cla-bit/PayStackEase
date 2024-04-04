@@ -30,7 +30,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
             qr: Optional[Dict[str, str]] = None,
             ussd: Optional[Dict[str, str]] = None,
             mobile_money: Optional[Dict[str, str]] = None,
-            metadata: Optional[Dict[str, List[Dict[str, str]]]] = None,
+            metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
     ) -> ClientResponse:
         """
         Create a charge

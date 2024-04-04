@@ -34,7 +34,6 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :param: last_name: The last name of the customer.
         :param: phone: The phone number of the customer.
         :param: metadata: The metadata of the customer in JSON format.
-                            (Set key as: {"custom_fields": [{ "label": "First Name", "value": "John" }] })
 
         :return: The response from the API
         :rtype: dict

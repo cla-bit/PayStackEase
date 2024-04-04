@@ -8,7 +8,7 @@ from aiohttp import ClientResponse
 
 from datetime import date
 
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 from paystackease._abase import AsyncPayStackBaseClientAPI
 from paystackease.helpers.tool_kit import STATUS
 
@@ -19,7 +19,7 @@ class AsyncBulkChargesClientAPI(AsyncPayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    async def initiate_bulk_charge(self, objects: List[Dict[str, str]]) -> ClientResponse:
+    async def initiate_bulk_charge(self, objects: List[Dict[str, Any]]) -> ClientResponse:
         """
         Send an array of objects with authorization codes and amount
 
