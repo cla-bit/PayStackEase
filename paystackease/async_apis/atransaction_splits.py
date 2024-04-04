@@ -4,7 +4,7 @@ Wrapper for Asynchronous Paystack Transaction Splits APIs
 The Transaction Splits API enables merchants split the settlement for a transaction
 across their payout account, and one or more subaccounts.
 """
-
+from aiohttp import ClientResponse
 from datetime import date
 from typing import Optional, List, Dict, Any
 from paystackease._abase import AsyncPayStackBaseClientAPI
@@ -24,7 +24,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
             subaccounts: List[Dict[str, Any]],
             bearer_type: str,
             bearer_subaccount: str,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Create a split payment on your integration
 
@@ -37,7 +37,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: bearer_subaccount: Subaccount code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {
             "name": transaction_split_name,
@@ -51,7 +51,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
 
     async def add_or_update_subaccount_split(
             self, split_id: str, subaccount: str, transaction_share: int
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Add a Subaccount to a Transaction Split, or update the share of
         an existing Subaccount in a Transaction Split
@@ -61,12 +61,12 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: transaction_share: The number of shares
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {"subaccount": subaccount, "share": transaction_share}
         return await self._post_request(f"/split/{split_id}/subaccount/add", data=data)
 
-    async def remove_sub_account_split(self, split_id: str, subaccount: str) -> dict:
+    async def remove_sub_account_split(self, split_id: str, subaccount: str) -> ClientResponse:
         """
         Remove a Sub Account from a transaction split
 
@@ -74,7 +74,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: subaccount: The subaccount code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {"subaccount": subaccount}
         return await self._post_request(f"/split/{split_id}/subaccount/remove", data=data)
@@ -86,7 +86,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
             active: bool,
             bearer_type: Optional[str] = None,
             bearer_subaccount: Optional[str] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Update a specific transaction split details
 
@@ -97,7 +97,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: bearer_subaccount:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert bool to string
@@ -114,13 +114,13 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
     async def list_split(
             self,
             split_name: Optional[str] = None,
-            active: Optional[bool] = None,
+            active: Optional[bool] = True,
             sort_by: Optional[str] = None,
             per_page: Optional[int] = None,
             page: Optional[int] = None,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List all the transaction splits
 
@@ -133,7 +133,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date and bool to string
@@ -152,13 +152,13 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/split", params=params)
 
-    async def fetch_split(self, split_id: str) -> dict:
+    async def fetch_split(self, split_id: str) -> ClientResponse:
         """
         Fetch details of a specific transaction split
 
         :param: split_id: The split ID
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/split/{split_id}")

@@ -4,6 +4,7 @@ Wrapper for Paystack Transaction Splits APIs
 The Transaction Splits API enables merchants split the settlement for a transaction
 across their payout account, and one or more subaccounts.
 """
+from requests import Response
 
 from datetime import date
 from typing import Optional, List, Dict, Any
@@ -24,7 +25,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
             subaccounts: List[Dict[str, Any]],
             bearer_type: str,
             bearer_subaccount: str,
-    ) -> dict:
+    ) -> Response:
         """
         Create a split payment on your integration
 
@@ -37,7 +38,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :param: bearer_subaccount: Subaccount code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "name": transaction_split_name,
@@ -51,7 +52,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
 
     def add_or_update_subaccount_split(
             self, split_id: str, subaccount: str, transaction_share: int
-    ) -> dict:
+    ) -> Response:
         """
         Add a Subaccount to a Transaction Split, or update the share of
         an existing Subaccount in a Transaction Split
@@ -61,12 +62,12 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :param: transaction_share: The number of shares
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"subaccount": subaccount, "share": transaction_share}
         return self._post_request(f"/split/{split_id}/subaccount/add", data=data)
 
-    def remove_sub_account_split(self, split_id: str, subaccount: str) -> dict:
+    def remove_sub_account_split(self, split_id: str, subaccount: str) -> Response:
         """
         Remove a Sub Account from a transaction split
 
@@ -74,7 +75,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :param: subaccount: The subaccount code
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"subaccount": subaccount}
         return self._post_request(f"/split/{split_id}/subaccount/remove", data=data)
@@ -86,7 +87,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
             active: bool,
             bearer_type: Optional[str] = None,
             bearer_subaccount: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Update a specific transaction split details
 
@@ -97,7 +98,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :param: bearer_subaccount:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert bool to string
@@ -114,13 +115,13 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
     def list_split(
             self,
             split_name: Optional[str] = None,
-            active: Optional[bool] = None,
+            active: Optional[bool] = True,
             sort_by: Optional[str] = None,
             per_page: Optional[int] = None,
             page: Optional[int] = None,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List all the transaction splits
 
@@ -133,7 +134,7 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         :param: to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert date and bool to string
@@ -152,13 +153,13 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/split", params=params)
 
-    def fetch_split(self, split_id: str) -> dict:
+    def fetch_split(self, split_id: str) -> Response:
         """
         Fetch details of a specific transaction split
 
         :param: split_id: The split ID
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/split/{split_id}")
