@@ -3,11 +3,12 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API
 
 The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 """
-from aiohttp import ClientResponse
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease._utils import Response
+from paystackease.helpers.tool_kit import Currency
 
 
 class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
@@ -22,13 +23,13 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
     async def create_virtual_account(
             self,
             customer_id_or_code: str,
-            preferred_bank: Optional[str] = None,
-            subaccount: Optional[str] = None,
-            split_code: Optional[str] = None,
-            first_name: Optional[str] = None,
-            last_name: Optional[str] = None,
-            phone: Optional[str] = None,
-    ) -> ClientResponse:
+            preferred_bank: Optional[Union[str, None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+            first_name: Optional[Union[str, None]] = None,
+            last_name: Optional[Union[str, None]] = None,
+            phone: Optional[Union[str, None]] = None,
+    ) -> Response:
         """
         Create a dedicated virtual account for existing customers.
         Currently, support Wema Bank and Titan Paystack.
@@ -47,7 +48,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: phone: Phone number of the customer
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "customer": customer_id_or_code,
@@ -68,12 +69,12 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             phone: str,
             preferred_bank: str,
             country: str,
-            account_number: Optional[str] = None,
-            bvn: Optional[str] = None,
-            bank_code: Optional[str] = None,
-            subaccount: Optional[str] = None,
-            split_code: Optional[str] = None,
-    ) -> ClientResponse:
+            account_number: Optional[Union[str, None]] = None,
+            bvn: Optional[Union[str, None]] = None,
+            bank_code: Optional[Union[str, None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+    ) -> Response:
         """
         create a customer, validate the customer, and assign a DVA to the customer
 
@@ -100,7 +101,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: split_code: Split code
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "email": email,
@@ -119,12 +120,12 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_dedicated_account(
             self,
-            active: Optional[bool] = True,
-            currency: Optional[str] = None,
-            provider_slug: Optional[str] = None,
-            bank_id: Optional[str] = None,
-            customer_id: Optional[str] = None,
-    ) -> ClientResponse:
+            active: Optional[Union[bool, None]] = True,
+            currency: Optional[Union[Currency, None]] = None,
+            provider_slug: Optional[Union[str, None]] = None,
+            bank_id: Optional[Union[str, None]] = None,
+            customer_id: Optional[Union[str, None]] = None,
+    ) -> Response:
         """
         List dedicated accounts
 
@@ -149,23 +150,23 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/dedicated_account", params=params)
 
-    async def fetch_dedicated_account(self, dedicated_account_id: int) -> ClientResponse:
+    async def fetch_dedicated_account(self, dedicated_account_id: int) -> Response:
         """
         Get details of a dedicated virtual account
 
         :param: dedicated_account_id: Dedicated account ID
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/dedicated_account/{dedicated_account_id}")
 
     async def requery_dedicated_account(
             self,
-            account_number: Optional[str] = None,
-            provider_slug: Optional[str] = None,
-            date_transfer: Optional[date] = None,
-    ) -> ClientResponse:
+            account_number: Optional[Union[str, None]] = None,
+            provider_slug: Optional[Union[str, None]] = None,
+            date_transfer: Optional[Union[date, None]] = None,
+    ) -> Response:
         """
         Requery a dedicated virtual account for new transactions
 
@@ -174,7 +175,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: date_transfer: Date of when the transfer was made
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
 
         # convert date to string
@@ -187,24 +188,24 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/dedicated_account/requery", params=params)
 
-    async def deactivate_dedicated_account(self, dedicated_account_id: int) -> ClientResponse:
+    async def deactivate_dedicated_account(self, dedicated_account_id: int) -> Response:
         """
         Deactivate a dedicated virtual account
 
         :param: dedicated_account_id: Dedicated account ID
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._delete_request(f"/dedicated_account/{dedicated_account_id}")
 
     async def split_dedicated_account(
             self,
             customer_id_or_code: str,
-            subaccount: Optional[str] = None,
-            split_code: Optional[str] = None,
-            preferred_bank: Optional[str] = None,
-    ) -> ClientResponse:
+            subaccount: Optional[Union[str, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+            preferred_bank: Optional[Union[str, None]] = None,
+    ) -> Response:
         """
         Split a dedicated virtual account transaction with one or more accounts
 
@@ -214,7 +215,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: preferred_bank: Preferred bank for the virtual account
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "customer": customer_id_or_code,
@@ -224,25 +225,25 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/dedicated_account/split", data=data)
 
-    async def remove_split_dedicated_account(self, account_number: str) -> ClientResponse:
+    async def remove_split_dedicated_account(self, account_number: str) -> Response:
         """
         Remove a split dedicated virtual account
 
         :param: account_number: the account number of the dedicated virtual account
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "account_number": account_number,
         }
         return await self._delete_request("/dedicated_account/split", data=data)
 
-    async def fetch_bank_providers(self) -> ClientResponse:
+    async def fetch_bank_providers(self) -> Response:
         """
         Fetch bank providers
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request("/dedicated_account/available_providers")

@@ -3,11 +3,12 @@ Wrapper for Paystack Dedicated Virtual Account API
 
 The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
 from paystackease._base import PayStackBaseClientAPI
+from paystackease._utils import Response
+from paystackease.helpers.tool_kit import Currency
 
 
 class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
@@ -22,12 +23,12 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
     def create_virtual_account(
             self,
             customer_id_or_code: str,
-            preferred_bank: Optional[str] = None,
-            subaccount: Optional[str] = None,
-            split_code: Optional[str] = None,
-            first_name: Optional[str] = None,
-            last_name: Optional[str] = None,
-            phone: Optional[str] = None,
+            preferred_bank: Optional[Union[str, None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+            first_name: Optional[Union[str, None]] = None,
+            last_name: Optional[Union[str, None]] = None,
+            phone: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Create a dedicated virtual account for existing customers.
@@ -68,11 +69,11 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
             phone: str,
             preferred_bank: str,
             country: str,
-            account_number: Optional[str] = None,
-            bvn: Optional[str] = None,
-            bank_code: Optional[str] = None,
-            subaccount: Optional[str] = None,
-            split_code: Optional[str] = None,
+            account_number: Optional[Union[str, None]] = None,
+            bvn: Optional[Union[str, None]] = None,
+            bank_code: Optional[Union[str, None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         create a customer, validate the customer, and assign a DVA to the customer
@@ -119,11 +120,11 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
 
     def list_dedicated_account(
             self,
-            active: Optional[bool] = True,
-            currency: Optional[str] = None,
-            provider_slug: Optional[str] = None,
-            bank_id: Optional[str] = None,
-            customer_id: Optional[str] = None,
+            active: Optional[Union[bool, None]] = True,
+            currency: Optional[Union[Currency, None]] = None,
+            provider_slug: Optional[Union[str, None]] = None,
+            bank_id: Optional[Union[str, None]] = None,
+            customer_id: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         List dedicated accounts
@@ -162,9 +163,9 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
 
     def requery_dedicated_account(
             self,
-            account_number: Optional[str] = None,
-            provider_slug: Optional[str] = None,
-            date_transfer: Optional[date] = None,
+            account_number: Optional[Union[str, None]] = None,
+            provider_slug: Optional[Union[str, None]] = None,
+            date_transfer: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         Requery a dedicated virtual account for new transactions
@@ -201,9 +202,9 @@ class DedicatedVirtualAccountClientAPI(PayStackBaseClientAPI):
     def split_dedicated_account(
             self,
             customer_id_or_code: str,
-            subaccount: Optional[str] = None,
-            split_code: Optional[str] = None,
-            preferred_bank: Optional[str] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+            preferred_bank: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Split a dedicated virtual account transaction with one or more accounts
