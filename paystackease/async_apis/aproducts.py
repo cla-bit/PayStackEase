@@ -3,6 +3,7 @@ Wrapper for Asynchronous Paystack Products API
 
 The Products API allows you to create and manage inventories on your integration.
 """
+from aiohttp import ClientResponse
 
 from datetime import date
 from typing import Optional
@@ -23,7 +24,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
             currency: str,
             unlimited: Optional[bool] = None,
             quantity: Optional[int] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Create a product
 
@@ -35,7 +36,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         :param: quantity: Quantity of the product in stock Use if unlimited is false
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert bool to string
@@ -53,11 +54,11 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_products(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List all the products
 
@@ -67,7 +68,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date: A timestamp from which to start listing product e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to strings
@@ -77,14 +78,14 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
         return await self._get_request("/product", params=params)
 
-    async def fetch_product(self, product_id: str) -> dict:
+    async def fetch_product(self, product_id: str) -> ClientResponse:
         """
         Get details of a product
 
         :param: product_id: ID or Code of the product
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/product/{product_id}")
 
@@ -97,7 +98,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
             currency: str,
             unlimited: Optional[bool] = None,
             quantity: Optional[int] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Update a product detail
 
@@ -110,7 +111,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         :param: quantity: Quantity of the product in stock Use if unlimited is false
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert bool to string
