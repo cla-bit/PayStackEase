@@ -3,9 +3,9 @@ Wrapper for Paystack Transfers APIs
 
 The Transfers API allows you to automate sending money to your customers.
 """
-
+from requests import Response
 from datetime import date
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Any
 
 from paystackease._base import PayStackBaseClientAPI
 
@@ -24,7 +24,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
             reason: Optional[str] = None,
             currency: Optional[str] = None,
             reference: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Initiate a transfer. Upgrade your business to a Registered Business to use
 
@@ -37,7 +37,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
                             Only -,_ and alphanumeric characters allowed.
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "source": transfer_source,
@@ -49,7 +49,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request("/transfer", data=data)
 
-    def finalize_transfer(self, transfer_code: str, otp: str) -> dict:
+    def finalize_transfer(self, transfer_code: str, otp: str) -> Response:
         """
         Finalize an initiated transfer
 
@@ -57,14 +57,14 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :param: otp: The OTP sent to the business phone to verify transfer
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"transfer_code": transfer_code, "otp": otp}
         return self._post_request("/transfer/finalize_transfer", data=data)
 
     def initiate_bulk_transfer(
-            self, transfer_source: str, transfers: List[Dict[str, str]]
-    ) -> dict:
+            self, transfer_source: str, transfers: List[Dict[str, Any]]
+    ) -> Response:
         """
         Batch multiple transfers in a single request
 
@@ -72,19 +72,19 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :param: transfers: A list of transfer objects keys [ { amount | recipient | reference | reason } ]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"source": transfer_source, "transfers": transfers}
         return self._post_request("/transfer/bulk", data=data)
 
     def list_transfers(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             customer_id: Optional[str] = None,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List transfers
 
@@ -95,7 +95,7 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         :param: to_date
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert date to string
@@ -111,24 +111,24 @@ class TransfersClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/transfer", params=params)
 
-    def fetch_transfer(self, id_or_code: str) -> dict:
+    def fetch_transfer(self, id_or_code: str) -> Response:
         """
         Get details of a transfer
 
         :param: id_or_code: The id or code of the transfer
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/transfer/{id_or_code}")
 
-    def verify_transfer(self, reference: str) -> dict:
+    def verify_transfer(self, reference: str) -> Response:
         """
         Verify a transfer
 
         :param: reference: The reference of the transfer to verify
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._post_request(f"/transfer/verify/{reference}")
