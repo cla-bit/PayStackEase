@@ -3,9 +3,9 @@ Wrapper for Paystack Transfer Recipient APIs
 
 The Transfer Recipients API allows you to create and manage beneficiaries that you send money to.
 """
-
+from requests import Response
 from datetime import date
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Any
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -24,8 +24,8 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
             description: Optional[str] = None,
             currency: Optional[str] = None,
             authorization_code: Optional[str] = None,
-            metadata: Optional[Dict[str, str]] = None,
-    ) -> dict:
+            metadata: Optional[Dict[str, Any]] = None,
+    ) -> Response:
         """
         Create a transfer recipient
 
@@ -40,7 +40,7 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
         :param: metadata: transfer recipient's metadata
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "type": recipient_type,
@@ -54,7 +54,7 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request("/transferrecipient", data=data)
 
-    def bulk_create_transfer_recipient(self, batch: List[Dict[str, str]]) -> dict:
+    def bulk_create_transfer_recipient(self, batch: List[Dict[str, Any]]) -> Response:
         """
         Create multiple transfer recipients in batches.
 
@@ -62,18 +62,18 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
                         keys [ { type, name, account_number, bank_code, currency etc. }]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"batch": batch}
         return self._post_request("/transferrecipient/bulk", data=data)
 
     def list_transfer_recipients(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List transfer recipients
 
@@ -83,7 +83,7 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
         :param: to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert date to strings
@@ -93,14 +93,14 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
         return self._get_request("/transferrecipient", params=params)
 
-    def fetch_transfer_recipient(self, id_or_code: str) -> dict:
+    def fetch_transfer_recipient(self, id_or_code: str) -> Response:
         """
         Fetch details of a transfer recipient
 
         :param: id_or_code: The id or code of the transfer recipient
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/transferrecipient/{id_or_code}")
 
@@ -109,7 +109,7 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
             id_or_code: str,
             recipient_name: str,
             recipient_email: Optional[str] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Update a transfer recipient
 
@@ -118,18 +118,18 @@ class TransferRecipientsClientAPI(PayStackBaseClientAPI):
         :param: recipient_email: The email of the transfer recipient
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {"name": recipient_name, "email": recipient_email}
         return self._put_request(f"/transferrecipient/{id_or_code}", data=data)
 
-    def delete_transfer_recipient(self, id_or_code: str) -> dict:
+    def delete_transfer_recipient(self, id_or_code: str) -> Response:
         """
         Delete a transfer recipient
 
         :param: id_or_code: The id or code of the transfer recipient
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._delete_request(f"/transferrecipient/{id_or_code}")

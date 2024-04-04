@@ -3,9 +3,10 @@ Wrapper for Asynchronous Paystack Transfer Recipient APIs
 
 The Transfer Recipients API allows you to create and manage beneficiaries that you send money to.
 """
+from aiohttp import ClientResponse
 
 from datetime import date
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Any
 from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
@@ -24,8 +25,8 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
             description: Optional[str] = None,
             currency: Optional[str] = None,
             authorization_code: Optional[str] = None,
-            metadata: Optional[Dict[str, str]] = None,
-    ) -> dict:
+            metadata: Optional[Dict[str, Any]] = None,
+    ) -> ClientResponse:
         """
         Create a transfer recipient
 
@@ -40,7 +41,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
         :param: metadata: transfer recipient's metadata
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {
             "type": recipient_type,
@@ -54,7 +55,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/transferrecipient", data=data)
 
-    async def bulk_create_transfer_recipient(self, batch: List[Dict[str, str]]) -> dict:
+    async def bulk_create_transfer_recipient(self, batch: List[Dict[str, Any]]) -> ClientResponse:
         """
         Create multiple transfer recipients in batches.
 
@@ -62,7 +63,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
                         keys [ { type, name, account_number, bank_code, currency etc. }]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {"batch": batch}
         return await self._post_request("/transferrecipient/bulk", data=data)
@@ -73,7 +74,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
             page: Optional[int] = None,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         List transfer recipients
 
@@ -83,7 +84,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
 
         # convert date to strings
@@ -93,14 +94,14 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
         return await self._get_request("/transferrecipient", params=params)
 
-    async def fetch_transfer_recipient(self, id_or_code: str) -> dict:
+    async def fetch_transfer_recipient(self, id_or_code: str) -> ClientResponse:
         """
         Fetch details of a transfer recipient
 
         :param: id_or_code: The id or code of the transfer recipient
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/transferrecipient/{id_or_code}")
 
@@ -109,7 +110,7 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
             id_or_code: str,
             recipient_name: str,
             recipient_email: Optional[str] = None,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Update a transfer recipient
 
@@ -118,18 +119,18 @@ class AsyncTransferRecipientsClientAPI(AsyncPayStackBaseClientAPI):
         :param: recipient_email: The email of the transfer recipient
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {"name": recipient_name, "email": recipient_email}
         return await self._put_request(f"/transferrecipient/{id_or_code}", data=data)
 
-    async def delete_transfer_recipient(self, id_or_code: str) -> dict:
+    async def delete_transfer_recipient(self, id_or_code: str) -> ClientResponse:
         """
         Delete a transfer recipient
 
         :param: id_or_code: The id or code of the transfer recipient
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._delete_request(f"/transferrecipient/{id_or_code}")
