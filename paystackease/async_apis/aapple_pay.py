@@ -4,10 +4,9 @@ Wrapper class for Asynchronous Paystack Apple Pay API.
 The Apple Pay API allows you register your application's top-level domain or subdomain.
 """
 
-from aiohttp import ClientResponse
-
 from typing import Optional
 from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease._utils import Response
 
 
 class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
@@ -16,14 +15,14 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/apple-pay/
     """
 
-    async def register_domain(self, domain_name: str) -> ClientResponse:
+    async def register_domain(self, domain_name: str) -> Response:
         """
         Register a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "domainName": domain_name,
@@ -35,7 +34,7 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
             use_cursor: Optional[bool] = False,
             next_page: Optional[int] = None,
             previous_page: Optional[int] = None,
-    ) -> ClientResponse:
+    ) -> Response:
         """
         List all registered domains
 
@@ -44,7 +43,7 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
         :param: previous_page  # previous page
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
 
         # convert bool to string
@@ -57,14 +56,14 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/apple-pay/domain", params=params)
 
-    async def unregister_domain(self, domain_name: str) -> ClientResponse:
+    async def unregister_domain(self, domain_name: str) -> Response:
         """
         Unregister a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "domainName": domain_name,

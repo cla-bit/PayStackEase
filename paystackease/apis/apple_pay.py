@@ -4,10 +4,10 @@ Wrapper class for Paystack Apple Pay API.
 The Apple Pay API allows you register your application's top-level domain or subdomain.
 """
 
-from requests import Response
-
 from typing import Optional
+
 from paystackease._base import PayStackBaseClientAPI
+from paystackease._utils import Response
 
 
 class ApplePayClientAPI(PayStackBaseClientAPI):
