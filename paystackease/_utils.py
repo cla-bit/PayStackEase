@@ -7,6 +7,7 @@ class Response(NamedTuple):
     """
     Paystack API Response from the server after HTTP requests have been made
     """
+
     status_code: int
     status: str
     message: str

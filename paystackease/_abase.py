@@ -54,8 +54,7 @@ class AsyncBaseClientAPI:
         self.timeout = aiohttp.ClientTimeout(total=30)
 
         self._session = aiohttp.ClientSession(
-            headers=self._make_paystack_http_headers(),
-            timeout=self.timeout
+            headers=self._make_paystack_http_headers(), timeout=self.timeout
         )
 
     async def __aenter__(self):
@@ -91,7 +90,9 @@ class AsyncBaseClientAPI:
         }
 
     @staticmethod
-    def _convert_to_string(value: Union[bool, date, datetime, None]) -> Union[str, int, None]:
+    def _convert_to_string(
+        value: Union[bool, date, datetime, None]
+    ) -> Union[str, int, None]:
         """
         Convert the type of value to a string
         :param value: The value to be converted
@@ -112,13 +113,20 @@ class AsyncBaseClientAPI:
             return None
         if type(value) in conversion_functions:
             return conversion_functions[type(value)](value)
-        logger.error("Unsupported type: %s Expected type -bool, -date, -datetime", {type(value)})
+        logger.error(
+            "Unsupported type: %s Expected type -bool, -date, -datetime", {type(value)}
+        )
         raise TypeValueError(
             f"Unsupported type: {type(value)}. Expected type -bool, -date, -datetime"
         )
 
     async def _request_url(
-        self, method: str, url: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs
+        self,
+        method: str,
+        url: str,
+        data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
+        params: Optional[Union[Dict[str, Any], None]] = None,
+        **kwargs,
     ) -> Response:
         """
         Handles the request to Paystack API
@@ -146,10 +154,14 @@ class AsyncBaseClientAPI:
             else None
         )
         data = json.dumps(data) if data else None
-        
+
         try:
             async with self._session.request(
-                method, url=url, data=data, params=params, **kwargs,
+                method,
+                url=url,
+                data=data,
+                params=params,
+                **kwargs,
             ) as response:
                 response_json = await response.json()
                 logger.info("Response Status Code: %s", response.status)
@@ -157,9 +169,13 @@ class AsyncBaseClientAPI:
                 return response_json
         except aiohttp.ClientError as error:
             # Extract status code if available from the exception
-            status_code = getattr(error, 'response', None) and getattr(error.args[0], 'status_code', None)
+            status_code = getattr(error, "response", None) and getattr(
+                error.args[0], "status_code", None
+            )
             logger.error("Error: %s", error)
-            raise PayStackError(f"Error making request to Paystack API: {str(error)}", status_code) from error
+            raise PayStackError(
+                f"Error making request to Paystack API: {str(error)}", status_code
+            ) from error
 
 
 class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
@@ -186,7 +202,12 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
             method, endpoint, data=data, params=params, **kwargs
         )
 
-    async def _get_request(self, endpoint: str, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs) -> Response:
+    async def _get_request(
+        self,
+        endpoint: str,
+        params: Optional[Union[Dict[str, Any], None]] = None,
+        **kwargs,
+    ) -> Response:
         """
         Makes the GET request to Paystack API
         :param endpoint:
@@ -196,7 +217,12 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         """
         return await self._request("GET", endpoint, params=params, **kwargs)
 
-    async def _post_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> Response:
+    async def _post_request(
+        self,
+        endpoint: str,
+        data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
+        **kwargs,
+    ) -> Response:
         """
         Makes the POST request to Paystack API
         :param endpoint:
@@ -206,7 +232,12 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         """
         return await self._request("POST", endpoint, data=data, **kwargs)
 
-    async def _put_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> Response:
+    async def _put_request(
+        self,
+        endpoint: str,
+        data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
+        **kwargs,
+    ) -> Response:
         """
         Makes the PUT request to Paystack API
         :param endpoint:
