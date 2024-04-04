@@ -3,11 +3,11 @@ Wrapper for Paystack Charges API.
 
 The Charge API allows you to configure payment channel of your choice when initiating a payment.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Union
 from paystackease._base import PayStackBaseClientAPI
+from paystackease._utils import Response
 from paystackease.helpers.tool_kit import PWT
 
 
@@ -21,16 +21,16 @@ class ChargesClientAPI(PayStackBaseClientAPI):
             self,
             email: str,
             amount: int,
-            pin: Optional[int] = None,
-            authorization_code: Optional[str] = None,
-            reference: Optional[str] = None,
-            device_id: Optional[str] = None,
-            bank: Optional[Dict[str, str]] = None,
-            bank_transfer: Optional[Dict[PWT, Any]] = None,
-            qr: Optional[Dict[str, str]] = None,
-            ussd: Optional[Dict[str, str]] = None,
-            mobile_money: Optional[Dict[str, str]] = None,
-            metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
+            pin: Optional[Union[int, None]] = None,
+            authorization_code: Optional[Union[str, None]] = None,
+            reference: Optional[Union[str, None]] = None,
+            device_id: Optional[Union[str, None]] = None,
+            bank: Optional[Union[Dict[str, str], None]] = None,
+            bank_transfer: Optional[Union[Dict[PWT, Any], None]] = None,
+            qr: Optional[Union[Dict[str, str], None]] = None,
+            ussd: Optional[Union[Dict[str, str], None]] = None,
+            mobile_money: Optional[Union[Dict[str, str], None]] = None,
+            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
     ) -> Response:
         """
         Create a charge

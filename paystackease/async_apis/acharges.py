@@ -3,11 +3,11 @@ Wrapper for Asynchronous Paystack Charges API.
 
 The Charge API allows you to configure payment channel of your choice when initiating a payment.
 """
-from aiohttp import ClientResponse
 
 from datetime import date
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease._utils import Response
 from paystackease.helpers.tool_kit import PWT
 
 
@@ -21,17 +21,17 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         self,
             email: str,
             amount: int,
-            pin: Optional[int] = None,
-            authorization_code: Optional[str] = None,
-            reference: Optional[str] = None,
-            device_id: Optional[str] = None,
-            bank: Optional[Dict[str, str]] = None,
-            bank_transfer: Optional[Dict[PWT, Any]] = None,
-            qr: Optional[Dict[str, str]] = None,
-            ussd: Optional[Dict[str, str]] = None,
-            mobile_money: Optional[Dict[str, str]] = None,
-            metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
-    ) -> ClientResponse:
+            pin: Optional[Union[int, None]] = None,
+            authorization_code: Optional[Union[str, None]] = None,
+            reference: Optional[Union[str, None]] = None,
+            device_id: Optional[Union[str, None]] = None,
+            bank: Optional[Union[Dict[str, str], None]] = None,
+            bank_transfer: Optional[Union[Dict[PWT, Any], None]] = None,
+            qr: Optional[Union[Dict[str, str], None]] = None,
+            ussd: Optional[Union[Dict[str, str], None]] = None,
+            mobile_money: Optional[Union[Dict[str, str], None]] = None,
+            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
+    ) -> Response:
         """
         Create a charge
 
@@ -65,7 +65,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
             mobile_money is only available in Ghana and Kenya
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "email": email,
@@ -83,7 +83,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/charge", data=data)
 
-    async def submit_pin(self, pin: int, reference: str) -> ClientResponse:
+    async def submit_pin(self, pin: int, reference: str) -> Response:
         """
         Submit a PIN for a charge
 
@@ -91,7 +91,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         :param: reference
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "pin": pin,
@@ -99,7 +99,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/charge/submit_pin", data=data)
 
-    async def submit_otp(self, otp: int, reference: str) -> ClientResponse:
+    async def submit_otp(self, otp: int, reference: str) -> Response:
         """
         Submit OTP to complete a charge
 
@@ -107,7 +107,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         :param: reference
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "otp": otp,
@@ -115,7 +115,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/charge/submit_otp", data=data)
 
-    async def submit_phone(self, phone: str, reference: str) -> ClientResponse:
+    async def submit_phone(self, phone: str, reference: str) -> Response:
         """
         Submit a phone number to complete a charge
 
@@ -123,7 +123,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         :param: reference
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "phone": phone,
@@ -131,7 +131,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/charge/submit_phone", data=data)
 
-    async def submit_birthday(self, birthday: date, reference: str) -> ClientResponse:
+    async def submit_birthday(self, birthday: date, reference: str) -> Response:
         """
         Submit birthday when required
 
@@ -143,7 +143,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
             Birthday submitted by user e.g. 2016-09-21
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         birthday = self._convert_to_string(birthday)
 
@@ -155,7 +155,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
 
     async def submit_address(
         self, reference: str, address: str, city: str, state: str, zipcode: str
-    ) -> ClientResponse:
+    ) -> Response:
         """
         Submit address to continue a charge
 
@@ -166,7 +166,7 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         :param: zipcode
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "reference": reference,
@@ -177,13 +177,13 @@ class AsyncChargesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/charge/submit_address", data=data)
 
-    async def check_pending_charge(self, reference: str) -> ClientResponse:
+    async def check_pending_charge(self, reference: str) -> Response:
         """
         Check pending charge
 
         :param: reference
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/charge/{reference}")
