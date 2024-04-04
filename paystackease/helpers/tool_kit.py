@@ -62,6 +62,13 @@ class EFT(Enum):
     OZOW = "ozow"
 
 
+class EventAction(Enum):
+    """Event action supported by Paystack."""
+    PROCESS = "process"
+    VIEW = "view"
+    PRINT = "print"
+
+
 class EventType(Enum):
     INVOICE = "invoice"
     TRANSACTION = "transaction"
