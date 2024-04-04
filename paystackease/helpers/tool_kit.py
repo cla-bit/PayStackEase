@@ -150,6 +150,7 @@ class STATUS(Enum):
     SUCCESS = "success"
     FAILED = "failed"
     PENDING = "pending"
+    PROCESSING = "processing"
 
 
 class USSD(Enum):
