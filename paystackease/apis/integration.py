@@ -3,7 +3,7 @@ Wrapper for Paystack Integration API
 
 The Integration API allows you manage some settings on your integration.
 """
-from requests import Response
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
