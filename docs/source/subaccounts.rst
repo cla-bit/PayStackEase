@@ -7,7 +7,7 @@ SubAccounts Module
 
 Wrapper for Paystack SubAccounts API. The Subaccounts API allows you to create and manage subaccounts on your integration. Subaccounts can be used to split payment between two accounts (your main account and a subaccount).
 
------------------------------------------------------
+-------------
 
 .. py:class:: SubAccountClientAPI(secret_key: str = None)
 
@@ -15,7 +15,7 @@ Wrapper for Paystack SubAccounts API. The Subaccounts API allows you to create a
 
     Paystack SubAccount API Reference: `Subaccount`_
 
-    .. py:method:: create_subaccount(business_name: str, settlement_bank: str, account_number: str, percentage_charge: float, description: str, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ dict[source]
+    .. py:method:: create_subaccount(business_name: str, settlement_bank: str, account_number: str, percentage_charge: float, description: str, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ Response
 
         Create a subaccount
 
@@ -39,9 +39,9 @@ Wrapper for Paystack SubAccounts API. The Subaccounts API allows you to create a
         :type metadata: Dict[str, List[Dict[str, Any]]] | None,
 
         :return: A response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: fetch_subaccount(id_or_code: str)→ dict
+    .. py:method:: fetch_subaccount(id_or_code: str)→ Response
 
         Fetch a subaccount
 
@@ -49,15 +49,15 @@ Wrapper for Paystack SubAccounts API. The Subaccounts API allows you to create a
         :type id_or_code: str
 
         :return: A response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: list_subaccounts(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: list_subaccounts(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List subaccounts
 
-        :param per_page: The number of subaccounts to return
+        :param per_page: The number of subaccounts to return. (default: 50)
         :type per_page: int, optional
-        :param page: The page to return
+        :param page: The page to return. (default: 1)
         :type page: int, optional
         :param from_date: The date from which to list subaccounts
         :type from_date: date, optional
@@ -65,9 +65,9 @@ Wrapper for Paystack SubAccounts API. The Subaccounts API allows you to create a
         :type to_date: date, optional
 
         :return: A response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. py:method:: update_subaccount(id_or_code: str, business_name: str, settlement_bank: str, account_number: str, active: bool | None = None, percentage_charge: float | None = None, description: str | None = None, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, settlement_schedule: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ dict
+    .. py:method:: update_subaccount(id_or_code: str, business_name: str, settlement_bank: str, account_number: str, active: bool | None = None, percentage_charge: float | None = None, description: str | None = None, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, settlement_schedule: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ Response
 
         Update a subaccount
 
@@ -79,7 +79,7 @@ Wrapper for Paystack SubAccounts API. The Subaccounts API allows you to create a
         :type settlement_bank: str
         :param account_number:
         :type account_number: str
-        :param active: Whether the subaccount is active or not
+        :param active: Whether the subaccount is active or not. (default: True)
         :type active: bool, optional
         :param percentage_charge: The percentage charge receives from each payment made to the subaccount
         :type percentage_charge: float, optional
@@ -91,17 +91,18 @@ Wrapper for Paystack SubAccounts API. The Subaccounts API allows you to create a
         :type primary_contact_name: str, optional
         :param primary_contact_phone: A phone number to call for this subaccount
         :type primary_contact_phone: str, optional
-        :param settlement_schedule: The settlement schedule of the subaccount. Values: [ auto, weekly, monthly, manual ].
+        :param settlement_schedule: The settlement schedule of the subaccount. (default: auto)
         :type settlement_schedule: str, optional
         :param metadata: Metadata associated with the subaccount. It is a dictionary of custom fields type
         :type metadata: Dict[str, List[Dict[str, Any]]] | None,
 
         :return: A response from the API
-        :rtype: dict
+        :rtype: Response object
 
-    .. note::
+.. note::
 
-        Auto means payout is T+1 Manual means payout to the subaccount should only be made when requested. Defaults to auto
+    ``auto`` means payout is T+1 Manual means payout to the subaccount should only be made when requested.
 
+Ensure you check use the string values of the enum classes. See :doc:`toolkit` documentation for more information.
 
 .. _Subaccount: https://paystack.com/docs/api/subaccount/
