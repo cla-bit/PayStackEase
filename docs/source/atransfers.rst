@@ -7,7 +7,7 @@ Async Transfers Module
 
 Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you to automate sending money to your customers.
 
--------------------------------------------------------------------
+-----------------
 
 .. py:class:: AsyncTransfersClientAPI(secret_key: str = None)
 
@@ -15,7 +15,7 @@ Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you t
 
     Paystack Transfers API Reference: `Transfers`_
 
-    .. py:method:: async fetch_transfer(id_or_code: str)→ dict
+    .. py:method:: async fetch_transfer(id_or_code: str)→ ClientResponse
 
         Get details of a transfer
 
@@ -23,9 +23,9 @@ Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you t
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async finalize_transfer(transfer_code: str, otp: str)→ dict
+    .. py:method:: async finalize_transfer(transfer_code: str, otp: str)→ ClientResponse
 
         Finalize an initiated transfer
 
@@ -35,9 +35,9 @@ Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you t
         :type otp: str
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async initiate_bulk_transfer(transfer_source: str, transfers: List[Dict[str, str]])→ dict
+    .. py:method:: async initiate_bulk_transfer(transfer_source: str, transfers: List[Dict[str, str]])→ ClientResponse
 
         Batch multiple transfers in a single request
 
@@ -47,9 +47,9 @@ Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you t
         :type transfers: List[Dict[str, str]]
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async initiate_transfer(transfer_source: str, amount: int, transfer_recipient: str, reason: str | None = None, currency: str | None = None, reference: str | None = None)→ dict
+    .. py:method:: async initiate_transfer(transfer_source: str, amount: int, transfer_recipient: str, reason: str | None = None, currency: str | None = None, reference: str | None = None)→ ClientResponse
 
         Initiate a transfer. Upgrade your business to a Registered Business to use
 
@@ -67,9 +67,9 @@ Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you t
         :type reference: str, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_transfers(per_page: int | None = None, page: int | None = None, customer_id: str | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_transfers(per_page: int | None = None, page: int | None = None, customer_id: str | None = None, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         List transfers
 
@@ -85,16 +85,16 @@ Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you t
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
-    .. py:method:: async verify_transfer(reference: str)→ dict
+    .. py:method:: async verify_transfer(reference: str)→ ClientResponse
 
         Verify a transfer
 
         :param reference: The reference of the transfer to verify
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 .. _Transfers: https://paystack.com/docs/api/transfer/
