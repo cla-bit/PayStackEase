@@ -8,7 +8,7 @@ import json
 import logging
 
 from datetime import date, datetime
-from typing import Union
+from typing import Union, Dict, List, Any, Optional
 from urllib.parse import urljoin
 from decouple import config
 
@@ -31,11 +31,11 @@ PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 class BaseClientAPI:
     """Base Client API for Paystack API"""
 
-    _PAYSTACK_API_URL = "https://api.paystack.co/"
-    _VALID_HTTP_METHODS = {"GET", "POST", "PUT", "DELETE"}
+    _PAYSTACK_API_URL: str = "https://api.paystack.co/"
+    _VALID_HTTP_METHODS: set[str] = {"GET", "POST", "PUT", "DELETE"}
 
     # pylint: disable=too-few-public-methods
-    def __init__(self, secret_key: str = None):
+    def __init__(self, secret_key: str = None) -> None:
         self._secret_key = secret_key
 
         # Default to PAYSTACK_SECRET_KEY if not provided in the instance
@@ -60,7 +60,7 @@ class BaseClientAPI:
         """Set the secret key for all instances of this class"""
         cls._secret_key = secret_key
 
-    def _join_url(self, path) -> str:
+    def _join_url(self, path: str) -> str:
         """
         Join URL with Paystack API URL
         :param path:
@@ -108,7 +108,7 @@ class BaseClientAPI:
         )
 
     def _request_url(
-        self, method: str, url: str, data: Union[dict, list] = None, params: dict = None, **kwargs
+        self, method: str, url: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, params:  Optional[Union[Dict[str, Any], None]] = None, **kwargs
     ) -> Response:
         """
         Handles the request to Paystack API
@@ -150,8 +150,10 @@ class BaseClientAPI:
                 logger.info("Response JSON: %s", response.json())
                 return response.json()
         except requests.RequestException as error:
+            # Extract status code if available from the exception
+            status_code = getattr(error, 'response', None) and getattr(error.response, 'status_code', None)
             logger.error("Error %s", error)
-            raise PayStackError(str(error)) from error
+            raise PayStackError(f"Error making request to Paystack API: {str(error)}", status_code) from error
 
 
 class PayStackBaseClientAPI(BaseClientAPI):
@@ -161,8 +163,8 @@ class PayStackBaseClientAPI(BaseClientAPI):
         self,
         method: str,
         endpoint: str,
-        data: Union[dict, list] = None,
-        params: dict = None,
+        data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
+        params: Optional[Union[Dict[str, Any], None]] = None,
         **kwargs,
     ) -> Response:
         """
@@ -176,7 +178,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request_url(method, endpoint, data=data, params=params, **kwargs)
 
-    def _get_request(self, endpoint: str, params: dict = None, **kwargs) -> Response:
+    def _get_request(self, endpoint: str, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs) -> Response:
         """
         Makes the GET request to Paystack API
         :param endpoint:
@@ -186,7 +188,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request("GET", endpoint, params=params, **kwargs)
 
-    def _post_request(self, endpoint: str, data: Union[dict, list] = None, **kwargs) -> Response:
+    def _post_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> Response:
         """
         Makes the POST request to Paystack API
         :param endpoint:
@@ -196,7 +198,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request("POST", endpoint, data=data, **kwargs)
 
-    def _put_request(self, endpoint: str, data: Union[dict, list] = None, **kwargs) -> Response:
+    def _put_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> Response:
         """
         Makes the PUT request to Paystack API
         :param endpoint:

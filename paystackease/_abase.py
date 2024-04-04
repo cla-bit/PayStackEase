@@ -8,7 +8,7 @@ import json
 import logging
 
 from datetime import date, datetime
-from typing import Union
+from typing import Union, Optional, Dict, List, Any
 from urllib.parse import urljoin
 from decouple import config
 
@@ -31,11 +31,11 @@ PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 class AsyncBaseClientAPI:
     """Base Client API for Paystack API"""
 
-    _PAYSTACK_API_URL = "https://api.paystack.co/"
-    _VALID_HTTP_METHODS = {"GET", "POST", "PUT", "DELETE"}
+    _PAYSTACK_API_URL: str = "https://api.paystack.co/"
+    _VALID_HTTP_METHODS: set[str] = {"GET", "POST", "PUT", "DELETE"}
 
     # pylint: disable=too-few-public-methods
-    def __init__(self, secret_key: str = None):
+    def __init__(self, secret_key: str = None) -> None:
         self._secret_key = secret_key
 
         # Default to PAYSTACK_SECRET_KEY if not provided in the instance
@@ -70,7 +70,7 @@ class AsyncBaseClientAPI:
         """Set the secret key for all instances of this class"""
         cls._secret_key = secret_key
 
-    def _join_url(self, path) -> str:
+    def _join_url(self, path: str) -> str:
         """
         Join URL with Paystack API URL
         :param path:
@@ -118,7 +118,7 @@ class AsyncBaseClientAPI:
         )
 
     async def _request_url(
-        self, method: str, url: str, data: Union[dict, list] = None, params: dict = None, **kwargs
+        self, method: str, url: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs
     ) -> ClientResponse:
         """
         Handles the request to Paystack API
@@ -156,8 +156,10 @@ class AsyncBaseClientAPI:
                 logger.info("Response JSON: %s", response_json)
                 return response_json
         except aiohttp.ClientError as error:
+            # Extract status code if available from the exception
+            status_code = getattr(error, 'response', None) and getattr(error.args[0], 'status_code', None)
             logger.error("Error: %s", error)
-            raise PayStackError(str(error)) from error
+            raise PayStackError(f"Error making request to Paystack API: {str(error)}", status_code) from error
 
 
 class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
@@ -167,8 +169,8 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         self,
         method: str,
         endpoint: str,
-        data: Union[dict, list] = None,
-        params: dict = None,
+        data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
+        params: Optional[Union[Dict[str, Any], None]] = None,
         **kwargs,
     ) -> ClientResponse:
         """
@@ -184,7 +186,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
             method, endpoint, data=data, params=params, **kwargs
         )
 
-    async def _get_request(self, endpoint: str, params: dict = None, **kwargs) -> ClientResponse:
+    async def _get_request(self, endpoint: str, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs) -> ClientResponse:
         """
         Makes the GET request to Paystack API
         :param endpoint:
@@ -194,7 +196,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         """
         return await self._request("GET", endpoint, params=params, **kwargs)
 
-    async def _post_request(self, endpoint: str, data: Union[dict, list] = None, **kwargs) -> ClientResponse:
+    async def _post_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> ClientResponse:
         """
         Makes the POST request to Paystack API
         :param endpoint:
@@ -204,7 +206,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         """
         return await self._request("POST", endpoint, data=data, **kwargs)
 
-    async def _put_request(self, endpoint: str, data: Union[dict, list] = None, **kwargs) -> ClientResponse:
+    async def _put_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> ClientResponse:
         """
         Makes the PUT request to Paystack API
         :param endpoint:
