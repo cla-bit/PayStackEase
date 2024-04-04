@@ -4,7 +4,7 @@ import json
 from datetime import date
 import pytest
 import responses
-
+from paystackease.helpers.tool_kit import STATUS
 from tests.conftest import async_settlements_client, mocked_responses
 
 
@@ -12,7 +12,7 @@ from tests.conftest import async_settlements_client, mocked_responses
 @pytest.mark.parametrize(
     ("status", "subaccounts", "from_date", "to_date", "per_page", "page"),
     [
-        ("pending", "SUB_ACCT_testing1234", date(2012, 12, 12), date(2012, 12, 12), 1, 10),
+        (STATUS.FAILED.value, "SUB_ACCT_testing1234", date(2012, 12, 12), date(2012, 12, 12), 1, 10),
         (None, None, None, None, None, None)
     ]
 )
