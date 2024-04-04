@@ -7,9 +7,7 @@ Refund Module
 
 Wrapper for Paystack Refund API. The Refunds API allows you to create and manage transaction refunds.
 
-You can use the tool kit in the helpers module as reference: :doc:`paystackease.helpers`
-
---------------------------------------------------------------------
+------------------
 
 .. py:class:: RefundClientAPI(secret_key: str = None)
 
@@ -65,5 +63,6 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :return: The response from the API
         :rtype: Response object
 
+You can use the tool kit in the helpers module as reference to pass the string value of Currency: :doc:`toolkit`
 
 .. _Refund: https://paystack.com/docs/api/refund/
