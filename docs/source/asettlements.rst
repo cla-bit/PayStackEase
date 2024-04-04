@@ -7,8 +7,7 @@ Async Settlements Module
 
 Wrapper for Asynchronous Paystack Settlements API. The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
 
------------------------------------------------------------------
-
+-------------
 
 .. py:class:: AsyncSettlementClientAPI(secret_key: str = None)
 
@@ -16,15 +15,15 @@ Wrapper for Asynchronous Paystack Settlements API. The Settlements API allows yo
 
     Paystack Settlement API Reference: `Settlements`_
 
-    .. py:method:: async list_settlement_transactions(settlement_id: int, per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ dict[source]
+    .. py:method:: async list_settlement_transactions(settlement_id: int, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         Get the transactions that make up a particular settlement
 
         :param settlement_id: ID of the settlement
         :type settlement_id: int
-        :param per_page: The number of plans per page
+        :param per_page: The number of plans per page. (default: 50)
         :type per_page: int, optional
-        :param page: The page number
+        :param page: The page number. (default: 1)
         :type page: int, optional
         :param from_date:
         :type from_date:
@@ -32,9 +31,9 @@ Wrapper for Asynchronous Paystack Settlements API. The Settlements API allows yo
         :type to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
-    .. py:method:: async list_settlements(per_page: int | None = None, page: int | None = None, status: str | None = None, subaccount: str | None = None, from_date: date | None = None, to_date: date | None = None)→ dict
+    .. py:method:: async list_settlements(per_page: int | None = 50, page: int | None = 1, status: str | None = None, subaccount: str | None = None, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
 
         List all settlements made to your settlement accounts
 
@@ -49,7 +48,7 @@ Wrapper for Asynchronous Paystack Settlements API. The Settlements API allows yo
         :type to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
 
 
 .. _Settlements: https://paystack.com/docs/api/settlement/
