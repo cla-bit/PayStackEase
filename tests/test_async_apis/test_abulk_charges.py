@@ -1,6 +1,5 @@
 """ Tests for asynchronous Bulk Charges """
 
-import json
 import pytest
 from datetime import date
 
