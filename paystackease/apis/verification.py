@@ -3,7 +3,7 @@ Wrapper for Paystack Verification APIs
 \
 The Verification API allows you to perform KYC processes.
 """
-
+from requests import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -13,7 +13,7 @@ class VerificationClientAPI(PayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/verification/
     """
 
-    def resolve_account(self, account_number: str, bank_code: str) -> dict:
+    def resolve_account(self, account_number: str, bank_code: str) -> Response:
         """
         Confirm an account belongs to the right customer.
         This feature is available to business in Nigeria and Ghana.
@@ -22,7 +22,7 @@ class VerificationClientAPI(PayStackBaseClientAPI):
         :param: bank_code: The bank code to verify
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         params = {"account_number": account_number, "bank_code": bank_code}
         return self._get_request("/bank/resolve", params=params)
@@ -36,7 +36,7 @@ class VerificationClientAPI(PayStackBaseClientAPI):
             country_code: str,
             document_type: str,
             document_number: str,
-    ) -> dict:
+    ) -> Response:
         """
         Confirm the authenticity of a customer's account number before sending money.
         This feature is only available to businesses in South Africa.
@@ -51,7 +51,7 @@ class VerificationClientAPI(PayStackBaseClientAPI):
         :param: document_number: The customer's document number
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "account_name": account_name,
@@ -64,13 +64,13 @@ class VerificationClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request("/bank/validate", data=data)
 
-    def resolve_card_bin(self, bin_code: str) -> dict:
+    def resolve_card_bin(self, bin_code: str) -> Response:
         """
         Resolve a card BIN
 
         :param: bin_code: First 6 characters of card
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/decision/bin/{bin_code}")

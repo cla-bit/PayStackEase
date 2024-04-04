@@ -3,7 +3,7 @@ Wrapper for Asynchronous Paystack Verification APIs
 
 The Verification API allows you to perform KYC processes.
 """
-
+from aiohttp import ClientResponse
 from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
@@ -13,7 +13,7 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/verification/
     """
 
-    async def resolve_account(self, account_number: str, bank_code: str) -> dict:
+    async def resolve_account(self, account_number: str, bank_code: str) -> ClientResponse:
         """
         Confirm an account belongs to the right customer.
         This feature is available to business in Nigeria and Ghana.
@@ -22,7 +22,7 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
         :param: bank_code: The bank code to verify
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         params = {"account_number": account_number, "bank_code": bank_code}
         return await self._get_request("/bank/resolve", params=params)
@@ -36,7 +36,7 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
             country_code: str,
             document_type: str,
             document_number: str,
-    ) -> dict:
+    ) -> ClientResponse:
         """
         Confirm the authenticity of a customer's account number before sending money.
         This feature is only available to businesses in South Africa.
@@ -51,7 +51,7 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
         :param: document_number: The customer's document number
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         data = {
             "account_name": account_name,
@@ -64,13 +64,13 @@ class AsyncVerificationClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/bank/validate", data=data)
 
-    async def resolve_card_bin(self, bin_code: str) -> dict:
+    async def resolve_card_bin(self, bin_code: str) -> ClientResponse:
         """
         Resolve a card BIN
 
         :param: bin_code: First 6 characters of card
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: ClientResponse object
         """
         return await self._get_request(f"/decision/bin/{bin_code}")
