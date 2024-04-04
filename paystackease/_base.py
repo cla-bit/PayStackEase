@@ -13,7 +13,7 @@ from urllib.parse import urljoin
 from decouple import config
 
 import requests
-from requests import Response
+from paystackease._utils import Response
 
 from paystackease.errors import (
     SecretKeyError,

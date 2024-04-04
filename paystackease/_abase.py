@@ -13,7 +13,7 @@ from urllib.parse import urljoin
 from decouple import config
 
 import aiohttp
-from aiohttp import ClientResponse
+from paystackease._utils import Response
 
 from paystackease.errors import (
     SecretKeyError,
@@ -119,7 +119,7 @@ class AsyncBaseClientAPI:
 
     async def _request_url(
         self, method: str, url: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs
-    ) -> ClientResponse:
+    ) -> Response:
         """
         Handles the request to Paystack API
         :param method:
@@ -172,7 +172,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
         params: Optional[Union[Dict[str, Any], None]] = None,
         **kwargs,
-    ) -> ClientResponse:
+    ) -> Response:
         """
         Handles the request to Paystack API
         :param method:
@@ -186,7 +186,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
             method, endpoint, data=data, params=params, **kwargs
         )
 
-    async def _get_request(self, endpoint: str, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs) -> ClientResponse:
+    async def _get_request(self, endpoint: str, params: Optional[Union[Dict[str, Any], None]] = None, **kwargs) -> Response:
         """
         Makes the GET request to Paystack API
         :param endpoint:
@@ -196,7 +196,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         """
         return await self._request("GET", endpoint, params=params, **kwargs)
 
-    async def _post_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> ClientResponse:
+    async def _post_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> Response:
         """
         Makes the POST request to Paystack API
         :param endpoint:
@@ -206,7 +206,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         """
         return await self._request("POST", endpoint, data=data, **kwargs)
 
-    async def _put_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> ClientResponse:
+    async def _put_request(self, endpoint: str, data: Optional[Union[Dict[str, Any], List[Any], None]] = None, **kwargs) -> Response:
         """
         Makes the PUT request to Paystack API
         :param endpoint:
@@ -216,7 +216,7 @@ class AsyncPayStackBaseClientAPI(AsyncBaseClientAPI):
         """
         return await self._request("PUT", endpoint, data=data, **kwargs)
 
-    async def _delete_request(self, endpoint: str, **kwargs) -> ClientResponse:
+    async def _delete_request(self, endpoint: str, **kwargs) -> Response:
         """
         Makes the DELETE request to Paystack API
         :param endpoint:
