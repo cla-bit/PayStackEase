@@ -4,9 +4,11 @@ Wrapper for Paystack SubAccounts API
 The Subaccounts API allows you to create and manage subaccounts on your integration.
 Subaccounts can be used to split payment between two accounts (your main account and a subaccount).
 """
+from requests import Response
 
 from datetime import date
 from typing import Optional, Dict, List, Any
+from paystackease.helpers.tool_kit import SettlementSchedule
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -27,7 +29,7 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
             primary_contact_name: Optional[str] = None,
             primary_contact_phone: Optional[str] = None,
             metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Create a subaccount
 
@@ -42,7 +44,7 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
         :param: metadata: Stringified JSON object. {"custom_fields": [{"name": "value"}]}
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         data = {
             "business_name": business_name,
@@ -63,15 +65,15 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
             business_name: str,
             settlement_bank: str,
             account_number: str,
-            active: Optional[bool] = None,
+            active: Optional[bool] = True,
             percentage_charge: Optional[float] = None,
             description: Optional[str] = None,
             primary_contact_email: Optional[str] = None,
             primary_contact_name: Optional[str] = None,
             primary_contact_phone: Optional[str] = None,
-            settlement_schedule: Optional[str] = None,
+            settlement_schedule: Optional[SettlementSchedule] = SettlementSchedule.AUTO.value,
             metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
-    ) -> dict:
+    ) -> Response:
         """
         Update a subaccount
 
@@ -94,7 +96,7 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
         :param: metadata: Stringified JSON object. {"custom_fields": [{"name": "value"}]}
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert bool to string
@@ -117,11 +119,11 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
 
     def list_subaccounts(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
+            per_page: Optional[int] = 50,
+            page: Optional[int] = 1,
             from_date: Optional[date] = None,
             to_date: Optional[date] = None,
-    ) -> dict:
+    ) -> Response:
         """
         List all subaccounts
 
@@ -131,7 +133,7 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
         :param: to_date:
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
 
         # convert date to string
@@ -141,13 +143,13 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
         return self._get_request("/subaccount", params=params)
 
-    def fetch_subaccount(self, id_or_code: str) -> dict:
+    def fetch_subaccount(self, id_or_code: str) -> Response:
         """
         Fetch details of a specific subaccount
 
         :param: id_or_code: The id or code of the subaccount.
 
         :return: The response from the API
-        :rtype: dict
+        :rtype: Response object
         """
         return self._get_request(f"/subaccount/{id_or_code}")
