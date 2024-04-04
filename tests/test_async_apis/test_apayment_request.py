@@ -1,10 +1,9 @@
 """ Test for synchronous Customers """
 
-import json
 from datetime import date
 import pytest
-import responses
 
+from paystackease.helpers.tool_kit import PayMentRequestStatus
 from tests.conftest import async_payment_requests_client, mocked_responses
 
 
@@ -13,7 +12,7 @@ from tests.conftest import async_payment_requests_client, mocked_responses
     ("customer", "amount", "draft", "has_invoice", "send_notification", "due_date", "description", "line_items", "tax", "currency", "invoice_number", "split_code"),
     [
         ("Test", 10000, True, True, True, date(2012, 12, 12), "Testing",
-         [{"name":"item 1", "amount":2000, "quantity": 1}], [{"name":"VAT", "amount":200}], "NGN", 1234, "SPLIT_test1234"),
+         [{"name": "item 1", "amount": 2000, "quantity": 1}], [{"name": "VAT", "amount": 200}], "NGN", 1234, "SPLIT_test1234"),
         ("Test", 10000, True, True, True, None, None, None, None, None, None, None)
     ]
 )
@@ -30,9 +29,9 @@ async def test_create_payment_request(async_payment_requests_client, mocked_resp
         "line_items": line_items,
         "tax": tax,
         "currency": currency,
-        "send_notification": send_notification,
-        "draft": draft,
-        "has_invoice": has_invoice,
+        "send_notification": str(send_notification),
+        "draft": str(draft),
+        "has_invoice": str(has_invoice),
         "invoice_number": invoice_number,
         "split_code": split_code,
     }
@@ -63,8 +62,8 @@ async def test_create_payment_request(async_payment_requests_client, mocked_resp
 @pytest.mark.parametrize(
     ("from_date", "to_date", "per_page", "page", "customer", "status", "currency", "include_archive"),
     [
-        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "Test", "pending", "NGN", "True"),
-        (None, None, None, None, None, None, None, None)
+        (date(2012, 12, 12), date(2012, 12, 12), 1, 10, "Test", PayMentRequestStatus.PENDING.value, "NGN", True),
+        (None, None, None, None, None, None, None, True)
     ]
 )
 async def test_list_payment_requests(async_payment_requests_client, mocked_responses, from_date, to_date, per_page, page, customer, status, currency, include_archive):
@@ -77,7 +76,7 @@ async def test_list_payment_requests(async_payment_requests_client, mocked_respo
         "customer": customer,
         "status": status,
         "currency": currency,
-        "include_archive": include_archive,
+        "include_archive": str(include_archive),
         "from": from_date,
         "to": to_date,
     }
@@ -178,7 +177,7 @@ async def test_finalize_payment(async_payment_requests_client, mocked_responses,
     payment_code = "test-payment-code"
     url = f"https://api.paystack.co/paymentrequest/finalize/{payment_code}"
     response_data = {"status": "success"}
-    expected_data = {"send_notification": notice}
+    expected_data = {"send_notification": str(notice)}
 
     mocked_responses.post(
         url,
@@ -214,8 +213,8 @@ async def test_update_payment_request(async_payment_requests_client, mocked_resp
         "line_items": line_items,
         "tax": tax,
         "currency": currency,
-        "send_notification": send_notification,
-        "draft": draft,
+        "send_notification": str(send_notification),
+        "draft": str(draft),
         "invoice_number": invoice_number,
         "split_code": split_code,
     }
