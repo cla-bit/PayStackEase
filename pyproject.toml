@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paystackease"
-version = "0.1.3"
+version = "1.0.0"
 description = "This is a simple api wrapper for paystack"
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
 maintainers = [
@@ -8,7 +8,7 @@ maintainers = [
 ]
 license = "MIT"
 readme = "README.md"
-keywords = ["paystack", "api", "wrapper"]
+keywords = ["paystack", "paystackease", "python", "api", "payment integration"]
 classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -30,7 +30,6 @@ text = "Copyright ©2024 Peter Mbachu"
 
 [tool.poetry.urls]
 "Homepage" = "https://github.com/cla-bit/PayStackEase"
-"Repository" = "https://github.com/cla-bit/PayStackEase"
 "Source Code" = "https://github.com/cla-bit/PayStackEase"
 "Documentation" = "https://paystackease.readthedocs.io/en/latest/"
 "Bug Tracker" = "https://github.com/cla-bit/PayStackEase/issues"
@@ -41,7 +40,6 @@ python = "^3.9"
 aiohttp = "^3.8"
 requests = "^2.31"
 python-decouple = "^3.8"
-twine = "^5.0"
 
 
 [tool.poetry.group.docs.dependencies]
@@ -55,6 +53,7 @@ sphinx-autobuild = "^2024.2.4"
 [tool.poetry.group.dev.dependencies]
 black = "^24.2"
 pylint = "^3.1"
+twine = "^5.0"
 
 
 [tool.poetry.group.test.dependencies]
