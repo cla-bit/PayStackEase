@@ -3,11 +3,12 @@ Wrapper for Asynchronous Paystack Refund API
 
 The Refunds API allows you to create and manage transaction refunds.
 """
-from aiohttp import ClientResponse
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
+from paystackease._utils import Response
+from paystackease.helpers.tool_kit import Currency
 
 
 class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
@@ -19,11 +20,11 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
     async def create_refund(
             self,
             transaction_ref_or_id: str,
-            amount: Optional[int] = None,
-            currency: Optional[str] = None,
-            customer_note: Optional[str] = None,
-            merchant_note: Optional[str] = None,
-    ) -> ClientResponse:
+            amount: Optional[Union[int, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            customer_note: Optional[Union[str, None]] = None,
+            merchant_note: Optional[Union[str, None]] = None,
+    ) -> Response:
         """
         Create a refund
 
@@ -34,7 +35,7 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         :param: merchant_note: The merchant note or reason
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "transaction": transaction_ref_or_id,
@@ -47,13 +48,13 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_refunds(
             self,
-            reference: Optional[str] = None,
-            currency: Optional[str] = None,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-    ) -> ClientResponse:
+            reference: Optional[Union[str, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+    ) -> Response:
         """
         List refunds
 
@@ -65,7 +66,7 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date: A timestamp at which to stop listing refund
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
         note::
 
@@ -86,13 +87,13 @@ class AsyncRefundClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/refund", params=params)
 
-    async def fetch_refund(self, reference: str) -> ClientResponse:
+    async def fetch_refund(self, reference: str) -> Response:
         """
         Fetch a refund
 
         :param: reference: The transaction reference to fetch for the refund
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/refund/{reference}")

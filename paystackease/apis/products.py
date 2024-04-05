@@ -3,10 +3,10 @@ Wrapper for Paystack Products API
 
 The Products API allows you to create and manage inventories on your integration.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -22,8 +22,8 @@ class ProductClientAPI(PayStackBaseClientAPI):
             description: str,
             amount: int,
             currency: str,
-            unlimited: Optional[bool] = None,
-            quantity: Optional[int] = None,
+            unlimited: Optional[Union[bool, None]] = True,
+            quantity: Optional[Union[int, None]] = None,
     ) -> Response:
         """
         Create a product
@@ -54,10 +54,10 @@ class ProductClientAPI(PayStackBaseClientAPI):
 
     def list_products(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List all the products
@@ -96,8 +96,8 @@ class ProductClientAPI(PayStackBaseClientAPI):
             description: str,
             amount: int,
             currency: str,
-            unlimited: Optional[bool] = None,
-            quantity: Optional[int] = None,
+            unlimited: Optional[Union[bool, None]] = True,
+            quantity: Optional[Union[int, None]] = None,
     ) -> Response:
         """
         Update a product detail

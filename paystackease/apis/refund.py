@@ -3,11 +3,12 @@ Wrapper for Paystack Refund API
 
 The Refunds API allows you to create and manage transaction refunds.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
+from paystackease.helpers.tool_kit import Currency
 
 
 class RefundClientAPI(PayStackBaseClientAPI):
@@ -19,10 +20,10 @@ class RefundClientAPI(PayStackBaseClientAPI):
     def create_refund(
             self,
             transaction_ref_or_id: str,
-            amount: Optional[int] = None,
-            currency: Optional[str] = None,
-            customer_note: Optional[str] = None,
-            merchant_note: Optional[str] = None,
+            amount: Optional[Union[int, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            customer_note: Optional[Union[str, None]] = None,
+            merchant_note: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Create a refund
@@ -47,12 +48,12 @@ class RefundClientAPI(PayStackBaseClientAPI):
 
     def list_refunds(
             self,
-            reference: Optional[str] = None,
-            currency: Optional[str] = None,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            reference: Optional[Union[str, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List refunds

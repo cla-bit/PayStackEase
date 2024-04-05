@@ -3,10 +3,10 @@ Wrapper for Paystack Plans API
 
 The Plans API allows you to create and manage installment payment options on your integration.
 """
-from requests import Response
 
-from typing import Optional
+from typing import Optional, Union
 from paystackease.helpers.tool_kit import Interval
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -25,7 +25,7 @@ class PlanClientAPI(PayStackBaseClientAPI):
             invoice_limit: int,
             send_invoices: bool,
             send_sms: bool,
-            description: Optional[str] = None,
+            description: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Create a plan
@@ -60,11 +60,11 @@ class PlanClientAPI(PayStackBaseClientAPI):
 
     def list_plans(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            status: Optional[str] = None,
-            interval: Optional[Interval] = None,
-            amount: Optional[int] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            status: Optional[Union[str, None]] = None,
+            interval: Optional[Union[Interval, None]] = None,
+            amount: Optional[Union[int, None]] = None,
     ) -> Response:
         """
         List all the plans
@@ -108,7 +108,7 @@ class PlanClientAPI(PayStackBaseClientAPI):
             send_sms: bool,
             currency: str,
             invoice_limit: int,
-            description: Optional[str] = None,
+            description: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Update a plan detail
