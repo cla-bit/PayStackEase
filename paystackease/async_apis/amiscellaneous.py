@@ -3,11 +3,11 @@ Wrapper for Paystack Miscellaneous API.
 
 The Miscellaneous API are supporting APIs that can be used to provide more details to other APIs.
 """
-from aiohttp import ClientResponse
 
-from typing import Optional
+from typing import Optional, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
-from paystackease.helpers.tool_kit import GateWay, Channels
+from paystackease._utils import Response
+from paystackease.helpers.tool_kit import GateWay, Channels, Currency
 
 
 class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
@@ -18,18 +18,18 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_banks(
             self,
-            country: Optional[str] = None,
-            use_cursor: Optional[bool] = False,
-            per_page: Optional[int] = 50,
-            pay_with_bank_transfer: Optional[bool] = False,
-            pay_with_bank: Optional[bool] = False,
-            enabled_for_verification: Optional[bool] = False,
-            next_cursor: Optional[str] = None,
-            previous_cursor: Optional[str] = None,
-            gateway: Optional[GateWay] = None,
-            channel_type: Optional[Channels] = None,
-            currency: Optional[str] = None,
-    ) -> ClientResponse:
+            country: Optional[Union[str, None]] = None,
+            use_cursor: Optional[Union[bool, None]] = False,
+            per_page: Optional[Union[int, None]] = 50,
+            pay_with_bank_transfer: Optional[Union[bool, None]] = False,
+            pay_with_bank: Optional[Union[bool, None]] = False,
+            enabled_for_verification: Optional[Union[bool, None]] = False,
+            next_cursor: Optional[Union[str, None]] = None,
+            previous_cursor: Optional[Union[str, None]] = None,
+            gateway: Optional[Union[GateWay, None]] = None,
+            channel_type: Optional[Union[Channels, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+    ) -> Response:
         """
         Get a list of all supported banks and their properties
 
@@ -53,8 +53,14 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         For Ghanaian channels, please use either mobile_money for mobile money channels OR ghipps for bank channels
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
+        # convert to strings
+        use_cursor = self._convert_to_string(use_cursor)
+        pay_with_bank_transfer = self._convert_to_string(pay_with_bank_transfer)
+        pay_with_bank = self._convert_to_string(pay_with_bank)
+        enabled_for_verification = self._convert_to_string(enabled_for_verification)
+
         params = {
             "country": country,
             "use_cursor": use_cursor,
@@ -70,23 +76,23 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/bank", params=params)
 
-    async def list_countries(self) -> ClientResponse:
+    async def list_countries(self) -> Response:
         """
         Get a list of all supported countries and their properties
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request("/country")
 
-    async def list_states(self, country: str) -> ClientResponse:
+    async def list_states(self, country: str) -> Response:
         """
         Get a list of all supported states and their properties
 
         :param: country: The country code from which to obtain the list of supported states
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         params = {"country": country}
         return await self._get_request("/address_verification/states", params=params)

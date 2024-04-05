@@ -1,7 +1,6 @@
 """ Test for synchronous Customers """
 
 import pytest
-import responses
 
 from tests.conftest import async_miscellaneous_client, mocked_responses
 
@@ -24,18 +23,18 @@ from tests.conftest import async_miscellaneous_client, mocked_responses
     [
         (
             "ghana",
-            "True",
+            True,
             1,
-            "True",
-            "True",
-            "True",
+            True,
+            True,
+            True,
             "next",
             "previous",
             "emandate",
             "mobile_money",
             "NGN",
         ),
-        (None, None, None, None, None, None, None, None, None, None, None),
+        (None, False, None, False, False, False, None, None, None, None, None),
     ],
 )
 async def test_list_banks(
@@ -58,11 +57,11 @@ async def test_list_banks(
     response_data = {"status": "success"}
     url_params = {
         "country": country,
-        "use_cursor": use_cursor,
+        "use_cursor": str(use_cursor),
         "perPage": per_page,
-        "supports_transfer": pay_with_bank_transfer,
-        "pay_with_bank": pay_with_bank,
-        "enabled_for_verification": enabled_for_notification,
+        "supports_transfer": str(pay_with_bank_transfer),
+        "pay_with_bank": str(pay_with_bank),
+        "enabled_for_verification": str(enabled_for_notification),
         "next": next_cursor,
         "previous": previous_cursor,
         "gateway": gateway,
