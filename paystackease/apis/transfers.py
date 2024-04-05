@@ -3,11 +3,13 @@ Wrapper for Paystack Transfers APIs
 
 The Transfers API allows you to automate sending money to your customers.
 """
-from requests import Response
+
 from datetime import date
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
 
 from paystackease._base import PayStackBaseClientAPI
+from paystackease._utils import Response
+from paystackease.helpers.tool_kit import Currency
 
 
 class TransfersClientAPI(PayStackBaseClientAPI):
@@ -21,9 +23,9 @@ class TransfersClientAPI(PayStackBaseClientAPI):
             transfer_source: str,
             amount: int,
             transfer_recipient: str,
-            reason: Optional[str] = None,
-            currency: Optional[str] = None,
-            reference: Optional[str] = None,
+            reason: Optional[Union[str, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            reference: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Initiate a transfer. Upgrade your business to a Registered Business to use
@@ -79,11 +81,11 @@ class TransfersClientAPI(PayStackBaseClientAPI):
 
     def list_transfers(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            customer_id: Optional[str] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            customer_id: Optional[Union[str, None]] = None,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List transfers

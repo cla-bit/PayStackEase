@@ -3,10 +3,12 @@ Wrapper for Asynchronous Paystack Transfers APIs
 
 The Transfers API allows you to automate sending money to your customers.
 """
-from aiohttp import ClientResponse
-from datetime import date
-from typing import Optional, List, Dict, Any
 
+from datetime import date
+from typing import Optional, List, Dict, Any, Union
+
+from paystackease._utils import Response
+from paystackease.helpers.tool_kit import Currency
 from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
@@ -21,10 +23,10 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
             transfer_source: str,
             amount: int,
             transfer_recipient: str,
-            reason: Optional[str] = None,
-            currency: Optional[str] = None,
-            reference: Optional[str] = None,
-    ) -> ClientResponse:
+            reason: Optional[Union[str, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            reference: Optional[Union[str, None]] = None,
+    ) -> Response:
         """
         Initiate a transfer. Upgrade your business to a Registered Business to use
 
@@ -37,7 +39,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
                             Only -,_ and alphanumeric characters allowed.
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "source": transfer_source,
@@ -49,7 +51,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/transfer", data=data)
 
-    async def finalize_transfer(self, transfer_code: str, otp: str) -> ClientResponse:
+    async def finalize_transfer(self, transfer_code: str, otp: str) -> Response:
         """
         Finalize an initiated transfer
 
@@ -57,14 +59,14 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :param: otp: The OTP sent to the business phone to verify transfer
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {"transfer_code": transfer_code, "otp": otp}
         return await self._post_request("/transfer/finalize_transfer", data=data)
 
     async def initiate_bulk_transfer(
             self, transfer_source: str, transfers: List[Dict[str, Any]]
-    ) -> ClientResponse:
+    ) -> Response:
         """
         Batch multiple transfers in a single request
 
@@ -72,19 +74,19 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :param: transfers: A list of transfer objects keys [ { amount | recipient | reference | reason } ]
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {"source": transfer_source, "transfers": transfers}
         return await self._post_request("/transfer/bulk", data=data)
 
     async def list_transfers(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            customer_id: Optional[str] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-    ) -> ClientResponse:
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            customer_id: Optional[Union[str, None]] = None,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+    ) -> Response:
         """
         List transfers
 
@@ -95,7 +97,7 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
 
         # convert date to string
@@ -111,24 +113,24 @@ class AsyncTransfersClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/transfer", params=params)
 
-    async def fetch_transfer(self, id_or_code: str) -> ClientResponse:
+    async def fetch_transfer(self, id_or_code: str) -> Response:
         """
         Get details of a transfer
 
         :param: id_or_code: The id or code of the transfer
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/transfer/{id_or_code}")
 
-    async def verify_transfer(self, reference: str) -> ClientResponse:
+    async def verify_transfer(self, reference: str) -> Response:
         """
         Verify a transfer
 
         :param: reference: The reference of the transfer to verify
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._post_request(f"/transfer/verify/{reference}")
