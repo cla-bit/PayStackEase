@@ -3,12 +3,12 @@ Wrapper for Asynchronous Paystack Payment Requests API.
 
 The Payment Requests API allows you manage requests for payment of goods and services.
 """
-from aiohttp import ClientResponse
 
 from datetime import date
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
-from paystackease.helpers.tool_kit import PayMentRequestStatus
+from paystackease._utils import Response
+from paystackease.helpers.tool_kit import PayMentRequestStatus, Currency
 
 
 class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
@@ -24,14 +24,14 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
             draft: bool,
             has_invoice: bool,
             send_notification: bool,
-            due_date: Optional[date] = None,
-            description: Optional[str] = None,
-            line_items: Optional[List[Dict[str, Any]]] = None,
-            tax: Optional[List[Dict[str, Any]]] = None,
-            currency: Optional[str] = None,
-            invoice_number: Optional[int] = None,
-            split_code: Optional[str] = None,
-    ) -> ClientResponse:
+            due_date: Optional[Union[date, None]] = None,
+            description: Optional[Union[str, Any]] = None,
+            line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
+            tax: Optional[Union[List[Dict[str, Any]], None]] = None,
+            currency: Optional[Union[Currency, Any]] = None,
+            invoice_number: Optional[Union[int, Any]] = None,
+            split_code: Optional[Union[str, Any]] = None,
+    ) -> Response:
         """
         Create a payment request for a transaction
 
@@ -49,7 +49,7 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
         :param: split_code: split code of the transaction split
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         # convert date and bool to string
         due_date = self._convert_to_string(due_date)
@@ -75,15 +75,15 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_payment_requests(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
-            customer: Optional[str] = None,
-            status: Optional[PayMentRequestStatus] = None,
-            currency: Optional[str] = None,
-            include_archive: Optional[bool] = True,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-    ) -> ClientResponse:
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            customer: Optional[Union[str, None]] = None,
+            status: Optional[Union[PayMentRequestStatus, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            include_archive: Optional[Union[bool, None]] = True,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+    ) -> Response:
         """
         List all the payment requests
 
@@ -97,7 +97,7 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date: A timestamp from which to get payment requests {2016-09-24T00:00:05.000Z, 2016-09-21}
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
 
         # convert date to string
@@ -117,49 +117,49 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/paymentrequest", params=params)
 
-    async def fetch_payment_request(self, id_or_code: str) -> ClientResponse:
+    async def fetch_payment_request(self, id_or_code: str) -> Response:
         """
         Get details of a payment request on your integration
 
         :param: id_or_code: ID or Code of the payment request
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/paymentrequest/{id_or_code}")
 
-    async def verify_payment_request(self, code: str) -> ClientResponse:
+    async def verify_payment_request(self, code: str) -> Response:
         """
         Verify details of a payment request on your integration
 
         :param: code: Payment request code
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/paymentrequest/verify/{code}")
 
-    async def send_notification(self, code: str) -> ClientResponse:
+    async def send_notification(self, code: str) -> Response:
         """
         Send notification of a payment request to a customer
 
         :param: code: Payment request code
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._post_request(f"/paymentrequest/notify/{code}")
 
-    async def payment_request_total(self) -> ClientResponse:
+    async def payment_request_total(self) -> Response:
         """
         Get total of a payment request metric
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request("/paymentrequest/totals")
 
-    async def finalize_payment_request(self, code: str, send_notification: bool) -> ClientResponse:
+    async def finalize_payment_request(self, code: str, send_notification: bool) -> Response:
         """
         Finalize a draft payment request
 
@@ -167,7 +167,7 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
         :param: send_notification: Set true if you want to send a notification to the customer email
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         # convert to strings
         send_notification = self._convert_to_string(send_notification)
@@ -178,18 +178,18 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
     async def update_payment_request(
             self,
             id_or_code: str,
-            customer: Optional[str] = None,
-            amount: Optional[int] = None,
-            description: Optional[str] = None,
-            line_items: Optional[List[Dict[str, Any]]] = None,
-            tax: Optional[List[Dict[str, Any]]] = None,
-            currency: Optional[str] = None,
-            due_date: Optional[date] = None,
-            send_notification: Optional[bool] = True,
-            draft: Optional[bool] = True,
-            invoice_number: Optional[int] = None,
-            split_code: Optional[str] = None,
-    ) -> ClientResponse:
+            customer: Optional[Union[str, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            description: Optional[Union[str, None]] = None,
+            line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
+            tax: Optional[Union[List[Dict[str, Any]], None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            due_date: Optional[Union[date, None]] = None,
+            send_notification: Optional[Union[bool, None]] = True,
+            draft: Optional[Union[bool, None]] = True,
+            invoice_number: Optional[Union[int, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+    ) -> Response:
         """
         Update a payment request
 
@@ -207,7 +207,7 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
         :param: split_code: split code of the transaction split
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
 
         # convert date and bool to string
@@ -230,13 +230,13 @@ class AsyncPaymentRequestClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._put_request(f"/paymentrequest/{id_or_code}", data=data)
 
-    async def archive_payment_request(self, code: str) -> ClientResponse:
+    async def archive_payment_request(self, code: str) -> Response:
         """
         Archive a payment request
 
         :param: code: Payment request code
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._post_request(f"/paymentrequest/archive/{code}")

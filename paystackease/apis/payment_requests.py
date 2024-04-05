@@ -3,12 +3,12 @@ Wrapper for Paystack Payment Requests API.
 
 The Payment Requests API allows you manage requests for payment of goods and services.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
-from paystackease.helpers.tool_kit import PayMentRequestStatus
+from paystackease.helpers.tool_kit import PayMentRequestStatus, Currency
 
 
 class PaymentRequestClientAPI(PayStackBaseClientAPI):
@@ -24,13 +24,13 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
             draft: bool,
             has_invoice: bool,
             send_notification: bool,
-            due_date: Optional[date] = None,
-            description: Optional[str] = None,
-            line_items: Optional[List[Dict[str, Any]]] = None,
-            tax: Optional[List[Dict[str, Any]]] = None,
-            currency: Optional[str] = None,
-            invoice_number: Optional[int] = None,
-            split_code: Optional[str] = None,
+            due_date: Optional[Union[date, None]] = None,
+            description: Optional[Union[str, Any]] = None,
+            line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
+            tax: Optional[Union[List[Dict[str, Any]], None]] = None,
+            currency: Optional[Union[Currency, Any]] = None,
+            invoice_number: Optional[Union[int, Any]] = None,
+            split_code: Optional[Union[str, Any]] = None,
     ) -> Response:
         """
         Create a payment request for a transaction
@@ -75,14 +75,14 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
 
     def list_payment_requests(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            customer: Optional[str] = None,
-            status: Optional[PayMentRequestStatus] = None,
-            currency: Optional[str] = None,
-            include_archive: Optional[bool] = True,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            customer: Optional[Union[str, None]] = None,
+            status: Optional[Union[PayMentRequestStatus, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            include_archive: Optional[Union[bool, None]] = True,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List all the payment requests
@@ -178,17 +178,17 @@ class PaymentRequestClientAPI(PayStackBaseClientAPI):
     def update_payment_request(
             self,
             id_or_code: str,
-            customer: Optional[str] = None,
-            amount: Optional[int] = None,
-            description: Optional[str] = None,
-            line_items: Optional[List[Dict[str, Any]]] = None,
-            tax: Optional[List[Dict[str, Any]]] = None,
-            currency: Optional[str] = None,
-            due_date: Optional[date] = None,
-            send_notification: Optional[bool] = True,
-            draft: Optional[bool] = True,
-            invoice_number: Optional[int] = None,
-            split_code: Optional[str] = None,
+            customer: Optional[Union[str, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            description: Optional[Union[str, None]] = None,
+            line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
+            tax: Optional[Union[List[Dict[str, Any]], None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            due_date: Optional[Union[date, None]] = None,
+            send_notification: Optional[Union[bool, None]] = True,
+            draft: Optional[Union[bool, None]] = True,
+            invoice_number: Optional[Union[int, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Update a payment request
