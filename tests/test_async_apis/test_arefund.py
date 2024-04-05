@@ -108,7 +108,7 @@ async def test_list_refunds(
     assert response is not None
 
 
-@pytest.mark.asycnio
+@pytest.mark.asyncio
 async def test_fetch_refund(async_refund_client, mocked_responses):
     """Test for synchronous Customers"""
     ref_id = "test-ref-id"
