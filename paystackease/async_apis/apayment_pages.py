@@ -3,10 +3,10 @@ Wrapper for Asynchronous Paystack Payment Pages API.
 
 The Payment Pages API provides a quick and secure way to collect payment for products.
 """
-from aiohttp import ClientResponse
 
 from datetime import date
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Union
+from paystackease._utils import Response
 from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
@@ -19,14 +19,14 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
     async def create_payment_page(
             self,
             name: str,
-            description: Optional[str] = None,
-            amount: Optional[int] = None,
-            split_code: Optional[str] = None,
-            page_slug: Optional[str] = None,
-            redirect_url: Optional[str] = None,
-            metadata: Optional[Dict[str, Any]] = None,
-            custom_fields: Optional[List[Dict[str, Any]]] = None,
-    ) -> ClientResponse:
+            description: Optional[Union[str, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+            page_slug: Optional[Union[str, None]] = None,
+            redirect_url: Optional[Union[str, None]] = None,
+            metadata: Optional[Union[Dict[str, Any], None]] = None,
+            custom_fields: Optional[Union[List[Dict[str, Any]], None]] = None,
+    ) -> Response:
         """
         Create a payment page
 
@@ -46,7 +46,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :param: custom_fields: If you would like to accept custom fields, specify them here.
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {
             "name": name,
@@ -62,11 +62,11 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_payment_pages(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-    ) -> ClientResponse:
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+    ) -> Response:
         """
         List all the payment pages
 
@@ -76,7 +76,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date: A timestamp from which to start listing page
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
         note::
             Date Time value is in this format: 2016-09-24T00:00:05.000Z, 2016-09-21
@@ -89,25 +89,25 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
         return await self._get_request("/page", params=params)
 
-    async def fetch_payment_page(self, page_id_or_slug: str) -> ClientResponse:
+    async def fetch_payment_page(self, page_id_or_slug: str) -> Response:
         """
         Get details of a payment page
 
         :param: page_id_or_slug: ID or slug of the payment page
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/page/{page_id_or_slug}")
 
     async def update_payment_page(
             self,
             page_id_or_slug: str,
-            name: Optional[str] = None,
-            description: Optional[str] = None,
-            amount: Optional[int] = None,
-            active: Optional[bool] = None,
-    ) -> ClientResponse:
+            name: Optional[Union[str, None]] = None,
+            description: Optional[Union[str, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            active: Optional[Union[bool, None]] = True,
+    ) -> Response:
         """
         Update a payment page detail
 
@@ -118,7 +118,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :param: active: Set false to deactivate the page url
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
 
         # convert bool to string
@@ -132,18 +132,18 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._put_request(f"/page/{page_id_or_slug}", data=data)
 
-    async def check_slug_available(self, page_slug: str) -> ClientResponse:
+    async def check_slug_available(self, page_slug: str) -> Response:
         """
         Check if a slug is available
 
         :param: page_slug: URL slug you would like to be associated with this page.
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         return await self._get_request(f"/page/check_slug_availability/{page_slug}")
 
-    async def add_products(self, payment_id: int, product: List[int]) -> ClientResponse:
+    async def add_products(self, payment_id: int, product: List[int]) -> Response:
         """
         Add products to a payment page
 
@@ -151,7 +151,7 @@ class AsyncPaymentPagesClientAPI(AsyncPayStackBaseClientAPI):
         :param: product: List of IDS of all the products
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
         data = {"product": product}
         return await self._post_request(f"/page/{payment_id}/product", data=data)

@@ -3,10 +3,10 @@ Wrapper for Paystack Payment Pages API.
 
 The Payment Pages API provides a quick and secure way to collect payment for products.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -19,13 +19,13 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
     def create_payment_page(
             self,
             name: str,
-            description: Optional[str] = None,
-            amount: Optional[int] = None,
-            split_code: Optional[str] = None,
-            page_slug: Optional[str] = None,
-            redirect_url: Optional[str] = None,
-            metadata: Optional[Dict[str, Any]] = None,
-            custom_fields: Optional[List[Dict[str, Any]]] = None,
+            description: Optional[Union[str, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            split_code: Optional[Union[str, None]] = None,
+            page_slug: Optional[Union[str, None]] = None,
+            redirect_url: Optional[Union[str, None]] = None,
+            metadata: Optional[Union[Dict[str, Any], None]] = None,
+            custom_fields: Optional[Union[List[Dict[str, Any]], None]] = None,
     ) -> Response:
         """
         Create a payment page
@@ -62,10 +62,10 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
 
     def list_payment_pages(
             self,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List all the payment pages
@@ -103,10 +103,10 @@ class PaymentPagesClientAPI(PayStackBaseClientAPI):
     def update_payment_page(
             self,
             page_id_or_slug: str,
-            name: Optional[str] = None,
-            description: Optional[str] = None,
-            amount: Optional[int] = None,
-            active: Optional[bool] = None,
+            name: Optional[Union[str, None]] = None,
+            description: Optional[Union[str, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            active: Optional[Union[bool, None]] = True,
     ) -> Response:
         """
         Update a payment page detail
