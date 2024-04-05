@@ -18,7 +18,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
 
     Paystack Miscellaneous API Reference: `Miscellaneous`_
 
-    .. py:classmethod:: async list_banks(country: str | None = None, use_cursor: bool | None = False, per_page: int | None = 50, pay_with_bank_transfer: bool | None = False, pay_with_bank: bool | None = False, enabled_for_verification: bool | None = False, next_cursor: str | None = None, previous_cursor: str | None = None, gateway: str | None = None, channel_type: str | None = None, currency: str | None = None)→ ClientResponse
+    .. py:classmethod:: async list_banks(country: str | None = None, use_cursor: bool | None = False, per_page: int | None = 50, pay_with_bank_transfer: bool | None = False, pay_with_bank: bool | None = False, enabled_for_verification: bool | None = False, next_cursor: str | None = None, previous_cursor: str | None = None, gateway: str | None = None, channel_type: str | None = None, currency: str | None = None)→ Response
 
         Get a list of all supported banks and their properties
 
@@ -46,16 +46,16 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type currency: str, optional
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async list_countries()→ ClientResponse
+    .. py:method:: async list_countries()→ Response
 
         Get a list of all supported countries and their properties
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-   .. py:method:: async list_states(country: str)→ ClientResponse
+   .. py:method:: async list_states(country: str)→ Response
 
         Get a list of all supported states and their properties
 
@@ -63,7 +63,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type country: str
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
 .. note::
 

@@ -15,7 +15,7 @@ Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provi
 
     Paystack Miscellaneous API Reference: `Payment Pages`_
 
-    .. py:method:: async add_products(payment_id: int, product: List[int])→ ClientResponse
+    .. py:method:: async add_products(payment_id: int, product: List[int])→ Response
 
         Add products to a payment page
 
@@ -25,9 +25,9 @@ Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provi
         :type product: list
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async check_slug_available(page_slug: str)→ ClientResponse
+    .. py:method:: async check_slug_available(page_slug: str)→ Response
 
         Check if a page slug is available
 
@@ -35,9 +35,9 @@ Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provi
         :type page_slug: str
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async create_payment_page(name: str, description: str | None = None, amount: int | None = None, split_code: str | None = None, page_slug: str | None = None, redirect_url: str | None = None, metadata: Dict[str, Any] | None = None, custom_fields: List[Dict[str, Any]] | None = None)→ ClientResponse
+    .. py:method:: async create_payment_page(name: str, description: str | None = None, amount: int | None = None, split_code: str | None = None, page_slug: str | None = None, redirect_url: str | None = None, metadata: Dict[str, Any] | None = None, custom_fields: List[Dict[str, Any]] | None = None)→ Response
 
         Create a new payment page
 
@@ -59,9 +59,9 @@ Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provi
         :type custom_fields: list, optional
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async fetch_payment_page(page_id_or_slug: str)→ ClientResponse
+    .. py:method:: async fetch_payment_page(page_id_or_slug: str)→ Response
 
         Fetch a payment page
 
@@ -69,9 +69,9 @@ Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provi
         :type page_id_or_slug: str
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async list_payment_pages(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
+    .. py:method:: async list_payment_pages(per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List all payment pages
 
@@ -85,9 +85,9 @@ Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provi
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async update_payment_page(page_id_or_slug: str, name: str | None = None, description: str | None = None, amount: int | None = None, active: bool | None = None)→ ClientResponse
+    .. py:method:: async update_payment_page(page_id_or_slug: str, name: str | None = None, description: str | None = None, amount: int | None = None, active: bool | None = None)→ Response
 
         Update a payment page
 
@@ -103,7 +103,7 @@ Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provi
         :type active: bool, optional
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
 
 .. _Payment Pages: https://paystack.com/docs/api/page/

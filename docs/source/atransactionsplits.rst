@@ -17,7 +17,7 @@ You can use the tool kit in the helpers module as reference: :doc:`toolkit`
 
     Paystack Transaction Split API Reference: `Transaction Splits`_
 
-    .. py:method:: async add_or_update_subaccount_split(split_id: str, subaccount: str, transaction_share: int)→ ClientResponse
+    .. py:method:: async add_or_update_subaccount_split(split_id: str, subaccount: str, transaction_share: int)→ Response
 
         Add a Subaccount to a Transaction Split, or update the share of an existing Subaccount in a Transaction Split
 
@@ -29,9 +29,9 @@ You can use the tool kit in the helpers module as reference: :doc:`toolkit`
         :type transaction_share: int
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async create_split(transaction_split_name: str, transaction_split_type: str, currency: str, subaccounts: List[Dict[str, Any]], bearer_type: str, bearer_subaccount: str)→ ClientResponse
+    .. py:method:: async create_split(transaction_split_name: str, transaction_split_type: str, currency: str, subaccounts: List[Dict[str, Any]], bearer_type: str, bearer_subaccount: str)→ Response
 
         Create a split payment on your integration
 
@@ -49,9 +49,9 @@ You can use the tool kit in the helpers module as reference: :doc:`toolkit`
         :type bearer_subaccount: str
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async fetch_split(split_id: str)→ ClientResponse
+    .. py:method:: async fetch_split(split_id: str)→ Response
 
         Fetch details of a specific transaction split
 
@@ -59,9 +59,9 @@ You can use the tool kit in the helpers module as reference: :doc:`toolkit`
         :type split_id: str
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async list_split(split_name: str | None = None, active: bool | None = None, sort_by: str | None = None, per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
+    .. py:method:: async list_split(split_name: str | None = None, active: bool | None = None, sort_by: str | None = None, per_page: int | None = None, page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List all the transaction splits
 
@@ -81,9 +81,9 @@ You can use the tool kit in the helpers module as reference: :doc:`toolkit`
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async remove_sub_account_split(split_id: str, subaccount: str)→ ClientResponse
+    .. py:method:: async remove_sub_account_split(split_id: str, subaccount: str)→ Response
 
         Remove a Sub Account from a transaction split
 
@@ -93,9 +93,9 @@ You can use the tool kit in the helpers module as reference: :doc:`toolkit`
         :type subaccount: str
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async update_split(split_id: str, transaction_split_name: str, active: bool, bearer_type: str | None = None, bearer_subaccount: str | None = None)→ ClientResponse
+    .. py:method:: async update_split(split_id: str, transaction_split_name: str, active: bool, bearer_type: str | None = None, bearer_subaccount: str | None = None)→ Response
 
         Update a specific transaction split details
 
@@ -111,7 +111,7 @@ You can use the tool kit in the helpers module as reference: :doc:`toolkit`
         :type bearer_subaccount: str, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
 
 .. _Transaction Splits: https://paystack.com/docs/api/split/

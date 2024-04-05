@@ -24,3 +24,9 @@ This holds a function to convert to subunits in NGN, GHS, USD, ZAR and KES
 
     >>> subunit = convert_to_subunit(amount=100, currency=Currency.NGN)
     >>> print(f"Subunit: {subunit}")
+
+This will printed as:
+
+.. code-block:: console
+
+    Subunit: 10000

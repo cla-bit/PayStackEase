@@ -15,7 +15,7 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
 
     Paystack Payment Request API Reference: `Payment Requests`_
 
-    .. py:method:: async archive_payment_request(code: str)→ ClientResponse
+    .. py:method:: async archive_payment_request(code: str)→ Response
 
         Archive a payment request
 
@@ -23,9 +23,9 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type code: str
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async create_payment_request(customer: str, amount: int, draft: bool, has_invoice: bool, send_notification: bool, due_date: date | None = None, description: str | None = None, line_items: List[Dict[str, Any]] | None = None, tax: List[Dict[str, Any]] | None = None, currency: str | None = None, invoice_number: int | None = None, split_code: str | None = None)→ ClientResponse
+    .. py:method:: async create_payment_request(customer: str, amount: int, draft: bool, has_invoice: bool, send_notification: bool, due_date: date | None = None, description: str | None = None, line_items: List[Dict[str, Any]] | None = None, tax: List[Dict[str, Any]] | None = None, currency: str | None = None, invoice_number: int | None = None, split_code: str | None = None)→ Response
 
         Create a payment request for a transaction
 
@@ -55,9 +55,9 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type split_code: str, optional
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async fetch_payment_request(id_or_code: str)→ ClientResponse
+    .. py:method:: async fetch_payment_request(id_or_code: str)→ Response
 
         Fetch a payment request
 
@@ -65,9 +65,9 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type id_or_code: str
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async finalize_payment_request(code: str, send_notification: bool)→ ClientResponse
+    .. py:method:: async finalize_payment_request(code: str, send_notification: bool)→ Response
 
         Finalize a payment request
 
@@ -77,9 +77,9 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type send_notification: bool
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async list_payment_requests(per_page: int | None = 50, page: int | None = 1, customer: str | None = None, status: str | None = None, currency: str | None = None, include_archive: bool | None = True, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
+    .. py:method:: async list_payment_requests(per_page: int | None = 50, page: int | None = 1, customer: str | None = None, status: str | None = None, currency: str | None = None, include_archive: bool | None = True, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List payment requests
 
@@ -101,16 +101,16 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async payment_request_total()→ ClientResponse
+    .. py:method:: async payment_request_total()→ Response
 
         Get the total number of payment requests
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async send_notification(code: str)→ ClientResponse
+    .. py:method:: async send_notification(code: str)→ Response
 
         Send a notification to a payment request to a customer
 
@@ -118,9 +118,9 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type code: str
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async update_payment_request(id_or_code: str, customer: str | None = None, amount: int | None = None, description: str | None = None, line_items: List[Dict[str, Any]] | None = None, tax: List[Dict[str, Any]] | None = None, currency: str | None = None, due_date: date | None = None, send_notification: bool | None = True, draft: bool | None = True, invoice_number: int | None = None, split_code: str | None = None)→ ClientResponse
+    .. py:method:: async update_payment_request(id_or_code: str, customer: str | None = None, amount: int | None = None, description: str | None = None, line_items: List[Dict[str, Any]] | None = None, tax: List[Dict[str, Any]] | None = None, currency: str | None = None, due_date: date | None = None, send_notification: bool | None = True, draft: bool | None = True, invoice_number: int | None = None, split_code: str | None = None)→ Response
 
         Update a payment request
 
@@ -150,9 +150,9 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type split_code: str, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async verify_payment_request(code: str)→ ClientResponse
+    .. py:method:: async verify_payment_request(code: str)→ Response
 
         Verify a payment request
 
@@ -160,7 +160,7 @@ Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API
         :type code: str
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
 
 .. _Payment Requests: https://paystack.com/docs/api/payment-request/

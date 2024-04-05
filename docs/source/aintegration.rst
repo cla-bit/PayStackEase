@@ -15,14 +15,14 @@ Wrapper for Asynchronous Paystack Integration API The Integration API allows you
 
     Paystack Integration API Reference: `Integration`_
 
-    .. py:method:: async fetch_timeout()→ ClientResponse
+    .. py:method:: async fetch_timeout()→ Response
 
         Fetch payment session timeout
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async update_timeout(timeout: int)→ ClientResponse
+    .. py:method:: async update_timeout(timeout: int)→ Response
 
         Update payment session timeout
 
@@ -30,7 +30,7 @@ Wrapper for Asynchronous Paystack Integration API The Integration API allows you
         :type timeout: int
 
         :return: The response from the API.
-        :rtype: ClientResponse object
+        :rtype: Response object
 
 .. note::
 

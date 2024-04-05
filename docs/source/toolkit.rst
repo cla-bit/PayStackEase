@@ -16,6 +16,18 @@ AccountType
     .. py:attribute:: PERSONAL = 'personal'
     .. py:attribute:: BUSINESS = 'business'
 
+Bearer
+-----------------
+
+.. py:class:: Bearer
+
+    Bases: Enum
+
+    Bearer supported by Paystack
+
+    .. py:attribute:: ACCOUNT = 'account'
+    .. py:attribute:: SUB_ACCOUNT = 'subaccount'
+
 Channels
 ---------------
 
@@ -48,6 +60,20 @@ Currency
     .. py:attribute:: USD= 'USD'
     .. py:attribute:: ZAR= 'ZAR'
 
+DisputeStatus
+-----------------
+
+.. py:class:: DisputeStatus
+
+    Bases: Enum
+
+    Dispute status.
+
+    .. py:attribute:: MERCHANT_FEEDBACK = "awaiting-merchant-feedback"
+    .. py:attribute:: BANK_FEEDBACK = "awaiting-bank-feedback"
+    .. py:attribute:: PENDING = "pending"
+    .. py:attribute:: RESOLVED = "resolved"
+
 DocumentType
 ---------------
 
@@ -61,6 +87,43 @@ DocumentType
     .. py:attribute:: IDENTITY_NUMBER= 'identityNumber'
     .. py:attribute:: PASSPORT_NUMBER= 'passportNumber'
 
+DVABank
+----------
+
+.. py:class:: DVABank
+
+    Bases: Enum
+
+    DVA_BANK supported by Paystack.
+
+    .. py:attribute:: WEMA_BANK = "wema-bank"
+    .. py:attribute:: TITAN = "titan-paystack"
+
+EFT
+-----
+
+.. py:class:: EFT
+
+    Bases: Enum
+
+    EFT supported by Paystack.
+
+    .. py:attribute:: OZOW = "ozow"
+
+EventAction
+---------------
+
+.. py:class:: EventAction
+
+    Bases: Enum
+
+    Event action supported by Paystack.
+
+    .. py:attribute:: PROCESS = "process"
+    .. py:attribute:: VIEW = "view"
+    .. py:attribute:: PRINT = "print"
+
+
 EventType
 ---------------
 
@@ -72,6 +135,19 @@ EventType
 
     .. py:attribute:: INVOICE= 'invoice'
     .. py:attribute:: TRANSACTION= 'transaction'
+
+GateWay
+---------
+
+.. py:class:: GateWay
+
+    Bases: Enum
+
+    Gateway supported by Paystack
+
+    .. py:attribute:: E_MANDATE = "emandate"
+    .. py:attribute:: DIGITAL_BANK_MANDATE = "digitalbankmandate"
+
 
 Interval
 ---------------
@@ -103,6 +179,17 @@ MobileMoney
     .. py:attribute:: M_PESA= 'mpesa'
     .. py:attribute:: VODAFONE= 'vod'
 
+PayMentRequestStatus
+-----------------------
+
+.. py:class:: PayMentRequestStatus
+
+    Bases: Enum
+
+    Payment request status supported by Paystack
+
+    .. py:attribute:: DRAFT = "draft"
+    .. py:attribute:: PENDING = "pending"
 
 PWT
 ---------------
@@ -115,7 +202,6 @@ PWT
 
     .. py:attribute:: ACCOUNT_EXPIRES_AT= 'account_expires_at'
 
-
 QRCODE
 ---------------
 
@@ -127,7 +213,6 @@ QRCODE
 
     .. py:attribute:: SCAN_TO_PAY= 'scan-to-pay'
     .. py:attribute:: VISA= 'visa'
-
 
 RecipientType
 ---------------
@@ -180,6 +265,20 @@ RiskAction
     .. py:attribute:: DEFAULT= 'default'
     .. py:attribute:: DENY= 'deny'
 
+SettlementSchedule
+--------------------
+
+.. py:class:: SettlementSchedule
+
+    Bases: Enum
+
+    Settlement Schedule supported by Paystack.
+
+    .. py:attribute::AUTO = "auto"
+    .. py:attribute::WEEKLY = "weekly"
+    .. py:attribute::MANUAL = "manual"
+    .. py:attribute::MONTHLY = "monthly"
+
 Status
 ---------------
 
@@ -205,6 +304,19 @@ SplitType
     .. py:attribute:: FLAT= 'flat'
     .. py:attribute:: PERCENTAGE= 'percentage'
 
+TransactionStatus
+-------------------
+
+.. py:class:: TransactionStatus
+
+    Bases: Enum
+
+    Transaction Status supported by Paystack.
+
+    .. py:attribute::FAILED = "failed"
+    .. py:attribute::SUCCESS = "success"
+    .. py:attribute::ABANDONED = "abandoned"
+
 USSD
 --------------
 
@@ -218,4 +330,3 @@ USSD
     .. py:attribute:: STERLING_BANK= '822'
     .. py:attribute:: UNITED_BANK_OF_AFRICA= '919'
     .. py:attribute:: ZENITH_BANK= '966'
-

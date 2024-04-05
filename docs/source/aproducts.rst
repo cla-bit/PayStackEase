@@ -16,7 +16,7 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
 
     Paystack Product API Reference: `Products`_
 
-    .. py:method:: async create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ ClientResponse
+    .. py:method:: async create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ Response
 
         Create a product
 
@@ -34,9 +34,9 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async fetch_product(product_id: str)→ ClientResponse
+    .. py:method:: async fetch_product(product_id: str)→ Response
 
         Fetch a product
 
@@ -44,9 +44,9 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type product_id: str
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async list_products(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ ClientResponse
+    .. py:method:: async list_products(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
 
         List products
 
@@ -60,9 +60,9 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
-    .. py:method:: async update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ ClientResponse
+    .. py:method:: async update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ Response
 
         Update a product
 
@@ -82,7 +82,7 @@ Wrapper for Asynchronous Paystack Products API The Products API allows you to cr
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
 
 .. _Products: https://paystack.com/docs/api/product/
