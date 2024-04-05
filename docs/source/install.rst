@@ -32,7 +32,7 @@ To use paystackease:
 
 .. code-block:: console
 
-    >>> (venv) $ pip install paystackease
+    >>> $ pip install paystackease
 
 .. note::
 
@@ -48,7 +48,8 @@ To use paystackease:
     Do not expose your secret key or commit your secret key to git, or use them in client-side code.
 
 .. hint::
-    Public key is to be used from your front-end when integrating using Paystack Inline. In this case you have to use you secret key
+    Public key is to be used from your front-end when integrating using Paystack Inline.
+    In this case you have to use you secret key since we are working with the server side.
 
     Set your environment variable as *PAYSTACK_SECRET_KEY*
 
