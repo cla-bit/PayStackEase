@@ -1,11 +1,5 @@
 # PayStackEase Library  
 
-<div style="text-align: center;">
-
-![paystackease](docs/images/logo-paystackease.png)
-
-</div>
-
 ------
 
 ![Python Versions](https://img.shields.io/badge/python-3.9|3.10|3.11|3.12-blue) ![License](https://img.shields.io/pypi/l/paystackease) ![pypi](https://img.shields.io/pypi/v/paystackease.svg)
