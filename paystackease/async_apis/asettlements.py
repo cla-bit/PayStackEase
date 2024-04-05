@@ -3,10 +3,10 @@ Wrapper for Asynchronous Paystack Settlements API
 
 The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
 """
-from aiohttp import ClientResponse
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
+from paystackease._utils import Response
 from paystackease._abase import AsyncPayStackBaseClientAPI
 from paystackease.helpers.tool_kit import STATUS
 
@@ -19,13 +19,13 @@ class AsyncSettlementClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_settlements(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            status: Optional[STATUS] = None,
-            subaccount: Optional[str] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-    ) -> ClientResponse:
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            status: Optional[Union[STATUS, None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+    ) -> Response:
         """
         List settlements made to your settlement accounts
 
@@ -37,7 +37,7 @@ class AsyncSettlementClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date: A timestamp from which to start listing settlements e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
         """
 
         # convert date to string
@@ -57,11 +57,11 @@ class AsyncSettlementClientAPI(AsyncPayStackBaseClientAPI):
     async def list_settlement_transactions(
             self,
             settlement_id: int,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
-    ) -> ClientResponse:
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
+    ) -> Response:
         """
         Get the transactions that make up a particular settlement
 
@@ -72,7 +72,7 @@ class AsyncSettlementClientAPI(AsyncPayStackBaseClientAPI):
         :param: to_date: A timestamp from which to start listing settlements
 
         :return: The response from the API
-        :rtype: ClientResponse object
+        :rtype: Response object
 
         note::
 

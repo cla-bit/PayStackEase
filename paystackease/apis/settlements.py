@@ -3,10 +3,10 @@ Wrapper for Paystack Settlements API
 
 The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 from paystackease.helpers.tool_kit import STATUS
 
@@ -19,12 +19,12 @@ class SettlementClientAPI(PayStackBaseClientAPI):
 
     def list_settlements(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            status: Optional[STATUS] = None,
-            subaccount: Optional[str] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            status: Optional[Union[STATUS, None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List settlements made to your settlement accounts
@@ -57,10 +57,10 @@ class SettlementClientAPI(PayStackBaseClientAPI):
     def list_settlement_transactions(
             self,
             settlement_id: int,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         Get the transactions that make up a particular settlement

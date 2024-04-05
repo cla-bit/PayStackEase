@@ -4,10 +4,10 @@ Wrapper for Paystack SubAccounts API
 The Subaccounts API allows you to create and manage subaccounts on your integration.
 Subaccounts can be used to split payment between two accounts (your main account and a subaccount).
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Union
+from paystackease._utils import Response
 from paystackease.helpers.tool_kit import SettlementSchedule
 from paystackease._base import PayStackBaseClientAPI
 
@@ -25,10 +25,10 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
             account_number: str,
             percentage_charge: float,
             description: str,
-            primary_contact_email: Optional[str] = None,
-            primary_contact_name: Optional[str] = None,
-            primary_contact_phone: Optional[str] = None,
-            metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
+            primary_contact_email: Optional[Union[str, None]] = None,
+            primary_contact_name: Optional[Union[str, None]] = None,
+            primary_contact_phone: Optional[Union[str, None]] = None,
+            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
     ) -> Response:
         """
         Create a subaccount
@@ -65,14 +65,14 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
             business_name: str,
             settlement_bank: str,
             account_number: str,
-            active: Optional[bool] = True,
-            percentage_charge: Optional[float] = None,
-            description: Optional[str] = None,
-            primary_contact_email: Optional[str] = None,
-            primary_contact_name: Optional[str] = None,
-            primary_contact_phone: Optional[str] = None,
-            settlement_schedule: Optional[SettlementSchedule] = SettlementSchedule.AUTO.value,
-            metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
+            active: Optional[Union[bool, None]] = True,
+            percentage_charge: Optional[Union[float, None]] = None,
+            description: Optional[Union[str, None]] = None,
+            primary_contact_email: Optional[Union[str, None]] = None,
+            primary_contact_name: Optional[Union[str, None]] = None,
+            primary_contact_phone: Optional[Union[str, None]] = None,
+            settlement_schedule: Optional[Union[SettlementSchedule, None]] = SettlementSchedule.AUTO.value,
+            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
     ) -> Response:
         """
         Update a subaccount
@@ -119,10 +119,10 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
 
     def list_subaccounts(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List all subaccounts

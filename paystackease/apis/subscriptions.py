@@ -3,10 +3,10 @@ Wrapper for Paystack Subscriptions API
 
 The Subscriptions API allows you to create and manage recurring payment on your integration.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional
+from typing import Optional, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -21,7 +21,7 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
             customer: str,
             plan_code: str,
             authorization: str,
-            start_date: Optional[date] = None,
+            start_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         Create a subscription
@@ -48,10 +48,10 @@ class SubscriptionClientAPI(PayStackBaseClientAPI):
 
     def list_subscriptions(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            customer: Optional[int] = None,
-            plan_code: Optional[int] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            customer: Optional[Union[int, None]] = None,
+            plan_code: Optional[Union[int, None]] = None,
     ) -> Response:
         """
         List all the subscriptions

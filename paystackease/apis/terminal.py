@@ -3,9 +3,9 @@ Wrapper for Paystack Terminal APIs
 
 The Terminal API allows you to build delightful in-person payment experiences.
 """
-from requests import Response
 
-from typing import Optional, Dict
+from typing import Optional, Dict, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 from paystackease.helpers.tool_kit import EventAction, EventType
 
@@ -107,8 +107,8 @@ class TerminalClientAPI(PayStackBaseClientAPI):
     def list_terminals(
             self,
             per_page: int = 50,
-            next_cursor: Optional[bool] = True,
-            previous_cursor: Optional[bool] = True,
+            next_cursor: Optional[Union[bool, None]] = True,
+            previous_cursor: Optional[Union[bool, None]] = True,
     ) -> Response:
         """
         List the Terminals available on your integration
