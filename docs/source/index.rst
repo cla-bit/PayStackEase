@@ -12,7 +12,7 @@ PayStackEase: Simplified Paystack Integration.
 It provides both asynchronous and synchronous wrappers for various Paystack functionalities,
 making it easier to integrate payment processing into your Python projects.
 
-----------------------------------------------------
+-----------------------------
 
 **Prerequisites**
 
@@ -24,31 +24,52 @@ Before you get started with **paystackease** library, ensure you have the follow
 
 .. _Paystack Create Account: https://paystack.com
 
-----------------------------------------------
+--------------
 
 **Target Audience**
 
-This library is intended for developers familiar with Python and the Paystack API.
+This library is intended for developers familiar with Python and the Paystack API
+and want to implement payment process using Paystack gateway in their python projects.
 
----------------------------------------------------
+---------------
 
 **Getting Started**
 
-As at the writing of this documentation, paystackease is still on *TestPYPI* platform, as it is still under tests for best performance.
-You can get started by downloading any of the source files here: https://test.pypi.org/project/paystackease/#files
+**paystackease** is on *PYPI* platform.
+See how to install paystackease python library: :doc:`usage`
 
 * Install using pip:
-   * Built Distribution file (.whl files) i.e the wheel file:
 
-      .. code-block:: console
+.. code-block:: bash
 
-         >>> pip install paystackease-0.1.2-py3-none-any.whl
+    $ pip install paystackease
 
-   * Source Distribution file (.tar.gz files):
 
-      .. code-block:: console
+* Install using pipx:
 
-         >>> pip install paystackease-0.1.2.tar.gz
+.. code-block:: bash
+
+    $ pipx install paystackease
+
+* Install using poetry:
+
+.. code-block:: bash
+
+    $ poetry add paystackease
+
+If you want to download the sdist packages directly:
+
+* Built Distribution file (.whl files) i.e the wheel file:
+
+   .. code-block:: console
+
+      >>> pip install paystackease-1.0.0-py3-none-any.whl
+
+* Source Distribution file (.tar.gz files):
+
+   .. code-block:: console
+
+      >>> pip install paystackease-1.0.0.tar.gz
 
    .. note::
 
@@ -59,7 +80,7 @@ You can get started by downloading any of the source files here: https://test.py
 * Contributing guidelines: https://github.com/cla-bit/PayStackEase/blob/master/CONTRIBUTING.md
 
 
-====================================================================
+======================
 
 .. toctree::
    :maxdepth: 1
