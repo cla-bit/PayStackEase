@@ -4,7 +4,7 @@ Wrapper class for Asynchronous Paystack Apple Pay API.
 The Apple Pay API allows you register your application's top-level domain or subdomain.
 """
 
-from typing import Optional
+from typing import Optional, Union
 from paystackease._abase import AsyncPayStackBaseClientAPI
 from paystackease._utils import Response
 
@@ -31,9 +31,9 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
 
     async def list_domains(
         self,
-            use_cursor: Optional[bool] = False,
-            next_page: Optional[int] = None,
-            previous_page: Optional[int] = None,
+            use_cursor: Optional[Union[bool, None]] = False,
+            next_page: Optional[Union[int, None]] = None,
+            previous_page: Optional[Union[int, None]] = None,
     ) -> Response:
         """
         List all registered domains
