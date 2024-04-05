@@ -1,6 +1,5 @@
 """ Test for synchronous Customers """
 
-import json
 from datetime import date
 import pytest
 
