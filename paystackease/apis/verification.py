@@ -1,6 +1,6 @@
 """
 Wrapper for Paystack Verification APIs
-\
+
 The Verification API allows you to perform KYC processes.
 """
 
