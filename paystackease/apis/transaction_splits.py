@@ -4,10 +4,10 @@ Wrapper for Paystack Transaction Splits APIs
 The Transaction Splits API enables merchants split the settlement for a transaction
 across their payout account, and one or more subaccounts.
 """
-from requests import Response
 
 from datetime import date
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
+from paystackease._utils import Response
 from paystackease._base import PayStackBaseClientAPI
 
 
@@ -85,8 +85,8 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
             split_id: str,
             transaction_split_name: str,
             active: bool,
-            bearer_type: Optional[str] = None,
-            bearer_subaccount: Optional[str] = None,
+            bearer_type: Optional[Union[str, None]] = None,
+            bearer_subaccount: Optional[Union[str, None]] = None,
     ) -> Response:
         """
         Update a specific transaction split details
@@ -114,13 +114,13 @@ class TransactionSplitClientAPI(PayStackBaseClientAPI):
 
     def list_split(
             self,
-            split_name: Optional[str] = None,
-            active: Optional[bool] = True,
-            sort_by: Optional[str] = None,
-            per_page: Optional[int] = None,
-            page: Optional[int] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            split_name: Optional[Union[str, None]] = None,
+            active: Optional[Union[bool, None]] = True,
+            sort_by: Optional[Union[str, None]] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List all the transaction splits

@@ -3,12 +3,12 @@ Wrapper for Paystack Transactions API
 
 The Transactions API allows you to create and manage payments on your integration.
 """
-from requests import Response
 
 from datetime import date
 from typing import List, Optional, Dict, Any, Union
 from paystackease.helpers.tool_kit import Channels, Currency, Bearer, TransactionStatus
 from paystackease._base import PayStackBaseClientAPI
+from paystackease._utils import Response
 
 
 class TransactionClientAPI(PayStackBaseClientAPI):
@@ -21,17 +21,17 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             self,
             email: str,
             amount: int,
-            currency: Optional[Currency] = Currency.NGN.value,
-            reference: Optional[str] = None,
-            callback_url: Optional[str] = None,
-            plan: Optional[str] = None,
-            invoice_limit: Optional[int] = None,
+            currency: Optional[Union[Currency, None]] = Currency.NGN.value,
+            reference: Optional[Union[str, None]] = None,
+            callback_url: Optional[Union[str, None]] = None,
+            plan: Optional[Union[str, None]] = None,
+            invoice_limit: Optional[Union[int, None]] = None,
             channels: Optional[Union[List[Channels], None]] = None,
-            split_code: Optional[str] = None,
-            subaccount: Optional[str] = None,
-            transaction_charge: Optional[int] = None,
-            bearer: Optional[Bearer] = Bearer.ACCOUNT.value,
-            metadata: Optional[Dict[str, Any]] = None,
+            split_code: Optional[Union[str, None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
+            transaction_charge: Optional[Union[int, None]] = None,
+            bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
+            metadata: Optional[Union[Dict[str, Any], None]] = None,
     ) -> Response:
         """
         Initialize a transaction
@@ -78,14 +78,14 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             email: str,
             amount: int,
             authorization_code: str,
-            reference: Optional[str] = None,
-            currency: Optional[str] = None,
-            channels: Optional[List[str]] = None,
-            subaccount: Optional[str] = None,
+            reference: Optional[Union[str, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            channels: Optional[Union[List[Channels], None]] = None,
+            subaccount: Optional[Union[str, None]] = None,
             transaction_charge: Optional[int] = None,
-            bearer: Optional[str] = None,
-            queue: Optional[bool] = True,
-            metadata: Optional[Dict[str, List[Dict[str, Any]]]] = None,
+            bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
+            queue: Optional[Union[bool, None]] = True,
+            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
     ) -> Response:
         """
         Charge an authorization transaction
@@ -131,8 +131,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             authorization_code: str,
             amount: int,
             currency: str,
-            reference: Optional[str] = None,
-            at_least: Optional[int] = None,
+            reference: Optional[Union[str, None]] = None,
+            at_least: Optional[Union[int, None]] = None,
     ) -> Response:
         """
         Charge a partial debit transaction
@@ -160,14 +160,14 @@ class TransactionClientAPI(PayStackBaseClientAPI):
 
     def list_transactions(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            customer: Optional[int] = None,
-            terminal_id: Optional[str] = None,
-            amount: Optional[int] = None,
-            status: Optional[TransactionStatus] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            customer: Optional[Union[int, None]] = None,
+            terminal_id: Optional[Union[str, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            status: Optional[Union[TransactionStatus, None]] = None,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         List all transactions
@@ -236,10 +236,10 @@ class TransactionClientAPI(PayStackBaseClientAPI):
 
     def transaction_totals(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         Get totals of all transactions
@@ -267,17 +267,17 @@ class TransactionClientAPI(PayStackBaseClientAPI):
 
     def export_transactions(
             self,
-            per_page: Optional[int] = 50,
-            page: Optional[int] = 1,
-            customer: Optional[int] = None,
-            currency: Optional[str] = None,
-            amount: Optional[int] = None,
-            status: Optional[TransactionStatus] = None,
-            settled: Optional[bool] = True,
-            settlement: Optional[int] = None,
-            payment_page: Optional[int] = None,
-            from_date: Optional[date] = None,
-            to_date: Optional[date] = None,
+            per_page: Optional[Union[int, None]] = 50,
+            page: Optional[Union[int, None]] = 1,
+            customer: Optional[Union[int, None]] = None,
+            currency: Optional[Union[Currency, None]] = None,
+            amount: Optional[Union[int, None]] = None,
+            status: Optional[Union[TransactionStatus, None]] = None,
+            settled: Optional[Union[bool, None]] = True,
+            settlement: Optional[Union[int, None]] = None,
+            payment_page: Optional[Union[int, None]] = None,
+            from_date: Optional[Union[date, None]] = None,
+            to_date: Optional[Union[date, None]] = None,
     ) -> Response:
         """
         Export transactions
