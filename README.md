@@ -70,19 +70,23 @@ You should create a Paystack account to generate a **Paystack Secret Key**. You 
 
 > poetry add paystackease
 
-or Download the wheel distribution file and install using pip
 
->  pip install paystackease-0.1.3-py3-none-any.whl 
+## If you want to download the sdist packages directly:
 
-or Download the source distribution file, and install using pip
+Download the wheel distribution file and install using pip
 
-> pip install paystackease-0.1.3.tar.gz 
+>  pip install paystackease-1.0.0-py3-none-any.whl 
 
-### To get a development version of paystackease
+Download the source distribution file, and install using pip
 
-Clone from the github repository, unzip and install:
+> pip install paystackease-1.0.0.tar.gz 
 
-> git clone https://github.com/cla-bit/PayStackEase.git
+
+## To get a development version of paystackease
+
+Clone from the ``dev`` branch github repository, unzip and install:
+
+> git clone -b dev https://github.com/cla-bit/PayStackEase.git
 
 > cd PayStackEase
 
