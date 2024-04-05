@@ -55,6 +55,7 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         :return: The response from the API
         :rtype: Response object
         """
+
         # convert to strings
         use_cursor = self._convert_to_string(use_cursor)
         pay_with_bank_transfer = self._convert_to_string(pay_with_bank_transfer)
