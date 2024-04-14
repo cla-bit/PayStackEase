@@ -2,7 +2,7 @@
 providing simplified access to functionality in Paystack
 """
 
-from paystackease.apis import (
+from paystackease.sync import (
     apple_pay,
     bulk_charges,
     charges,
@@ -26,8 +26,8 @@ from paystackease.apis import (
     transfers,
     transfers_control,
     verification,
+    PayStackBaseClientAPI
 )
-from paystackease._base import PayStackBaseClientAPI
 
 
 class PayStackBase(PayStackBaseClientAPI):

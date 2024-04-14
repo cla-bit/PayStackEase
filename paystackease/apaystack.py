@@ -2,7 +2,7 @@
 providing simplified access to functionality in Paystack
 """
 
-from paystackease.async_apis import (
+from paystackease.a_sync import (
     aapple_pay,
     abulk_charges,
     acharges,
@@ -26,8 +26,8 @@ from paystackease.async_apis import (
     atransfers,
     atransfers_control,
     averification,
+    AsyncPayStackBaseClientAPI
 )
-from paystackease._abase import AsyncPayStackBaseClientAPI
 
 
 class AsyncPayStackBase(AsyncPayStackBaseClientAPI):

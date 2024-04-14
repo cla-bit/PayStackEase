@@ -4,7 +4,7 @@ import pytest
 from aioresponses import aioresponses
 from datetime import datetime, date
 
-from paystackease._abase import AsyncBaseClientAPI
+from paystackease.a_sync._api_base import AsyncBaseClientAPI
 from paystackease.errors import SecretKeyError
 from tests.conftest import async_base_client, async_paystack_base_client
 

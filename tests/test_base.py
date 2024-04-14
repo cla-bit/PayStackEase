@@ -4,7 +4,7 @@ from datetime import date, datetime
 import pytest
 import responses
 
-from paystackease._base import BaseClientAPI
+from paystackease.sync._api_base import BaseClientAPI
 from paystackease.errors import SecretKeyError
 
 from tests.conftest import base_client, paystack_request_client

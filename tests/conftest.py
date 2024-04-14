@@ -3,9 +3,11 @@
 import pytest
 import pytest_asyncio
 from aioresponses import aioresponses
-from paystackease._abase import AsyncBaseClientAPI, AsyncPayStackBaseClientAPI
-from paystackease._base import BaseClientAPI, PayStackBaseClientAPI
-from paystackease.apis import (
+from paystackease.a_sync._api_base import AsyncBaseClientAPI
+from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
+from paystackease.sync._api_base import BaseClientAPI
+from paystackease.sync._api_http_request import PayStackBaseClientAPI
+from paystackease.sync import (
     apple_pay,
     bulk_charges,
     charges,
@@ -30,7 +32,7 @@ from paystackease.apis import (
     transfers_control,
     verification,
 )
-from paystackease.async_apis import (
+from paystackease.a_sync import (
     aapple_pay,
     abulk_charges,
     acharges,
