@@ -46,7 +46,7 @@ def test_list_domains(apple_pay_client, use_cursor, next_page, previous_page):
     response = apple_pay_client.list_domains(use_cursor, next_page, previous_page)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize("domain_name", ["test-apple-domain-name"])

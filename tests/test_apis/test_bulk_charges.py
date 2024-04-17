@@ -21,6 +21,9 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
     """
     url = "https://api.paystack.co/bulkcharge"
     response_data = {"status": "success"}
+    expected_data = [
+        {"authorization_code": "123456", "amount": 1000, "reference": "123456"}
+    ]
 
     # mock the API response
     responses.add(
@@ -30,11 +33,8 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
         json=response_data,
     )
     response = bulk_charges_client.initiate_bulk_charge(objects=objects)
-    expected_params = [
-        {"authorization_code": "123456", "amount": 1000, "reference": "123456"}
-    ]
     assert len(responses.calls) == 1
-    assert json.loads(responses.calls[0].request.body) == expected_params
+    assert json.loads(responses.calls[0].request.body) == expected_data
     assert response is not None
 
 
@@ -78,7 +78,7 @@ def test_list_bulk_charge_batches(
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response == response_data
+    assert response.status == "success"
 
 
 @responses.activate
@@ -96,7 +96,7 @@ def test_fetch_bulk_charge_batch(bulk_charges_client):
     response = bulk_charges_client.fetch_bulk_charge_batch(id_or_code=id_or_code)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -130,7 +130,7 @@ def test_fetch_charge_bulk_batch(
 
     responses.add(
         responses.GET,
-        url,
+        expected_url,
         json=response_data,
         status=200,
     )
@@ -145,7 +145,7 @@ def test_fetch_charge_bulk_batch(
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response == response_data
+    assert response.status == "success"
 
 
 @responses.activate
@@ -163,7 +163,7 @@ def test_pause_bulk_charge(bulk_charges_client):
     response = bulk_charges_client.pause_bulk_charge_batch(batch_code="test")
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
+    assert response.status == "success"
 
 
 @responses.activate
@@ -182,4 +182,4 @@ def test_resume_bulk_charge(bulk_charges_client):
     response = bulk_charges_client.resume_bulk_charge_batch(batch_code="test")
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
+    assert response.status == "success"

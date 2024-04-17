@@ -60,7 +60,7 @@ async def test_request_url(async_base_client):
             status=200,
         )
         response = await async_base_client._request_url("GET", "/test")
-        assert response == mock_response
+        assert response.status == "success"
         mock_client.assert_called()
 
 
@@ -75,7 +75,7 @@ async def test_get_request(async_paystack_base_client):
             status=200,
         )
         response = await async_paystack_base_client._get_request("test")
-        assert response == mock_response
+        assert response.status == "success"
 
 
 @pytest.mark.asyncio
@@ -90,7 +90,7 @@ async def test_post_request(async_paystack_base_client):
             status=200,
         )
         response = await async_paystack_base_client._post_request("test", data=mock_data)
-        assert response == mock_response
+        assert response.status == "success"
 
 
 @pytest.mark.asyncio
@@ -105,7 +105,7 @@ async def test_put_request(async_paystack_base_client):
             status=200,
         )
         response = await async_paystack_base_client._put_request("test", data=mock_data)
-        assert response == mock_response
+        assert response.status == "success"
 
 
 @pytest.mark.asyncio
@@ -120,4 +120,4 @@ async def test_delete_request(async_paystack_base_client):
             status=200,
         )
         response = await async_paystack_base_client._delete_request("test", data=mock_data)
-        assert response == mock_response
+        assert response.status == "success"

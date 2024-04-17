@@ -95,7 +95,7 @@ def test_list_banks(
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -140,4 +140,4 @@ def test_states(miscellaneous_client, country):
     response = miscellaneous_client.list_states(country=country)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"

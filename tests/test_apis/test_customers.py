@@ -216,7 +216,7 @@ def test_fetch_customer(customers_client):
     response = customers_client.fetch_customer(email_or_code=email_or_code)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -271,4 +271,4 @@ def test_list_customers(customers_client, per_page, page, from_date, to_date):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"

@@ -115,7 +115,7 @@ def test_list_pages(payment_pages_client, from_date, to_date, per_page, page):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -134,7 +134,7 @@ def test_list_pages(payment_pages_client):
     response = payment_pages_client.fetch_payment_page(page_id_or_slug=id_or_slug)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -192,7 +192,7 @@ def test_check_slug(payment_pages_client):
     response = payment_pages_client.check_slug_available(page_slug=id_or_slug)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(("products",), [([12]), ([112])])

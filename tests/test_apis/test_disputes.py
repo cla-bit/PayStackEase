@@ -60,7 +60,7 @@ def test_list_disputes(
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -79,7 +79,7 @@ def test_fetch_dispute(disputes_client):
     response = disputes_client.fetch_dispute(dispute_id=dispute_id)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -98,7 +98,7 @@ def test_list_trans_disputes(disputes_client):
     response = disputes_client.list_transaction_disputes(transaction_id=transaction_id)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -222,7 +222,7 @@ def test_get_upload_url(disputes_client, uploaded_filename):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -319,4 +319,4 @@ def test_export_dispute(
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"

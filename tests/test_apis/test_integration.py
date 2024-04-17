@@ -23,7 +23,7 @@ def test_fetch_timeout(integration_client):
     response = integration_client.fetch_timeout()
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(("timeout",), [(10,), (20,), (30,)])

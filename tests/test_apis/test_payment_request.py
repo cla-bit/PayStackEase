@@ -175,7 +175,7 @@ def test_list_payment_requests(
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -194,7 +194,7 @@ def test_fetch_payment_request(payment_requests_client):
     response = payment_requests_client.fetch_payment_request(id_or_code=payment_id)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -213,7 +213,7 @@ def test_verify_payment(payment_requests_client):
     response = payment_requests_client.verify_payment_request(code=payment_code)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -250,7 +250,7 @@ def test_request_totals(payment_requests_client):
     response = payment_requests_client.payment_request_total()
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(("notice",), [(True,), (False,)])

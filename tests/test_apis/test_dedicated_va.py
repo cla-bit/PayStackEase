@@ -215,7 +215,7 @@ def test_list_dvas(dva_client, active, currency, provider_slug, bank_id, custome
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -235,7 +235,7 @@ def test_fetch_dedicated_account(dva_client):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -271,7 +271,7 @@ def test_requery_dva(dva_client, account_number, provider_slug, date_transfer):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -291,7 +291,7 @@ def test_deactivate_dedicated_account(dva_client):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -348,7 +348,7 @@ def test_remove_split(dva_client, account_number):
     response = dva_client.remove_split_dedicated_account(account_number=account_number)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -365,4 +365,4 @@ def test_fetch_bank_providers(dva_client):
     response = dva_client.fetch_bank_providers()
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"

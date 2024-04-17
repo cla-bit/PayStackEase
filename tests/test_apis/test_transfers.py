@@ -159,7 +159,7 @@ def test_list_transfers(
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -178,7 +178,7 @@ def test_fetch_transfer(transfers_client):
     response = transfers_client.fetch_transfer(id_or_code=transfer_id)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -197,5 +197,4 @@ def test_verify_transfer(transfers_client):
     response = transfers_client.verify_transfer(reference=reference)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
     assert response is not None

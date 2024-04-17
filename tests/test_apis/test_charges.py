@@ -254,4 +254,4 @@ def test_check_pending_charge(charges_client):
     response = charges_client.check_pending_charge(reference=reference)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"

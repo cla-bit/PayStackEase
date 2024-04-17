@@ -83,7 +83,7 @@ def test_list_subscription(subscriptions_client, customer, plan_code, per_page, 
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == expected_url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -102,7 +102,7 @@ def test_fetch_subscription(subscriptions_client):
     response = subscriptions_client.fetch_subscription(id_or_code=sub_id)
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -184,7 +184,6 @@ def test_generate_update_subscription(subscriptions_client):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
     assert response is not None
 
 
@@ -205,5 +204,4 @@ def test_send_update_subscription(subscriptions_client):
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
     assert response is not None

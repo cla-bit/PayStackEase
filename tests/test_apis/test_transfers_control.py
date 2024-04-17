@@ -22,7 +22,7 @@ def test_check_balance(transfers_control_client):
     response = transfers_control_client.check_balance()
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @responses.activate
@@ -39,7 +39,7 @@ def test_fetch_balance(transfers_control_client):
     response = transfers_control_client.fetch_balance_ledger()
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.parametrize(
@@ -80,7 +80,6 @@ def test_disable_otp(transfers_control_client):
     response = transfers_control_client.disable_otp()
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
     assert response is not None
 
 
@@ -118,5 +117,4 @@ def test_enable_otp(transfers_control_client):
     response = transfers_control_client.enable_otp()
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
-    assert response == response_data
     assert response is not None

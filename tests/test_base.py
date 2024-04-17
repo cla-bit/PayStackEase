@@ -58,7 +58,7 @@ def test_request_url(base_client):
     response = base_client._request_url("GET", "test")
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == "https://api.paystack.co/test"
-    assert response == response_data
+    assert response.status == "success"
 
 
 @responses.activate
@@ -72,7 +72,7 @@ def test_get_request(paystack_request_client):
         json=response_data
     )
     response = paystack_request_client._get_request('test', params=response_data)
-    assert response == response_data
+    assert response.status == "success"
 
 
 @responses.activate
@@ -86,7 +86,7 @@ def test_post_request(paystack_request_client):
         json=response_data
     )
     response = paystack_request_client._post_request('test', data=response_data)
-    assert response == response_data
+    assert response.status == "success"
 
 
 @responses.activate
@@ -100,7 +100,7 @@ def test_put_request(paystack_request_client):
         json=response_data
     )
     response = paystack_request_client._put_request('test', data=response_data)
-    assert response == response_data
+    assert response.status == "success"
 
 
 @responses.activate
@@ -114,4 +114,4 @@ def test_delete_request(paystack_request_client):
         json=response_data
     )
     response = paystack_request_client._delete_request('test', data=response_data)
-    assert response == response_data
+    assert response.status == "success"
