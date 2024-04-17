@@ -164,6 +164,7 @@ class AsyncBaseClientAPI:
                 **kwargs,
             ) as response:
                 response_data = await response.json()
+                print(type(response_data))
                 logger.info("Response Status Code: %s", response.status)
                 logger.info("Response JSON: %s", response_data)
                 return PayStackResponse(
