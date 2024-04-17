@@ -2,7 +2,7 @@
 
 from typing import Optional, Any, Union, List, Dict
 from paystackease.sync._api_base import BaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 
 
 class PayStackBaseClientAPI(BaseClientAPI):
@@ -15,7 +15,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
         params: Optional[Union[Dict[str, Any], None]] = None,
         **kwargs,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Handles the request to Paystack API
         :param method:
@@ -32,7 +32,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         endpoint: str,
         params: Optional[Union[Dict[str, Any], None]] = None,
         **kwargs,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Makes the GET request to Paystack API
         :param endpoint:
@@ -47,7 +47,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         endpoint: str,
         data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
         **kwargs,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Makes the POST request to Paystack API
         :param endpoint:
@@ -62,7 +62,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         endpoint: str,
         data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
         **kwargs,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Makes the PUT request to Paystack API
         :param endpoint:
@@ -72,7 +72,7 @@ class PayStackBaseClientAPI(BaseClientAPI):
         """
         return self._request("PUT", endpoint, data=data, **kwargs)
 
-    def _delete_request(self, endpoint: str, **kwargs) -> Response:
+    def _delete_request(self, endpoint: str, **kwargs) -> PayStackResponse:
         """
         Makes the DELETE request to Paystack API
         :param endpoint:

@@ -6,7 +6,7 @@ The Apple Pay API allows you register your application's top-level domain or sub
 
 from typing import Optional, Union
 from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 
 
 class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
@@ -15,14 +15,14 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/apple-pay/
     """
 
-    async def register_domain(self, domain_name: str) -> Response:
+    async def register_domain(self, domain_name: str) -> PayStackResponse:
         """
         Register a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "domainName": domain_name,
@@ -34,7 +34,7 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
             use_cursor: Optional[Union[bool, None]] = False,
             next_page: Optional[Union[int, None]] = None,
             previous_page: Optional[Union[int, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List all registered domains
 
@@ -42,8 +42,8 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
         :param: next_page  # next page
         :param: previous_page  # previous page
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert bool to string
@@ -56,14 +56,14 @@ class AsyncApplePayClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/apple-pay/domain", params=params)
 
-    async def unregister_domain(self, domain_name: str) -> Response:
+    async def unregister_domain(self, domain_name: str) -> PayStackResponse:
         """
         Unregister a domain or subdomain for Apple Pay
 
         :param: domain_name  # domain name or subdomain
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "domainName": domain_name,

@@ -6,7 +6,7 @@ The Refunds API allows you to create and manage transaction refunds.
 
 from datetime import date
 from typing import Optional, Union
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.sync._api_http_request import PayStackBaseClientAPI
 from paystackease.helpers.tool_kit import Currency
 
@@ -24,7 +24,7 @@ class RefundClientAPI(PayStackBaseClientAPI):
             currency: Optional[Union[Currency, None]] = None,
             customer_note: Optional[Union[str, None]] = None,
             merchant_note: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Create a refund
 
@@ -34,8 +34,8 @@ class RefundClientAPI(PayStackBaseClientAPI):
         :param: customer_note: The customer note or reason
         :param: merchant_note: The merchant note or reason
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "transaction": transaction_ref_or_id,
@@ -54,7 +54,7 @@ class RefundClientAPI(PayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List refunds
 
@@ -65,8 +65,8 @@ class RefundClientAPI(PayStackBaseClientAPI):
         :param: from_date: A timestamp at which to stop listing refund
         :param: to_date: A timestamp at which to stop listing refund
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
 
         note::
 
@@ -87,13 +87,13 @@ class RefundClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/refund", params=params)
 
-    def fetch_refund(self, reference: str) -> Response:
+    def fetch_refund(self, reference: str) -> PayStackResponse:
         """
         Fetch a refund
 
         :param: reference: The transaction reference to fetch for the refund
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/refund/{reference}")

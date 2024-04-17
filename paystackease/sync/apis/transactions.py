@@ -8,7 +8,7 @@ from datetime import date
 from typing import List, Optional, Dict, Any, Union
 from paystackease.helpers.tool_kit import Channels, Currency, Bearer, TransactionStatus
 from paystackease.sync._api_http_request import PayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 
 
 class TransactionClientAPI(PayStackBaseClientAPI):
@@ -32,7 +32,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             transaction_charge: Optional[Union[int, None]] = None,
             bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
             metadata: Optional[Union[Dict[str, Any], None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Initialize a transaction
 
@@ -53,8 +53,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :param: bearer:  # Who bears Paystack charges? Two options: account, subaccount
         :param: metadata:  # Stringified JSON object of custom data. {"foo": "bar" }
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "email": email,
@@ -86,7 +86,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
             queue: Optional[Union[bool, None]] = True,
             metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Charge an authorization transaction
 
@@ -103,8 +103,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :param: queue:  # If set to true, the transaction will be queued for processing
         :param: metadata:  # Stringified JSON object of custom data. {"foo": "bar" }
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert bool to string
@@ -133,7 +133,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             currency: str,
             reference: Optional[Union[str, None]] = None,
             at_least: Optional[Union[int, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Charge a partial debit transaction
 
@@ -145,8 +145,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :param: reference:  # Unique transaction reference.
         :param: at_least:  # Minimum amount to charge
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "email": email,
@@ -168,7 +168,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             status: Optional[Union[TransactionStatus, None]] = None,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List all transactions
 
@@ -181,8 +181,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :param: from_date:  # A timestamp from which to start listing transaction 2016-09-24T00:00:05.000Z, 2016-09-21
         :param: to_date:  # A timestamp at which to stop listing transaction 2016-09-24T00:00:05.000Z
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string
@@ -201,36 +201,36 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/transaction", params=params)
 
-    def verify_transaction(self, reference: str) -> Response:
+    def verify_transaction(self, reference: str) -> PayStackResponse:
         """
         Verify a transaction by reference
 
         :param: reference:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/transaction/verify/{reference}")
 
-    def fetch_transaction(self, transaction_id: int) -> Response:
+    def fetch_transaction(self, transaction_id: int) -> PayStackResponse:
         """
         Fetch details of a specific transaction
 
         :param: transaction_id:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/transaction/{transaction_id}")
 
-    def transaction_timeline(self, id_or_reference: str) -> Response:
+    def transaction_timeline(self, id_or_reference: str) -> PayStackResponse:
         """
         Get the timeline of a transaction
 
         :param: id_or_reference:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/transaction/timeline/{id_or_reference}")
 
@@ -240,7 +240,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Get totals of all transactions
 
@@ -249,8 +249,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :param: from_date:
         :param: to_date:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string
@@ -278,7 +278,7 @@ class TransactionClientAPI(PayStackBaseClientAPI):
             payment_page: Optional[Union[int, None]] = None,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Export transactions
 
@@ -294,8 +294,8 @@ class TransactionClientAPI(PayStackBaseClientAPI):
         :param: from_date:  # 2016-09-24T00:00:05.000Z
         :param: to_date:  # 2016-09-24T00:00:05.000Z
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date and bool to string

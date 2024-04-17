@@ -8,7 +8,7 @@ from datetime import date
 
 from typing import Optional, Dict, Any, Union
 from paystackease.helpers.tool_kit import RiskAction
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.sync._api_http_request import PayStackBaseClientAPI
 
 
@@ -25,7 +25,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             last_name: str, 
             phone: str, 
             metadata: Optional[Union[Dict[str, Any], None]] = None
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Create a customer
 
@@ -35,8 +35,8 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :param: phone: The phone number of the customer.
         :param: metadata: The metadata of the customer in JSON format.
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "email": email,
@@ -59,7 +59,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             bvn: str,
             customer_id_num: Optional[Union[str, None]] = None,
             middle_name: Optional[Union[str, None]] = None
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Validate a customer's identity
 
@@ -74,8 +74,8 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :param: bank_code: The bank code of the customer
         :param: account_number: The account number of the customer
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "first_name": first_name,
@@ -92,15 +92,15 @@ class CustomerClientAPI(PayStackBaseClientAPI):
 
     def whitelist_blacklist_customer(
             self, email_or_code: str, risk_action: Optional[Union[RiskAction, None]] = None
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Whitelist or blacklist a customer
 
         :param: email_or_code: The code or email of the customer.
         :param: risk_action: The action to take on the customer. value: RiskAction.value.value = "allow" pr "deny"
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "customer": email_or_code,
@@ -108,14 +108,14 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request("/customer/set_risk_action", data=data)
 
-    def deactivate_authorization(self, authorization_code: str) -> Response:
+    def deactivate_authorization(self, authorization_code: str) -> PayStackResponse:
         """
         Deactivate an authorization when the card needs to be forgotten
 
         :param: authorization_code: The authorization code to be deactivated.
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {"authorization_code": authorization_code}
         return self._post_request("/customer/deactivate_authorization", data=data)
@@ -127,7 +127,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             last_name: Optional[Union[str, None]] = None,
             phone: Optional[Union[str, None]] = None,
             metadata: Optional[Union[Dict[str, Any], None]] = None
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Update a customer
 
@@ -137,8 +137,8 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :param: phone: The phone number of the customer.
         :param: metadata: The metadata of the customer in JSON format. {"key1": "value1", "key2": "value2"}
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "first_name": first_name,
@@ -148,14 +148,14 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         }
         return self._put_request(f"/customer/{customer_code}", data=data)
 
-    def fetch_customer(self, email_or_code: str) -> Response:
+    def fetch_customer(self, email_or_code: str) -> PayStackResponse:
         """
         Fetch details of a specific customer
 
         :param: email_or_code: The email or code of the customer.
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/customer/{email_or_code}")
 
@@ -165,7 +165,7 @@ class CustomerClientAPI(PayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List all customers
 
@@ -174,8 +174,8 @@ class CustomerClientAPI(PayStackBaseClientAPI):
         :param: from_date: The date to start returning customers from
         :param: to_date: The date to stop returning customers from
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date  to string

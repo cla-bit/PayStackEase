@@ -7,7 +7,7 @@ Subaccounts can be used to split payment between two accounts (your main account
 
 from datetime import date
 from typing import Optional, Dict, List, Any, Union
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.helpers.tool_kit import SettlementSchedule
 from paystackease.sync._api_http_request import PayStackBaseClientAPI
 
@@ -29,7 +29,7 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
             primary_contact_name: Optional[Union[str, None]] = None,
             primary_contact_phone: Optional[Union[str, None]] = None,
             metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Create a subaccount
 
@@ -43,8 +43,8 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
         :param: primary_contact_phone: A phone number to call for this subaccount
         :param: metadata: Stringified JSON object. {"custom_fields": [{"name": "value"}]}
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "business_name": business_name,
@@ -73,7 +73,7 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
             primary_contact_phone: Optional[Union[str, None]] = None,
             settlement_schedule: Optional[Union[SettlementSchedule, None]] = SettlementSchedule.AUTO.value,
             metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Update a subaccount
 
@@ -95,8 +95,8 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
 
         :param: metadata: Stringified JSON object. {"custom_fields": [{"name": "value"}]}
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert bool to string
@@ -123,7 +123,7 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List all subaccounts
 
@@ -132,8 +132,8 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
         :param: from_date:
         :param: to_date:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string
@@ -143,13 +143,13 @@ class SubAccountClientAPI(PayStackBaseClientAPI):
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
         return self._get_request("/subaccount", params=params)
 
-    def fetch_subaccount(self, id_or_code: str) -> Response:
+    def fetch_subaccount(self, id_or_code: str) -> PayStackResponse:
         """
         Fetch details of a specific subaccount
 
         :param: id_or_code: The id or code of the subaccount.
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/subaccount/{id_or_code}")

@@ -6,7 +6,7 @@ The Plans API allows you to create and manage installment payment options on you
 
 from typing import Optional, Union
 from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.helpers.tool_kit import Interval
 
 
@@ -26,7 +26,7 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
             send_invoices: bool,
             send_sms: bool,
             description: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Create a plan
 
@@ -39,8 +39,8 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
         :param: currency: Currency of the plan
         :param: invoice_limit: Invoice limit of the plan
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         # convert to strings
         send_invoices = self._convert_to_string(send_invoices)
@@ -65,7 +65,7 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
             status: Optional[Union[str, None]] = None,
             interval: Optional[Union[Interval, None]] = None,
             amount: Optional[Union[int, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List all the plans
 
@@ -75,8 +75,8 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
         :param: interval: Filter list by plans with specified interval
         :param: amount
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         params = {
             "perPage": per_page,
@@ -87,14 +87,14 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/plan", params=params)
 
-    async def fetch_plan(self, id_or_code: str) -> Response:
+    async def fetch_plan(self, id_or_code: str) -> PayStackResponse:
         """
         Get details of a plan
 
         :param: id_or_code: ID or Code of the plan
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._get_request(f"/plan/{id_or_code}")
 
@@ -109,7 +109,7 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
             currency: str,
             invoice_limit: int,
             description: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Update a plan detail
 
@@ -123,8 +123,8 @@ class AsyncPlanClientAPI(AsyncPayStackBaseClientAPI):
         :param: currency:
         :param: invoice_limit:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         # convert to strings
         send_invoices = self._convert_to_string(send_invoices)

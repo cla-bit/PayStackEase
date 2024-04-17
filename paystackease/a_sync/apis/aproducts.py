@@ -7,7 +7,7 @@ The Products API allows you to create and manage inventories on your integration
 from datetime import date
 from typing import Optional, Union
 from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 
 
 class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
@@ -24,7 +24,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
             currency: str,
             unlimited: Optional[Union[bool, None]] = True,
             quantity: Optional[Union[int, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Create a product
 
@@ -35,8 +35,8 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         :param: unlimited: Set true if the product has unlimited stock,
         :param: quantity: Quantity of the product in stock Use if unlimited is false
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert bool to string
@@ -58,7 +58,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List all the products
 
@@ -67,8 +67,8 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         :param: from_date: A timestamp from which to start listing product e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
         :param: to_date: A timestamp from which to start listing product e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to strings
@@ -78,14 +78,14 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         params = {"perPage": per_page, "page": page, "from": from_date, "to": to_date}
         return await self._get_request("/product", params=params)
 
-    async def fetch_product(self, product_id: str) -> Response:
+    async def fetch_product(self, product_id: str) -> PayStackResponse:
         """
         Get details of a product
 
         :param: product_id: ID or Code of the product
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._get_request(f"/product/{product_id}")
 
@@ -98,7 +98,7 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
             currency: str,
             unlimited: Optional[Union[bool, None]] = True,
             quantity: Optional[Union[int, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Update a product detail
 
@@ -110,8 +110,8 @@ class AsyncProductClientAPI(AsyncPayStackBaseClientAPI):
         :param: unlimited: Set true if the product has unlimited stock,
         :param: quantity: Quantity of the product in stock Use if unlimited is false
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert bool to string

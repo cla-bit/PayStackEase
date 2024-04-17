@@ -7,7 +7,7 @@ The Disputes API allows you manage transaction disputes on your integration.
 from datetime import date
 from typing import Optional, Union
 from paystackease.sync._api_http_request import PayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.helpers.tool_kit import DisputeStatus, Resolution
 
 
@@ -25,7 +25,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             transaction_id: Optional[Union[str, None]] = None,
             status: Optional[Union[DisputeStatus, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List disputes filed against you
 
@@ -37,8 +37,8 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param: status: Dispute Status. Acceptable values:
                         { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string
@@ -55,25 +55,25 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         }
         return self._get_request("/dispute", params=params)
 
-    def fetch_dispute(self, dispute_id: str) -> Response:
+    def fetch_dispute(self, dispute_id: str) -> PayStackResponse:
         """
         Fetch details about a dispute
 
         :param: dispute_id: The dispute ID to fetch
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/dispute/{dispute_id}")
 
-    def list_transaction_disputes(self, transaction_id: str) -> Response:
+    def list_transaction_disputes(self, transaction_id: str) -> PayStackResponse:
         """
         List disputes for a transaction
 
         :param: transaction_id: The transaction id to fetch
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return self._get_request(f"/dispute/transaction/{transaction_id}")
 
@@ -82,17 +82,17 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             dispute_id: str,
             refund_amount: int,
             uploaded_filename: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Update details of a dispute
 
         :param: dispute_id: The dispute id to fetch
         :param: refund_amount: The amount to refund to the customer
         :param: uploaded_filename: filename of attachment returned via
-                                    response from upload url(GET /dispute/:id/upload_url)
+                                    PayStackResponse from upload url(GET /dispute/:id/upload_url)
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {"refund_amount": refund_amount, "uploaded_filename": uploaded_filename}
         return self._put_request(f"/dispute/{dispute_id}", data=data)
@@ -106,7 +106,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             service_details: str,
             delivery_address: Optional[Union[str, None]] = None,
             delivery_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Add evidence to a dispute
 
@@ -118,8 +118,8 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param: delivery_address: The delivery address
         :param: delivery_date: The delivery date: YYYY-MM-DD
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string
@@ -135,15 +135,15 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         }
         return self._post_request(f"/dispute/{dispute_id}/evidence", data=data)
 
-    def get_upload_url(self, dispute_id: str, uploaded_filename: str) -> Response:
+    def get_upload_url(self, dispute_id: str, uploaded_filename: str) -> PayStackResponse:
         """
         Get upload url for dispute evidence
 
         :param: dispute_id: The dispute id to fetch
         :param: uploaded_filename: The file name, with its extension, that you want to upload. e.g. filename.pdf
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         params = {"uploaded_filename": uploaded_filename}
         return self._get_request(f"/dispute/{dispute_id}/upload_url", params=params)
@@ -156,7 +156,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             refund_amount: int,
             uploaded_filename: str,
             evidence: Optional[Union[int, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Resolve a dispute
 
@@ -164,11 +164,11 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param: resolution: The resolution to resolve the dispute: Accepted values: { merchant-accepted | declined }.
         :param: message: The message for resolution
         :param: refund_amount: The amount to refund to the customer
-        :param: uploaded_filename: filename of attachment returned via response from method get_upload_url
+        :param: uploaded_filename: filename of attachment returned via PayStackResponse from method get_upload_url
         :param: evidence: The evidence id for fraud claims
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "resolution": resolution,
@@ -187,7 +187,7 @@ class DisputesClientAPI(PayStackBaseClientAPI):
             to_date: Optional[Union[date, None]] = None,
             transaction_id: Optional[Union[str, None]] = None,
             status: Optional[Union[DisputeStatus, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Export disputes
 
@@ -199,8 +199,8 @@ class DisputesClientAPI(PayStackBaseClientAPI):
         :param: status: The dispute status:
                         Acceptable values: { awaiting-merchant-feedback | awaiting-bank-feedback | pending | resolved }
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string

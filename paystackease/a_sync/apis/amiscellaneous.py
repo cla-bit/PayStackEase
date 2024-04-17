@@ -6,7 +6,7 @@ The Miscellaneous API are supporting APIs that can be used to provide more detai
 
 from typing import Optional, Union
 from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.helpers.tool_kit import GateWay, Channels, Currency
 
 
@@ -29,7 +29,7 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
             gateway: Optional[Union[GateWay, None]] = None,
             channel_type: Optional[Union[Channels, None]] = None,
             currency: Optional[Union[Currency, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Get a list of all supported banks and their properties
 
@@ -52,8 +52,8 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
 
         For Ghanaian channels, please use either mobile_money for mobile money channels OR ghipps for bank channels
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert to strings
@@ -77,23 +77,23 @@ class AsyncMiscellaneousClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/bank", params=params)
 
-    async def list_countries(self) -> Response:
+    async def list_countries(self) -> PayStackResponse:
         """
         Get a list of all supported countries and their properties
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._get_request("/country")
 
-    async def list_states(self, country: str) -> Response:
+    async def list_states(self, country: str) -> PayStackResponse:
         """
         Get a list of all supported states and their properties
 
         :param: country: The country code from which to obtain the list of supported states
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         params = {"country": country}
         return await self._get_request("/address_verification/states", params=params)

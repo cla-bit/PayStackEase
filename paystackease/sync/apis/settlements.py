@@ -6,7 +6,7 @@ The Settlements API allows you to gain insights into payouts made by Paystack to
 
 from datetime import date
 from typing import Optional, Union
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.sync._api_http_request import PayStackBaseClientAPI
 from paystackease.helpers.tool_kit import STATUS
 
@@ -25,7 +25,7 @@ class SettlementClientAPI(PayStackBaseClientAPI):
             subaccount: Optional[Union[str, None]] = None,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List settlements made to your settlement accounts
 
@@ -36,8 +36,8 @@ class SettlementClientAPI(PayStackBaseClientAPI):
         :param: from_date: A timestamp from which to start listing settlements e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
         :param: to_date: A timestamp from which to start listing settlements e.g. 2016-09-24T00:00:05.000Z, 2016-09-21
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string
@@ -61,7 +61,7 @@ class SettlementClientAPI(PayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Get the transactions that make up a particular settlement
 
@@ -71,8 +71,8 @@ class SettlementClientAPI(PayStackBaseClientAPI):
         :param: from_date: A timestamp from which to start listing settlements
         :param: to_date: A timestamp from which to start listing settlements
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         
         note::
 

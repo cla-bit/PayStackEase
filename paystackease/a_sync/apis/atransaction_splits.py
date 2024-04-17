@@ -7,7 +7,7 @@ across their payout account, and one or more subaccounts.
 from datetime import date
 from typing import Optional, List, Dict, Any, Union
 from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 
 
 class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
@@ -24,7 +24,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
             subaccounts: List[Dict[str, Any]],
             bearer_type: str,
             bearer_subaccount: str,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Create a split payment on your integration
 
@@ -36,8 +36,8 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: bearer_type: Any of subaccount | account | all-proportional | all
         :param: bearer_subaccount: Subaccount code
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "name": transaction_split_name,
@@ -51,7 +51,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
 
     async def add_or_update_subaccount_split(
             self, split_id: str, subaccount: str, transaction_share: int
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Add a Subaccount to a Transaction Split, or update the share of
         an existing Subaccount in a Transaction Split
@@ -60,21 +60,21 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: subaccount: The subaccount code
         :param: transaction_share: The number of shares
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {"subaccount": subaccount, "share": transaction_share}
         return await self._post_request(f"/split/{split_id}/subaccount/add", data=data)
 
-    async def remove_sub_account_split(self, split_id: str, subaccount: str) -> Response:
+    async def remove_sub_account_split(self, split_id: str, subaccount: str) -> PayStackResponse:
         """
         Remove a Sub Account from a transaction split
 
         :param: split_id: The split ID
         :param: subaccount: The subaccount code
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {"subaccount": subaccount}
         return await self._post_request(f"/split/{split_id}/subaccount/remove", data=data)
@@ -86,7 +86,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
             active: bool,
             bearer_type: Optional[Union[str, None]] = None,
             bearer_subaccount: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Update a specific transaction split details
 
@@ -96,8 +96,8 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: bearer_type:
         :param: bearer_subaccount:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert bool to string
@@ -120,7 +120,7 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
             page: Optional[Union[int, None]] = 1,
             from_date: Optional[Union[date, None]] = None,
             to_date: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List all the transaction splits
 
@@ -132,8 +132,8 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         :param: from_date:
         :param: to_date:
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date and bool to string
@@ -152,13 +152,13 @@ class AsyncTransactionSplitClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/split", params=params)
 
-    async def fetch_split(self, split_id: str) -> Response:
+    async def fetch_split(self, split_id: str) -> PayStackResponse:
         """
         Fetch details of a specific transaction split
 
         :param: split_id: The split ID
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._get_request(f"/split/{split_id}")

@@ -7,7 +7,7 @@ The Dedicated Virtual Account API enables Nigerian merchants to manage unique pa
 from datetime import date
 from typing import Optional, Union
 from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.helpers.tool_kit import Currency
 
 
@@ -29,7 +29,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             first_name: Optional[Union[str, None]] = None,
             last_name: Optional[Union[str, None]] = None,
             phone: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Create a dedicated virtual account for existing customers.
         Currently, support Wema Bank and Titan Paystack.
@@ -47,8 +47,8 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: last_name: Last name of the customer
         :param: phone: Phone number of the customer
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "customer": customer_id_or_code,
@@ -74,7 +74,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             bank_code: Optional[Union[str, None]] = None,
             subaccount: Optional[Union[str, None]] = None,
             split_code: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         create a customer, validate the customer, and assign a DVA to the customer
 
@@ -100,8 +100,8 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: subaccount: Subaccount code of the account you want to split the transaction.
         :param: split_code: Split code
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "email": email,
@@ -125,7 +125,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             provider_slug: Optional[Union[str, None]] = None,
             bank_id: Optional[Union[str, None]] = None,
             customer_id: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         List dedicated accounts
 
@@ -135,8 +135,8 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: bank_id: Bank ID of the dedicated virtual account eg: 035
         :param: customer_id: Customer ID of the dedicated virtual account
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         # convert date to string
         active = self._convert_to_string(active)
@@ -150,14 +150,14 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/dedicated_account", params=params)
 
-    async def fetch_dedicated_account(self, dedicated_account_id: int) -> Response:
+    async def fetch_dedicated_account(self, dedicated_account_id: int) -> PayStackResponse:
         """
         Get details of a dedicated virtual account
 
         :param: dedicated_account_id: Dedicated account ID
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._get_request(f"/dedicated_account/{dedicated_account_id}")
 
@@ -166,7 +166,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             account_number: Optional[Union[str, None]] = None,
             provider_slug: Optional[Union[str, None]] = None,
             date_transfer: Optional[Union[date, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Requery a dedicated virtual account for new transactions
 
@@ -174,8 +174,8 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: provider_slug: Provider slug in lowercase eg: wema-bank
         :param: date_transfer: Date of when the transfer was made
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         # convert date to string
@@ -188,14 +188,14 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._get_request("/dedicated_account/requery", params=params)
 
-    async def deactivate_dedicated_account(self, dedicated_account_id: int) -> Response:
+    async def deactivate_dedicated_account(self, dedicated_account_id: int) -> PayStackResponse:
         """
         Deactivate a dedicated virtual account
 
         :param: dedicated_account_id: Dedicated account ID
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._delete_request(f"/dedicated_account/{dedicated_account_id}")
 
@@ -205,7 +205,7 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
             subaccount: Optional[Union[str, None]] = None,
             split_code: Optional[Union[str, None]] = None,
             preferred_bank: Optional[Union[str, None]] = None,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Split a dedicated virtual account transaction with one or more accounts
 
@@ -214,8 +214,8 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         :param: split_code: Split code
         :param: preferred_bank: Preferred bank for the virtual account
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "customer": customer_id_or_code,
@@ -225,25 +225,25 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncPayStackBaseClientAPI):
         }
         return await self._post_request("/dedicated_account/split", data=data)
 
-    async def remove_split_dedicated_account(self, account_number: str) -> Response:
+    async def remove_split_dedicated_account(self, account_number: str) -> PayStackResponse:
         """
         Remove a split dedicated virtual account
 
         :param: account_number: the account number of the dedicated virtual account
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         data = {
             "account_number": account_number,
         }
         return await self._delete_request("/dedicated_account/split", data=data)
 
-    async def fetch_bank_providers(self) -> Response:
+    async def fetch_bank_providers(self) -> PayStackResponse:
         """
         Fetch bank providers
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._get_request("/dedicated_account/available_providers")

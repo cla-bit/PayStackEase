@@ -1,3 +1,4 @@
+
 """
 Base client API for Paystack API with methods for handling HTTP requests,
 authentication using a secret key,
@@ -13,7 +14,7 @@ from urllib.parse import urljoin
 from decouple import config
 
 import requests
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 
 from paystackease.errors import (
     SecretKeyError,
@@ -118,7 +119,7 @@ class BaseClientAPI:
         data: Optional[Union[Dict[str, Any], List[Any], None]] = None,
         params: Optional[Union[Dict[str, Any], None]] = None,
         **kwargs,
-    ) -> Response:
+    ) -> PayStackResponse:
         """
         Handles the request to Paystack API
         :param method:
@@ -158,7 +159,7 @@ class BaseClientAPI:
                 response_data = response.json()
                 logger.info("Response Status Code: %s", response.status_code)
                 logger.info("Response JSON: %s", response_data)
-                return Response(
+                return PayStackResponse(
                     status_code=response.status_code,
                     status=response_data.get('status'),
                     message=response_data.get('message'),

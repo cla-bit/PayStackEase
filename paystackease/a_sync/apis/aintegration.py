@@ -3,7 +3,7 @@ Wrapper for Asynchronous Paystack Integration API
 
 The Integration API allows you manage some settings on your integration.
 """
-from paystackease._api_http_response import Response
+from paystackease._api_http_response import PayStackResponse
 from paystackease.a_sync._api_http_request import AsyncPayStackBaseClientAPI
 
 
@@ -13,16 +13,16 @@ class AsyncIntegrationClientAPI(AsyncPayStackBaseClientAPI):
     Reference: https://paystack.com/docs/api/integration/
     """
 
-    async def fetch_timeout(self) -> Response:
+    async def fetch_timeout(self) -> PayStackResponse:
         """
         Fetch payment session timeout
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
         return await self._get_request("/integration/payment_session_timeout")
 
-    async def update_timeout(self, timeout: int) -> Response:
+    async def update_timeout(self, timeout: int) -> PayStackResponse:
         """
         Update payment session timeout
 
@@ -32,8 +32,8 @@ class AsyncIntegrationClientAPI(AsyncPayStackBaseClientAPI):
 
             timeout is in seconds. Set 0 to cancel the timeout
 
-        :return: The response from the API
-        :rtype: Response object
+        :return: The PayStackResponse from the API
+        :rtype: PayStackResponse object
         """
 
         data = {"timeout": timeout}
