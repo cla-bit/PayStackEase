@@ -155,9 +155,15 @@ class BaseClientAPI:
                 **kwargs,
                 timeout=30,
             ) as response:
+                response_data = response.json()
                 logger.info("Response Status Code: %s", response.status_code)
-                logger.info("Response JSON: %s", response.json())
-                return response.json()
+                logger.info("Response JSON: %s", response_data)
+                return Response(
+                    status_code=response.status_code,
+                    status=response_data.get('status'),
+                    message=response_data.get('message'),
+                    data=response_data.get('data'),
+                )
         except requests.RequestException as error:
             # Extract status code if available from the exception
             status_code = getattr(error, "response", None) and getattr(

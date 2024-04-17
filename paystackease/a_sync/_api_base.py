@@ -163,10 +163,15 @@ class AsyncBaseClientAPI:
                 params=params,
                 **kwargs,
             ) as response:
-                response_json = await response.json()
+                response_data = await response.json()
                 logger.info("Response Status Code: %s", response.status)
-                logger.info("Response JSON: %s", response_json)
-                return response_json
+                logger.info("Response JSON: %s", response_data)
+                return Response(
+                    status_code=response.status,
+                    status=response_data.get('status'),
+                    message=response_data.get('message'),
+                    data=response_data.get('data'),
+                )
         except aiohttp.ClientError as error:
             # Extract status code if available from the exception
             status_code = getattr(error, "response", None) and getattr(
