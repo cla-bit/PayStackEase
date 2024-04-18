@@ -1,35 +1,26 @@
-
 """
-Base client API for Paystack API with methods for handling HTTP requests,
-authentication using a secret key,
+BaseAPI serves as the base for creating client APIs to interact with the Paystack API
+with methods for handling HTTP requests, authentication using a secret key,
 constructing HTTP headers, joining URLs with the API base URL, and logging response information.
 """
 
-import json
 import logging
+from abc import ABC, abstractmethod
 
-from datetime import date, datetime
+from datetime import datetime, date
 from typing import Union, Dict, List, Any, Optional
 from urllib.parse import urljoin
 from decouple import config
 
-import requests
-from paystackease._api_http_response import PayStackResponse
-
-from paystackease.errors import (
-    SecretKeyError,
-    TypeValueError,
-    InvalidRequestMethodError,
-    PayStackError,
-)
-
+from paystackease.core._api_client_response import PayStackResponse
+from paystackease.core._api_errors import SecretKeyError, TypeValueError
 
 logger = logging.getLogger(__name__)
 
 PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 
 
-class BaseClientAPI:
+class BaseAPI(ABC):
     """Base Client API for Paystack API"""
 
     _PAYSTACK_API_URL: str = "https://api.paystack.co/"
@@ -51,8 +42,6 @@ class BaseClientAPI:
             raise SecretKeyError(
                 "Please provide a secret key or set the environment variable PAYSTACK_SECRET_KEY"
             )
-
-        self._session = requests.Session()
 
         self._headers = self._make_paystack_http_headers()
 
@@ -112,6 +101,7 @@ class BaseClientAPI:
             f"Unsupported type: {type(value)}. Expected type -bool, -date, -datetime"
         )
 
+    @abstractmethod
     def _request_url(
         self,
         method: str,
@@ -129,48 +119,4 @@ class BaseClientAPI:
         :param kwargs:
         :return:
         """
-        if method.upper() not in self._VALID_HTTP_METHODS:
-            logger.error(
-                "Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE : %s",
-                {method},
-            )
-            raise InvalidRequestMethodError(
-                f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
-            )
-
-        url = self._join_url(url)
-        # Filtering params and data, then converting data to JSON
-        params = (
-            {key: value for key, value in params.items() if value is not None}
-            if params
-            else None
-        )
-        data = json.dumps(data) if data else None
-        try:
-            with self._session.request(
-                method,
-                url=url,
-                headers=self._headers,
-                data=data,
-                params=params,
-                **kwargs,
-                timeout=30,
-            ) as response:
-                response_data = response.json()
-                logger.info("Response Status Code: %s", response.status_code)
-                logger.info("Response JSON: %s", response_data)
-                return PayStackResponse(
-                    status_code=response.status_code,
-                    status=response_data.get('status'),
-                    message=response_data.get('message'),
-                    data=response_data.get('data'),
-                )
-        except requests.RequestException as error:
-            # Extract status code if available from the exception
-            status_code = getattr(error, "response", None) and getattr(
-                error.response, "status_code", None
-            )
-            logger.error("Error %s", error)
-            raise PayStackError(
-                f"Error making request to Paystack API: {str(error)}", status_code
-            ) from error
+        pass

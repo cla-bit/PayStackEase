@@ -1,4 +1,4 @@
-""" Utility functions for paystackease """
+"""  This represents the response from the Paystack API server after making HTTP requests. """
 
 from typing import NamedTuple, Optional, Union, Dict, List, Any
 
