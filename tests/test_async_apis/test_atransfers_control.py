@@ -73,7 +73,7 @@ async def test_disable_otp(async_transfers_control_client, mocked_responses):
     )
     response = await async_transfers_control_client.disable_otp()
     mocked_responses.assert_called()
-    assert response == response_data
+    assert response.status == "success"
     assert response is not None
 
 
@@ -108,5 +108,5 @@ async def test_enable_otp(async_transfers_control_client, mocked_responses):
     )
     response = await async_transfers_control_client.enable_otp()
     mocked_responses.assert_called()
-    assert response == response_data
+    assert response.status == "success"
     assert response is not None

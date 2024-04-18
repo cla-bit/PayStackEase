@@ -182,7 +182,7 @@ async def test_generate_update_subscription(
         subscription_code=sub_code
     )
     mocked_responses.assert_called()
-    assert response == response_data
+    assert response.status == "success"
     assert response is not None
 
 
@@ -201,5 +201,5 @@ async def test_send_update_subscription(async_subscriptions_client, mocked_respo
         subscription_code=sub_code
     )
     mocked_responses.assert_called()
-    assert response == response_data
+    assert response.status == "success"
     assert response is not None

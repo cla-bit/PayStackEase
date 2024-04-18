@@ -3,7 +3,7 @@
 import pytest
 from datetime import date, datetime
 
-from paystackease.helpers.tool_kit import PWT, QRCODE, MobileMoney, USSD
+from paystackease.helpers.tool_kit import PWT, QRCODE
 from tests.conftest import async_charges_client, mocked_responses
 
 
@@ -90,16 +90,16 @@ async def test_create_charge(
     expected_data = {
         "email": email,
         "amount": amount,
-        "pin": pin,
+        "metadata": metadata,
         "authorization_code": authorization_code,
-        "reference": reference,
-        "device_id": device_id,
         "bank": bank,
         "bank_transfer": bank_transfer,
         "qr": qr,
+        "pin": pin,
+        "reference": reference,
         "ussd": ussd,
         "mobile_money": mobile_money,
-        "metadata": metadata,
+        "device_id": device_id,
     }
 
     mocked_responses.post(
@@ -110,16 +110,16 @@ async def test_create_charge(
     response = await async_charges_client.create_charge(
         email=email,
         amount=amount,
-        pin=pin,
+        metadata=metadata,
         authorization_code=authorization_code,
-        reference=reference,
-        device_id=device_id,
         bank=bank,
         bank_transfer=bank_transfer,
         qr=qr,
+        pin=pin,
+        reference=reference,
         ussd=ussd,
         mobile_money=mobile_money,
-        metadata=metadata,
+        device_id=device_id,
     )
     mocked_responses.assert_called()
     assert response is not None

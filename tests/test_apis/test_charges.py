@@ -5,7 +5,7 @@ from datetime import date, datetime
 import pytest
 import responses
 
-from paystackease.helpers.tool_kit import PWT, QRCODE, USSD, MobileMoney
+from paystackease.helpers.tool_kit import PWT, QRCODE
 from tests.conftest import charges_client
 
 
@@ -28,7 +28,7 @@ from tests.conftest import charges_client
         (
             "test-email@gmail.com",
             10000,
-            1234,
+            None,
             "AUTH_test1234",
             "test-ref1234",
             "test-device-id",
@@ -92,16 +92,16 @@ def test_create_charge(
     expected_data = {
         "email": email,
         "amount": amount,
-        "pin": pin,
+        "metadata": metadata,
         "authorization_code": authorization_code,
-        "reference": reference,
-        "device_id": device_id,
         "bank": bank,
         "bank_transfer": bank_transfer,
         "qr": qr,
+        "pin": pin,
+        "reference": reference,
         "ussd": ussd,
         "mobile_money": mobile_money,
-        "metadata": metadata,
+        "device_id": device_id,
     }
     responses.add(
         responses.POST,
@@ -112,16 +112,16 @@ def test_create_charge(
     response = charges_client.create_charge(
         email=email,
         amount=amount,
-        pin=pin,
+        metadata=metadata,
         authorization_code=authorization_code,
-        reference=reference,
-        device_id=device_id,
         bank=bank,
         bank_transfer=bank_transfer,
         qr=qr,
+        pin=pin,
+        reference=reference,
         ussd=ussd,
         mobile_money=mobile_money,
-        metadata=metadata,
+        device_id=device_id,
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == url
