@@ -3,9 +3,7 @@
 import pytest
 import pytest_asyncio
 from aioresponses import aioresponses
-from paystackease.core._api_base import BaseAPI
-from paystackease.core._api_base_client import AsyncBaseClientAPI, SyncBaseClientAPI
-from paystackease.core._api_client_requests import AsyncRequestAPI, SyncRequestAPI
+from paystackease.core import AsyncBaseClientAPI, AsyncRequestAPI, SyncBaseClientAPI, SyncRequestAPI
 from paystackease.apis.sync_apis import (
     apple_pay,
     bulk_charges,
@@ -58,6 +56,159 @@ from paystackease.apis.async_apis import (
 )
 
 
+@pytest.fixture
+def sync_base_client():
+    """ Base client fixture"""
+    return SyncBaseClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def sync_base_client_request(sync_base_client):
+    """ Base client fixture"""
+    return SyncRequestAPI()
+
+
+@pytest.fixture
+def apple_pay_client(sync_base_client_request):
+    """ Apple pay client fixture"""
+    return apple_pay.ApplePayClientAPI()
+
+
+@pytest.fixture
+def bulk_charges_client(sync_base_client_request):
+    """ Bulk Charges client fixture"""
+    return bulk_charges.BulkChargesClientAPI()
+
+
+@pytest.fixture
+def charges_client():
+    """ Bulk Charges client fixture"""
+    return charges.ChargesClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def customers_client():
+    """ Customers client fixture"""
+    return customers.CustomerClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def dva_client():
+    """ Customers client fixture"""
+    return dedicated_virtual_accounts.DedicatedVirtualAccountClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def disputes_client():
+    """ Disputes client fixture"""
+    return disputes.DisputesClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def integration_client():
+    """ Integration client fixture"""
+    return integration.IntegrationClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def miscellaneous_client():
+    """ Integration client fixture"""
+    return miscellaneous.MiscellaneousClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def payment_pages_client():
+    """ Payment pages client fixture"""
+    return payment_pages.PaymentPagesClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def payment_requests_client():
+    """ Payment requests client fixture"""
+    return payment_requests.PaymentRequestClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def plans_client():
+    """ Plans client fixture"""
+    return plans.PlanClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def products_client():
+    """ Products client fixture"""
+    return products.ProductClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def refund_client():
+    """ Refund client fixture"""
+    return refund.RefundClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def settlements_client():
+    """ Settlements client fixture"""
+    return settlements.SettlementClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def subaccounts_client():
+    """ Subaccounts client fixture"""
+    return subaccounts.SubAccountClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def subscriptions_client():
+    """ Subscriptions client fixture"""
+    return subscriptions.SubscriptionClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def terminal_client():
+    """ Terminal client fixture"""
+    return terminal.TerminalClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def transaction_splits_client():
+    """ Transaction splits client fixture"""
+    return transaction_splits.TransactionSplitClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def transactions_client():
+    """ Transactions client fixture"""
+    return transactions.TransactionClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def transfer_recipients_client():
+    """ Transfer recipients client fixture"""
+    return transfer_recipients.TransferRecipientsClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def transfers_client():
+    """ Transfers client fixture"""
+    return transfers.TransfersClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def transfers_control_client():
+    """ Transfers control client fixture"""
+    return transfers_control.TransferControlClientAPI(secret_key="sk_secret_key")
+
+
+@pytest.fixture
+def verification_client():
+    """ Verification client fixture"""
+    return verification.VerificationClientAPI(secret_key="sk_secret_key")
+
+
+# test fixtures for asynchronous requests
+
+
 @pytest_asyncio.fixture
 async def async_base_client():
     """ Async base client fixture"""
@@ -66,23 +217,23 @@ async def async_base_client():
 
 
 @pytest_asyncio.fixture
-async def async_paystack_base_client():
+async def async_base_client_request(async_base_client):
     """ Paystack async request client fixture"""
-    async with AsyncPayStackBaseClientAPI(secret_key="sk_secret_key") as client:
+    async with AsyncRequestAPI() as client:
         yield client
 
 
 @pytest_asyncio.fixture
-async def async_apple_pay_client():
+async def async_apple_pay_client(async_base_client_request):
     """ Apple pay client fixture"""
-    async with aapple_pay.AsyncApplePayClientAPI(secret_key="sk_secret_key") as client:
+    async with aapple_pay.AsyncApplePayClientAPI() as client:
         yield client
 
 
 @pytest_asyncio.fixture
 async def async_bulk_charges_client():
     """ Bulk Charges client fixture"""
-    async with abulk_charges.AsyncBulkChargesClientAPI(secret_key="sk_secret_key") as client:
+    async with abulk_charges.AsyncBulkChargesClientAPI() as client:
         yield client
 
 
@@ -238,153 +389,3 @@ async def mocked_responses():
     """ Mocked responses fixture"""
     with aioresponses() as mocked:
         yield mocked
-
-
-@pytest.fixture
-def base_client():
-    """ Base client fixture"""
-    return BaseClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def paystack_request_client():
-    """ Paystack request client fixture"""
-    return PayStackBaseClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def apple_pay_client():
-    """ Apple pay client fixture"""
-    return apple_pay.ApplePayClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def bulk_charges_client():
-    """ Bulk Charges client fixture"""
-    return bulk_charges.BulkChargesClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def charges_client():
-    """ Bulk Charges client fixture"""
-    return charges.ChargesClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def customers_client():
-    """ Customers client fixture"""
-    return customers.CustomerClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def dva_client():
-    """ Customers client fixture"""
-    return dedicated_virtual_accounts.DedicatedVirtualAccountClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def disputes_client():
-    """ Disputes client fixture"""
-    return disputes.DisputesClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def integration_client():
-    """ Integration client fixture"""
-    return integration.IntegrationClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def miscellaneous_client():
-    """ Integration client fixture"""
-    return miscellaneous.MiscellaneousClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def payment_pages_client():
-    """ Payment pages client fixture"""
-    return payment_pages.PaymentPagesClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def payment_requests_client():
-    """ Payment requests client fixture"""
-    return payment_requests.PaymentRequestClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def plans_client():
-    """ Plans client fixture"""
-    return plans.PlanClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def products_client():
-    """ Products client fixture"""
-    return products.ProductClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def refund_client():
-    """ Refund client fixture"""
-    return refund.RefundClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def settlements_client():
-    """ Settlements client fixture"""
-    return settlements.SettlementClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def subaccounts_client():
-    """ Subaccounts client fixture"""
-    return subaccounts.SubAccountClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def subscriptions_client():
-    """ Subscriptions client fixture"""
-    return subscriptions.SubscriptionClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def terminal_client():
-    """ Terminal client fixture"""
-    return terminal.TerminalClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def transaction_splits_client():
-    """ Transaction splits client fixture"""
-    return transaction_splits.TransactionSplitClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def transactions_client():
-    """ Transactions client fixture"""
-    return transactions.TransactionClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def transfer_recipients_client():
-    """ Transfer recipients client fixture"""
-    return transfer_recipients.TransferRecipientsClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def transfers_client():
-    """ Transfers client fixture"""
-    return transfers.TransfersClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def transfers_control_client():
-    """ Transfers control client fixture"""
-    return transfers_control.TransferControlClientAPI(secret_key="sk_secret_key")
-
-
-@pytest.fixture
-def verification_client():
-    """ Verification client fixture"""
-    return verification.VerificationClientAPI(secret_key="sk_secret_key")

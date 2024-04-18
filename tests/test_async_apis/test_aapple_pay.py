@@ -6,6 +6,28 @@ from tests.conftest import async_apple_pay_client, mocked_responses
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize("domain_name", ["test-apple-domain-name"])
+async def test_async_register_domain(
+    async_apple_pay_client, mocked_responses, domain_name
+):
+    """
+    This function tests the behavior of the register_domains method with domain_name
+    """
+    url = "https://api.paystack.co/apple-pay/domain"
+    expected_data = {"domainName": domain_name}
+
+    # mock the API response
+    mocked_responses.post(
+        url,
+        status=200,
+        payload=expected_data,
+    )
+    response = await async_apple_pay_client.register_domain(domain_name=domain_name)
+    mocked_responses.assert_called()
+    assert response is not None
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     ("use_cursor", "next_page", "previous_page"),
     [(True, 1, 1), (False, 1, 2), (True, None, None), (False, None, None)],
@@ -39,28 +61,6 @@ async def test_list_domains(
     )
     mocked_responses.assert_called()
     assert response.status == "success"
-
-
-@pytest.mark.asyncio
-@pytest.mark.parametrize("domain_name", ["test-apple-domain-name"])
-async def test_async_register_domain(
-    async_apple_pay_client, mocked_responses, domain_name
-):
-    """
-    This function tests the behavior of the register_domains method with domain_name
-    """
-    url = "https://api.paystack.co/apple-pay/domain"
-    expected_data = {"domainName": domain_name}
-
-    # mock the API response
-    mocked_responses.post(
-        url,
-        status=200,
-        payload=expected_data,
-    )
-    response = await async_apple_pay_client.register_domain(domain_name=domain_name)
-    mocked_responses.assert_called()
-    assert response is not None
 
 
 @pytest.mark.asyncio

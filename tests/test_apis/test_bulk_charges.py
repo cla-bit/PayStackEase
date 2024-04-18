@@ -11,7 +11,7 @@ from tests.conftest import bulk_charges_client
 
 @pytest.mark.parametrize(
     "objects",
-    [[{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]],
+    [[{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]],
 )
 @responses.activate
 def test_initiate_bulk_charge(bulk_charges_client, objects):
@@ -22,7 +22,7 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
     url = "https://api.paystack.co/bulkcharge"
     response_data = {"status": "success"}
     expected_data = [
-        {"authorization_code": "123456", "amount": 1000, "reference": "123456"}
+        {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
     ]
 
     # mock the API response

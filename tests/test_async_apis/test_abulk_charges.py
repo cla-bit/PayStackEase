@@ -10,7 +10,7 @@ from paystackease import STATUS
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "objects",
-    [[{"authorization_code": "123456", "amount": 1000, "reference": "123456"}]],
+    [[{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]],
 )
 async def test_initialize_bulk_charges(
     async_bulk_charges_client, mocked_responses, objects
@@ -19,15 +19,13 @@ async def test_initialize_bulk_charges(
     This function tests the behavior of the initialize_bulk_charges method
     """
     url = "https://api.paystack.co/bulkcharge"
-    expected_data = [
-        {"authorization_code": "123456", "amount": 1000, "reference": "123456"}
-    ]
+    response_data = {"status": "success"}
 
     # mock the API response
-    mocked_responses.post(url, status=200, payload=expected_data)
+    mocked_responses.post(url, status=200, payload=response_data)
     response = await async_bulk_charges_client.initiate_bulk_charge(objects=objects)
     mocked_responses.assert_called()
-    # assert response is not None
+    assert response is not None
 
 
 @pytest.mark.asyncio
@@ -71,7 +69,7 @@ async def test_list_bulk_charge_batches(
         to_date=to_date,
     )
     mocked_responses.assert_called()
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.asyncio
@@ -89,7 +87,7 @@ async def test_fetch_bulk_charge_batch(async_bulk_charges_client, mocked_respons
         id_or_code=id_or_code
     )
     mocked_responses.assert_called()
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.asyncio
@@ -141,7 +139,7 @@ async def test_fetch_charge_bulk_batch(
         to_date=to_date,
     )
     mocked_responses.assert_called()
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.asyncio
@@ -159,7 +157,7 @@ async def test_pause_bulk_charge(async_bulk_charges_client, mocked_responses):
         batch_code="test"
     )
     mocked_responses.assert_called()
-    assert response is not None
+    assert response.status == "success"
 
 
 @pytest.mark.asyncio
@@ -178,4 +176,4 @@ async def test_resume_bulk_charge(async_bulk_charges_client, mocked_responses):
         batch_code="test"
     )
     mocked_responses.assert_called()
-    assert response is not None
+    assert response.status == "success"
