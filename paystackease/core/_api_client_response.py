@@ -1,6 +1,6 @@
 """  This represents the response from the Paystack API server after making HTTP requests. """
 
-from typing import NamedTuple, Optional, Union, Dict, List, Any
+from typing import NamedTuple, Optional, Union, Dict, Any
 
 
 class PayStackResponse(NamedTuple):
@@ -11,7 +11,7 @@ class PayStackResponse(NamedTuple):
     status_code: int
     status: bool
     message: str
-    data: Optional[Union[Dict[str, Any], List[Any]]]
+    data: Optional[Union[Dict[str, Any], None]]
 
     @property
     def url(self) -> Optional[Union[str, None]]:
