@@ -2,7 +2,7 @@
 
 ------
 
-![Python Versions](https://img.shields.io/badge/python-3.9|3.10|3.11|3.12-blue) ![License](https://img.shields.io/pypi/l/paystackease) ![pypi](https://img.shields.io/pypi/v/paystackease.svg)
+![Python Versions](https://img.shields.io/badge/python-3.9|3.10|3.11|3.12-blue) ![License](https://img.shields.io/pypi/l/paystackease) ![pypi](https://img.shields.io/pypi/v/paystackease)
 
 
 **PayStackEase API Library**  is a Python library that simplifies interacting with the Paystack API. 

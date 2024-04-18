@@ -16,7 +16,7 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
 
     Paystack Product API Reference: `Products`_
 
-    .. py:method:: create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ Response
+    .. py:method:: create_product(name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ PayStackResponse
 
         Create a product
 
@@ -34,9 +34,9 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: fetch_product(product_id: str)→ Response
+    .. py:method:: fetch_product(product_id: str)→ PayStackResponse
 
         Fetch a product
 
@@ -44,9 +44,9 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type product_id: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_products(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: list_products(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List products
 
@@ -60,9 +60,9 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ Response
+    .. py:method:: update_product(product_id: str, name: str, description: str, amount: int, currency: str, unlimited: bool | None = None, quantity: int | None = None)→ PayStackResponse
 
         Update a product
 
@@ -82,7 +82,7 @@ Wrapper for Paystack Products API The Products API allows you to create and mana
         :type quantity: int, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
 .. _Products: https://paystack.com/docs/api/product/

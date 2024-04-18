@@ -15,7 +15,7 @@ Wrapper for Paystack Plans API The Plans API allows you to create and manage ins
 
     Paystack Plan API Reference: `Plans`_
 
-    .. py:method:: create_plan(name: str, amount: int, interval: str, currency: str, invoice_limit: int, send_invoices: bool, send_sms: bool, description: str | None = None)→ Response
+    .. py:method:: create_plan(name: str, amount: int, interval: str, currency: str, invoice_limit: int, send_invoices: bool, send_sms: bool, description: str | None = None)→ PayStackResponse
 
         Create a plan
 
@@ -37,9 +37,9 @@ Wrapper for Paystack Plans API The Plans API allows you to create and manage ins
         :type description: str, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: fetch_plan(id_or_code: str)→ Response
+    .. py:method:: fetch_plan(id_or_code: str)→ PayStackResponse
 
         Fetch a plan
 
@@ -47,9 +47,9 @@ Wrapper for Paystack Plans API The Plans API allows you to create and manage ins
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_plans(per_page: int | None = 50, page: int | None = 1, status: str | None = None, interval: str | None = None, amount: int | None = None)→ Response
+    .. py:method:: list_plans(per_page: int | None = 50, page: int | None = 1, status: str | None = None, interval: str | None = None, amount: int | None = None)→ PayStackResponse
 
         List plans
 
@@ -65,9 +65,9 @@ Wrapper for Paystack Plans API The Plans API allows you to create and manage ins
         :type amount: int, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: update_plan(id_or_code: str, name: str, amount: int, interval: str, send_invoices: bool, send_sms: bool, currency: str, invoice_limit: int, description: str | None = None)→ Response
+    .. py:method:: update_plan(id_or_code: str, name: str, amount: int, interval: str, send_invoices: bool, send_sms: bool, currency: str, invoice_limit: int, description: str | None = None)→ PayStackResponse
 
         Update a plan
 
@@ -91,7 +91,7 @@ Wrapper for Paystack Plans API The Plans API allows you to create and manage ins
         :type description: str, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 You can use the tool kit in the helpers module as reference to get the string value of the Interval enum class to pass into the ``interval`` parameter :doc:`toolkit`
 

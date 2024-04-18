@@ -19,7 +19,7 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
 
     Paystack Transaction API Reference: `Transaction`_
 
-    .. py:method:: charge_authorization(email: str, amount: int, authorization_code: str, reference: str | None = None, currency: str | None = None, channels: List[str] | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, queue: bool | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ Response
+    .. py:method:: charge_authorization(email: str, amount: int, authorization_code: str, reference: str | None = None, currency: str | None = None, channels: List[str] | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, queue: bool | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ PayStackResponse
 
         Charge an authorization transaction
 
@@ -47,9 +47,9 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type metadata: Dict[str, List[Dict[str, Any]]]
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: export_transactions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, currency: str | None = None, amount: int | None = None, status: str | None = None, settled: bool | None = None, settlement: int | None = None, payment_page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: export_transactions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, currency: str | None = None, amount: int | None = None, status: str | None = None, settled: bool | None = None, settlement: int | None = None, payment_page: int | None = None, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         Export transactions
 
@@ -77,9 +77,9 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: fetch_transaction(transaction_id: int)→ Response
+    .. py:method:: fetch_transaction(transaction_id: int)→ PayStackResponse
 
         Fetch details of a specific transaction
 
@@ -87,9 +87,9 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type transaction_id: int
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: initialize(email: str, amount: int, currency: str | None = None, reference: str | None = None, callback_url: str | None = None, plan: str | None = None, invoice_limit: int | None = None, channels: List[str] | None = None, split_code: str | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, metadata: Dict[str, Any] | None = None)→ Response
+    .. py:method:: initialize(email: str, amount: int, currency: str | None = None, reference: str | None = None, callback_url: str | None = None, plan: str | None = None, invoice_limit: int | None = None, channels: List[str] | None = None, split_code: str | None = None, subaccount: str | None = None, transaction_charge: int | None = None, bearer: str | None = None, metadata: Dict[str, Any] | None = None)→ PayStackResponse
 
         Initiate a transaction
 
@@ -121,9 +121,9 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type metadata: dict, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_transactions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, terminal_id: str | None = None, amount: int | None = None, status: str | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: list_transactions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, terminal_id: str | None = None, amount: int | None = None, status: str | None = None, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List all transactions
 
@@ -145,9 +145,9 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: partial_debit(email: str, authorization_code: str, amount: int, currency: str, reference: str | None = None, at_least: int | None = None)→ Response
+    .. py:method:: partial_debit(email: str, authorization_code: str, amount: int, currency: str, reference: str | None = None, at_least: int | None = None)→ PayStackResponse
 
         Charge a partial debit transaction
 
@@ -165,18 +165,18 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type at_least: int, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: transaction_timeline(id_or_reference: str)→ Response
+    .. py:method:: transaction_timeline(id_or_reference: str)→ PayStackResponse
 
         Get the timeline of a transaction
 
         :param id_or_reference: The id or reference of the transaction you want to get
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: transaction_totals(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: transaction_totals(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         Get total of all transactions
 
@@ -190,9 +190,9 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: verify_transaction(reference: str)→ Response
+    .. py:method:: verify_transaction(reference: str)→ PayStackResponse
 
         Verify a transaction by reference
 
@@ -200,7 +200,7 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
         :type reference: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 You can use the tool kit in the helpers module as reference: :doc:`toolkit`
 

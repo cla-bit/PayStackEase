@@ -19,7 +19,7 @@ Check example on :doc:`apaystack`
 
     Paystack Charges API Reference: `Charges`_
 
-    .. py:method:: async check_pending_charge(reference: str)→ Response
+    .. py:method:: async check_pending_charge(reference: str)→ PayStackPayStackResponse
 
         Check pending charge
 
@@ -27,9 +27,9 @@ Check example on :doc:`apaystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackPayStackResponse object
 
-    .. py:method:: async create_charge(email: str, amount: int, pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = None, metadata: Dict[str, List[Dict[str, str]]] | None = None)→ Response
+    .. py:method:: async create_charge(email: str, amount: int, metadata: Dict[str, List[Dict[str, str]]], pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = None)→ PayStackPayStackResponse
 
         Create a new charge
 
@@ -37,6 +37,8 @@ Check example on :doc:`apaystack`
         :type email: str
         :param amount: The amount to charge
         :type amount: int
+        :param metadata: The metadata of the charge. A JSON object
+        :type metadata: dict
         :param pin: The pin of the customer
         :type pin: int, optional
         :param authorization_code: The authorization code of the customer
@@ -55,13 +57,11 @@ Check example on :doc:`apaystack`
         :type ussd: dict, optional
         :param mobile_money: The mobile money details
         :type mobile_money: dict, optional
-        :param metadata: The metadata of the charge. A JSON object
-        :type metadata: dict, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackPayStackResponse object
 
-    .. py:method:: async submit_address(reference: str, address: str, city: str, state: str, zipcode: str)→ Response
+    .. py:method:: async submit_address(reference: str, address: str, city: str, state: str, zipcode: str)→ PayStackPayStackResponse
 
         Submit address to continue a charge
 
@@ -77,9 +77,9 @@ Check example on :doc:`apaystack`
         :type zipcode: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackPayStackResponse object
 
-    .. py:method:: async submit_birthday(birthday: date, reference: str)→ Response
+    .. py:method:: async submit_birthday(birthday: date, reference: str)→ PayStackPayStackResponse
 
         Submit birthday when required
 
@@ -89,9 +89,9 @@ Check example on :doc:`apaystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackPayStackResponse object
 
-    .. py:method:: async submit_otp(otp: int, reference: str)→ Response
+    .. py:method:: async submit_otp(otp: int, reference: str)→ PayStackResponse
 
         Submit otp to complete a charge
 
@@ -101,9 +101,9 @@ Check example on :doc:`apaystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async submit_phone(phone: str, reference: str)→ Response
+    .. py:method:: async submit_phone(phone: str, reference: str)→ PayStackResponse
 
         Submit a phone number to complete a charge
 
@@ -113,9 +113,9 @@ Check example on :doc:`apaystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async submit_pin(pin: int, reference: str)→ Response
+    .. py:method:: async submit_pin(pin: int, reference: str)→ PayStackResponse
 
         Submit a PIN for a charge
 
@@ -125,7 +125,7 @@ Check example on :doc:`apaystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
 .. _Charges: https://paystack.com/docs/api/charge/

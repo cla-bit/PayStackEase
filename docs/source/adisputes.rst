@@ -17,7 +17,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
 
     Paystack Customer API Reference: `Disputes`_
 
-    .. py:method:: async add_evidence(dispute_id: str, customer_email: str, customer_name: str, customer_phone: str, service_details: str, delivery_address: str | None = None, delivery_date: date | None = None)→ Response
+    .. py:method:: async add_evidence(dispute_id: str, customer_email: str, customer_name: str, customer_phone: str, service_details: str, delivery_address: str | None = None, delivery_date: date | None = None)→ PayStackResponse
 
         Add evidence to a dispute.
 
@@ -37,9 +37,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type delivery_date: date, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async export_disputes(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None, transaction_id: str | None = None, status: str | None = None)→ Response
+    .. py:method:: async export_disputes(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None, transaction_id: str | None = None, status: str | None = None)→ PayStackResponse
 
         Export disputes.
 
@@ -57,9 +57,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type status: str, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async fetch_dispute(dispute_id: str)→ Response
+    .. py:method:: async fetch_dispute(dispute_id: str)→ PayStackResponse
 
         Fetch a dispute.
 
@@ -67,9 +67,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type dispute_id: str
 
         :return: The response from the API
-        :rtype: ClientEResponse object
+        :rtype: ClientEPayStackResponse object
 
-    .. py:method:: async get_upload_url(dispute_id: str, uploaded_filename: str)→ Response
+    .. py:method:: async get_upload_url(dispute_id: str, uploaded_filename: str)→ PayStackResponse
 
         Get the upload URL for a dispute.
 
@@ -79,9 +79,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type uploaded_filename: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async list_disputes(from_date: date | None = None, to_date: date | None = None, per_page: int | None = 50, page: int | None = 1, transaction_id: str | None = None, status: str | None = None)→ Response
+    .. py:method:: async list_disputes(from_date: date | None = None, to_date: date | None = None, per_page: int | None = 50, page: int | None = 1, transaction_id: str | None = None, status: str | None = None)→ PayStackResponse
 
         List disputes.
 
@@ -99,9 +99,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type status: str, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async list_transaction_disputes(transaction_id: str)→ Response
+    .. py:method:: async list_transaction_disputes(transaction_id: str)→ PayStackResponse
 
         List disputes for a transaction.
 
@@ -109,9 +109,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type transaction_id: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async resolve_dispute(dispute_id: str, resolution: str, message: str, refund_amount: int, uploaded_filename: str, evidence: int | None = None)→ Response
+    .. py:method:: async resolve_dispute(dispute_id: str, resolution: str, message: str, refund_amount: int, uploaded_filename: str, evidence: int | None = None)→ PayStackResponse
 
         Resolve a dispute.
 
@@ -129,9 +129,9 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type evidence: int, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async update_dispute(dispute_id: str, refund_amount: int, uploaded_filename: str | None = None)→ Response
+    .. py:method:: async update_dispute(dispute_id: str, refund_amount: int, uploaded_filename: str | None = None)→ PayStackResponse
 
         Update a dispute.
 
@@ -143,7 +143,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type uploaded_filename: str, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
 .. _Disputes:  https://paystack.com/docs/api/dispute/

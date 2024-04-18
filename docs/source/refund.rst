@@ -15,7 +15,7 @@ Wrapper for Paystack Refund API. The Refunds API allows you to create and manage
 
     Paystack Refund API Reference: `Refund`_
 
-    .. py:method:: create_refund(transaction_ref_or_id: str, amount: int | None = None, currency: str | None = None, customer_note: str | None = None, merchant_note: str | None = None)→ Response
+    .. py:method:: create_refund(transaction_ref_or_id: str, amount: int | None = None, currency: str | None = None, customer_note: str | None = None, merchant_note: str | None = None)→ PayStackResponse
 
         Create a refund
 
@@ -31,9 +31,9 @@ Wrapper for Paystack Refund API. The Refunds API allows you to create and manage
         :type merchant_note: str, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: fetch_refund(reference: str)→ Response
+    .. py:method:: fetch_refund(reference: str)→ PayStackResponse
 
         Fetch a refund
 
@@ -41,9 +41,9 @@ Wrapper for Paystack Refund API. The Refunds API allows you to create and manage
         :type reference: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_refunds(reference: str | None = None, currency: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: list_refunds(reference: str | None = None, currency: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List refunds
 
@@ -61,7 +61,7 @@ Wrapper for Paystack Refund API. The Refunds API allows you to create and manage
         :type to_date:
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 You can use the tool kit in the helpers module as reference to pass the string value of Currency: :doc:`toolkit`
 

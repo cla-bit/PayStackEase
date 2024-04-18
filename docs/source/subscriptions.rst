@@ -15,7 +15,7 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
 
     Paystack Subscription API Reference: `Subscriptions`_
 
-    .. py:method:: create_subscription(customer: str, plan_code: str, authorization: str, start_date: date | None = None)→ Response
+    .. py:method:: create_subscription(customer: str, plan_code: str, authorization: str, start_date: date | None = None)→ PayStackResponse
 
         Create a subscription
 
@@ -29,9 +29,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type start_date: date, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: disable_subscription(subscription_code: str, token: str)→ Response
+    .. py:method:: disable_subscription(subscription_code: str, token: str)→ PayStackResponse
 
         Disable a subscription
 
@@ -41,9 +41,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type token: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: enable_subscription(subscription_code: str, token: str)→ Response
+    .. py:method:: enable_subscription(subscription_code: str, token: str)→ PayStackResponse
 
         Enable a subscription
 
@@ -53,9 +53,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type token: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: fetch_subscription(id_or_code: str)→ Response
+    .. py:method:: fetch_subscription(id_or_code: str)→ PayStackResponse
 
         Get details of a subscription
 
@@ -63,9 +63,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: generate_update_subscription(subscription_code: str)→ Response
+    .. py:method:: generate_update_subscription(subscription_code: str)→ PayStackResponse
 
         Generate a link for updating the card on subscription
 
@@ -73,9 +73,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type subscription_code: str
 
         :return: The response from thw API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_subscriptions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, plan_code: int | None = None)→ Response
+    .. py:method:: list_subscriptions(per_page: int | None = 50, page: int | None = 1, customer: int | None = None, plan_code: int | None = None)→ PayStackResponse
 
         List all subscriptions
 
@@ -89,9 +89,9 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type plan_code: int, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: send_update_subscription_link(subscription_code: str)→ Response
+    .. py:method:: send_update_subscription_link(subscription_code: str)→ PayStackResponse
 
         Email a customer a link for updating the card on their subscription
 
@@ -99,7 +99,7 @@ Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to crea
         :type subscription_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
 .. _Subscriptions: https://paystack.com/docs/api/subscription/

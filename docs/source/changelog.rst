@@ -98,14 +98,14 @@ transfer_recipients, transfers, transfers_control, and verification.
 **Changed:**
 ================
 
-1. **Updated the return type from dict to Response object** respectively in the asynchronous and synchronous packages and modules:
+1. **Updated the return type from dict to PayStackResponse object** respectively in the asynchronous and synchronous packages and modules:
 apple_pay, bulk_charges, charges, customers, dedicated_virtual_accounts,
 disputes, integration, miscellaneous, payment_pages,
 payment_requests, plans, products, refund, settlements, subaccounts, subscriptions,
 terminal,transaction_splits, transactions, transfer_recipients, transfers,
 transfers_control, and verification.
 
-2. **Updated the return type from dict to Response object** respectively in the asynchronous and synchronous base client modules.
+2. **Updated the return type from dict to PayStackResponse object** respectively in the asynchronous and synchronous base client modules.
 
 3. **Updated the data parameter** respectively in the asynchronous and synchronous base client modules
 HTTP requests methods to accept dict or list instead of dict.

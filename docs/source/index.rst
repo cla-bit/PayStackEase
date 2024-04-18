@@ -12,6 +12,8 @@ PayStackEase: Simplified Paystack Integration.
 It provides both asynchronous and synchronous wrappers for various Paystack functionalities,
 making it easier to integrate payment processing into your Python projects.
 
+Paystackease utilizes **requests** and **aiohttp** libraries to make http requests and receives a **PayStackPayStackResponse** object from te server.
+
 -----------------------------
 
 **Prerequisites**

@@ -19,7 +19,7 @@ Check example on :doc:`apaystack`
 
     Paystack Customer API Reference: `Customer`_
 
-    .. py:method:: async create_customer(email: str, first_name: str, last_name: str, phone: str, metadata: Dict[str, Any] | None = None)→ Response
+    .. py:method:: async create_customer(email: str, first_name: str, last_name: str, phone: str, metadata: Dict[str, Any] | None = None)→ PayStackResponse
 
         Create a new customer.
 
@@ -35,9 +35,9 @@ Check example on :doc:`apaystack`
         :type metadata: dict, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async deactivate_authorization(authorization_code: str)→ Response
+    .. py:method:: async deactivate_authorization(authorization_code: str)→ PayStackResponse
 
         Deactivate an authorization.
 
@@ -45,9 +45,9 @@ Check example on :doc:`apaystack`
         :type authorization_code: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async fetch_customer(email_or_code: str)→ Response
+    .. py:method:: async fetch_customer(email_or_code: str)→ PayStackResponse
 
         Fetch a customer.
 
@@ -55,9 +55,9 @@ Check example on :doc:`apaystack`
         :type email_or_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async list_customers(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: async list_customers(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List customers.
 
@@ -71,9 +71,9 @@ Check example on :doc:`apaystack`
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async update_customer(customer_code: str, first_name: str | None = None, last_name: str | None = None, phone: str | None = None, metadata: Dict[str, Any] | None = None)→ Response
+    .. py:method:: async update_customer(customer_code: str, first_name: str | None = None, last_name: str | None = None, phone: str | None = None, metadata: Dict[str, Any] | None = None)→ PayStackResponse
 
         Update a customer.
 
@@ -89,9 +89,9 @@ Check example on :doc:`apaystack`
         :type metadata: dict, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async validate_customer(email_or_code: str, first_name: str, last_name: str, account_type: str, country: str, bank_code: str, account_number: str, bvn: str, customer_id_num: str | None = None, middle_name: str | None = None)→ Response
+    .. py:method:: async validate_customer(email_or_code: str, first_name: str, last_name: str, account_type: str, country: str, bank_code: str, account_number: str, bvn: str, customer_id_num: str | None = None, middle_name: str | None = None)→ PayStackResponse
 
         Validate a customer.
 
@@ -117,9 +117,9 @@ Check example on :doc:`apaystack`
         :type middle_name: str, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async whitelist_blacklist_customer(email_or_code: str, risk_action: str | None = None)→ Response
+    .. py:method:: async whitelist_blacklist_customer(email_or_code: str, risk_action: str | None = None)→ PayStackResponse
 
         Whitelist or blacklist a customer.
 
@@ -129,7 +129,7 @@ Check example on :doc:`apaystack`
         :type risk_action: str, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
 .. _Customer: https://paystack.com/docs/api/customer/

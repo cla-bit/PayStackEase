@@ -6,7 +6,7 @@ Metadata are additional parameters to the request data, some of which are:
 
 * cart ID
 * order ID
-+ cancel_action
+* cancel_action
 * custom_filters
 
 In Paystack there are two ways to add metadata parameters or objects:

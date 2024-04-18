@@ -19,7 +19,7 @@ Check example on :doc:`paystack`
 
     Paystack Bulk Charges API Reference: `Bulk Charges`_
 
-    .. py:method:: fetch_bulk_charge_batch(id_or_code: str)→ Response
+    .. py:method:: fetch_bulk_charge_batch(id_or_code: str)→ PayStackResponse
 
         Fetch a bulk charge of a specific batch
 
@@ -27,9 +27,9 @@ Check example on :doc:`paystack`
         :type id_or_code: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         Fetch a bulk charge of a specific batch
 
@@ -47,19 +47,19 @@ Check example on :doc:`paystack`
         :type to_date: date, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: initiate_bulk_charge(objects: List[Dict[str, str]])→ Response
+    .. py:method:: initiate_bulk_charge(objects: List[Dict[str, str]])→ PayStackResponse
 
         Initiate a bulk charge
 
         :param objects: An array of objects with authorization codes and amount.
-        :type objects: List[Dict[str, str]]
+        :type objects: List[Dict[str, Any]]
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List bulk charge batches
 
@@ -73,9 +73,9 @@ Check example on :doc:`paystack`
         :type to_date: date, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: pause_bulk_charge_batch(batch_code: str)→ Response
+    .. py:method:: pause_bulk_charge_batch(batch_code: str)→ PayStackResponse
 
         Pause a bulk charge of a specific batch
 
@@ -83,9 +83,9 @@ Check example on :doc:`paystack`
         :type batch_code: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: resume_bulk_charge_batch(batch_code: str)→ Response
+    .. py:method:: resume_bulk_charge_batch(batch_code: str)→ PayStackResponse
 
         Resume a bulk charge of a specific batch
 
@@ -93,7 +93,7 @@ Check example on :doc:`paystack`
         :type batch_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
 .. _Bulk Charges: https://paystack.com/docs/api/bulk-charge/
@@ -117,8 +117,8 @@ When passing the ``status`` parameter, you can pass the string value of the
 
 
 In initiating a bulk charge, the values being passed into the dictionary as keys are:
-``authorization_code``, ``amount`` and ``reference``. These keys are passed alongside with their values into a
-List. You can initiate multiple bulk charge at the same time also. The ``authorization_code`` is gotten after a successful card transaction.
+``authorization``, ``amount`` and ``reference``. These keys are passed alongside with their values into a
+List. You can initiate multiple bulk charge at the same time also. The ``authorization`` is gotten after a successful card transaction.
 The ``reference`` is a unique set of characters you can create as your desired choice.
 
 You can also check to ensure that the amount passed into is in subunit. See the documentation
@@ -133,8 +133,8 @@ on :doc:`convert`.
     >>> paystack_client = PayStackBase()
 
     >>> objects = [
-    { "authorization_code": "AUTH_test1234", "amount": 10000, "reference": "test1234" },
-    { "authorization_code": "AUTH_tester4176", "amount": 2000, "reference": "tester1234" },
+    { "authorization": "AUTH_test1234", "amount": 10000, "reference": "test1234" },
+    { "authorization": "AUTH_tester4176", "amount": 2000, "reference": "tester1234" },
     ]
 
     >>> response = paystack_client.bulk_charges.initiate_bulk_charge(objects)

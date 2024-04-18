@@ -15,7 +15,7 @@ Wrapper for Paystack Transfers APIs. The Transfers API allows you to automate se
 
     Paystack Transfers API Reference: `Transfers`_
 
-    .. py:method:: fetch_transfer(id_or_code: str)→ Response
+    .. py:method:: fetch_transfer(id_or_code: str)→ PayStackResponse
 
         Get details of a transfer
 
@@ -23,9 +23,9 @@ Wrapper for Paystack Transfers APIs. The Transfers API allows you to automate se
         :type id_or_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: finalize_transfer(transfer_code: str, otp: str)→ Response
+    .. py:method:: finalize_transfer(transfer_code: str, otp: str)→ PayStackResponse
 
         Finalize an initiated transfer
 
@@ -35,9 +35,9 @@ Wrapper for Paystack Transfers APIs. The Transfers API allows you to automate se
         :type otp: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: initiate_bulk_transfer(transfer_source: str, transfers: List[Dict[str, Any]])→ Response
+    .. py:method:: initiate_bulk_transfer(transfer_source: str, transfers: List[Dict[str, Any]])→ PayStackResponse
 
         Batch multiple transfers in a single request
 
@@ -47,9 +47,9 @@ Wrapper for Paystack Transfers APIs. The Transfers API allows you to automate se
         :type transfers: List[Dict[str, Any]]
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: initiate_transfer(transfer_source: str, amount: int, transfer_recipient: str, reason: str | None = None, currency: str | None = None, reference: str | None = None)→ Response
+    .. py:method:: initiate_transfer(transfer_source: str, amount: int, transfer_recipient: str, reason: str | None = None, currency: str | None = None, reference: str | None = None)→ PayStackResponse
 
         Initiate a transfer. Upgrade your business to a Registered Business to use
 
@@ -67,9 +67,9 @@ Wrapper for Paystack Transfers APIs. The Transfers API allows you to automate se
         :type reference: str, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_transfers(per_page: int | None = None, page: int | None = None, customer_id: str | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: list_transfers(per_page: int | None = None, page: int | None = None, customer_id: str | None = None, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List transfers
 
@@ -85,16 +85,16 @@ Wrapper for Paystack Transfers APIs. The Transfers API allows you to automate se
         :type to_date: date, optional
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
-    .. py:method:: verify_transfer(reference: str)→ Response
+    .. py:method:: verify_transfer(reference: str)→ PayStackResponse
 
         Verify a transfer
 
         :param reference: The reference of the transfer to verify
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 .. _Transfers: https://paystack.com/docs/api/transfer/

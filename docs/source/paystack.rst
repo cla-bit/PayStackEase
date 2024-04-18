@@ -22,7 +22,7 @@ services, such as payments, customers, disputes, and more, simplifying the integ
     >>> def paystack_client():
     >>>     paystack = PayStackBase()
     >>>     response = paystack.apple_pay.register_domain(domain_name="your-domain-name-here")
-    >>>     print(f"Response: {response}")
+    >>>     print(f"PayStackResponse: {response}")
 
 
     >>> paystack_client()

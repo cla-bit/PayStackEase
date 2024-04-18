@@ -1,11 +1,9 @@
 [tool.poetry]
 name = "paystackease"
 version = "1.0.0"
-description = "This is a simple api wrapper for paystack"
+description = "This is a simple api wrapper that implements both asynchronous and synchronous http requests to interact with Paystack APIs."
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
-maintainers = [
-    "petermbachu.bincom <petermbachu.bincom@gmail.com>",
-]
+maintainers = []
 license = "MIT"
 readme = "README.md"
 keywords = ["paystack", "paystackease", "python", "api", "payment integration"]

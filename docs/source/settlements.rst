@@ -15,7 +15,7 @@ Wrapper for Paystack Settlements API. The Settlements API allows you to gain ins
 
     Paystack Settlement API Reference: `Settlements`_
 
-    .. py:method:: list_settlement_transactions(settlement_id: int, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: list_settlement_transactions(settlement_id: int, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         Get the transactions that make up a particular settlement
 
@@ -31,9 +31,9 @@ Wrapper for Paystack Settlements API. The Settlements API allows you to gain ins
         :type to_date:
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: list_settlements(per_page: int | None = 50, page: int | None = 1, status: str | None = None, subaccount: str | None = None, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: list_settlements(per_page: int | None = 50, page: int | None = 1, status: str | None = None, subaccount: str | None = None, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List all settlements made to your settlement accounts
 
@@ -48,7 +48,7 @@ Wrapper for Paystack Settlements API. The Settlements API allows you to gain ins
         :type to_date:
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
 .. _Settlements: https://paystack.com/docs/api/settlement/

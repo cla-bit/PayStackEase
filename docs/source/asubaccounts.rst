@@ -15,7 +15,7 @@ Wrapper for Asynchronous Paystack SubAccounts API. The Subaccounts API allows yo
 
     Paystack SubAccount API Reference: `Subaccount`_
 
-    .. py:method:: async create_subaccount(business_name: str, settlement_bank: str, account_number: str, percentage_charge: float, description: str, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ Response
+    .. py:method:: async create_subaccount(business_name: str, settlement_bank: str, account_number: str, percentage_charge: float, description: str, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ PayStackResponse
 
         Create a subaccount
 
@@ -39,9 +39,9 @@ Wrapper for Asynchronous Paystack SubAccounts API. The Subaccounts API allows yo
         :type metadata: Dict[str, List[Dict[str, Any]]] | None,
 
         :return: A response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async fetch_subaccount(id_or_code: str)→ Response
+    .. py:method:: async fetch_subaccount(id_or_code: str)→ PayStackResponse
 
         Fetch a subaccount
 
@@ -49,9 +49,9 @@ Wrapper for Asynchronous Paystack SubAccounts API. The Subaccounts API allows yo
         :type id_or_code: str
 
         :return: A response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async list_subaccounts(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ Response
+    .. py:method:: async list_subaccounts(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
 
         List subaccounts
 
@@ -65,9 +65,9 @@ Wrapper for Asynchronous Paystack SubAccounts API. The Subaccounts API allows yo
         :type to_date: date, optional
 
         :return: A response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async update_subaccount(id_or_code: str, business_name: str, settlement_bank: str, account_number: str, active: bool | None = None, percentage_charge: float | None = None, description: str | None = None, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, settlement_schedule: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ Response
+    .. py:method:: async update_subaccount(id_or_code: str, business_name: str, settlement_bank: str, account_number: str, active: bool | None = None, percentage_charge: float | None = None, description: str | None = None, primary_contact_email: str | None = None, primary_contact_name: str | None = None, primary_contact_phone: str | None = None, settlement_schedule: str | None = None, metadata: Dict[str, List[Dict[str, Any]]] | None = None)→ PayStackResponse
 
         Update a subaccount
 
@@ -97,7 +97,7 @@ Wrapper for Asynchronous Paystack SubAccounts API. The Subaccounts API allows yo
         :type metadata: Dict[str, List[Dict[str, Any]]] | None,
 
         :return: A response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 .. note::
 

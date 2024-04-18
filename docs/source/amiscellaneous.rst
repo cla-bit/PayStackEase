@@ -18,7 +18,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
 
     Paystack Miscellaneous API Reference: `Miscellaneous`_
 
-    .. py:classmethod:: async list_banks(country: str | None = None, use_cursor: bool | None = False, per_page: int | None = 50, pay_with_bank_transfer: bool | None = False, pay_with_bank: bool | None = False, enabled_for_verification: bool | None = False, next_cursor: str | None = None, previous_cursor: str | None = None, gateway: str | None = None, channel_type: str | None = None, currency: str | None = None)→ Response
+    .. py:classmethod:: async list_banks(country: str | None = None, use_cursor: bool | None = False, per_page: int | None = 50, pay_with_bank_transfer: bool | None = False, pay_with_bank: bool | None = False, enabled_for_verification: bool | None = False, next_cursor: str | None = None, previous_cursor: str | None = None, gateway: str | None = None, channel_type: str | None = None, currency: str | None = None)→ PayStackResponse
 
         Get a list of all supported banks and their properties
 
@@ -46,16 +46,16 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type currency: str, optional
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async list_countries()→ Response
+    .. py:method:: async list_countries()→ PayStackResponse
 
         Get a list of all supported countries and their properties
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
-   .. py:method:: async list_states(country: str)→ Response
+   .. py:method:: async list_states(country: str)→ PayStackResponse
 
         Get a list of all supported states and their properties
 
@@ -63,7 +63,7 @@ You can use the tool kit in the helpers module as reference: :doc:`paystackease.
         :type country: str
 
         :return: The response from the API.
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 .. note::
 

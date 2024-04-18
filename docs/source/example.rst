@@ -10,7 +10,8 @@ Go checkout how to install paystackease :doc:`install`.
     ``PAYSTACK_SECRET_KEY``.
 
 
-The paystackease library to perform asynchronous and synchronous operations respectively:
+As earlier said, paystackease performs both asynchronous and synchronous operations respectively.
+You will import and instantiate the asynchronous and synchronous call wrappers as seen below:
 
 * Synchronous support:
 
@@ -30,7 +31,6 @@ The paystackease library to perform asynchronous and synchronous operations resp
     async with AsyncPayStackBase() as paystack_async:
         # call any of the API wrappers here
 
-----------------
 
 Let's say you want to perform a transaction synchronously, you will have to call the transaction API wrapper.
 
@@ -58,16 +58,13 @@ The response from the server will be as follows:
         }
     }
 
+To redirect the user to Paystack checkout page to make payments, you will need to call
+the ``url`` method from your instance and pass a ``301`` ``status code`` parameter
 
-Click on the ``authorization_url`` link value on your terminal, this will open on your browser to complete the transaction.
-
-.. note::
-    You can get the ``authorization_url`` link value and return the value for users in your web application to
-    complete their transaction process.
 
 **See Example**
 
-This is a django example of how to retrieve the ``authorization_url`` from the response.
+This is a django example of how to redirect users to Paystack checkout page to proceed with payment.
 
 .. code-block:: python
 
@@ -75,13 +72,13 @@ This is a django example of how to retrieve the ``authorization_url`` from the r
     email=order.email, amount=amount, currency="NGN",
     callback_url=success_url, metadata=metadata)
 
-    return redirect(session['data']['authorization_url'], code=301)
+    return redirect(session.url, code=301)
 
-There is also another way of opening the ``authorization_url``, by using the ``webbrowser`` module. Which ever is your
+Also the ``webbrowser`` module is another approach to redirect users to Paystack checkout page. Which ever is your
 choice is best.
 
 .. code-block:: python
 
     import webbrowser
 
-    webbrowser.open(session['data']['authorization_url'])
+    webbrowser.open(session.url)

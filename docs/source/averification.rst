@@ -15,7 +15,7 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
 
     Paystack Verification API Reference: `Verification`_
 
-    .. py:method:: async resolve_account(account_number: str, bank_code: str)→ Response
+    .. py:method:: async resolve_account(account_number: str, bank_code: str)→ PayStackResponse
 
         Confirm an account belongs to the right customer. This feature is available to business in Nigeria and Ghana.
 
@@ -25,10 +25,10 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
         :type bank_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
-    .. py:method:: async resolve_card_bin(bin_code: str)→ Response
+    .. py:method:: async resolve_card_bin(bin_code: str)→ PayStackResponse
 
         Resolve a card BIN
 
@@ -36,10 +36,10 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
         :type bin_code: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 
-    .. py:method:: async validate_account(account_name: str, account_number: str, account_type: str, bank_code: str, country_code: str, document_type: str, document_number: str)→ Response
+    .. py:method:: async validate_account(account_name: str, account_number: str, account_type: str, bank_code: str, country_code: str, document_type: str, document_number: str)→ PayStackResponse
 
         Confirm the authenticity of a customer’s account number before sending money. This feature is only available to businesses in South Africa.
 
@@ -59,6 +59,6 @@ Wrapper for Asynchronous Paystack Verification APIs The Verification API allows 
         :type document_number: str
 
         :return: The response from the API
-        :rtype: Response object
+        :rtype: PayStackResponse object
 
 .. _Verification: https://paystack.com/docs/api/verification/
