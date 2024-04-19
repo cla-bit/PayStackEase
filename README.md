@@ -1,7 +1,6 @@
 # PayStackEase Library  
 
-<img src="docs/images/logo-paystackease.png" style="display: block; margin-left: auto; margin-right: auto;">
-------
+<img src="docs/images/logo-paystackease.png" style="display: block; margin-left: auto; margin-right: auto;" alt="Pay">
 
 ![Python Versions](https://img.shields.io/badge/python-3.9|3.10|3.11|3.12-blue) ![License](https://img.shields.io/pypi/l/paystackease.svg) ![pypi](https://img.shields.io/pypi/v/paystackease.svg)
 
@@ -41,7 +40,7 @@ You should create a Paystack account to generate a **Paystack Secret Key**. You 
             <environment_name>\Scripts\activate
        ```
 
-2. For Unix/MacOS
+2. For Unix/macOS
 
     * Create virtual environment
 
@@ -85,7 +84,7 @@ Download the source distribution file, and install using pip
 
 ## To get a development version of paystackease
 
-Clone from the ``dev`` branch github repository, unzip and install:
+Clone from the ``dev`` branch GitHub repository, unzip and install:
 
 > git clone -b dev https://github.com/cla-bit/PayStackEase.git
 
@@ -128,7 +127,7 @@ To create a transaction or initialize a transaction:
     print(f"Transaction Created: {create_transaction}")
 ```
 
-> ✅: **Good**: You can check your Paystack account, go to the Transaction page and you will see the transaction just created.
+> ✅: **Good**: You can check your Paystack account, go to the Transaction page, and you will see the transaction just created.
 
 
 # Other Tools
