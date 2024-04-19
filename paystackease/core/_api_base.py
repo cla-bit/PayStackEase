@@ -36,12 +36,9 @@ class BaseAPI(ABC):
 
         # Raise an error if PAYSTACK_SECRET_KEY is not set in the instance or environment variables
         if not self._secret_key:
-            logger.error(
-                "Please provide a secret key or set the environment variable PAYSTACK_SECRET_KEY"
-            )
-            raise SecretKeyError(
-                "Please provide a secret key or set the environment variable PAYSTACK_SECRET_KEY"
-            )
+            error_message = "Please provide a secret key or set the environment variable PAYSTACK_SECRET_KEY"
+            logger.error(error_message)
+            raise SecretKeyError(error_message)
 
         self._headers = self._make_paystack_http_headers()
 
@@ -94,12 +91,9 @@ class BaseAPI(ABC):
             return None
         if type(value) in conversion_functions:
             return conversion_functions[type(value)](value)
-        logger.error(
-            "Unsupported type: %s Expected type -bool, -date, -datetime", {type(value)}
-        )
-        raise TypeValueError(
-            f"Unsupported type: {type(value)}. Expected type -bool, -date, -datetime"
-        )
+        error_message = f"Unsupported type: {type(value)}. Expected type -bool, -date, -datetime"
+        logger.error(error_message)
+        raise TypeValueError(error_message)
 
     @abstractmethod
     def _request_url(

@@ -45,13 +45,9 @@ class SyncBaseClientAPI(BaseAPI):
         :return:
         """
         if method.upper() not in self._VALID_HTTP_METHODS:
-            logger.error(
-                "Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE : %s",
-                {method},
-            )
-            raise InvalidRequestMethodError(
-                f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
-            )
+            error_message = f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
+            logger.error(error_message)
+            raise InvalidRequestMethodError(error_message)
 
         url = self._join_url(url)
         # Filtering params and data, then converting data to JSON
@@ -82,13 +78,12 @@ class SyncBaseClientAPI(BaseAPI):
                 )
         except RequestException as error:
             # Extract status code if available from the exception
+            error_message = str(error)
             status_code = getattr(error, "response", None) and getattr(
                 error.response, "status_code", None
             )
             logger.error("Error %s", error)
-            raise PayStackError(
-                f"Error making request to Paystack API: {str(error)}", status_code
-            ) from error
+            raise PayStackError(message=error_message, status_code=status_code) from error
 
 
 class AsyncBaseClientAPI(BaseAPI):
@@ -128,13 +123,9 @@ class AsyncBaseClientAPI(BaseAPI):
         :return:
         """
         if method.upper() not in self._VALID_HTTP_METHODS:
-            logger.error(
-                "Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : %s",
-                {method},
-            )
-            raise InvalidRequestMethodError(
-                f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
-            )
+            error_message = f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
+            logger.error(error_message)
+            raise InvalidRequestMethodError(error_message)
 
         url = self._join_url(url)
         # Filtering params and data, then converting data to JSON
@@ -164,10 +155,9 @@ class AsyncBaseClientAPI(BaseAPI):
                 )
         except ClientError as error:
             # Extract status code if available from the exception
+            error_message = str(error)
             status_code = getattr(error, "response", None) and getattr(
                 error.args[0], "status_code", None
             )
-            logger.error("Error: %s", error)
-            raise PayStackError(
-                f"Error making request to Paystack API: {str(error)}", status_code
-            ) from error
+            logger.error("Error %s", error)
+            raise PayStackError(message=error_message, status_code=status_code) from error
