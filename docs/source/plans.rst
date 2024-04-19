@@ -2,16 +2,12 @@
 Plan Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.plans
-
-
-Wrapper for Paystack Plans API The Plans API allows you to create and manage installment payment options on your integration.
+This wrapper class facilitates synchronous integration with Paystack Plans API.
+The Plans API allows you to create and manage installment payment options on your integration.
 
 ----------
 
 .. py:class:: PlanClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Plan API Reference: `Plans`_
 

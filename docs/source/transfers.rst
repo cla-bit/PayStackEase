@@ -2,16 +2,11 @@
 Transfers Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.transfers
-
-
-Wrapper for Paystack Transfers APIs. The Transfers API allows you to automate sending money to your customers.
+This wrapper class facilitates synchronous integration with Paystack Transfers APIs. The Transfers API allows you to automate sending money to your customers.
 
 --------------
 
 .. py:class:: TransfersClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Transfers API Reference: `Transfers`_
 

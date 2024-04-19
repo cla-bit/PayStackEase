@@ -2,20 +2,15 @@
 Async Bulk Charges Module
 =========================
 
-.. :py:currentmodule:: paystackease.async_apis.abulk_charges
 
-Wrapper for Asynchronous Paystack Bulk Charges API. The Bulk Charges API allows you
+This wrapper class facilitates asynchronous interaction with Paystack Bulk Charges API. The Bulk Charges API allows you
 to create and manage multiple recurring payments from your customers.
 
 To access the Bulk Charges API methods, you need to call the ``bulk_charges`` instance method from ``AsyncPayStackBase``.
 
-Check example on :doc:`apaystack`
-
-------------------------------------------------------------------------------
+------------------------
 
 .. py:class:: AsyncBulkChargesClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Bulk Charges API Reference: `Bulk Charges`_
 
@@ -53,7 +48,7 @@ Check example on :doc:`apaystack`
 
         Initiate a bulk charge
 
-        :param objects: An array of objects with authorization codes and amount.
+        :param objects: An array of objects with authorization, amount and reference.
         :type objects: List[Dict[str, Any]]
 
         :return: The response from the API.
@@ -142,9 +137,3 @@ on :doc:`convert`.
 
 
     >>> asyncio.run(paystack_client())
-
-
-.. note::
-
-    The date format is given as: `2016-09-21`. Later on we will include passing datetime also.
-    Ensure you use the ``date`` module by importing it from ``datetime``.

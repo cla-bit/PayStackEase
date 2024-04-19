@@ -2,16 +2,12 @@
 Payment Pages Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.payment_pages
-
-
-Wrapper for Paystack Payment Pages API. The Payment Pages API provides a quick and secure way to collect payment for products.
+This wrapper class facilitates synchronous integration with Paystack Payment Pages API.
+The Payment Pages API provides a quick and secure way to collect payment for products.
 
 -----------
 
 .. py:class:: PaymentPagesClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Miscellaneous API Reference: `Payment Pages`_
 

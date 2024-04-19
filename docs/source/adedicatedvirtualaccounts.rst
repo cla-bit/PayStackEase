@@ -2,25 +2,21 @@
 Async Dedicated Virtual Accounts Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.adedicated_virtual_accounts
 
-
-Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
-
------------
+This wrapper class facilitates asynchronous interaction with Paystack Dedicated Virtual Account API.
+The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 
 .. note::
 
     Ensure Dedicated NUBAN is available for your business. Contact Paystack Support
 
+-----------
 
 .. py:class:: AsyncDedicatedVirtualAccountClientAPI(secret_key: str = None)
 
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
-
     Paystack Customer API Reference: `Dedicated Virtual Account`_
 
-    .. py:method:: async assign_dedicated_virtual_account(email: str, first_name: str, last_name: str, phone: str, preferred_bank: str, country: str, account_number: str | None = None, bvn: str | None = None, bank_code: str | None = None, subaccount: str | None = None, split_code: str | None = None)→ PayStackPayStackResponse
+    .. py:method:: async assign_dedicated_virtual_account(email: str, first_name: str, last_name: str, phone: str, preferred_bank: str, country: str, account_number: str | None = None, bvn: str | None = None, bank_code: str | None = None, subaccount: str | None = None, split_code: str | None = None)→ PayStackResponse
 
         Ensure Dedicated NUBAN is available for your business. Contact Paystack Support
 
@@ -48,9 +44,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type split_code: str, optional
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async create_virtual_account(customer_id_or_code: str, preferred_bank: str | None = None, subaccount: str | None = None, split_code: str | None = None, first_name: str | None = None, last_name: str | None = None, phone: str | None = None)→ PayStackPayStackResponse
+    .. py:method:: async create_virtual_account(customer_id_or_code: str, preferred_bank: str | None = None, subaccount: str | None = None, split_code: str | None = None, first_name: str | None = None, last_name: str | None = None, phone: str | None = None)→ PayStackResponse
 
         Create a dedicated virtual account for existing customers. Currently, support Wema Bank and Titan Paystack.
 
@@ -70,9 +66,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type phone: str, optional
 
         :return: The response from the API
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async deactivate_dedicated_account(dedicated_account_id: int)→ PayStackPayStackResponse
+    .. py:method:: async deactivate_dedicated_account(dedicated_account_id: int)→ PayStackResponse
 
         Deactivate a dedicated virtual account
 
@@ -80,16 +76,16 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type dedicated_account_id: int
 
         :return: The response from the API
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async fetch_bank_providers()→ PayStackPayStackResponse
+    .. py:method:: async fetch_bank_providers()→ PayStackResponse
 
         Fetch bank providers
 
         :return: The response from the API
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async fetch_dedicated_account(dedicated_account_id: int)→ PayStackPayStackResponse
+    .. py:method:: async fetch_dedicated_account(dedicated_account_id: int)→ PayStackResponse
 
         Get details of a dedicated virtual account
 
@@ -97,9 +93,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type dedicated_account_id: int
 
         :return: The response from the API
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async list_dedicated_account(active: bool | None = True, currency: str | None = None, provider_slug: str | None = None, bank_id: str | None = None, customer_id: str | None = None)→ PayStackPayStackResponse
+    .. py:method:: async list_dedicated_account(active: bool | None = True, currency: str | None = None, provider_slug: str | None = None, bank_id: str | None = None, customer_id: str | None = None)→ PayStackResponse
 
         List dedicated accounts
 
@@ -115,9 +111,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type customer_id: str, optional
 
         :return: The response from the API
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async remove_split_dedicated_account(account_number: str)→ PayStackPayStackResponse
+    .. py:method:: async remove_split_dedicated_account(account_number: str)→ PayStackResponse
 
         Remove a split dedicated virtual account
 
@@ -125,9 +121,9 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type account_number: str
 
         :return: The response from the API
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async requery_dedicated_account(account_number: str | None = None, provider_slug: str | None = None, date_transfer: date | None = None)→ PayStackPayStackResponse
+    .. py:method:: async requery_dedicated_account(account_number: str | None = None, provider_slug: str | None = None, date_transfer: date | None = None)→ PayStackResponse
 
         Requery a dedicated virtual account for new transactions
 
@@ -139,7 +135,7 @@ Wrapper for Asynchronous Paystack Dedicated Virtual Account API The Dedicated Vi
         :type date_transfer: date, optional
 
         :return: The response from the API
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
 
 .. _Dedicated Virtual Account: https://paystack.com/docs/api/dedicated-virtual-account/

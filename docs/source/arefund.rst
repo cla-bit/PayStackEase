@@ -2,16 +2,11 @@
 Async Refund Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.arefund
-
-
-Wrapper for Asynchronous Paystack Refund API. The Refunds API allows you to create and manage transaction refunds.
+This wrapper class facilitates asynchronous integration with Paystack Refund API. The Refunds API allows you to create and manage transaction refunds.
 
 ----------
 
 .. py:class:: AsyncRefundClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Refund API Reference: `Refund`_
 

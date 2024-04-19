@@ -2,16 +2,11 @@
 Settlements Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.settlements
-
-
-Wrapper for Paystack Settlements API. The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
+This wrapper class facilitates synchronous integration with Paystack Settlements API. The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
 
 -------------
 
 .. py:class:: SettlementClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Settlement API Reference: `Settlements`_
 

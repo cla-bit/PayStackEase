@@ -2,16 +2,11 @@
 Refund Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.refund
-
-
-Wrapper for Paystack Refund API. The Refunds API allows you to create and manage transaction refunds.
+This wrapper class facilitates synchronous integration with Paystack Refund API. The Refunds API allows you to create and manage transaction refunds.
 
 ------------------
 
 .. py:class:: RefundClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Refund API Reference: `Refund`_
 

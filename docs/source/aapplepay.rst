@@ -2,10 +2,10 @@
 Async Apple Pay Module
 ========================
 
-.. :py:currentmodule:: paystackease.async_apis.aapple_pay
 
-Wrapper class for Asynchronous Paystack Apple Pay API. The Apple Pay API allows you register your
-application’s top-level domain or subdomain.
+This wrapper class enables asynchronous interaction with the Paystack Apple Pay API.
+The Apple Pay API allows you to register your application's top-level domain or subdomain,
+enabling customers to make secure payment processing using Apple Pay on IOS and Safari.
 
 To access the Apple Pay API methods, you need to call the ``apple_pay`` instance method from ``AsyncPayStackBase``.
 
@@ -15,11 +15,9 @@ See how to call the instance here: :doc:`apaystack`
 
 .. py:class:: AsyncApplePayClientAPI(secret_key: str = None)
 
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
-
     Paystack Apple Pay API Reference: `Apple Pay`_
 
-    .. py:method:: async list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ PayStackPayStackResponse
+    .. py:method:: async list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ PayStackResponse
 
         List all domains registered with the Apple Pay API.
 
@@ -31,9 +29,9 @@ See how to call the instance here: :doc:`apaystack`
         :type previous_page: int, optional
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async register_domain(domain_name: str)→ PayStackPayStackResponse
+    .. py:method:: async register_domain(domain_name: str)→ PayStackResponse
 
         Register a domain with the Apple Pay API.
 
@@ -41,9 +39,9 @@ See how to call the instance here: :doc:`apaystack`
         :type domain_name: str
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async unregister_domain(domain_name: str)→ PayStackPayStackResponse
+    .. py:method:: async unregister_domain(domain_name: str)→ PayStackResponse
 
         Unregister a domain with the Apple Pay API.
 
@@ -51,17 +49,17 @@ See how to call the instance here: :doc:`apaystack`
         :type domain_name: str
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
 
 .. _Apple Pay: https://paystack.com/docs/api/apple-pay/
 
 .. important::
 
-    The :py:meth:`~paystackease.async_apis.aapple_pay.AsyncApplePayClientAPI.register_domain` method can only be called with one domain or subdomain at a time.
+    The ``register_domain()`` method can only be called with one domain or subdomain at a time.
 
+**Apple Pay Access**
 
-Ensure you have access to use the Apple Pay endpoint, else call Paystack Customer service.
-If you are using this on a testing environment, and you don't see the Apple Pay channel
-to select, kindly move your project to a live environment, and follow this instruction
-on using the Apple Pay channel: https://paystack.com/docs/payments/apple-pay/
+1. **Requirement**: To use the Apple Pay functionality, you must have access to the Apple Pay endpoint.
+2. **Verification**: If you're unsure about your access, please contact Paystack customer service for verification.
+3. **Testing Environment**: Apple Pay might not be available on your testing environment. If you're using a testing environment and don't see the Apple Pay channel as an option, switch to a live environment and follow these instructions: https://paystack.com/docs/payments/apple-pay/

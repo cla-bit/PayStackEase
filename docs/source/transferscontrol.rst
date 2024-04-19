@@ -2,16 +2,11 @@
 Transfers Control Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.transfers_control
-
-
-Wrapper for Paystack Transfer Control APIs. The Transfers Control API allows you manage settings of your transfers.
+This wrapper class facilitates synchronous integration with Paystack Transfer Control APIs. The Transfers Control API allows you manage settings of your transfers.
 
 -------------------
 
 .. py:class:: TransferControlClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Transfers Control API Reference: `Transfer Control`_
 

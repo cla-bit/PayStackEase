@@ -2,16 +2,11 @@
 Async Transfer Recipients Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.atransfer_recipients
-
-
-Wrapper for Asynchronous Paystack Transfer Recipient APIs. The Transfer Recipients API allows you to create and manage beneficiaries that you send money to.
+This wrapper class facilitates asynchronous integration with Paystack Transfer Recipient APIs. The Transfer Recipients API allows you to create and manage beneficiaries that you send money to.
 
 -------------------------------------------------------------
 
 .. py:class:: AsyncTransferRecipientsClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Transfer Recipients API Reference: `Transfer Recipients`_
 

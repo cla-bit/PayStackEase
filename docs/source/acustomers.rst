@@ -2,9 +2,8 @@
 Async Customers Module
 =========================
 
-.. :py:currentmodule:: paystackease.async_apis.acustomers
 
-Wrapper for Asynchronous Paystack Customers API. The Customers API allows you to
+This wrapper class facilitates asynchronous interaction with Paystack Customers API. The Customers API allows you to
 create and manage customers on your integration.
 
 To access the Customers API methods, you need to call the ``customers`` instance method from ``AsyncPayStackBase``.
@@ -14,8 +13,6 @@ Check example on :doc:`apaystack`
 ----------------------------------------------------------------
 
 .. py:class:: AsyncCustomerClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Customer API Reference: `Customer`_
 

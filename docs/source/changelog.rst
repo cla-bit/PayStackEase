@@ -127,5 +127,42 @@ Improved security to handle sensitive data structures.
 This allows for better security when dealing with HTTP requests and responses from different sources.
 
 
+[Version 2.0.0] - 2024-04-19
+-------------------------------
+
+**Changed:**
+================
+
+1. **Enhanced Response handling**: The return type for both asynchronous and synchronous calls has been changed from a
+generic Response object to a more specific PayStackResponse object. This PayStackResponse object provides richer
+information about the API response, including status code, response message, and data.
+
+2. **Flexible data parameter** The data parameter in the base client modules for asynchronous and synchronous calls can now accept either a dictionary or a list.
+This allows you to send data in a format that best suits your needs, providing more flexibility for your API requests.
+
+**Fixed:**
+================
+
+1. **Type Hint** bugs in the BaseClientAPI, AsyncBaseClientAPI classes and in the apis and async_apis packages.
+2. **Enhanced Error Handling**: This version boasts improved error handling by providing informative messages along with status codes for both request and response errors.
+
+**Deprecated:**
+==================
+1. The objects parameter in the **BulkChargeClientAPI** module now is a required parameter. Deprecated
+``Optional[List[Dict[]]] = None``.
+
+2. The ``paystackease.abase``, ``paystackease.base``, ``paystackease.utils``and ``paystackease.errors`` have been deprecated.
+Any code that relies on these packages will no longer function.
+
+3. The ``paystackease.apis``and ``paystackease.async_apis``  api packages have been deprecated.
+Any code that relies on these packages will no longer function.
+
+**Security:**
+================
+
+Improved security to handle sensitive data structures.
+This allows for better security when dealing with HTTP requests and responses from different sources.
+
+
 
 .. _TestPYPI: https://test.pypi.org/project/paystackease/#files

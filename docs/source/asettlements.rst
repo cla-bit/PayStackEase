@@ -2,16 +2,11 @@
 Async Settlements Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.asettlements
-
-
-Wrapper for Asynchronous Paystack Settlements API. The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
+This wrapper class facilitates asynchronous integration with Paystack Settlements API. The Settlements API allows you to gain insights into payouts made by Paystack to your bank account.
 
 -------------
 
 .. py:class:: AsyncSettlementClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Settlement API Reference: `Settlements`_
 

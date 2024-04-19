@@ -2,16 +2,11 @@
 Async SubAccounts Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.asubaccounts
-
-
-Wrapper for Asynchronous Paystack SubAccounts API. The Subaccounts API allows you to create and manage subaccounts on your integration. Subaccounts can be used to split payment between two accounts (your main account and a subaccount).
+This wrapper class facilitates asynchronous integration with Paystack SubAccounts API. The Subaccounts API allows you to create and manage subaccounts on your integration. Subaccounts can be used to split payment between two accounts (your main account and a subaccount).
 
 ------------
 
 .. py:class:: AsyncSubAccountClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack SubAccount API Reference: `Subaccount`_
 

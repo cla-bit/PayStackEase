@@ -2,18 +2,15 @@
 Async Disputes Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.adisputes
 
-
-Wrapper for Asynchronous Paystack Disputes API The Disputes API allows you manage transaction disputes on your integration.
+This wrapper class facilitates asynchronous interaction with Paystack Disputes API.
+The Disputes API allows you manage transaction disputes on your integration.
 
 You can use the tool kit in the helpers module as reference: :doc:`paystackease.helpers`
 
 -------------
 
 .. py:class:: AsyncDisputesClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Customer API Reference: `Disputes`_
 
@@ -154,4 +151,4 @@ See documentation at :doc:`toolkit`.
 
 .. important::
 
-    Always ensure you use the filename gotten from the response of the ``get_upload_url`` method when uploading filename.
+    The filename returned by ``get_upload_url`` method must be used when uploading the file.

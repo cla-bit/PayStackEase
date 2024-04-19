@@ -2,9 +2,8 @@
 Customers Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.customers
 
-Wrapper for Paystack Customers API. The Customers API allows you to create and manage
+This wrapper class facilitates asynchronous interaction with Paystack Customers API. The Customers API allows you to create and manage
 customers on your integration.
 
 To access the Customers API methods, you need to call the ``customers`` instance method from ``PayStackBase``.
@@ -15,11 +14,9 @@ Check example on :doc:`paystack`
 
 .. py:class:: CustomerClientAPI(secret_key: str = None)
 
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
-
     Paystack Customer API Reference: `Customer`_
 
-    .. py:method:: create_customer(email: str, first_name: str, last_name: str, phone: str, metadata: Dict[str, Any] | None = None)→ PayStackPayStackResponse
+    .. py:method:: create_customer(email: str, first_name: str, last_name: str, phone: str, metadata: Dict[str, Any] | None = None)→ PayStackResponse
 
         Create a new customer.
 
@@ -35,9 +32,9 @@ Check example on :doc:`paystack`
         :type metadata: dict, optional
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: deactivate_authorization(authorization_code: str)→ PayStackPayStackResponse
+    .. py:method:: deactivate_authorization(authorization_code: str)→ PayStackResponse
 
         Deactivate an authorization.
 
@@ -45,9 +42,9 @@ Check example on :doc:`paystack`
         :type authorization_code: str
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: fetch_customer(email_or_code: str)→ PayStackPayStackResponse
+    .. py:method:: fetch_customer(email_or_code: str)→ PayStackResponse
 
         Fetch a customer.
 

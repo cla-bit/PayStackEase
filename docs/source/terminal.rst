@@ -2,15 +2,11 @@
 Terminal Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.terminal
-
-Wrapper for Paystack Terminal APIs. The Terminal API allows you to build delightful in-person payment experiences.
+This wrapper class facilitates synchronous integration with Paystack Terminal APIs. The Terminal API allows you to build delightful in-person payment experiences.
 
 -------------
 
 .. py:class:: TerminalClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Terminal API Reference: `Terminal`_
 

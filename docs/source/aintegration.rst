@@ -2,27 +2,23 @@
 Async Integration Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.aintegration
 
-
-Wrapper for Asynchronous Paystack Integration API The Integration API allows you manage some settings on your integration.
+This wrapper class facilitates asynchronous interaction with Paystack Integration API. The Integration API allows you manage some settings on your integration.
 
 -------------------------------------------------------------------------
 
 .. py:class:: AsyncIntegrationClientAPI(secret_key: str = None)
 
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
-
     Paystack Integration API Reference: `Integration`_
 
-    .. py:method:: async fetch_timeout()→ PayStackPayStackResponse
+    .. py:method:: async fetch_timeout()→ PayStackResponse
 
         Fetch payment session timeout
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async update_timeout(timeout: int)→ PayStackPayStackResponse
+    .. py:method:: async update_timeout(timeout: int)→ PayStackResponse
 
         Update payment session timeout
 
@@ -30,7 +26,7 @@ Wrapper for Asynchronous Paystack Integration API The Integration API allows you
         :type timeout: int
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
 .. note::
 

@@ -2,16 +2,12 @@
 Integration Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.integration
 
-
-Wrapper for Paystack Integration API The Integration API allows you manage some settings on your integration.
+This wrapper class facilitates synchronous interaction with Paystack Integration API. The Integration API allows you manage some settings on your integration.
 
 -------------------------------------------------------------------------
 
 .. py:class:: IntegrationClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Integration API Reference: `Integration`_
 

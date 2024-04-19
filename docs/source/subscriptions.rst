@@ -2,16 +2,11 @@
 Subscriptions Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.subscriptions
-
-
-Wrapper for Paystack Subscriptions API. The Subscriptions API allows you to create and manage recurring payment on your integration.
+This wrapper class facilitates synchronous integration with Paystack Subscriptions API. The Subscriptions API allows you to create and manage recurring payment on your integration.
 
 ----------
 
 .. py:class:: SubscriptionClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Subscription API Reference: `Subscriptions`_
 

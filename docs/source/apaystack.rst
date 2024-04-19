@@ -23,7 +23,7 @@ services, such as payments, customers, disputes, and more, simplifying the integ
     >>> async def paystack_client():
     >>>     async with AsyncPayStackBase() as paystack:
     >>>         response = await paystack.apple_pay.register_domain(domain_name="your-domain-name-here")
-    >>>         print(f"PayStackPayStackResponse: {response}")
+    >>>         print(f"PayStackResponse: {response}")
 
 
     >>> asyncio.run(paystack_client())

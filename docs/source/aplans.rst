@@ -2,16 +2,12 @@
 Async Plan Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.aplans
-
-
-Wrapper for Asynchronous Paystack Plans API The Plans API allows you to create and manage installment payment options on your integration.
+This wrapper class facilitates asynchronous integration with Paystack Plans API.
+The Plans API allows you to create and manage installment payment options on your integration.
 
 ---------
 
 .. py:class:: AsyncPlanClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Plan API Reference: `Plans`_
 

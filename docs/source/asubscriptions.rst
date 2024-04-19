@@ -2,16 +2,11 @@
 Async Subscriptions Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.asubscriptions
-
-
-Wrapper for Asynchronous Paystack Subscriptions API. The Subscriptions API allows you to create and manage recurring payment on your integration.
+This wrapper class facilitates asynchronous integration with Paystack Subscriptions API. The Subscriptions API allows you to create and manage recurring payment on your integration.
 
 -------------
 
 .. py:class:: AsyncSubscriptionClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Subscription API Reference: `Subscriptions`_
 

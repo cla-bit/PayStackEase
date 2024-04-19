@@ -2,16 +2,11 @@
 Async Transfers Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.atransfers
-
-
-Wrapper for Asynchronous Paystack Transfers APIs. The Transfers API allows you to automate sending money to your customers.
+This wrapper class facilitates asynchronous integration with Paystack Transfers APIs. The Transfers API allows you to automate sending money to your customers.
 
 -----------------
 
 .. py:class:: AsyncTransfersClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Transfers API Reference: `Transfers`_
 

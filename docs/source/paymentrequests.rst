@@ -2,16 +2,12 @@
 Payment Requests Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.payment_requests
-
-
-Wrapper for Paystack Payment Requests API. The Payment Requests API allows you manage requests for payment of goods and services.
+This wrapper class facilitates synchronous integration with Paystack Payment Requests API.
+The Payment Requests API allows you manage requests for payment of goods and services.
 
 ---------------
 
 .. py:class:: PaymentRequestClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Payment Request API Reference: `Payment Requests`_
 

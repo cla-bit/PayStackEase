@@ -48,9 +48,10 @@ To use paystackease:
     Do not expose your secret key or commit your secret key to git, or use them in client-side code.
 
 .. hint::
-    Public key is to be used from your front-end when integrating using Paystack Inline.
-    In this case you have to use you secret key since we are working with the server side.
 
-    Set your environment variable as *PAYSTACK_SECRET_KEY*
+    Paystack offers both public and secret keys. While the public key is used for front-end integration with Paystack Inline,
+    the **paystackease** library only requires your secret key.
+
+    With you secret key gotten from your Paystack account, set your secret key as environment variable named *PAYSTACK_SECRET_KEY*
 
 .. _Paystack Create Account: https://paystack.com/

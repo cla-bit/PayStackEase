@@ -2,16 +2,11 @@
 Async Verification Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.averification
-
-
-Wrapper for Asynchronous Paystack Verification APIs The Verification API allows you to perform KYC processes.
+This wrapper class facilitates asynchronous integration with Paystack Verification APIs The Verification API allows you to perform KYC processes.
 
 ------------------
 
 .. py:class:: AsyncVerificationClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Verification API Reference: `Verification`_
 

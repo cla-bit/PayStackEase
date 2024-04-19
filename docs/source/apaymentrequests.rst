@@ -2,16 +2,12 @@
 Async Payment Requests Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.apayment_requests
-
-
-Wrapper for Asynchronous Paystack Payment Requests API. The Payment Requests API allows you manage requests for payment of goods and services.
+This wrapper class facilitates asynchronous integration with Paystack Payment Requests API.
+The Payment Requests API allows you manage requests for payment of goods and services.
 
 -------------
 
 .. py:class:: AsyncPaymentRequestClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Payment Request API Reference: `Payment Requests`_
 

@@ -2,16 +2,16 @@
 How to use paystackease
 ========================
 
-Go checkout how to install paystackease :doc:`install`.
+For installation instructions, refer to: :doc:`install`.
 
 
 .. hint::
-    You must have generated a secret key from your paystack account and set the secret key as your environment variable:
-    ``PAYSTACK_SECRET_KEY``.
 
+    Before using the PaystackEase library, you'll need a secret key generated from your Paystack account.
+    Set this secret key as an environment variable named **PAYSTACK_SECRET_KEY**.
 
-As earlier said, paystackease performs both asynchronous and synchronous operations respectively.
-You will import and instantiate the asynchronous and synchronous call wrappers as seen below:
+The PaystackEase library supports both asynchronous and synchronous operations.
+To use them, import and instantiate the appropriate wrappers as shown below:
 
 * Synchronous support:
 
@@ -32,7 +32,8 @@ You will import and instantiate the asynchronous and synchronous call wrappers a
         # call any of the API wrappers here
 
 
-Let's say you want to perform a transaction synchronously, you will have to call the transaction API wrapper.
+To perform a transaction synchronously, use the transaction API wrapper.
+The example below demonstrates the use of the ``initialize`` method in the transaction API wrapper:
 
 .. code-block:: python
 
@@ -47,19 +48,20 @@ The response from the server will be as follows:
 
 .. code-block:: console
 
-    status_code: 200
-    {
-        "status": true,
-        "message": "Authorization URL created",
-        "data": {
+    PayStackResponse(
+        status_code=200,
+        status=True,
+        message="Authorization URL created",
+        data={
             "authorization_url": "https://checkout.paystack.com/0peioxfhpn",
             "access_code": "0peioxfhpn",
             "reference": "7PVGX8MEk85tgeEpVDtD"
         }
-    }
+    )
 
-To redirect the user to Paystack checkout page to make payments, you will need to call
-the ``url`` method from your instance and pass a ``301`` ``status code`` parameter
+
+To redirect the user to Paystack checkout page to make payments, your application should call
+the ``url`` method from your response instance and provide a ``301`` ``status code`` parameter (optional).
 
 
 **See Example**

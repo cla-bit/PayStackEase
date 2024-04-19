@@ -2,18 +2,13 @@
 Transaction Splits Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.transaction_splits
-
-
-Wrapper for Paystack Transaction Splits APIs. The Transaction Splits API enables merchants split the settlement for a transaction across their payout account, and one or more subaccounts.
+This wrapper class facilitates synchronous integration with Paystack Transaction Splits APIs. The Transaction Splits API enables merchants split the settlement for a transaction across their payout account, and one or more subaccounts.
 
 You can use the tool kit in the helpers module as reference: :doc:`toolkit`
 
 -----------------
 
 .. py:class:: TransactionSplitClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Transaction Split API Reference: `Transaction Splits`_
 

@@ -2,16 +2,11 @@
 Transfer Recipients Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.transfer_recipients
-
-
-Wrapper for Paystack Transfer Recipient APIs. The Transfer Recipients API allows you to create and manage beneficiaries that you send money to.
+This wrapper class facilitates synchronous integration with Paystack Transfer Recipient APIs. The Transfer Recipients API allows you to create and manage beneficiaries that you send money to.
 
 ----------------
 
 .. py:class:: TransferRecipientsClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Transfer Recipients API Reference: `Transfer Recipients`_
 

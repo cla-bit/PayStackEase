@@ -2,16 +2,12 @@
 Async Payment Pages Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.apayment_pages
-
-
-Wrapper for Asynchronous Paystack Payment Pages API. The Payment Pages API provides a quick and secure way to collect payment for products.
+This wrapper class facilitates asynchronous integration with Paystack Payment Pages API.
+The Payment Pages API provides a quick and secure way to collect payment for products.
 
 --------------
 
 .. py:class:: AsyncPaymentPagesClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Miscellaneous API Reference: `Payment Pages`_
 

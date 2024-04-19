@@ -2,20 +2,15 @@
 Bulk Charges Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.bulk_charges
 
-Wrapper for Synchronous Paystack Bulk Charges API. The Bulk Charges API allows you to
+This wrapper class facilitates synchronous interaction with Paystack Bulk Charges API. The Bulk Charges API allows you to
 create and manage multiple recurring payments from your customers.
 
 To access the Bulk Charges API methods, you need to call the ``bulk_charges`` instance method from ``PayStackBase``.
 
-Check example on :doc:`paystack`
-
-------------------------------------------------------------------------------
+------------------------
 
 .. py:class:: BulkChargesClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Bulk Charges API Reference: `Bulk Charges`_
 
@@ -49,11 +44,11 @@ Check example on :doc:`paystack`
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: initiate_bulk_charge(objects: List[Dict[str, str]])→ PayStackResponse
+    .. py:method:: initiate_bulk_charge(objects: List[Dict[str, Any]])→ PayStackResponse
 
         Initiate a bulk charge
 
-        :param objects: An array of objects with authorization codes and amount.
+        :param objects: An array of objects with authorization, amount and reference.
         :type objects: List[Dict[str, Any]]
 
         :return: The response from the API.
@@ -140,9 +135,3 @@ on :doc:`convert`.
     >>> response = paystack_client.bulk_charges.initiate_bulk_charge(objects)
 
     >>> print(response)
-
-
-.. note::
-
-    The date format is given as: `2016-09-21`. Later on we will include passing datetime also.
-    Ensure you use the ``date`` module by importing it from ``datetime``.

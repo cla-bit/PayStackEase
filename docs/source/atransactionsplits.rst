@@ -2,18 +2,13 @@
 Async Transaction Splits Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.atransaction_splits
-
-
-Wrapper for Asynchronous Paystack Transaction Splits APIs. The Transaction Splits API enables merchants split the settlement for a transaction across their payout account, and one or more subaccounts.
+This wrapper class facilitates synchronous integration with Paystack Transaction Splits APIs. The Transaction Splits API enables merchants split the settlement for a transaction across their payout account, and one or more subaccounts.
 
 You can use the tool kit in the helpers module as reference: :doc:`toolkit`
 
 -------------------
 
 .. py:class:: AsyncTransactionSplitClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Transaction Split API Reference: `Transaction Splits`_
 

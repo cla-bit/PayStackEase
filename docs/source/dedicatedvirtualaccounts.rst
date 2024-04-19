@@ -2,21 +2,17 @@
 Dedicated Virtual Accounts Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.dedicated_virtual_accounts
 
-
-Wrapper for Paystack Dedicated Virtual Account API The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
-
--------------
+This wrapper class facilitates synchronous interaction with Paystack Dedicated Virtual Account API.
+The Dedicated Virtual Account API enables Nigerian merchants to manage unique payment accounts of their customers.
 
 .. note::
 
     Ensure Dedicated NUBAN is available for your business. Contact Paystack Support
 
+-------------
 
 .. py:class:: DedicatedVirtualAccountClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Customer API Reference: `Dedicated Virtual Account`_
 

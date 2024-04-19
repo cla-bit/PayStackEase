@@ -2,19 +2,13 @@
 Async Miscellaneous Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.amiscellaneous
-
-
-Wrapper for Asynchronous Paystack Miscellaneous API. The Miscellaneous API are supporting APIs that can be used to provide more details to other APIs.
+This wrapper class facilitates asynchronous integration with Paystack Miscellaneous API. The Miscellaneous API are supporting APIs that can be used to provide more details to other APIs.
 
 You can use the tool kit in the helpers module as reference: :doc:`paystackease.helpers`
 
 -------------
 
-
 .. py:class:: AsyncMiscellaneousClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Miscellaneous API Reference: `Miscellaneous`_
 

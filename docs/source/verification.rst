@@ -2,16 +2,11 @@
 Verification Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.verification
-
-
-Wrapper for Paystack Verification APIs The Verification API allows you to perform KYC processes.
+This wrapper class facilitates synchronous integration with Paystack Verification APIs The Verification API allows you to perform KYC processes.
 
 -------------
 
 .. py:class:: VerificationClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Verification API Reference: `Verification`_
 

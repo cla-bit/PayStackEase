@@ -2,9 +2,8 @@
 Charge Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.charges
 
-Wrapper for Paystack Charges API. The Charge API allows you to configure payment channel of your
+This wrapper class facilitates synchronous interaction with Paystack Charges API. The Charge API allows you to configure payment channel of your
 choice when initiating a payment.
 
 To access the Charges API methods, you need to call the ``charges`` instance method from ``PayStackBase``.
@@ -14,8 +13,6 @@ Check example on :doc:`paystack`
 -----------
 
 .. py:class:: ChargesClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Charges API Reference: `Charges`_
 
@@ -191,12 +188,13 @@ This feature is only available in **Ghana** and *Kenya**.
     >>>     "provider": "mtn"
     >>> }
 
+Refer to this documentation for more information: :doc:`toolkit`.
+
 The ``metadata`` parameter is a JSON object that uses the ``custom_fields`` type of metadata.
 See :doc:`metadata` for more information.
 
 
-In creating a charge, there are rules guiding this as well to ensure a successful API request to PayStack,
-of which they are as follows:
+To ensure a successful API request to Paystack for creating a charge, follow these essential rules:
 
 A. Do not send or use the following if charging an authorization code:
     * `bank`
@@ -210,5 +208,5 @@ B. Do not send or use the following if charging an authorization code, bank or c
 C. Send with a non-reusable authorization code:
     * `pin`
 
-Kindly note that authorization_code are gotten after a successful card transaction. Check here to read more
+Kindly note that authorization_code is gotten after a successful card transaction. Refer here to read more
 :doc:`transactions`.

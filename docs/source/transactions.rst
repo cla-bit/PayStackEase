@@ -2,10 +2,7 @@
 Transactions Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.transactions
-
-
-Wrapper for Paystack Transactions API. The Transactions API allows you to create and manage payments on your integration.
+This wrapper class facilitates synchronous integration with Paystack Transactions API. The Transactions API allows you to create and manage payments on your integration.
 
 .. note::
 
@@ -14,8 +11,6 @@ Wrapper for Paystack Transactions API. The Transactions API allows you to create
 --------------
 
 .. py:class:: TransactionClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Transaction API Reference: `Transaction`_
 

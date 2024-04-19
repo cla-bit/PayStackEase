@@ -2,9 +2,8 @@
 Async Charge Module
 =========================
 
-.. :py:currentmodule:: paystackease.async_apis.acharges
 
-Wrapper for Asynchronous Paystack Charges API. The Charge API allows you to configure payment
+This wrapper class facilitates asynchronous interaction with Paystack Charges API. The Charge API allows you to configure payment
 channel of your choice when initiating a payment.
 
 To access the Charges API methods, you need to call the ``charges`` instance method from ``AsyncPayStackBase``.
@@ -15,11 +14,9 @@ Check example on :doc:`apaystack`
 
 .. py:class:: AsyncChargesClientAPI(secret_key: str = None)
 
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
-
     Paystack Charges API Reference: `Charges`_
 
-    .. py:method:: async check_pending_charge(reference: str)→ PayStackPayStackResponse
+    .. py:method:: async check_pending_charge(reference: str)→ PayStackResponse
 
         Check pending charge
 
@@ -27,9 +24,9 @@ Check example on :doc:`apaystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async create_charge(email: str, amount: int, metadata: Dict[str, List[Dict[str, str]]], pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = None)→ PayStackPayStackResponse
+    .. py:method:: async create_charge(email: str, amount: int, metadata: Dict[str, List[Dict[str, str]]], pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = NoneisPayStackResponse
 
         Create a new charge
 
@@ -59,9 +56,9 @@ Check example on :doc:`apaystack`
         :type mobile_money: dict, optional
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async submit_address(reference: str, address: str, city: str, state: str, zipcode: str)→ PayStackPayStackResponse
+    .. py:method:: async submit_address(reference: str, address: str, city: str, state: str, zipcode: str)→ PayStackResponse
 
         Submit address to continue a charge
 
@@ -77,9 +74,9 @@ Check example on :doc:`apaystack`
         :type zipcode: str
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
-    .. py:method:: async submit_birthday(birthday: date, reference: str)→ PayStackPayStackResponse
+    .. py:method:: async submit_birthday(birthday: date, reference: str)→ PayStackResponse
 
         Submit birthday when required
 
@@ -89,7 +86,7 @@ Check example on :doc:`apaystack`
         :type reference: str
 
         :return: The response from the API.
-        :rtype: PayStackPayStackResponse object
+        :rtype: PayStackResponse object
 
     .. py:method:: async submit_otp(otp: int, reference: str)→ PayStackResponse
 
@@ -191,12 +188,13 @@ This feature is only available in **Ghana** and *Kenya**.
     >>>     "provider": "mtn"
     >>> }
 
+Refer to this documentation for more information: :doc:`toolkit`.
+
 The ``metadata`` parameter is a JSON object that uses the ``custom_fields`` type of metadata.
 See :doc:`metadata` for more information.
 
 
-In creating a charge, there are rules guiding this as well to ensure a successful API request to PayStack,
-of which they are as follows:
+To ensure a successful API request to Paystack for creating a charge, follow these essential rules:
 
 A. Do not send or use the following if charging an authorization code:
     * `bank`
@@ -210,5 +208,5 @@ B. Do not send or use the following if charging an authorization code, bank or c
 C. Send with a non-reusable authorization code:
     * `pin`
 
-Kindly note that authorization_code are gotten after a successful card transaction. Check here to read more
+Kindly note that authorization_code is gotten after a successful card transaction. Refer here to read more
 :doc:`atransactions`.

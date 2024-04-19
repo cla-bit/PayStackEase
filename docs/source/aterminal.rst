@@ -2,15 +2,11 @@
 Async Terminal Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.aterminal
-
-Wrapper for Asynchronous Paystack Terminal APIs. The Terminal API allows you to build delightful in-person payment experiences.
+This wrapper class facilitates asynchronous integration with Paystack Terminal APIs. The Terminal API allows you to build delightful in-person payment experiences.
 
 --------------
 
 .. py:class:: AsyncTerminalClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Terminal API Reference: `Terminal`_
 

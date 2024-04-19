@@ -2,10 +2,7 @@
 Async Transactions Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.async_apis.atransactions
-
-
-Wrapper for Asynchronous Paystack Transactions API. The Transactions API allows you to create and manage payments on your integration.
+This wrapper class facilitates asynchronous integration with Paystack Transactions API. The Transactions API allows you to create and manage payments on your integration.
 
 .. note::
 
@@ -14,8 +11,6 @@ Wrapper for Asynchronous Paystack Transactions API. The Transactions API allows 
 -----------
 
 .. py:class:: AsyncTransactionClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.abase.AsyncPayStackBaseClientAPI`
 
     Paystack Transaction API Reference: `Transaction`_
 

@@ -2,17 +2,12 @@
 Products Module
 ===========================================
 
-.. :py:currentmodule:: paystackease.apis.products
-
-
-Wrapper for Paystack Products API The Products API allows you to create and manage inventories on your integration.
+This wrapper class facilitates synchronous integration with Paystack Products API. The Products API allows you to create and manage inventories on your integration.
 
 -----------------------------------------------------------
 
 
 .. py:class:: ProductClientAPI(secret_key: str = None)
-
-    Bases: :py:class:`~paystackease.base.PayStackBaseClientAPI`
 
     Paystack Product API Reference: `Products`_
 
