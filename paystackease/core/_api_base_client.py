@@ -123,7 +123,7 @@ class AsyncBaseClientAPI(BaseAPI):
         :return:
         """
         if method.upper() not in self._VALID_HTTP_METHODS:
-            error_message = f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
+            error_message = f"Invalid HTTP method. '{method}'. Supported methods are GET, POST, PUT, DELETE."
             logger.error(error_message)
             raise InvalidRequestMethodError(error_message)
 
