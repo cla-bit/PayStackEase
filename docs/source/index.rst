@@ -65,13 +65,13 @@ If you want to download the sdist packages directly:
 
    .. code-block:: console
 
-      >>> pip install paystackease-1.0.0-py3-none-any.whl
+      >>> pip install paystackease-2.0.0-py3-none-any.whl
 
 * Source Distribution file (.tar.gz files):
 
    .. code-block:: console
 
-      >>> pip install paystackease-1.0.0.tar.gz
+      >>> pip install paystackease-2.0.0.tar.gz
 
    .. note::
 
