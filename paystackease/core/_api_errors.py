@@ -9,7 +9,7 @@ class PayStackError(Exception):
     def __init__(self, message: str, status_code: int = None) -> None:
         self.message = message
         self.status_code = status_code
-        super(PayStackError, self).__init__(f"\nError Message: {message} \nError Status Code: {status_code}")
+        super(PayStackError, self).__init__(f"\nError Message: {self.message} \nError Status Code: {self.status_code}")
 
 
 class SecretKeyError(PayStackError):
