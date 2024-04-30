@@ -28,12 +28,15 @@ from paystackease.apis import (
     verification,
 )
 from paystackease.core import SyncRequestAPI
+from paystackease.metadata.__version__ import __version__
 
 
 class PayStackBase(SyncRequestAPI):
     """PayStackBase acts as a wrapper around various client APIs to
     interact with the PayStack API
     """
+
+    VERSION = __version__
 
     # pylint: disable=too-many-instance-attributes
     def __init__(self, secret_key=None):
