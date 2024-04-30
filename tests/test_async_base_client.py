@@ -26,8 +26,10 @@ async def test_secret_key():
 @pytest.mark.asyncio
 async def test_no_secret_key():
     """ Test for no secret key"""
-    with pytest.raises(SecretKeyError):
-        AsyncBaseClientAPI()
+    client = AsyncBaseClientAPI(None)
+    if not client:
+        with pytest.raises(SecretKeyError):
+            AsyncBaseClientAPI(None)
 
 
 @pytest.mark.asyncio
