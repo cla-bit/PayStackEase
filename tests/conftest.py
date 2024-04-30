@@ -59,7 +59,8 @@ from paystackease.apis.async_apis import (
 @pytest.fixture
 def sync_base_client():
     """ Base client fixture"""
-    return SyncBaseClientAPI(secret_key="sk_secret_key")
+    secret_key = "sk_secret_key"
+    return SyncBaseClientAPI(secret_key=secret_key)
 
 
 @pytest.fixture
