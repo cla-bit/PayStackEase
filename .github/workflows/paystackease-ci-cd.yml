@@ -7,9 +7,6 @@ jobs:
     # Set up operating system
     runs-on: ubuntu-latest
 
-    env:
-      PAYSTACK_SECRET_KEY: ${{ secrets.PAYSTACK_SECRET_KEY }}
-
     # Define job steps
     steps:
     - name: Set up Python 3.9
@@ -27,7 +24,9 @@ jobs:
     - name: Install package
       run: poetry install
 
-    - name: Test with pytest
+    - name: Test with pytest (using environment variables)
+      env:
+        PAYSTACK_SECRET_KEY: ${{ secrets.PAYSTACK_SECRET_KEY }}
       run: poetry run pytest tests/ --cov=paystackease --cov-report=xml
 
     - name: Use CodeCov to track coverage
