@@ -51,6 +51,7 @@ sphinx-autobuild = "^2024.2.4"
 [tool.poetry.group.dev.dependencies]
 black = "^24.2"
 pylint = "^3.1"
+python-semantic-release = "^9.0"
 
 
 [tool.poetry.group.test.dependencies]
@@ -69,6 +70,10 @@ addopts = "--doctest-modules"
 [tool.black]
 target-version = ['py310', 'py311']
 include = '\.pyi?$'
+
+
+[tool.semantic_release]
+version_variable = "pyproject.toml:version"
 
 
 [build-system]
