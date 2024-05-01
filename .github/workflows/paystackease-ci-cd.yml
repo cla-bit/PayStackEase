@@ -85,18 +85,18 @@ jobs:
         repository-url: https://test.pypi.org/legacy/
         password: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
-    - name: Test install from TestPYPI
-      run: pip install --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple paystackease
+#    - name: Test install from TestPYPI
+#      run: pip install --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple paystackease
 
-    - name: Publish to PYPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      if: steps.release.outputs.released == 'true'
-      with:
-        password: ${{ secrets.PYPI_API_TOKEN }}
+#    - name: Publish to PYPI
+#      uses: pypa/gh-action-pypi-publish@release/v1
+#      if: steps.release.outputs.released == 'true'
+#      with:
+#        password: ${{ secrets.PYPI_API_TOKEN }}
 
-    - name: Publish Package distributions to GitHub Releases
-      uses: python-semantic-release/upload-to-gh-release@main
-      if: steps.release.outputs.released == 'true'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Publish Package distributions to GitHub Releases
+#      uses: python-semantic-release/upload-to-gh-release@main
+#      if: steps.release.outputs.released == 'true'
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
 
