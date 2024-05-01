@@ -54,11 +54,6 @@ confidence=
 disable=E,W,R,C
 
 
-[tests]
-# Ignore specific error messages (adjust error codes as needed)
-disable=unused-argument,no-self-use
-
-
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
