@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paystackease"
-version = "2.0.0"
+version = "2.0.1"
 description = "This is a simple api wrapper that implements both asynchronous and synchronous http requests to interact with Paystack APIs."
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
 maintainers = []
@@ -73,6 +73,7 @@ include = '\.pyi?$'
 
 
 [tool.semantic_release]
+version_variable = "pyproject.toml:version"
 version_toml = ["pyproject.toml:tool.poetry.version"]  # version location
 branch = "master"  # branch to make release of
 changelog_file = "CHANGELOG.md"  # changelog file
