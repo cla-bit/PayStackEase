@@ -6,8 +6,6 @@
 
 ### Fix
 
-* fix(package): PayStackError class to return informative error message and status code ([`8d31938`](https://github.com/cla-bit/PayStackEase/commit/8d319381563103def4099135f888797ab514b0cc))
-
 * fix(package): PayStackError class to return informative error message and status code ([`bb44d4c`](https://github.com/cla-bit/PayStackEase/commit/bb44d4c53832b2041ae4b78b4886be4ef4ebb770))
 
 * fix(package): PayStackError class to return informative error message and status code ([`33ec237`](https://github.com/cla-bit/PayStackEase/commit/33ec237686eb6e87168834951aa4407c7d245d25))
