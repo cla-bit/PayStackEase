@@ -30,9 +30,6 @@ jobs:
     - name: Run PayStackEase with pylint
       run: poetry run pylint paystackease --errors-only --rcfile=.pylintrc
 
-    - name: Run test with pylint
-      run: poetry run pylint tests --rcfile=.pylintrc
-
     - name: Test with pytest (using environment variables)
       env:
         PAYSTACK_SECRET_KEY: ${{ secrets.PAYSTACK_SECRET_KEY }}

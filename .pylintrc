@@ -51,12 +51,7 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=
-import-error,
-print-statement,
-parameter-unpacking,
-unpacking-in-except,
-old-raise-syntax,
+disable=import-error,print-statement,parameter-unpacking,unpacking-in-except,old-raise-syntax,
 backtick,long-suffix,old-ne-operator,old-octal-literal,import-star-module-level,raw-checker-failed,
 bad-inline-option,locally-disabled,locally-enabled,file-ignored,suppressed-message,useless-suppression,
 deprecated-pragma,apply-builtin,basestring-builtin,buffer-builtin,cmp-builtin,coerce-builtin,execfile-builtin,
