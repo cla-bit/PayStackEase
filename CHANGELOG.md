@@ -2,6 +2,8 @@
 
 All notable changes to **paystackease** will be documented in this file.
 
+----------
+
 ## [Version 0.1.0] - 2024-03-05
 
 ### **Added:** 
@@ -100,6 +102,42 @@ HTTP requests methods to accept dict or list instead of dict.
 
 1. The objects parameter in the **BulkChargeClientAPI** module now is a required parameter. Deprecated
 ``Optional[List[Dict[]]] = None``.
+
+### **Security:**
+
+Improved security to handle sensitive data structures. 
+This allows for better security when dealing with HTTP requests and responses from different sources.
+
+
+---------------
+
+## [Version 2.0.0] - 2024-04-19
+
+### **Added:**
+
+1. **Return URL method response** This has been added to get the checkout url from the server as a response after a transaction request.
+
+### **Deprecated:** 
+
+1. The objects parameter in the **BulkChargeClientAPI** module now is a required parameter. Deprecated
+``Optional[List[Dict[]]] = None``.
+2. The response object from the server ``Response`` has been replaced with ``PayStackResponse``.
+3. The base client, request client and the request method client classes alongside with their modules have all been deprecated.
+
+
+### **Security:**
+
+Improved security to handle sensitive data structures. 
+This allows for better security when dealing with HTTP requests and responses from different sources.
+
+
+------------------
+
+## [Version 2.0.1] - 2024-05-01
+
+### **Fixed:**
+
+1. **PayStackError message and status code** This has been fixed to return a more informative error message
 
 ### **Security:**
 
