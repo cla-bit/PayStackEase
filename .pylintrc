@@ -1,0 +1,4 @@
+[*.py]
+
+# ignore all test directories for errors/warnings
+ignore = tests/*, E, W
