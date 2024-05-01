@@ -2,6 +2,20 @@
 
 
 
+## v2.0.2 (2024-05-01)
+
+### Fix
+
+* fix(package): PayStackError class to return informative error message and status code ([`8d31938`](https://github.com/cla-bit/PayStackEase/commit/8d319381563103def4099135f888797ab514b0cc))
+
+### Unknown
+
+* Merge remote-tracking branch &#39;origin/master&#39;
+
+# Conflicts:
+#	CHANGELOG.md ([`3622d97`](https://github.com/cla-bit/PayStackEase/commit/3622d979d0693040b3db82c6f94b09c387430e1e))
+
+
 ## v2.0.1 (2024-05-01)
 
 ### Fix
