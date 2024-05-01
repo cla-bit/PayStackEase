@@ -27,8 +27,11 @@ jobs:
     - name: Format code with Black
       run: poetry run black .
 
-    - name: Run Pylint
-      run: poetry run pylint .
+    - name: Run PayStackEase with pylint
+      run: poetry run pylint paystackease --errors-only --rcfile=.pylintrc
+
+    - name: Run test with pylint
+      run: poetry run pylint tests/ --errors-only --rcfile=.pylintrc
 
     - name: Test with pytest (using environment variables)
       env:
