@@ -2,6 +2,33 @@
 
 
 
+## v2.0.3 (2024-05-01)
+
+### Fix
+
+* fix: CI/CD workflow ([`c517dac`](https://github.com/cla-bit/PayStackEase/commit/c517dacf292f8d248c5401203e08b66eddfe9a1b))
+
+### Style
+
+* style: CI/CD workflow ([`8ed7308`](https://github.com/cla-bit/PayStackEase/commit/8ed7308c8f06b9c7a07988fc6b470e9def5ebbb4))
+
+* style: CI/CD workflow ([`f39ac5d`](https://github.com/cla-bit/PayStackEase/commit/f39ac5d6ef63eece846f10820bd46502339b4e63))
+
+* style: CI/CD workflow ([`8af1f69`](https://github.com/cla-bit/PayStackEase/commit/8af1f6990d3c3b1e3b96a01bb9db7d75a667d082))
+
+* style: CI/CD workflow ([`9c6663a`](https://github.com/cla-bit/PayStackEase/commit/9c6663a9be36b08eb25267175fe93ee1fd293561))
+
+* style: CI/CD workflow ([`86e708f`](https://github.com/cla-bit/PayStackEase/commit/86e708f441eb5a0818e0fa459356c60c82a66455))
+
+* style: CI/CD workflow ([`f2842cb`](https://github.com/cla-bit/PayStackEase/commit/f2842cb61791fa9334cad8b0743de58dc2a27063))
+
+* style: updated the CI/CD workflow ([`d8b3227`](https://github.com/cla-bit/PayStackEase/commit/d8b3227a7884218003bd641918efe79f26bda521))
+
+### Unknown
+
+* Merge remote-tracking branch &#39;origin/master&#39; ([`768436c`](https://github.com/cla-bit/PayStackEase/commit/768436cdf2d250c31a7a5c0d2367843bcb58f1b3))
+
+
 ## v2.0.2 (2024-05-01)
 
 ### Fix
