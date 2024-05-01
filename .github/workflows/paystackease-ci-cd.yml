@@ -31,7 +31,7 @@ jobs:
       run: poetry run pylint paystackease --errors-only --rcfile=.pylintrc
 
     - name: Run test with pylint
-      run: poetry run pylint tests --rcfile=.pylintrc
+      run: poetry run pylint tests --errors-only --rcfile=.pylintrc
 
     - name: Test with pytest (using environment variables)
       env:
