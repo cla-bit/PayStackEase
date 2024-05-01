@@ -24,6 +24,12 @@ jobs:
     - name: Install package
       run: poetry install
 
+    - name: Format code with Black
+      run: poetry run black .
+
+    - name: Run Pylint
+      run: poetry run pylint --errors-only --rcfile=.pylintrc
+
     - name: Test with pytest (using environment variables)
       env:
         PAYSTACK_SECRET_KEY: ${{ secrets.PAYSTACK_SECRET_KEY }}
