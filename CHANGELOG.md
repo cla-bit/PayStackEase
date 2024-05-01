@@ -2,6 +2,17 @@
 
 
 
+## v2.0.4 (2024-05-01)
+
+### Fix
+
+* fix: CI/CD workflow ([`b8d6b38`](https://github.com/cla-bit/PayStackEase/commit/b8d6b38182bc6855fb28904bad3ff76cba25ee24))
+
+### Unknown
+
+* Merge remote-tracking branch &#39;origin/main&#39; ([`99f9475`](https://github.com/cla-bit/PayStackEase/commit/99f94754516a88489927d7c3a8aa23e78267fbce))
+
+
 ## v2.0.3 (2024-05-01)
 
 ### Fix
