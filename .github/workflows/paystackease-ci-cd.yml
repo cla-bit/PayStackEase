@@ -28,7 +28,7 @@ jobs:
       run: poetry run black .
 
     - name: Run Pylint
-      run: poetry run pylint --errors-only --rcfile=.pylintrc
+      run: poetry run pylint paystackease --errors-only --rcfile=.pylintrc
 
     - name: Test with pytest (using environment variables)
       env:
