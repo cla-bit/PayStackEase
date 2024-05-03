@@ -24,7 +24,7 @@ def test_no_secret_key():
     """ Test for no secret key"""
     client = SyncBaseClientAPI(None)
     if not client:
-        with pytest.raises(SecretKeyError) as exc_info:
+        with pytest.raises(SecretKeyError):
             SyncBaseClientAPI(None)
 
 
