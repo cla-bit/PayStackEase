@@ -1,6 +1,7 @@
 import json
 import pytest
 import responses
+from requests import request
 from paystackease.core._api_errors import PayStackSignatureVerifyError
 from paystackease.core._webhook import PayStackWebhook, PayStackSignature
 
