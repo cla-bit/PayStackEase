@@ -8,13 +8,18 @@ import logging
 
 from typing import Union, Dict, List, Any, Optional
 
-from aiohttp import ClientSession, ClientTimeout, ClientError
-from requests import Session, RequestException
+from aiohttp import (
+    ClientSession, ClientTimeout, ClientError, ClientConnectionError
+)
+from requests import (
+    Session, RequestException, ConnectionError
+)
 
 from paystackease.core._api_base import BaseAPI
 from paystackease.core._api_client_response import PayStackResponse
-from paystackease.core._api_errors import InvalidRequestMethodError, PayStackError
-
+from paystackease.core._api_errors import (
+    InvalidRequestMethodError, PayStackError, APIConnectionError, PayStackServerError
+)
 
 logger = logging.getLogger(__name__)
 
@@ -70,19 +75,28 @@ class SyncBaseClientAPI(BaseAPI):
                 response_data = response.json()
                 logger.info("Response Status Code: %s", response.status_code)
                 logger.info("Response JSON: %s", response_data)
+
+                # Handle server error
+                if 500 <= response.status_code <= 600:
+                    error_message = f"Server error occurred: {response.status_code}"
+                    logger.error(error_message)
+                    raise PayStackServerError(message=error_message, status_code=response.status_code)
+
                 return PayStackResponse(
                     status_code=response.status_code,
                     status=response_data.get('status'),
                     message=response_data.get('message'),
                     data=response_data.get('data'),
                 )
-        except RequestException as error:
+        except (RequestException, ConnectionError) as error:
             # Extract status code if available from the exception
             error_message = str(error)
             status_code = getattr(error, "response", None) and getattr(
                 error.response, "status_code", None
             )
             logger.error("Error %s", error)
+            if isinstance(error, ConnectionError):
+                raise APIConnectionError(message=error_message)
             raise PayStackError(message=error_message, status_code=status_code) from error
 
 
@@ -147,17 +161,26 @@ class AsyncBaseClientAPI(BaseAPI):
                 response_data = await response.json()
                 logger.info("Response Status Code: %s", response.status)
                 logger.info("Response JSON: %s", response_data)
+
+                # Handle server error
+                if 500 <= response.status <= 600:
+                    error_message = f"Server error occurred: {response.status}"
+                    logger.error(error_message)
+                    raise PayStackServerError(message=error_message, status_code=response.status)
+
                 return PayStackResponse(
                     status_code=response.status,
                     status=response_data.get('status'),
                     message=response_data.get('message'),
                     data=response_data.get('data'),
                 )
-        except ClientError as error:
+        except (ClientError, ClientConnectionError) as error:
             # Extract status code if available from the exception
             error_message = str(error)
             status_code = getattr(error, "response", None) and getattr(
                 error.args[0], "status_code", None
             )
             logger.error("Error %s", error)
+            if isinstance(error, ClientConnectionError):
+                raise APIConnectionError(message=error_message)
             raise PayStackError(message=error_message, status_code=status_code) from error
