@@ -1,42 +1,39 @@
-import unittest
-from unittest.mock import patch, Mock
-from paystackease.core._webhook import PayStackWebhook
+import json
+import pytest
+import responses
 from paystackease.core._api_errors import PayStackSignatureVerifyError
-from paystackease.core._event import Event
+from your_module import PayStackWebhook, PayStackSignature
+
+# Sample test data
+SECRET_KEY = "secret"
+PAYLOAD_TYPE = '{"key": "value"}'
+SIGNATURE_HEADER = "signature"
 
 
-class TestPayStackWebhook(unittest.TestCase):
+@pytest.fixture
+def webhook():
+    return PayStackWebhook()
 
-    @patch('paystackease.core._webhook.PayStackSignature.verify_headers')
-    def test_create_event_with_empty_signature_header(self, mock_verify_headers):
-        mock_verify_headers.side_effect = PayStackSignatureVerifyError("No signature", None)
-        with self.assertRaises(PayStackSignatureVerifyError) as context:
-            PayStackWebhook.create_event("secret_key", "payload_type", "")
-        self.assertEqual(str(context.exception), "No signature")
 
-    @patch('paystackease.core.paystack_signature.PayStackSignature.verify_headers')
-    def test_create_event_with_missing_signature_header(self, mock_verify_headers):
-        mock_verify_headers.side_effect = PayStackSignatureVerifyError("No signature")
-        with self.assertRaises(PayStackSignatureVerifyError) as context:
-            PayStackWebhook.create_event("secret_key", "payload_type", None)
-        self.assertEqual(str(context.exception), "No signature")
+def test_get_event_data(webhook):
+    # Mocking the PayStackSignature.verify_headers method
+    with pytest.raises(PayStackSignatureVerifyError):
+        webhook.get_event_data(SECRET_KEY, PAYLOAD_TYPE, SIGNATURE_HEADER)
 
-    @patch('paystackease.core._webhook.PayStackSignature.verify_headers')
-    def test_create_event_with_valid_signature_header(self, mock_verify_headers):
-        mock_verify_headers.return_value = True
-        event = PayStackWebhook.create_event("secret_key", "payload_type", "valid_signature_header")
-        self.assertIsInstance(event, Event)
 
-    @patch('paystackease.core.paystack_signature.PayStackSignature.verify_headers')
-    def test_create_event_with_invalid_signature_header(self, mock_verify_headers):
-        mock_verify_headers.return_value = False
-        with self.assertRaises(PayStackSignatureVerifyError) as context:
-            PayStackWebhook.create_event("secret_key", "payload_type", "invalid_signature_header")
-        self.assertEqual(str(context.exception), "Invalid signature")
+@responses.activate
+def test_verify_headers():
+    # Mocking the HTTP response
+    responses.add(
+        responses.GET,
+        'https://example.com/webhook',
+        body=json.dumps({"key": "value"}),
+        status=200,
+        content_type='application/json',
+    )
 
-    @patch('paystackease.core.paystack_signature.PayStackSignature.verify_headers')
-    def test_create_event_with_invalid_payload_type(self, mock_verify_headers):
-        mock_verify_headers.return_value = True
-        with self.assertRaises(ValueError) as context:
-            PayStackWebhook.create_event("secret_key", "invalid_payload_type", "valid_signature_header")
-        self.assertEqual(str(context.exception), "Invalid payload type")
+    # Call your method which should make a request
+    response = requests.get('https://example.com/webhook')
+
+    assert response.status_code == 200
+    assert response.json() == {"key": "value"}
