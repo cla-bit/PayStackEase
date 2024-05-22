@@ -1,7 +1,7 @@
 import json
 import pytest
 import responses
-from requests import request
+import requests
 from paystackease.core._api_errors import PayStackSignatureVerifyError
 from paystackease.core._webhook import PayStackWebhook, PayStackSignature
 
@@ -34,7 +34,7 @@ def test_verify_headers():
     )
 
     # Call your method which should make a request
-    response = request.get('https://example.com/webhook')
+    response = requests.get('https://example.com/webhook')
 
     assert response.status_code == 200
     assert response.json() == {"key": "value"}
