@@ -2,7 +2,7 @@ import json
 import pytest
 import responses
 from paystackease.core._api_errors import PayStackSignatureVerifyError
-from your_module import PayStackWebhook, PayStackSignature
+from paystackease.core._webhook import PayStackWebhook, PayStackSignature
 
 # Sample test data
 SECRET_KEY = "secret"
