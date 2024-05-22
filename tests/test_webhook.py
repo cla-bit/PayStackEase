@@ -34,7 +34,7 @@ def test_verify_headers():
     )
 
     # Call your method which should make a request
-    response = requests.get('https://example.com/webhook')
+    response = request.get('https://example.com/webhook')
 
     assert response.status_code == 200
     assert response.json() == {"key": "value"}
