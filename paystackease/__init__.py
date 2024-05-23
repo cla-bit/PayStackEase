@@ -1,16 +1,16 @@
 """ Wrappers for Paystack API calls"""
 from paystackease.core import (
-    APIConnectionError,
-    InvalidRequestMethodError,
-    PayStackError,
-    PayStackServerError,
-    PayStackSignatureVerifyError,
-    PayStackWebhook,
-    SecretKeyError,
-    TypeValueError,
+    APIConnectionError as APIConnectionError,
+    InvalidRequestMethodError as InvalidRequestMethodError,
+    PayStackError as PayStackError,
+    PayStackServerError as PayStackServerError,
+    PayStackSignatureVerifyError as PayStackSignatureVerifyError,
+    PayStackWebhook as PayStackWebhook,
+    SecretKeyError as SecretKeyError,
+    TypeValueError as TypeValueError,
 )
-from paystackease.apaystack import AsyncPayStackBase
-from paystackease.paystack import PayStackBase
+from paystackease.apaystack import AsyncPayStackBase as AsyncPayStackBase
+from paystackease.paystack import PayStackBase as PayStackBase
 from paystackease.helpers import (
     convert_to_subunit,
     AccountType,
