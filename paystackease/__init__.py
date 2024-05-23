@@ -1,9 +1,13 @@
 """ Wrappers for Paystack API calls"""
 from paystackease.core import (
+    APIConnectionError,
+    InvalidRequestMethodError,
     PayStackError,
+    PayStackServerError,
+    PayStackSignatureVerifyError,
+    PayStackWebhook,
     SecretKeyError,
     TypeValueError,
-    InvalidRequestMethodError
 )
 from paystackease.apaystack import AsyncPayStackBase
 from paystackease.paystack import PayStackBase
@@ -39,6 +43,10 @@ from paystackease.helpers import (
 __all__ = [
     'PayStackBase',
     'AsyncPayStackBase',
+    'APIConnectionError',
+    'PayStackServerError',
+    'PayStackSignatureVerifyError',
+    'PayStackWebhook',
     'PayStackError',
     'SecretKeyError',
     'TypeValueError',
