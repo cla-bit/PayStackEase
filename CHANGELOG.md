@@ -2,6 +2,13 @@
 
 
 
+## v2.1.2 (2024-05-23)
+
+### Fix
+
+* fix: updated the __init__ module. ([`810fb83`](https://github.com/cla-bit/PayStackEase/commit/810fb832e4045bcadbd8d04a7b2c891d934d0428))
+
+
 ## v2.1.1 (2024-05-23)
 
 ### Fix
