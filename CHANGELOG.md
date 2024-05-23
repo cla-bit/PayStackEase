@@ -2,6 +2,17 @@
 
 
 
+## v2.1.1 (2024-05-23)
+
+### Fix
+
+* fix: updated the __init__ module. ([`302048b`](https://github.com/cla-bit/PayStackEase/commit/302048bdb4d623da7f07ab83c9374bf9a61aee35))
+
+### Unknown
+
+* Merge remote-tracking branch &#39;origin/main&#39; ([`9e92f8e`](https://github.com/cla-bit/PayStackEase/commit/9e92f8e77aef1ae18b1582ee2462cc993e9f0ea5))
+
+
 ## v2.1.0 (2024-05-23)
 
 ### Feature
