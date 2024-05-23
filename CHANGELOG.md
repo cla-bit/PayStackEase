@@ -2,6 +2,47 @@
 
 
 
+## v2.1.0 (2024-05-23)
+
+### Feature
+
+* feat: Added class PayStackWebhook in the webhook module
+feat: Added class PayStackSignature in the webhook module
+feat: Added custom exception: PayStackServerError, PayStackSignatureVerifyError, APIConnectionError in the api_errors module.
+fix: Improved error handling and display user friendly errors to all error classes in the api_errors module.
+fix: Added custom exceptions to the SyncBaseClientAPI and AsyncBaseClientAPI classes
+fix: Added test for webhook. ([`4dcdb2f`](https://github.com/cla-bit/PayStackEase/commit/4dcdb2fe68cf2a763d9929a719e29cec45393060))
+
+### Fix
+
+* fix: CI/CD workflow ([`6de30bf`](https://github.com/cla-bit/PayStackEase/commit/6de30bf8fa3bb94e3f443a8014a29f9f77c16a1f))
+
+* fix: CI/CD workflow ([`fb08087`](https://github.com/cla-bit/PayStackEase/commit/fb0808753304758e7c94f7e0badbd928c56c3fb7))
+
+### Test
+
+* test: Added more tests functions for webhook module.
+test: Updated the test_get_event_data_valid function. ([`ce171b5`](https://github.com/cla-bit/PayStackEase/commit/ce171b5397f3c855412daf370fab6d1e11b5c0e3))
+
+### Unknown
+
+* Merge branch &#39;refs/heads/dev&#39; ([`696c2cb`](https://github.com/cla-bit/PayStackEase/commit/696c2cb3f21cfe33358e67f5cc796b8df765a03d))
+
+* Update test_webhook.py ([`61eeb5f`](https://github.com/cla-bit/PayStackEase/commit/61eeb5f69388c56e08266a68e0beed6350a832b2))
+
+* Update test_webhook.py ([`cf8178d`](https://github.com/cla-bit/PayStackEase/commit/cf8178d74625c09f420f4edd4c848499301a8151))
+
+* Update test_webhook.py ([`cb2dd69`](https://github.com/cla-bit/PayStackEase/commit/cb2dd69c8d4bd148f1088f066eb109395f812b23))
+
+* Update test_webhook.py ([`fff089e`](https://github.com/cla-bit/PayStackEase/commit/fff089e4166d392e5c6bc1d22d589d4dd00b9fa2))
+
+* Update test_webhook.py ([`9baa0fd`](https://github.com/cla-bit/PayStackEase/commit/9baa0fd08c696291bc7bf840a038e1cd77f00e4c))
+
+* Merge pull request #11 from cla-bit/dev
+
+fix: Remove the secret key parameter to avoid overriding. ([`0589159`](https://github.com/cla-bit/PayStackEase/commit/0589159d61571233914baa378c3334ce36c871e8))
+
+
 ## v2.0.4 (2024-05-01)
 
 ### Fix
