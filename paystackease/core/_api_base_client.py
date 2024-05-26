@@ -27,10 +27,9 @@ logger = logging.getLogger(__name__)
 class SyncBaseClientAPI(BaseAPI):
 
     # pylint: disable=too-few-public-methods
-    def __init__(self, secret_key: str = None) -> None:
-        super().__init__(secret_key)
-
-        self._session = Session()
+    def __init__(self, session: Optional[Session] = None) -> None:
+        super().__init__()
+        self._session = session or Session()
 
     def _request_url(
         self,
@@ -104,11 +103,11 @@ class AsyncBaseClientAPI(BaseAPI):
     """Base Client API for Paystack API"""
 
     # pylint: disable=too-few-public-methods
-    def __init__(self, secret_key: str = None) -> None:
-        super().__init__(secret_key)
+    def __init__(self, session: Optional[ClientSession] = None, timeout: Optional[ClientTimeout] = None) -> None:
+        super().__init__()
 
-        self.timeout = ClientTimeout(total=30)
-        self._session = ClientSession(
+        self.timeout = timeout or ClientTimeout(total=30)
+        self._session = session or ClientSession(
             headers=self._make_paystack_http_headers(), timeout=self.timeout
         )
 

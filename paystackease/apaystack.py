@@ -27,11 +27,10 @@ from paystackease.apis.async_apis import (
     atransfers_control,
     averification,
 )
-from paystackease.core import AsyncRequestAPI
 from paystackease.metadata.__version__ import __version__
 
 
-class AsyncPayStackBase(AsyncRequestAPI):
+class AsyncPayStackBase:
     """AsyncPayStackBase acts as a wrapper around various client APIs to
     interact with the PayStack API
     """
@@ -39,58 +38,33 @@ class AsyncPayStackBase(AsyncRequestAPI):
     VERSION = __version__
 
     # pylint: disable=too-many-instance-attributes
-    def __init__(self, secret_key=None):
-        super().__init__(secret_key)
-        self.apple_pay = aapple_pay.AsyncApplePayClientAPI(secret_key=secret_key)
-        self.bulk_charges = abulk_charges.AsyncBulkChargesClientAPI(
-            secret_key=secret_key
-        )
-        self.charges = acharges.AsyncChargesClientAPI(secret_key=secret_key)
-        self.customers = acustomers.AsyncCustomerClientAPI(secret_key=secret_key)
-        self.dedicated_virtual_accounts = (
-            adedicated_virtual_accounts.AsyncDedicatedVirtualAccountClientAPI(
-                secret_key=secret_key
-            )
-        )
-        self.disputes = adisputes.AsyncDisputesClientAPI(secret_key=secret_key)
-        self.integration = aintegration.AsyncIntegrationClientAPI(secret_key=secret_key)
-        self.miscellaneous = amiscellaneous.AsyncMiscellaneousClientAPI(
-            secret_key=secret_key
-        )
-        self.payment_pages = apayment_pages.AsyncPaymentPagesClientAPI(
-            secret_key=secret_key
-        )
-        self.payment_requests = apayment_requests.AsyncPaymentRequestClientAPI(
-            secret_key=secret_key
-        )
-        self.plans = aplans.AsyncPlanClientAPI(secret_key=secret_key)
-        self.products = aproducts.AsyncProductClientAPI(secret_key=secret_key)
-        self.refund = arefund.AsyncRefundClientAPI(secret_key=secret_key)
-        self.settlements = asettlements.AsyncSettlementClientAPI(secret_key=secret_key)
-        self.subaccounts = asubaccounts.AsyncSubAccountClientAPI(secret_key=secret_key)
-        self.subscriptions = asubscriptions.AsyncSubscriptionClientAPI(
-            secret_key=secret_key
-        )
-        self.terminal = aterminal.AsyncTerminalClientAPI(secret_key=secret_key)
-        self.transaction_splits = atransaction_splits.AsyncTransactionSplitClientAPI(
-            secret_key=secret_key
-        )
-        self.transactions = atransactions.AsyncTransactionClientAPI(
-            secret_key=secret_key
-        )
-        self.transfer_recipients = (
-            atransfer_recipients.AsyncTransferRecipientsClientAPI(secret_key=secret_key)
-        )
-        self.transfers = atransfers.AsyncTransfersClientAPI(secret_key=secret_key)
-        self.transfer_control = atransfers_control.AsyncTransferControlClientAPI(
-            secret_key=secret_key
-        )
-        self.verification = averification.AsyncVerificationClientAPI(
-            secret_key=secret_key
-        )
+    def __init__(self):
+        self.apple_pay = aapple_pay.AsyncApplePayClientAPI()
+        self.bulk_charges = abulk_charges.AsyncBulkChargesClientAPI()
+        self.charges = acharges.AsyncChargesClientAPI()
+        self.customers = acustomers.AsyncCustomerClientAPI()
+        self.dedicated_virtual_accounts = adedicated_virtual_accounts.AsyncDedicatedVirtualAccountClientAPI()
+        self.disputes = adisputes.AsyncDisputesClientAPI()
+        self.integration = aintegration.AsyncIntegrationClientAPI()
+        self.miscellaneous = amiscellaneous.AsyncMiscellaneousClientAPI()
+        self.payment_pages = apayment_pages.AsyncPaymentPagesClientAPI()
+        self.payment_requests = apayment_requests.AsyncPaymentRequestClientAPI()
+        self.plans = aplans.AsyncPlanClientAPI()
+        self.products = aproducts.AsyncProductClientAPI()
+        self.refund = arefund.AsyncRefundClientAPI()
+        self.settlements = asettlements.AsyncSettlementClientAPI()
+        self.subaccounts = asubaccounts.AsyncSubAccountClientAPI()
+        self.subscriptions = asubscriptions.AsyncSubscriptionClientAPI()
+        self.terminal = aterminal.AsyncTerminalClientAPI()
+        self.transaction_splits = atransaction_splits.AsyncTransactionSplitClientAPI()
+        self.transactions = atransactions.AsyncTransactionClientAPI()
+        self.transfer_recipients = atransfer_recipients.AsyncTransferRecipientsClientAPI()
+        self.transfers = atransfers.AsyncTransfersClientAPI()
+        self.transfer_control = atransfers_control.AsyncTransferControlClientAPI()
+        self.verification = averification.AsyncVerificationClientAPI()
 
     async def __aenter__(self):
-        await super().__aenter__()
+        # await super().__aenter__()
         await self.apple_pay.__aenter__()
         await self.bulk_charges.__aenter__()
         await self.charges.__aenter__()
@@ -140,4 +114,4 @@ class AsyncPayStackBase(AsyncRequestAPI):
         await self.transfers.__aexit__(*args)
         await self.transfer_control.__aexit__(*args)
         await self.verification.__aexit__(*args)
-        await super().__aexit__(*args)
+        # await super().__aexit__(*args)

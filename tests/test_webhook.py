@@ -1,10 +1,10 @@
 import hmac
 import json
 import pytest
-from collections import OrderedDict
 from hashlib import sha512
-from paystackease.core._api_errors import PayStackSignatureVerifyError
-from paystackease.core._webhook import PayStackWebhook, PayStackSignature
+from paystackease.core import PayStackSignatureVerifyError
+from paystackease.core import PayStackWebhook, PayStackSignature
+from paystackease.core import Event
 
 
 # Sample secret key and payload for tests
@@ -18,10 +18,9 @@ def test_get_event_data_valid():
     signature_header = SIGNATURE
     data = PayStackWebhook.get_event_data(SECRET_KEY, payload_type, signature_header)
 
-    assert isinstance(data, OrderedDict)
-    assert data['event'] == 'payment.success'
-    assert data['data']['id'] == 12345
-    assert data['data']['status'] =='success'
+    assert isinstance(data, Event)
+    assert data.get_type == 'payment.success'
+    assert data.get_data == {'id': 12345, 'status': 'success'}
 
 
 def test_get_event_data_invalid_signature():
@@ -49,10 +48,9 @@ def test_get_event_data_decoded_payload():
     signature_header = SIGNATURE
     data = PayStackWebhook.get_event_data(SECRET_KEY, payload_type, signature_header)
 
-    assert isinstance(data, OrderedDict)
-    assert data['event'] == 'payment.success'
-    assert data['data']['id'] == 12345
-    assert data['data']['status'] =='success'
+    assert isinstance(data, Event)
+    assert data.get_type == 'payment.success'
+    assert data.get_data == {'id': 12345, 'status': 'success'}
 
 
 def test_make_signature():

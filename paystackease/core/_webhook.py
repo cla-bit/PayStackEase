@@ -3,6 +3,7 @@ import hmac
 from collections import OrderedDict
 from hashlib import sha512
 from paystackease.core._api_errors import PayStackSignatureVerifyError
+from paystackease.core._events import Event
 
 
 class PayStackWebhook(object):
@@ -19,7 +20,8 @@ class PayStackWebhook(object):
         PayStackSignature.verify_headers(payload_type, secret_key, signature_header)
 
         data = json.loads(payload_type, object_pairs_hook=lambda pairs: OrderedDict(pairs))
-        return data
+        event = Event.get_event(data)
+        return event
 
 
 class PayStackSignature(object):

@@ -3,7 +3,9 @@
 import pytest
 import pytest_asyncio
 from aioresponses import aioresponses
-from paystackease.core import AsyncBaseClientAPI, AsyncRequestAPI, SyncBaseClientAPI, SyncRequestAPI
+from requests import Session
+
+from paystackease.core import AsyncBaseClientAPI, AsyncRequestAPI, SyncBaseClientAPI, SyncRequestAPI, EnvConfig
 from paystackease.apis.sync_apis import (
     apple_pay,
     bulk_charges,
@@ -57,10 +59,22 @@ from paystackease.apis.async_apis import (
 
 
 @pytest.fixture
-def sync_base_client():
+def env_var():
+    class MockEnvConfig(EnvConfig):
+        def secret_key(self):
+            return "test_secret_key"
+    return MockEnvConfig()
+
+
+@pytest.fixture
+def client_session():
+    return Session()
+
+
+@pytest.fixture
+def sync_base_client(client_session):
     """ Base client fixture"""
-    secret_key = "sk_secret_key"
-    return SyncBaseClientAPI(secret_key=secret_key)
+    return SyncBaseClientAPI(client_session)
 
 
 @pytest.fixture
@@ -209,11 +223,10 @@ def verification_client(sync_base_client_request):
 
 # test fixtures for asynchronous requests
 
-
 @pytest_asyncio.fixture
 async def async_base_client():
     """ Async base client fixture"""
-    async with AsyncBaseClientAPI(secret_key="sk_secret_key") as client:
+    async with AsyncBaseClientAPI() as client:
         yield client
 
 
