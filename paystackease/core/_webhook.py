@@ -20,7 +20,7 @@ class PayStackWebhook(object):
         PayStackSignature.verify_headers(payload_type, secret_key, signature_header)
 
         data = json.loads(payload_type, object_pairs_hook=lambda pairs: OrderedDict(pairs))
-        event = Event.get_event(data)
+        event = Event._get_event(data)
         return event
 
 

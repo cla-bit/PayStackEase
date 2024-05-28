@@ -19,8 +19,8 @@ def test_get_event_data_valid():
     data = PayStackWebhook.get_event_data(SECRET_KEY, payload_type, signature_header)
 
     assert isinstance(data, Event)
-    assert data.get_type == 'payment.success'
-    assert data.get_data == {'id': 12345, 'status': 'success'}
+    assert data.type == 'payment.success'
+    assert data.event_data == {'id': 12345, 'status': 'success'}
 
 
 def test_get_event_data_invalid_signature():
@@ -49,8 +49,8 @@ def test_get_event_data_decoded_payload():
     data = PayStackWebhook.get_event_data(SECRET_KEY, payload_type, signature_header)
 
     assert isinstance(data, Event)
-    assert data.get_type == 'payment.success'
-    assert data.get_data == {'id': 12345, 'status': 'success'}
+    assert data.type == 'payment.success'
+    assert data.event_data == {'id': 12345, 'status': 'success'}
 
 
 def test_make_signature():
