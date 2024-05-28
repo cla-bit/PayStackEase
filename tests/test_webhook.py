@@ -11,6 +11,8 @@ from paystackease.core import Event
 SECRET_KEY = "test_secret_key"
 PAYLOAD = json.dumps({"event": "payment.success", "data": {"id": 12345, "status": "success"}})
 SIGNATURE = hmac.new(SECRET_KEY.encode('utf-8'), msg=PAYLOAD.encode('utf-8'), digestmod=sha512).hexdigest()
+INVALID_PAYLOAD_NO_EVENT = {"data": {"id": 12345, "status": "success"}}
+INVALID_PAYLOAD_EMPTY_EVENT = {"event": "", "data": {"id": 12345, "status": "success"}}
 
 
 def test_get_event_data_valid():
@@ -74,3 +76,27 @@ def test_verify_headers_no_signature():
         PayStackSignature.verify_headers(PAYLOAD, SECRET_KEY, None)
 
     assert "No signature" in str(excinfo.value)
+
+
+def test_event_initialization():
+    event = Event('payment.success', {'id': 12345, 'status': 'success'})
+    assert event.type == 'payment.success'
+    assert event.event_data == {'id': 12345, 'status': 'success'}
+
+
+def test_event_payload():
+    event = Event._get_event(json.loads(PAYLOAD))
+
+    assert isinstance(event, Event)
+    assert event.type == 'payment.success'
+    assert event.event_data == {'id': 12345, 'status': 'success'}
+
+
+def test_get_event_no_event_type():
+    with pytest.raises(ValueError, match="Event type is required"):
+        Event._get_event(INVALID_PAYLOAD_NO_EVENT)
+
+
+def test_get_event_empty_event_type():
+    with pytest.raises(ValueError, match="Event type is required"):
+        Event._get_event(INVALID_PAYLOAD_EMPTY_EVENT)
