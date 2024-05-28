@@ -2,6 +2,31 @@
 
 
 
+## v2.2.0 (2024-05-28)
+
+### Feature
+
+* feat: added class EnvConfig to handle environment variables
+feat: added class Event to handle Paystack events
+fix: removed overriding of the secret_key from PayStackBase and AsyncPayStackBase classes.
+fix: added dependency injection to the BaseAPI class
+fix: added dependency injection to the SyncBaseClientAPI class
+fix: added dependency injection to the AsyncBaseClientAPI class
+test: added tests for EnvConfig class
+test: improved tests for SyncBaseClientAPI and AsyncBaseClientAPI classes
+test: improved test for webhooks ([`6571ba6`](https://github.com/cla-bit/PayStackEase/commit/6571ba62817bce9b66908adf353cc0f24e96e45c))
+
+### Style
+
+* style: added docstrings for the Event class ([`f72fd42`](https://github.com/cla-bit/PayStackEase/commit/f72fd42733b342da760e56da41b4110d5f90443e))
+
+### Test
+
+* test: added more tests to the test_webhook module. ([`9a1b1d2`](https://github.com/cla-bit/PayStackEase/commit/9a1b1d20966d1aefa9c0fc7b94424e72052e8d52))
+
+* test: improved test for webhooks ([`d099c1a`](https://github.com/cla-bit/PayStackEase/commit/d099c1ab724991e416c5b5612e624a7458061bcc))
+
+
 ## v2.1.2 (2024-05-23)
 
 ### Fix

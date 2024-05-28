@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paystackease"
-version = "2.1.2"
+version = "2.2.0"
 description = "This is a simple api wrapper that implements both asynchronous and synchronous http requests to interact with Paystack APIs."
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
 maintainers = []
