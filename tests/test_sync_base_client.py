@@ -13,8 +13,8 @@ def test_base_url(sync_base_client):
 
 def test_convert_to_string(sync_base_client):
     """Tests for convert to string"""
-    assert sync_base_client._convert_to_string(True) == "True"
-    assert sync_base_client._convert_to_string(False) == "False"
+    assert sync_base_client._convert_to_string(True) == "true"
+    assert sync_base_client._convert_to_string(False) == "false"
     assert sync_base_client._convert_to_string(date.today()) == date.today().strftime("%Y-%m-%d")
     assert sync_base_client._convert_to_string(datetime.today()) == datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 

@@ -190,7 +190,7 @@ async def test_list_dvas(
     url = "https://api.paystack.co/dedicated_account"
     response_data = {"status": "success"}
     url_params = {
-        "active": active,
+        "active": str(active).lower(),
         "currency": currency,
         "provider_slug": provider_slug,
         "bank_id": bank_id,

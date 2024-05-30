@@ -45,8 +45,8 @@ async def test_create_plan(
         "amount": amount,
         "interval": interval,
         "description": description,
-        "send_invoices": str(send_invoices),
-        "send_sms": str(send_sms),
+        "send_invoices": send_invoices,
+        "send_sms": send_sms,
         "currency": currency,
         "invoice_limit": invoice_limit,
     }
@@ -164,8 +164,8 @@ async def test_update_plan(
         "amount": amount,
         "interval": interval,
         "description": description,
-        "send_invoices": str(send_invoices),
-        "send_sms": str(send_sms),
+        "send_invoices": send_invoices,
+        "send_sms": send_sms,
         "currency": currency,
         "invoice_limit": invoice_limit,
     }

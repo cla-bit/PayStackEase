@@ -69,9 +69,9 @@ def test_create_payment_request(
         "line_items": line_items,
         "tax": tax,
         "currency": currency,
-        "send_notification": str(send_notification),
-        "draft": str(draft),
-        "has_invoice": str(has_invoice),
+        "send_notification": send_notification,
+        "draft": draft,
+        "has_invoice": has_invoice,
         "invoice_number": invoice_number,
         "split_code": split_code,
     }
@@ -147,7 +147,7 @@ def test_list_payment_requests(
         "customer": customer,
         "status": status,
         "currency": currency,
-        "include_archive": str(include_archive),
+        "include_archive": str(include_archive).lower(),
         "from": from_date,
         "to": to_date,
     }
@@ -260,7 +260,7 @@ def test_finalize_payment(payment_requests_client, notice):
     payment_code = "test-payment-code"
     url = f"https://api.paystack.co/paymentrequest/finalize/{payment_code}"
     response_data = {"status": "success"}
-    expected_data = {"send_notification": str(notice)}
+    expected_data = {"send_notification": notice}
     responses.add(
         responses.POST,
         url,
@@ -335,8 +335,8 @@ def test_update_payment_request(
         "line_items": line_items,
         "tax": tax,
         "currency": currency,
-        "send_notification": str(send_notification),
-        "draft": str(draft),
+        "send_notification": send_notification,
+        "draft": draft,
         "invoice_number": invoice_number,
         "split_code": split_code,
     }

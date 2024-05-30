@@ -109,8 +109,8 @@ def test_list_terminals(terminal_client, per_page, next_cursor, prev_cursor):
     response_data = {"status": "success"}
     url_params = {
         "perPage": per_page,
-        "next": str(next_cursor),
-        "previous": str(prev_cursor),
+        "next": str(next_cursor).lower(),
+        "previous": str(prev_cursor).lower(),
     }
     # Construct the expected URL with parameters
     query_string = "&".join(

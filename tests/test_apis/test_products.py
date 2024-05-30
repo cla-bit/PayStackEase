@@ -27,7 +27,7 @@ def test_create_payment_request(
         "description": description,
         "price": amount,
         "currency": currency,
-        "unlimited": str(unlimited),
+        "unlimited": unlimited,
         "quantity": quantity,
     }
     responses.add(
@@ -127,7 +127,7 @@ def test_update_payment_request(
         "description": description,
         "price": amount,
         "currency": currency,
-        "unlimited": str(unlimited),
+        "unlimited": unlimited,
         "quantity": quantity,
     }
 

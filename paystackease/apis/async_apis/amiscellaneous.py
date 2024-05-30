@@ -66,7 +66,7 @@ class AsyncMiscellaneousClientAPI(AsyncRequestAPI):
             "country": country,
             "use_cursor": use_cursor,
             "perPage": per_page,
-            "supports_transfer": pay_with_bank_transfer,
+            "pay_with_bank_transfer": pay_with_bank_transfer,
             "pay_with_bank": pay_with_bank,
             "enabled_for_verification": enabled_for_verification,
             "next": next_cursor,

@@ -83,9 +83,9 @@ class SyncBaseClientAPI(BaseAPI):
 
                 return PayStackResponse(
                     status_code=response.status_code,
-                    status=response_data.get('status'),
-                    message=response_data.get('message'),
-                    data=response_data.get('data'),
+                    status=response_data.get('status', False),
+                    message=response_data.get('message', ''),
+                    data=response_data.get('data', None),
                 )
         except (RequestException, ConnectionError) as error:
             # Extract status code if available from the exception
@@ -169,9 +169,9 @@ class AsyncBaseClientAPI(BaseAPI):
 
                 return PayStackResponse(
                     status_code=response.status,
-                    status=response_data.get('status'),
-                    message=response_data.get('message'),
-                    data=response_data.get('data'),
+                    status=response_data.get('status', False),
+                    message=response_data.get('message', ''),
+                    data=response_data.get('data', None),
                 )
         except (ClientError, ClientConnectionError) as error:
             # Extract status code if available from the exception

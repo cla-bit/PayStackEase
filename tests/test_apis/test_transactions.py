@@ -193,7 +193,7 @@ def test_charge_authorization(
         "subaccount": subaccount,
         "transaction_charge": transaction_charge,
         "bearer": bearer,
-        "queue": str(queue),
+        "queue": str(queue).lower(),
         "metadata": metadata,
     }
     responses.add(
@@ -497,7 +497,7 @@ def test_export_transactions(
         "currency": currency,
         "amount": amount,
         "status": status,
-        "settled": str(settled),
+        "settled": str(settled).lower(),
         "settlement": settlement,
         "payment_page": payment_page,
         "from": from_date,

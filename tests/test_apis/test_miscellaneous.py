@@ -57,11 +57,11 @@ def test_list_banks(
     response_data = {"status": "success"}
     url_params = {
         "country": country,
-        "use_cursor": str(use_cursor),
+        "use_cursor": str(use_cursor).lower(),
         "perPage": per_page,
-        "supports_transfer": str(pay_with_bank_transfer),
-        "pay_with_bank": str(pay_with_bank),
-        "enabled_for_verification": str(enabled_for_notification),
+        "pay_with_bank_transfer": str(pay_with_bank_transfer).lower(),
+        "pay_with_bank": str(pay_with_bank).lower(),
+        "enabled_for_verification": str(enabled_for_notification).lower(),
         "next": next_cursor,
         "previous": previous_cursor,
         "gateway": gateway,

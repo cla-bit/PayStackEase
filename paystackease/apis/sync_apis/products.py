@@ -39,9 +39,6 @@ class ProductClientAPI(SyncRequestAPI):
         :rtype: PayStackResponse object
         """
 
-        # convert bool to string
-        unlimited = self._convert_to_string(unlimited)
-
         data = {
             "name": name,
             "description": description,
@@ -113,9 +110,6 @@ class ProductClientAPI(SyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-
-        # convert bool to string
-        unlimited = self._convert_to_string(unlimited)
 
         data = {
             "name": name,

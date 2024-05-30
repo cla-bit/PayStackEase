@@ -17,8 +17,8 @@ async def test_base_url(async_base_client):
 @pytest.mark.asyncio
 async def test_convert_to_string(async_base_client):
     """Tests for convert to string"""
-    assert async_base_client._convert_to_string(True) == "True"
-    assert async_base_client._convert_to_string(False) == "False"
+    assert async_base_client._convert_to_string(True) == "true"
+    assert async_base_client._convert_to_string(False) == "false"
     assert async_base_client._convert_to_string(date.today()) == date.today().strftime("%Y-%m-%d")
     assert async_base_client._convert_to_string(datetime.today()) == datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 
