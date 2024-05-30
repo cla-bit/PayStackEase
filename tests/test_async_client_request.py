@@ -63,3 +63,4 @@ async def test_delete_request(async_base_client_request):
         )
         response = await async_base_client_request._delete_request("test", data=mock_data)
         assert response.status == "success"
+
