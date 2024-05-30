@@ -2,6 +2,37 @@
 
 
 
+## v2.3.0 (2024-05-30)
+
+### Feature
+
+* feat: added api_resource examples for easy to understand how to use the apis: async and sync ([`d934479`](https://github.com/cla-bit/PayStackEase/commit/d9344790d0a640bb7a56e9a541dc972e2294b741))
+
+### Style
+
+* style: docs ([`e9a1b2e`](https://github.com/cla-bit/PayStackEase/commit/e9a1b2e8cef2e2d77ffe7559afe0e0eeb8c3c0d2))
+
+* style: docs ([`274f5f0`](https://github.com/cla-bit/PayStackEase/commit/274f5f06ae7658ce0bdf289f649b28a402547101))
+
+### Test
+
+* test: improved tests for test_apis and test_async_apis modules.
+fix: bug in the api_base module, &#39;bool: lambda val: str(val)&#39; Changed &#39;bool: lambda val: str(val).lower()&#39;.
+feat: added charge_url and checkout_url methods for PayStackResponse. Deprecated url() method.
+fix: set default values for draft, has_invoice and send_notification parameters in the PaymentRequestClientAPI(async and sync). Removed the convert_to_strings method in these parameters
+fix: Deprecated the convert_to_strings method in the Plans, Products modules: async and sync ([`f28b99a`](https://github.com/cla-bit/PayStackEase/commit/f28b99ad22107d98f1736cf9205adbb28bbd880c))
+
+* test: improved test for miscellaneous class modules: sync and async.
+fix: bug in the list_bank method of the miscellaneous modules (sync and async). Changed the parameter &#34;supports_transfer&#34; to &#34;pay_with_transfer&#34;.
+fix: improved the class SyncBaseClientAPI and AsyncBaseClientAPI classes to handle better None values from the server as a response. ([`cf4401f`](https://github.com/cla-bit/PayStackEase/commit/cf4401f691f9e27bdfbf6003868877f2f40bf938))
+
+### Unknown
+
+* Merge pull request #14
+
+Updates ([`a3f023c`](https://github.com/cla-bit/PayStackEase/commit/a3f023c48d4ad3b777798e29622ac68b57f36bf8))
+
+
 ## v2.2.0 (2024-05-28)
 
 ### Feature
