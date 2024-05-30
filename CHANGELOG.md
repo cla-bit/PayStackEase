@@ -2,6 +2,62 @@
 
 
 
+## v2.3.0 (2024-05-30)
+
+### Feature
+
+* feat: added api_resource examples for easy to understand how to use the apis: async and sync ([`d934479`](https://github.com/cla-bit/PayStackEase/commit/d9344790d0a640bb7a56e9a541dc972e2294b741))
+
+### Style
+
+* style: docs ([`e9a1b2e`](https://github.com/cla-bit/PayStackEase/commit/e9a1b2e8cef2e2d77ffe7559afe0e0eeb8c3c0d2))
+
+* style: docs ([`274f5f0`](https://github.com/cla-bit/PayStackEase/commit/274f5f06ae7658ce0bdf289f649b28a402547101))
+
+### Test
+
+* test: improved tests for test_apis and test_async_apis modules.
+fix: bug in the api_base module, &#39;bool: lambda val: str(val)&#39; Changed &#39;bool: lambda val: str(val).lower()&#39;.
+feat: added charge_url and checkout_url methods for PayStackResponse. Deprecated url() method.
+fix: set default values for draft, has_invoice and send_notification parameters in the PaymentRequestClientAPI(async and sync). Removed the convert_to_strings method in these parameters
+fix: Deprecated the convert_to_strings method in the Plans, Products modules: async and sync ([`f28b99a`](https://github.com/cla-bit/PayStackEase/commit/f28b99ad22107d98f1736cf9205adbb28bbd880c))
+
+* test: improved test for miscellaneous class modules: sync and async.
+fix: bug in the list_bank method of the miscellaneous modules (sync and async). Changed the parameter &#34;supports_transfer&#34; to &#34;pay_with_transfer&#34;.
+fix: improved the class SyncBaseClientAPI and AsyncBaseClientAPI classes to handle better None values from the server as a response. ([`cf4401f`](https://github.com/cla-bit/PayStackEase/commit/cf4401f691f9e27bdfbf6003868877f2f40bf938))
+
+### Unknown
+
+* Merge pull request #14
+
+Updates ([`a3f023c`](https://github.com/cla-bit/PayStackEase/commit/a3f023c48d4ad3b777798e29622ac68b57f36bf8))
+
+
+## v2.2.0 (2024-05-28)
+
+### Feature
+
+* feat: added class EnvConfig to handle environment variables
+feat: added class Event to handle Paystack events
+fix: removed overriding of the secret_key from PayStackBase and AsyncPayStackBase classes.
+fix: added dependency injection to the BaseAPI class
+fix: added dependency injection to the SyncBaseClientAPI class
+fix: added dependency injection to the AsyncBaseClientAPI class
+test: added tests for EnvConfig class
+test: improved tests for SyncBaseClientAPI and AsyncBaseClientAPI classes
+test: improved test for webhooks ([`6571ba6`](https://github.com/cla-bit/PayStackEase/commit/6571ba62817bce9b66908adf353cc0f24e96e45c))
+
+### Style
+
+* style: added docstrings for the Event class ([`f72fd42`](https://github.com/cla-bit/PayStackEase/commit/f72fd42733b342da760e56da41b4110d5f90443e))
+
+### Test
+
+* test: added more tests to the test_webhook module. ([`9a1b1d2`](https://github.com/cla-bit/PayStackEase/commit/9a1b1d20966d1aefa9c0fc7b94424e72052e8d52))
+
+* test: improved test for webhooks ([`d099c1a`](https://github.com/cla-bit/PayStackEase/commit/d099c1ab724991e416c5b5612e624a7458061bcc))
+
+
 ## v2.1.2 (2024-05-23)
 
 ### Fix
