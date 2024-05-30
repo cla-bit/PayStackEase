@@ -59,7 +59,7 @@ def test_list_banks(
         "country": country,
         "use_cursor": str(use_cursor),
         "perPage": per_page,
-        "supports_transfer": str(pay_with_bank_transfer),
+        "pay_with_bank_transfer": str(pay_with_bank_transfer),
         "pay_with_bank": str(pay_with_bank),
         "enabled_for_verification": str(enabled_for_notification),
         "next": next_cursor,
