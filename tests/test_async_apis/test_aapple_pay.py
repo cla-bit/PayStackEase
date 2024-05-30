@@ -44,7 +44,7 @@ async def test_list_domains(
 
     # Construct the expected URL with parameters
     url_params = {
-        "use_cursor": str(use_cursor),
+        "use_cursor": str(use_cursor).lower(),
         "next": next_page,
         "previous": previous_page,
     }

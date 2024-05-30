@@ -152,7 +152,7 @@ async def test_update_page(
         "name": name,
         "description": description,
         "amount": amount,
-        "active": str(active),
+        "active": str(active).lower(),
     }
 
     mocked_responses.put(

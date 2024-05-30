@@ -105,8 +105,8 @@ async def test_list_terminals(
     response_data = {"status": "success"}
     url_params = {
         "perPage": per_page,
-        "next": str(next_cursor),
-        "previous": str(prev_cursor),
+        "next": str(next_cursor).lower(),
+        "previous": str(prev_cursor).lower(),
     }
     # Construct the expected URL with parameters
     query_string = "&".join(

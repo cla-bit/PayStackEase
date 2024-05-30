@@ -21,9 +21,9 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
             self,
             customer: str,
             amount: int,
-            draft: bool,
-            has_invoice: bool,
-            send_notification: bool,
+            draft: bool = False,
+            has_invoice: bool = True,
+            send_notification: bool = True,
             due_date: Optional[Union[date, None]] = None,
             description: Optional[Union[str, Any]] = None,
             line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
@@ -53,9 +53,6 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
         """
         # convert date and bool to string
         due_date = self._convert_to_string(due_date)
-        draft = self._convert_to_string(draft)
-        has_invoice = self._convert_to_string(has_invoice)
-        send_notification = self._convert_to_string(send_notification)
 
         data = {
             "customer": customer,
@@ -169,8 +166,6 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        # convert to strings
-        send_notification = self._convert_to_string(send_notification)
 
         data = {"send_notification": send_notification}
         return await self._post_request(f"/paymentrequest/finalize/{code}", data=data)
@@ -212,8 +207,6 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
 
         # convert date and bool to string
         due_date = self._convert_to_string(due_date)
-        draft = self._convert_to_string(draft)
-        send_notification = self._convert_to_string(send_notification)
 
         data = {
             "customer": customer,

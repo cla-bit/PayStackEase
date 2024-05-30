@@ -154,7 +154,7 @@ def test_update_page(payment_pages_client, name, description, amount, active):
         "name": name,
         "description": description,
         "amount": amount,
-        "active": str(active),
+        "active": str(active).lower(),
     }
 
     responses.add(

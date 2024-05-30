@@ -196,7 +196,7 @@ def test_update_subaccount(
         "business_name": business_name,
         "settlement_bank": settlement_bank,
         "account_number": account_number,
-        "active": str(active),
+        "active": str(active).lower(),
         "percentage_charge": percent_charge,
         "description": description,
         "primary_contact_email": primary_contact_email,

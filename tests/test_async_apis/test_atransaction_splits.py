@@ -162,7 +162,7 @@ async def test_list_transaction_splits(
     response_data = {"status": "success"}
     url_params = {
         "name": split_name,
-        "active": str(active),
+        "active": str(active).lower(),
         "sort_by": sort_by,
         "perPage": per_page,
         "page": page,

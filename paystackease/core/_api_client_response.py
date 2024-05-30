@@ -14,10 +14,19 @@ class PayStackResponse(NamedTuple):
     data: Optional[Union[Dict[str, Any], None]]
 
     @property
-    def url(self) -> Optional[Union[str, None]]:
+    def checkout_url(self) -> Optional[Union[str, None]]:
         """
         URL of the request
         """
         if self.status_code == 200 and self.data and isinstance(self.data, dict):
             return self.data["authorization_url"]
+        return None
+
+    @property
+    def charge_url(self) -> Optional[Union[str, None]]:
+        """
+        URL of the request
+        """
+        if self.status_code == 200 and self.data and isinstance(self.data, dict):
+            return self.data["url"]
         return None

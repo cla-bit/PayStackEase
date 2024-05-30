@@ -42,10 +42,6 @@ class AsyncPlanClientAPI(AsyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        # convert to strings
-        send_invoices = self._convert_to_string(send_invoices)
-        send_sms = self._convert_to_string(send_sms)
-
         data = {
             "name": name,
             "amount": amount,
@@ -62,7 +58,7 @@ class AsyncPlanClientAPI(AsyncRequestAPI):
             self,
             per_page: Optional[Union[int, None]] = 50,
             page: Optional[Union[int, None]] = 1,
-            status: Optional[Union[str, None]] = None,
+            status: Optional[Union[str, None]] = 'active',
             interval: Optional[Union[Interval, None]] = None,
             amount: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
@@ -126,10 +122,6 @@ class AsyncPlanClientAPI(AsyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        # convert to strings
-        send_invoices = self._convert_to_string(send_invoices)
-        send_sms = self._convert_to_string(send_sms)
-
         data = {
             "name": name,
             "amount": amount,
