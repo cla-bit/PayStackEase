@@ -20,22 +20,22 @@ async def main():
 
         # access the API endpoints making a Post request
         create_customer = await paystack_client.customers.create_customer(
-            email="faithsusan@gmail.com",
-            first_name="Faith",
-            last_name="Susan",
-            phone="+2348123456789",
-            metadata={"middle_name": "Anne", "nickname": "Suzie"},
+            email="test@gmail.com",
+            first_name="Test",
+            last_name="Test",
+            phone="phone number",
+            metadata={"middle_name": "Test", "nickname": "Tester"},
         )
         print(f"Create charge: {create_customer}")
 
         validate_customer = await paystack_client.customers.validate_customer(
-            email_or_code="faithsusan@gmail.com",
-            first_name="Faith",
-            last_name="Susan",
+            email_or_code="test@gmail.com",
+            first_name="Test",
+            last_name="Test",
             account_type="bank_account",
-            country="NG",
-            bvn="20012345677",
-            bank_code="044",
+            country="country code",
+            bvn="bvn number",
+            bank_code="bank code",
             account_number="0000000000",
         )
         print(f"Validate Customer: {validate_customer}")
@@ -48,13 +48,13 @@ async def main():
         print(f"Blacklisted Customer: {white_blacklist_customer}")
 
         deactivate_auth_code = await paystack_client.customers.deactivate_authorization(
-            authorization_code="AUTH_nii6s41xsr"
+            authorization_code="AUTH_authorization-code"
         )
         print(f"Deactivated Auth Code: {deactivate_auth_code}")
 
         # access the API endpoints making a Put request
         update_customer = await paystack_client.customers.update_customer(
-            customer_code="CUS_7kwefc2jng1usti", metadata={"middle_name": "Ann"}
+            customer_code="CUS_customer-code", metadata={"middle_name": "Test"}
         )
         print(f"Updated Customer: {update_customer}")
 
@@ -79,22 +79,22 @@ def main():
 
     # access the API endpoints making a Post request
     create_customer = paystack_client.customers.create_customer(
-        email="faithsusan@gmail.com",
-        first_name="Faith",
-        last_name="Susan",
-        phone="+2348123456789",
-        metadata={"middle_name": "Anne", "nickname": "Suzie"},
+        email="test@gmail.com",
+        first_name="Test",
+        last_name="Test",
+        phone="phone number",
+        metadata={"middle_name": "Test", "nickname": "Tester"},
     )
     print(f"Create charge: {create_customer}")
 
     validate_customer = paystack_client.customers.validate_customer(
-        email_or_code="faithsusan@gmail.com",
-        first_name="Faith",
-        last_name="Susan",
+        email_or_code="test@gmail.com",
+        first_name="Test",
+        last_name="Test",
         account_type="bank_account",
-        country="NG",
-        bvn="20012345677",
-        bank_code="044",
+        country="country code",
+        bvn="bvn number",
+        bank_code="bank code",
         account_number="0000000000",
     )
     print(f"Validate Customer: {validate_customer}")
@@ -105,13 +105,13 @@ def main():
     print(f"Blacklisted Customer: {white_blacklist_customer}")
 
     deactivate_auth_code = paystack_client.customers.deactivate_authorization(
-        authorization_code="AUTH_nii6s41xsr"
+        authorization_code="AUTH_authorization-code"
     )
     print(f"Deactivated Auth Code: {deactivate_auth_code}")
 
     # access the API endpoints making a Put request
     update_customer = paystack_client.customers.update_customer(
-        customer_code="CUS_7kwefc2jng1usti", metadata={"middle_name": "Ann"}
+        customer_code="CUS_customer-code", metadata={"middle_name": "Test"}
     )
     print(f"Updated Customer: {update_customer}")
 

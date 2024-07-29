@@ -18,14 +18,14 @@ async def main():
 
         page_request_detail = (
             await paystack_client.payment_requests.fetch_payment_request(
-                id_or_code="PRQ_4ir9mcwxln6sepy"
+                id_or_code="PRQ_payment-request-code-or-id"
             )
         )
         print(f"Page Request Detail: {page_request_detail}")
 
         verify_payment_request = (
             await paystack_client.payment_requests.verify_payment_request(
-                code="PRQ_4ir9mcwxln6sepy"
+                code="PRQ_payment-request-code"
             )
         )
         print(f"Verified Payment Request: {verify_payment_request}")
@@ -37,7 +37,7 @@ async def main():
 
         # access the API endpoints making a Post request
         payment_request = await paystack_client.payment_requests.create_payment_request(
-            customer="CUS_ehq4eemtrmeuny4",
+            customer="CUS_customer-code",
             amount=10000,
             draft=True,
             has_invoice=True,
@@ -46,20 +46,20 @@ async def main():
         print(f"Created Payment Request: {payment_request}")
 
         send_notice = await paystack_client.payment_requests.send_notification(
-            code="PRQ_4ir9mcwxln6sepy"
+            code="PRQ_payment-request-code"
         )
         print(f"Notification Sent: {send_notice}")
 
         final_payment_request = (
             await paystack_client.payment_requests.finalize_payment_request(
-                code="PRQ_4ir9mcwxln6sepy", send_notification=True
+                code="PRQ_payment-request-code", send_notification=True
             )
         )
         print(f"Final Payment Request Notice: {final_payment_request}")
 
         archive_pay_request = (
             await paystack_client.payment_requests.archive_payment_request(
-                code="PRQ_4ir9mcwxln6sepy"
+                code="PRQ_payment-request-code"
             )
         )
         print(f"Archived Payment Request: {archive_pay_request}")
@@ -67,7 +67,7 @@ async def main():
         # access the API endpoints making a Put request
         update_payment_request = (
             await paystack_client.payment_requests.update_payment_request(
-                id_or_code="PRQ_4ir9mcwxln6sepy",
+                id_or_code="PRQ_payment-request-code",
                 draft=False,
             )
         )
@@ -90,12 +90,12 @@ def main():
     print(f"All Payment Requests: {all_page_requests}")
 
     page_request_detail = paystack_client.payment_requests.fetch_payment_request(
-        id_or_code="PRQ_4ir9mcwxln6sepy"
+        id_or_code="PRQ_payment-request-id-or-code",
     )
     print(f"Page Request Detail: {page_request_detail}")
 
     verify_payment_request = paystack_client.payment_requests.verify_payment_request(
-        code="PRQ_6v2pibmhypo273u"
+        code="PRQ_payment-request-code"
     )
     print(f"Verified Payment Request: {verify_payment_request}")
 
@@ -104,7 +104,7 @@ def main():
 
     # access the API endpoints making a Post request
     payment_request = paystack_client.payment_requests.create_payment_request(
-        customer="CUS_3w65ynsqww97ryp",
+        customer="CUS_customer-code",
         amount=10000,
         line_items=[{"name": "item 1", "amount": 20000}],
         tax=[{"name": "VAT", "amount": 2300}],
@@ -114,23 +114,23 @@ def main():
     print(f"Created Payment Request: {payment_request}")
 
     send_notice = paystack_client.payment_requests.send_notification(
-        code="PRQ_1wexcsdswbexe6f"
+        code="PRQ_payment-request-code"
     )
     print(f"Notification Sent: {send_notice}")
 
     final_payment_request = paystack_client.payment_requests.finalize_payment_request(
-        code="PRQ_1wexcsdswbexe6f", send_notification=True
+        code="PRQ_payment-request-code", send_notification=True
     )
     print(f"Final Payment Request Notice: {final_payment_request}")
 
     archive_pay_request = paystack_client.payment_requests.archive_payment_request(
-        code="PRQ_4ir9mcwxln6sepy"
+        code="PRQ_payment-request-code"
     )
     print(f"Archived Payment Request: {archive_pay_request}")
 
     # access the API endpoints making a Put request
     update_payment_request = paystack_client.payment_requests.update_payment_request(
-        id_or_code="PRQ_6v2pibmhypo273u",
+        id_or_code="PRQ_payment-request-code",
         draft=True,
     )
     print(f"Updated Page: {update_payment_request}")

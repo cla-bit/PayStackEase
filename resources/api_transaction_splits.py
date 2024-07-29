@@ -18,7 +18,7 @@ async def main():
         print(f"List Transaction Splits: {list_transaction_splits}")
 
         get_transaction_split = await paystack_client.transaction_splits.fetch_split(
-            split_id="SPL_u2EYmrwFlI"
+            split_id="SPL_split-code"
         )
         print(f"Transaction Split Details: {get_transaction_split}")
 
@@ -28,18 +28,18 @@ async def main():
             transaction_split_type=SplitType.FLAT.value,  # if using Flat share value is in units
             currency=Currency.NGN.value,
             subaccounts=[
-                {"subaccount": "ACCT_6u06q3cc892r4cy", "share": 10000},
-                {"subaccount": "ACCT_6u06q3cc892r4cy", "share": 100000},
+                {"subaccount": "ACCT_subaccount-code", "share": 10000},
+                {"subaccount": "ACCT_subaccount-code", "share": 100000},
             ],
             bearer_type="subaccount",
-            bearer_subaccount="ACCT_6u06q3cc892r4cy",
+            bearer_subaccount="ACCT_subaccount-code",
         )
         print(f"Created Splits: {create_split}")
 
         add_update_split_subaccount = (
             await paystack_client.transaction_splits.add_or_update_subaccount_split(
-                split_id="SPL_u2EYmrwFlI",
-                subaccount="ACCT_6u06q3cc892r4cy",
+                split_id="SPL_split-code",
+                subaccount="ACCT_subaccount-code",
                 transaction_share=40000,
             )
         )
@@ -49,14 +49,14 @@ async def main():
 
         remove_split_subaccount = (
             await paystack_client.transaction_splits.remove_sub_account_split(
-                split_id="SPL_u2EYmrwFlI", subaccount="ACCT_6u06q3cc892r4cy"
+                split_id="SPL_split-code", subaccount="ACCT_subaccount-code"
             )
         )
         print(f"Removed a Subaccount to a Split: {remove_split_subaccount}")
 
         # access the API endpoints making a Post request
         updated_split = await paystack_client.transaction_splits.update_split(
-            split_id="SPL_fjJJkak25k",
+            split_id="SPL_split-code",
             transaction_split_name="Updated Split",
             active=True,
         )
@@ -79,7 +79,7 @@ def main():
     print(f"List Transaction Splits: {list_transaction_splits}")
 
     get_transaction_split = paystack_client.transaction_splits.fetch_split(
-        split_id="SPL_fjJJkak25k"
+        split_id="SPL_split-code"
     )
     print(f"Transaction Split Details: {get_transaction_split}")
 
@@ -89,18 +89,18 @@ def main():
         transaction_split_type=SplitType.FLAT.value,  # if using Flat, share value is in unit
         currency=Currency.NGN.value,
         subaccounts=[
-            {"subaccount": "ACCT_6u06q3cc892r4cy", "share": 20000},
-            {"subaccount": "ACCT_6u06q3cc892r4cy", "share": 300000},
+            {"subaccount": "ACCT_subaccount-code", "share": 20000},
+            {"subaccount": "ACCT_subaccount-code", "share": 300000},
         ],
         bearer_type="subaccount",
-        bearer_subaccount="ACCT_6u06q3cc892r4cy",
+        bearer_subaccount="ACCT_subaccount-code",
     )
     print(f"Created Splits: {create_split}")
 
     add_update_split_subaccount = (
         paystack_client.transaction_splits.add_or_update_subaccount_split(
-            split_id="SPL_fjJJkak25k",
-            subaccount="ACCT_6u06q3cc892r4cy",
+            split_id="SPL_split-code",
+            subaccount="ACCT_subaccount-code",
             transaction_share=40000,
         )
     )
@@ -108,14 +108,14 @@ def main():
 
     remove_split_subaccount = (
         paystack_client.transaction_splits.remove_sub_account_split(
-            split_id="SPL_fjJJkak25k", subaccount="ACCT_6u06q3cc892r4cy"
+            split_id="SPL_split-code", subaccount="ACCT_subaccount-code"
         )
     )
     print(f"Removed a Subaccount to a Split: {remove_split_subaccount}")
 
     # access the API endpoints making a Post request
     updated_split = paystack_client.transaction_splits.update_split(
-        split_id="SPL_fjJJkak25k", transaction_split_name="Updated Split", active=True
+        split_id="SPL_split-code", transaction_split_name="Updated Split", active=True
     )
     print(f"Updated a Split: {updated_split}")
 

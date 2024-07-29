@@ -13,15 +13,15 @@ async def main():
         print(f"List Subaccounts: {list_subaccounts}")
 
         get_subaccount = await paystack_client.subaccounts.fetch_subaccount(
-            id_or_code="ACCT_6u06q3cc892r4cy"
+            id_or_code="ACCT_subaccount-id-or-code"
         )
         print(f"Get Subaccount: {get_subaccount}")
 
         # access the API endpoints making a Post request
         create_subaccount = await paystack_client.subaccounts.create_subaccount(
-            business_name="SunShine",
-            settlement_bank="044",
-            account_number="0193274682",
+            business_name="Test business name",
+            settlement_bank="bank code",
+            account_number="0000000000",
             percentage_charge=18.2,
             description="This is just a testing subaccount to create",
         )
@@ -29,9 +29,9 @@ async def main():
 
         # access the API endpoints making a Put request
         update_subaccount = await paystack_client.subaccounts.update_subaccount(
-            id_or_code="1049017",
+            id_or_code="subaccount-id",
             business_name="Testing Logistics",
-            settlement_bank="044",
+            settlement_bank="bank code",
             account_number="0000000000",
             primary_contact_name="Test Environment",
             primary_contact_email="test@gmail.com",
@@ -52,15 +52,15 @@ def main():
     print(f"List Subaccounts: {list_subaccounts}")
 
     get_subaccount = paystack_client.subaccounts.fetch_subaccount(
-        id_or_code="ACCT_6u06q3cc892r4cy"
+        id_or_code="ACCT_subaccount-id-or-code"
     )
     print(f"Get Subaccount: {get_subaccount}")
 
     # access the API endpoints making a Post request
     create_subaccount = paystack_client.subaccounts.create_subaccount(
-        business_name="SunShine",
-        settlement_bank="044",
-        account_number="0193274682",
+        business_name="Test business name",
+        settlement_bank="bank code",
+        account_number="0000000000",
         percentage_charge=18.2,
         description="This is just a testing subaccount to create",
     )
@@ -68,12 +68,12 @@ def main():
 
     # access the API endpoints making a Put request
     update_subaccount = paystack_client.subaccounts.update_subaccount(
-        id_or_code="1049017",
-        business_name="Claver Testing Logistics",
-        settlement_bank="044",
-        account_number="0788143122",
-        primary_contact_name="Claver Test",
-        primary_contact_email="doublep098@gmail.com",
+        id_or_code="subaccount-id",
+        business_name="Test Testing Logistics",
+        settlement_bank="bank code",
+        account_number="0000000000",
+        primary_contact_name="Test Test",
+        primary_contact_email="test1@gmail.com",
     )
     print(f"Updated Subaccount: {update_subaccount}")
 

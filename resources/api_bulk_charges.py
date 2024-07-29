@@ -18,22 +18,22 @@ async def main():
         print(f"List all domains: {list_domains.data}")  # access the data from the PayStackResponse
 
         get_bulk_batch = await paystack_client.bulk_charges.fetch_bulk_charge_batch(
-            id_or_code="181426836"
+            id_or_code="bulk-id-or-code"
         )
         print(f"Fetch a bulk charge of a specific batch: {get_bulk_batch}")
 
         get_charge_batch = await paystack_client.bulk_charges.fetch_charge_bulk_batch(
-            id_or_code="BCH_n27x51vd5hbscoy", status=STATUS.PENDING.value
+            id_or_code="BCH_bulk-code", status=STATUS.PENDING.value
         )
         print(f"Fetch a charge of a specific batch: {get_charge_batch}")
 
         pause_bulk = await paystack_client.bulk_charges.pause_bulk_charge_batch(
-            batch_code="BCH_n27x51vd5hbscoy"
+            batch_code="BCH_bulk-code"
         )
         print(f"Pause a bulk charge batch: {pause_bulk}")
 
         resume_bulk = await paystack_client.bulk_charges.resume_bulk_charge_batch(
-            batch_code="BCH_n27x51vd5hbscoy"
+            batch_code="BCH_bulk-code"
         )
         print(f"Resume a bulk charge batch: {resume_bulk}")
 
@@ -41,9 +41,9 @@ async def main():
         init_bulk_charge = await paystack_client.bulk_charges.initiate_bulk_charge(
             [
                 {
-                    "authorization": "AUTH_xfuz7dy4b9",
+                    "authorization": "AUTH_authorization-code",
                     "amount": 1500,
-                    "reference": "dam1266638dhhe",
+                    "reference": "reference",
                 }
             ]
         )
@@ -64,22 +64,22 @@ def main():
     print(f"List all bulk charges: {list_bulk}")
 
     get_bulk_batch = paystack_client.bulk_charges.fetch_bulk_charge_batch(
-        id_or_code="181426836"
+        id_or_code="bulk-id-or-code"
     )
     print(f"Fetch a bulk charge of a specific batch: {get_bulk_batch}")
 
     get_charge_batch = paystack_client.bulk_charges.fetch_charge_bulk_batch(
-        id_or_code="BCH_n27x51vd5hbscoy", status=STATUS.PENDING.value
+        id_or_code="BCH_bulk-code", status=STATUS.PENDING.value
     )
     print(f"Fetch a charge of a specific batch: {get_charge_batch}")
 
     pause_bulk = paystack_client.bulk_charges.pause_bulk_charge_batch(
-        batch_code="BCH_n27x51vd5hbscoy"
+        batch_code="BCH_bulk-code"
     )
     print(f"Pause a bulk charge batch: {pause_bulk}")
 
     resume_bulk = paystack_client.bulk_charges.resume_bulk_charge_batch(
-        batch_code="BCH_n27x51vd5hbscoy"
+        batch_code="BCH_bulk-code"
     )
     print(f"Resume a bulk charge batch: {resume_bulk}")
 
@@ -87,9 +87,9 @@ def main():
     init_bulk_charge = paystack_client.bulk_charges.initiate_bulk_charge(
         [
             {
-                "authorization": "AUTH_xf232wquz7dy4b9",
+                "authorization": "AUTH_authorization-code",
                 "amount": 1500,
-                "reference": "dam126qwe216638dhhe",
+                "reference": "reference",
             }
         ]
     )

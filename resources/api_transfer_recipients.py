@@ -21,7 +21,7 @@ async def main():
 
         get_transfer_recipient = (
             await paystack_client.transfer_recipients.fetch_transfer_recipient(
-                id_or_code="RCP_fh82l0laloo41c4"
+                id_or_code="RCP_transfer-receipt-code"
             )
         )
         print(f"Transfer Recipient: {get_transfer_recipient}")
@@ -60,7 +60,7 @@ async def main():
         # access the API endpoints making a Put request
         update_recipient = (
             await paystack_client.transfer_recipients.update_transfer_recipient(
-                id_or_code="RCP_fh82l0laloo41c4",
+                id_or_code="RCP_transfer-receipt-code",
                 recipient_name="Rick Sanchez",
                 recipient_email="ricksabchez@gmail.com",
             )
@@ -93,7 +93,7 @@ def main():
 
     get_transfer_recipient = (
         paystack_client.transfer_recipients.fetch_transfer_recipient(
-            id_or_code="RCP_fh82l0laloo41c4"
+            id_or_code="RCP_transfer-receipt-code"
         )
     )
     print(f"Transfer Recipient: {get_transfer_recipient}")
@@ -129,7 +129,7 @@ def main():
 
     # access the API endpoints making a Put request
     update_recipient = paystack_client.transfer_recipients.update_transfer_recipient(
-        id_or_code="RCP_fh82l0laloo41c4",
+        id_or_code="RCP_transfer-receipt-code",
         recipient_name="Rick Sanchez",
         recipient_email="ricksabchez@gmail.com",
     )

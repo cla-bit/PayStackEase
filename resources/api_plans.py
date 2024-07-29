@@ -13,7 +13,7 @@ async def main():
         all_plans = await paystack_client.plans.list_plans()  # active, archived, deleted
         print(f"All Plans: {all_plans}")
 
-        plan_detail = await paystack_client.plans.fetch_plan(id_or_code="PLN_xmr9ho0cw7qq81d")
+        plan_detail = await paystack_client.plans.fetch_plan(id_or_code="PLN_plan-id-or-code")
         print(f"Plan Detail: {plan_detail}")
 
         # access the API endpoints making a Post request
@@ -30,7 +30,7 @@ async def main():
 
         # access the API endpoints making a Put request
         update_plan = await paystack_client.plans.update_plan(
-            id_or_code="PLN_xmr9ho0cw7qq81d",
+            id_or_code="PLN_plan-id-or-code",
             send_sms=True,
             name="Updated Plan",
             send_invoices=True,
@@ -56,7 +56,7 @@ def main():
     all_plans = paystack_client.plans.list_plans()
     print(f"All Plans: {all_plans}")
 
-    plan_detail = paystack_client.plans.fetch_plan(id_or_code="PLN_xmr9ho0cw7qq81d")
+    plan_detail = paystack_client.plans.fetch_plan(id_or_code="PLN_plan-id-or-code")
     print(f"Plan Detail: {plan_detail}")
 
     # access the API endpoints making a Post request
@@ -73,7 +73,7 @@ def main():
 
     # access the API endpoints making a Put request
     update_plan = paystack_client.plans.update_plan(
-        id_or_code="PLN_xmr9ho0cw7qq81d",
+        id_or_code="PLN_plan-id-or-code",
         send_sms=True,
         name="Updated Plan",
         send_invoices=True,

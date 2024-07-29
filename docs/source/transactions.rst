@@ -37,7 +37,7 @@ This wrapper class facilitates synchronous integration with Paystack Transaction
         :param bearer: Who bears Paystack charges? Two options: ``account`` | ``subaccount``
         :type bearer: str, optional
         :param queue: If set to true, the transaction will be queued for processing
-        :type queue: bool, optinoal
+        :type queue: bool, optional
         :param metadata: JSON object of custom data.
         :type metadata: Dict[str, List[Dict[str, Any]]]
 

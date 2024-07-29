@@ -36,13 +36,14 @@ async def main():
             customer_name="Test",
             customer_phone="+23456789012",
             service_details="claim for buying product",
-            delivery_date="3a ladoke street ogbomoso",
+            delivery_address="delivery-address",
+            delivery_date="delivery date",
         )
         print(f"Added Evidence: {add_evidence}")
 
         # access the API endpoints making a Put request
         update_dispute = await paystack_client.disputes.update_dispute(
-            dispute_id="your-dispute-id",
+            dispute_id="dispute-id",
             refund_amount=1000,
             uploaded_filename="disputed_settled.pdf",
         )
@@ -94,9 +95,10 @@ def main():
         dispute_id="your-dispute-id",
         customer_email="test@gmail.com",
         customer_name="Test",
-        customer_phone="+23456789012",
+        customer_phone="phone number",
         service_details="claim for buying product",
-        delivery_date="3a ladoke street ogbomoso",
+        delivery_address="delivery address",
+        delivery_date="delivery date",
     )
     print(f"Added Evidence: {add_evidence}")
 

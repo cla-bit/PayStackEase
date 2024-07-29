@@ -46,10 +46,10 @@ async def main():
         # amount should be in subunit in this case 10000 kobo = 100 naira
         money = convert_to_subunit(100, Currency.NGN)
         initiate_transaction = await paystack_client.transactions.initialize(
-            email="johndoe@gmail.com",
+            email="test@gmail.com",
             amount=money,
             channels=[Channels.BANK.value, Channels.CARD.value],
-            metadata={"first_name": "John", "last_name": "Doe"},
+            metadata={"first_name": "Test", "last_name": "Test"},
         )
         checkout = initiate_transaction.checkout_url
         print(checkout)
@@ -58,11 +58,11 @@ async def main():
         charge_auth = await paystack_client.transactions.charge_authorization(
             email="email@gmail.com",
             amount=10000,  # use convert_currency() to convert to subunit
-            authorization_code="AUTH_nii6s41xsr",
+            authorization_code="AUTH_authorization-code",
             reference="add_your_unique_reference",
             currency=Currency.NGN.value,
             channels=[Channels.BANK.value, Channels.CARD.value],
-            subaccount="ACCT_8f4s1eq7ml6rlzj",
+            subaccount="ACCT_subaccount-code",
             transaction_charge=10,
             bearer="account" or "subaccount",
             queue=True,
@@ -71,7 +71,7 @@ async def main():
 
         partial_debt = await paystack_client.transactions.partial_debit(
             email="email@gmail.com",
-            authorization_code="AUTH_nii6s41xsr",
+            authorization_code="AUTH_authorization-code",
             amount=10000,  # amount should be in subunit in this case 10000 kobo = 100 naira
             currency=Currency.NGN.value,
             reference="add_your_unique_reference",
@@ -115,10 +115,10 @@ def main():
     # amount should be in subunit in this case 10000 kobo = 100 naira
     money = convert_to_subunit(100, Currency.NGN)
     initiate_transaction = paystack_client.transactions.initialize(
-        email="johndoe@gmail.com",
+        email="test@gmail.com",
         amount=money,
         channels=[Channels.BANK.value, Channels.CARD.value],
-        metadata={"first_name": "John", "last_name": "Doe"},
+        metadata={"first_name": "Test", "last_name": "Test"},
     )
     url = initiate_transaction.checkout_url
     print(f"url: {url}")
@@ -126,11 +126,11 @@ def main():
     charge_auth = paystack_client.transactions.charge_authorization(
         email="email@gmail.com",
         amount=10000,  # use convert_currency() to convert to subunit
-        authorization_code="AUTH_nii6s41xsr",
+        authorization_code="AUTH_authorization-code",
         reference="add_your_unique_reference",
         currency=Currency.NGN.value,
         channels=[Channels.BANK.value, Channels.CARD.value],
-        subaccount="ACCT_8f4s1eq7ml6rlzj",
+        subaccount="ACCT_subaccount-code",
         transaction_charge=10,
         bearer="account" or "subaccount",
         queue=True,
@@ -139,7 +139,7 @@ def main():
 
     partial_debt = paystack_client.transactions.partial_debit(
         email="email@gmail.com",
-        authorization_code="AUTH_nii6s41xsr",
+        authorization_code="AUTH_authorization-code",
         amount=10000,  # amount should be in subunit in this case 10000 kobo = 100 naira
         currency=Currency.NGN.value,
         reference="add_your_unique_reference",

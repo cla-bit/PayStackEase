@@ -20,9 +20,9 @@ async def main():
 
         # access the API endpoints making a Post request
         create_subscription = await paystack_client.subscriptions.create_subscription(
-            customer="CUS_3w65ynsqww97ryp",
-            plan_code="PLN_366txpv67ygmpj9",
-            authorization="AUTH_jg0md3tql2",
+            customer="CUS_customer-code",
+            plan_code="PLN_plan-code",
+            authorization="AUTH_authorization-code",
         )
         print(f"Created Subscription: {create_subscription}")
 
@@ -72,9 +72,9 @@ def main():
 
     # access the API endpoints making a Post request
     create_subscription = paystack_client.subscriptions.create_subscription(
-        customer="CUS_EQ34235R",
-        plan_code="PLN_WRF33454",
-        authorization="AUTH_134SDFWERE",
+        customer="CUS_customer-code",
+        plan_code="PLN_plan-code",
+        authorization="AUTH_authorization-code",
     )
     print(f"Created Subscription: {create_subscription}")
 

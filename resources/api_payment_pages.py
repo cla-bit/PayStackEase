@@ -28,7 +28,7 @@ async def main():
             name="Testing Pay Page Creation",
             description="This is just to test creating a payment page",
             amount=10000,
-            split_code="SPL_u2EYmrwFlI",
+            split_code="SPL_split-code",
         )
         print(f"Created Payment Page: {payment_page}")
 
@@ -73,7 +73,7 @@ def main():
         name="Testing Pay Page Creation",
         description="This is just to test creating a payment page",
         amount=1000,
-        split_code="SPL_u2EYmrwFlI",
+        split_code="SPL_split-code",
     )
     print(f"Created Payment Page: {payment_page}")
 
