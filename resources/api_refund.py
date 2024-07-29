@@ -20,7 +20,7 @@ async def main():
 
         # access the API endpoints making a Post request
         create_refund = await paystack_client.refund.create_refund(
-            transaction_ref_or_id="LiDxzaPFkyVjQjiaTcE3nw",
+            transaction_ref_or_id="transaction-id-here",
         )
         print(f"Created Refund: {create_refund}")
 

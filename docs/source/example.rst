@@ -61,7 +61,7 @@ The response from the server will be as follows:
 
 
 To redirect the user to Paystack checkout page to make payments, your application should call
-the ``url`` method from your response instance and provide a ``301`` ``status code`` parameter (optional).
+the ``checkout_url`` method from your response instance and provide a ``301`` ``status code`` parameter (optional).
 
 
 **See Example**
@@ -74,7 +74,7 @@ This is a django example of how to redirect users to Paystack checkout page to p
     email=order.email, amount=amount, currency="NGN",
     callback_url=success_url, metadata=metadata)
 
-    return redirect(session.url, code=301)
+    return redirect(session.checkout_url, code=301)
 
 Also the ``webbrowser`` module is another approach to redirect users to Paystack checkout page. Which ever is your
 choice is best.
@@ -83,4 +83,4 @@ choice is best.
 
     import webbrowser
 
-    webbrowser.open(session.url)
+    webbrowser.open(session.checkout_url)

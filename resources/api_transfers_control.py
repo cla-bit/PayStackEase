@@ -19,7 +19,7 @@ async def main():
 
         # access the API endpoints making a Post request
         resent_otp = await paystack_client.transfer_control.resend_otp(
-            transfer_code="TRF_vsyqdmlzble3uii", reason=ResendOTP.RESEND_OTP.value
+            transfer_code="TRF_transfer-code", reason=ResendOTP.RESEND_OTP.value
         )
         print(f"Resend OTP: {resent_otp}")
 
@@ -53,7 +53,7 @@ def main():
 
     # access the API endpoints making a Post request
     resent_otp = paystack_client.transfer_control.resend_otp(
-        transfer_code="TRF_vsyqdmlzble3uii", reason=ResendOTP.RESEND_OTP.value
+        transfer_code="TRF_transfer-code", reason=ResendOTP.RESEND_OTP.value
     )
     print(f"Resend OTP: {resent_otp}")
 

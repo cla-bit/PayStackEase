@@ -13,6 +13,7 @@ It provides both asynchronous and synchronous wrappers for various Paystack func
 making it easier to integrate payment processing into your Python projects.
 
 Paystackease utilizes **requests** and **aiohttp** libraries to make http requests and receives a **PayStackResponse** object from the server.
+Also compacted with it is the implementation of webhooks.
 
 -----------------------------
 
@@ -92,6 +93,7 @@ If you want to download the sdist packages directly:
    submodules
    paystackease.apis
    paystackease.async_apis
+   paystackease.webhooks
    paystackease.helpers
    errors
    changelog

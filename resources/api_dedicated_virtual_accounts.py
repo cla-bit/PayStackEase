@@ -35,7 +35,7 @@ async def main():
         # access the API endpoints making a Post request
         create_dv_customer = (
             await paystack_client.dedicated_virtual_accounts.create_virtual_account(
-                customer_id_or_code="CUS_7kwefc2jng1usti", preferred_bank="wema-bank"
+                customer_id_or_code="CUS_customer-code", preferred_bank="wema-bank"
             )
         )
         print(f"Create Virtual Customer: {create_dv_customer}")
@@ -44,21 +44,21 @@ async def main():
             email="test@gmail.com",
             first_name="test",
             last_name="test",
-            phone="+234567890123",
+            phone="phone number",
             preferred_bank="wema-bank",
-            country="NG",
+            country="country code",
             account_number="0000000000",
         )
         print(f"Assigned DV Customer: {assign_dv_customer}")
 
         split_dv_transaction = (
             await paystack_client.dedicated_virtual_accounts.split_dedicated_account(
-                customer_id_or_code="CUS_7kwefc2jng1usti",
+                customer_id_or_code="CUS_customer-code",
                 preferred_bank="wema-bank",
-                split_code="SPL_e7jnRLtzla",
+                split_code="SPL_split-code",
             )
         )
-        print(f"Splited DV Transaction: {split_dv_transaction}")
+        print(f"Split DV Transaction: {split_dv_transaction}")
 
         # access the API endpoints making a Delete request
         delete_dv = await paystack_client.dedicated_virtual_accounts.deactivate_dedicated_account(
@@ -106,7 +106,7 @@ def main():
     # access the API endpoints making a Post request
     create_dv_customer = (
         paystack_client.dedicated_virtual_accounts.create_virtual_account(
-            customer_id_or_code="CUS_7kwefc2jng1usti", preferred_bank="wema-bank"
+            customer_id_or_code="CUS_customer-code", preferred_bank="wema-bank"
         )
     )
     print(f"Create Virtual Customer: {create_dv_customer}")
@@ -116,9 +116,9 @@ def main():
             email="test@gmail.com",
             first_name="test",
             last_name="test",
-            phone="+234567890123",
+            phone="phone number",
             preferred_bank="wema-bank",
-            country="NG",
+            country="country code",
             account_number="0000000000",
         )
     )
@@ -126,12 +126,12 @@ def main():
 
     split_dv_transaction = (
         paystack_client.dedicated_virtual_accounts.split_dedicated_account(
-            customer_id_or_code="CUS_7kwefc2jng1usti",
+            customer_id_or_code="CUS_customer-code",
             preferred_bank="wema-bank",
-            split_code="SPL_e7jnRLtzla",
+            split_code="SPL_split-code",
         )
     )
-    print(f"Splited DV Transaction: {split_dv_transaction}")
+    print(f"Split DV Transaction: {split_dv_transaction}")
 
     # access the API endpoints making a Delete request
     delete_dv = paystack_client.dedicated_virtual_accounts.deactivate_dedicated_account(
