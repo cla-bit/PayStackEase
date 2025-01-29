@@ -38,6 +38,7 @@ python = "^3.9"
 aiohttp = "^3.8"
 requests = "^2.31"
 python-decouple = "^3.8"
+pydantic = "^2.10.4"
 
 
 [tool.poetry.group.docs.dependencies]

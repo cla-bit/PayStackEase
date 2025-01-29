@@ -1,13 +1,18 @@
 """
+Module: _api_env.py
+========================
+
 This module retrieves the environment variables
 """
-import logging
+
 from decouple import config
 from typing import Protocol
-from paystackease.core._api_errors import SecretKeyError
+
+from paystackease.src.logger import CustomLogger
+from paystackease.src._api_errors import SecretKeyError
 
 
-logger = logging.getLogger(__name__)
+logger = CustomLogger().logger
 
 
 class EnvBase(Protocol):

@@ -1,10 +1,12 @@
 """
+Module: _api_base_client.py
+==============================
+
 This defines classes SyncBaseClientAPI and AsyncBaseClientAPI which are used for making
 synchronous and asynchronous requests to the Paystack API, respectively.
 """
 
 import json
-import logging
 
 from typing import Union, Dict, List, Any, Optional
 
@@ -15,13 +17,12 @@ from requests import (
     Session, RequestException, ConnectionError
 )
 
-from paystackease.core._api_base import BaseAPI
-from paystackease.core._api_client_response import PayStackResponse
-from paystackease.core._api_errors import (
+from paystackease.src._api_base import BaseAPI
+from paystackease.src._api_client_response import PayStackResponse
+from paystackease.src._api_errors import (
     InvalidRequestMethodError, PayStackError, APIConnectionError, PayStackServerError
 )
-
-logger = logging.getLogger(__name__)
+from paystackease.helpers.misc import join_url
 
 
 class SyncBaseClientAPI(BaseAPI):
@@ -50,10 +51,11 @@ class SyncBaseClientAPI(BaseAPI):
         """
         if method.upper() not in self._VALID_HTTP_METHODS:
             error_message = f"Invalid HTTP method. Supported methods are GET, POST, PUT, DELETE. : {method}"
-            logger.error(error_message)
+            self._logger.error(error_message)
             raise InvalidRequestMethodError(error_message)
 
-        url = self._join_url(url)
+        url = join_url(url)
+
         # Filtering params and data, then converting data to JSON
         params = (
             {key: value for key, value in params.items() if value is not None}
@@ -61,6 +63,7 @@ class SyncBaseClientAPI(BaseAPI):
             else None
         )
         data = json.dumps(data) if data else None
+
         try:
             with self._session.request(
                 method,
@@ -72,13 +75,13 @@ class SyncBaseClientAPI(BaseAPI):
                 timeout=30,
             ) as response:
                 response_data = response.json()
-                logger.info("Response Status Code: %s", response.status_code)
-                logger.info("Response JSON: %s", response_data)
+                self._logger.info("Response Status Code: %s", response.status_code)
+                self._logger.info("Response JSON: %s", response_data)
 
                 # Handle server error
                 if 500 <= response.status_code <= 600:
                     error_message = f"Server error occurred: {response.status_code}"
-                    logger.error(error_message)
+                    self._logger.error(error_message)
                     raise PayStackServerError(message=error_message, status_code=response.status_code)
 
                 return PayStackResponse(
@@ -93,7 +96,7 @@ class SyncBaseClientAPI(BaseAPI):
             status_code = getattr(error, "response", None) and getattr(
                 error.response, "status_code", None
             )
-            logger.error("Error %s", error)
+            self._logger.error("Error %s", error)
             if isinstance(error, ConnectionError):
                 raise APIConnectionError(message=error_message)
             raise PayStackError(message=error_message, status_code=status_code) from error
@@ -108,7 +111,7 @@ class AsyncBaseClientAPI(BaseAPI):
 
         self.timeout = timeout or ClientTimeout(total=30)
         self._session = session or ClientSession(
-            headers=self._make_paystack_http_headers(), timeout=self.timeout
+            headers=self._headers, timeout=self.timeout
         )
 
     async def __aenter__(self):
@@ -137,10 +140,10 @@ class AsyncBaseClientAPI(BaseAPI):
         """
         if method.upper() not in self._VALID_HTTP_METHODS:
             error_message = f"Invalid HTTP method. '{method}'. Supported methods are GET, POST, PUT, DELETE."
-            logger.error(error_message)
+            self._logger.error(error_message)
             raise InvalidRequestMethodError(error_message)
 
-        url = self._join_url(url)
+        url = join_url(url)
         # Filtering params and data, then converting data to JSON
         params = (
             {key: value for key, value in params.items() if value is not None}
@@ -158,13 +161,13 @@ class AsyncBaseClientAPI(BaseAPI):
                 **kwargs,
             ) as response:
                 response_data = await response.json()
-                logger.info("Response Status Code: %s", response.status)
-                logger.info("Response JSON: %s", response_data)
+                self._logger.info("Response Status Code: %s", response.status)
+                self._logger.info("Response JSON: %s", response_data)
 
                 # Handle server error
                 if 500 <= response.status <= 600:
                     error_message = f"Server error occurred: {response.status}"
-                    logger.error(error_message)
+                    self._logger.error(error_message)
                     raise PayStackServerError(message=error_message, status_code=response.status)
 
                 return PayStackResponse(
@@ -179,7 +182,7 @@ class AsyncBaseClientAPI(BaseAPI):
             status_code = getattr(error, "response", None) and getattr(
                 error.args[0], "status_code", None
             )
-            logger.error("Error %s", error)
+            self._logger.error("Error %s", error)
             if isinstance(error, ClientConnectionError):
                 raise APIConnectionError(message=error_message)
             raise PayStackError(message=error_message, status_code=status_code) from error

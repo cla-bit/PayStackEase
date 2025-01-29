@@ -1,4 +1,9 @@
-""" Paystack Error Message"""
+"""
+Module: _api_errors.py
+=========================
+
+Paystack Error Message
+"""
 
 from typing import Optional, Dict, Union, cast
 

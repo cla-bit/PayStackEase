@@ -1,12 +1,15 @@
 """
+Module: _api_client_requests.py
+==================================
+
 Paystackease HTTP requests and aiohttp handlers This aims to simplify the process of making requests
 to the Paystack API by providing higher-level methods for different HTTP methods,
 """
 
 from typing import Optional, Any, Union, List, Dict
 
-from paystackease.core._api_base_client import SyncBaseClientAPI, AsyncBaseClientAPI
-from paystackease.core._api_client_response import PayStackResponse
+from paystackease.src._api_base_client import SyncBaseClientAPI, AsyncBaseClientAPI
+from paystackease.src._api_client_response import PayStackResponse
 
 
 class SyncRequestAPI(SyncBaseClientAPI):

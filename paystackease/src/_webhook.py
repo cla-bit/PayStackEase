@@ -1,9 +1,16 @@
+"""
+Module: _webhooks.py
+=======================
+
+This module provides functionality to handle PayStack webhooks, including verifying signatures and extracting event data.
+"""
+
 import json
 import hmac
 from collections import OrderedDict
 from hashlib import sha512
-from paystackease.core._api_errors import PayStackSignatureVerifyError
-from paystackease.core._events import Event
+from paystackease.src._api_errors import PayStackSignatureVerifyError
+from paystackease.src._events import Event
 
 
 class PayStackWebhook(object):

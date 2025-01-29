@@ -1,4 +1,8 @@
-"""  This represents the response from the Paystack API server after making HTTP requests. """
+"""
+Module: _api_client_response.py
+=================================
+This represents the response from the Paystack API server after making HTTP requests.
+"""
 
 from typing import NamedTuple, Optional, Union, Dict, Any
 
