@@ -4,11 +4,10 @@ Wrapper for Asynchronous Paystack Bulk Charges API.
 The Bulk Charges API allows you to create and manage multiple recurring payments from your customers.
 """
 
-from datetime import date
 from typing import List, Dict, Optional, Any, Union
 
-from paystackease.core import AsyncRequestAPI, PayStackResponse
-from paystackease.helpers import STATUS
+from paystackease.src import PayStackResponse, AsyncRequestAPI
+from paystackease.helpers import STATUS, AuthReferenceObject, bulk_charge_endpoint, PageModel, DatePageModel
 
 
 class AsyncBulkChargesClientAPI(AsyncRequestAPI):
@@ -17,7 +16,7 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    async def initiate_bulk_charge(self, objects: List[Dict[str, Any]]) -> PayStackResponse:
+    async def initiate_bulk_charge(self, objects: List[AuthReferenceObject]) -> PayStackResponse:
         """
         Send an array of objects with authorization codes and amount
 
@@ -31,14 +30,13 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        return await self._post_request("/bulkcharge", data=objects)
+        validated_data = [obj.model_dump() for obj in objects]
+        return await self._post_request(bulk_charge_endpoint, data=validated_data)
 
     async def list_bulk_charge_batches(
             self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+            page_model: Optional[PageModel] = None,
+            date_page: Optional[DatePageModel] = None,
     ) -> PayStackResponse:
         """
         List all bulk charges
@@ -56,17 +54,12 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         :rtype: PayStackResponse object
         """
 
-        # Convert date to string
-        from_date = self._convert_to_string(from_date)
-        to_date = self._convert_to_string(to_date)
-
-        params = {
-            "perPage": per_page,
-            "page": page,
-            "from": from_date,
-            "to": to_date,
+        validated_params = {
+            **page_model.model_dump(by_alias=True, exclude_none=True),
+            **date_page.model_dump(by_alias=True, exclude_none=True),
         }
-        return await self._get_request("/bulkcharge", params=params)
+
+        return await self._get_request(bulk_charge_endpoint, validated_params)
 
     async def fetch_bulk_charge_batch(self, id_or_code: str) -> PayStackResponse:
         """
@@ -77,16 +70,14 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        return await self._get_request(f"/bulkcharge/{id_or_code}")
+        return await self._get_request(f"{bulk_charge_endpoint}{id_or_code}")
 
     async def fetch_charge_bulk_batch(
             self,
             id_or_code: str,
+            page_model: Optional[PageModel] = None,
+            date_page: Optional[DatePageModel] = None,
             status: Optional[Union[STATUS, None]] = None,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Fetch a bulk charge of a specific batch
@@ -107,18 +98,13 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         :rtype: PayStackResponse object
         """
 
-        # Convert date to string
-        from_date = self._convert_to_string(from_date)
-        to_date = self._convert_to_string(to_date)
-
-        params = {
+        validated_params = {
             "status": status,
-            "perPage": per_page,
-            "page": page,
-            "from": from_date,
-            "to": to_date,
+            **page_model.model_dump(by_alias=True, exclude_none=True),
+            **date_page.model_dump(by_alias=True, exclude_none=True),
         }
-        return await self._get_request(f"/bulkcharge/{id_or_code}/charges", params=params)
+
+        return await self._get_request(f"{bulk_charge_endpoint}{id_or_code}/charges", params=validated_params)
 
     async def pause_bulk_charge_batch(self, batch_code: str) -> PayStackResponse:
         """
@@ -129,7 +115,7 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        return await self._get_request(f"/bulkcharge/pause/{batch_code}")
+        return await self._get_request(f"{bulk_charge_endpoint}pause/{batch_code}")
 
     async def resume_bulk_charge_batch(self, batch_code: str) -> PayStackResponse:
         """
@@ -140,4 +126,4 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        return await self._get_request(f"/bulkcharge/resume/{batch_code}")
+        return await self._get_request(f"{bulk_charge_endpoint}resume/{batch_code}")

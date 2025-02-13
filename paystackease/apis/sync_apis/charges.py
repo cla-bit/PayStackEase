@@ -5,10 +5,10 @@ The Charge API allows you to configure payment channel of your choice when initi
 """
 
 from datetime import date
-from typing import Optional, Dict, Any, List, Union
+from typing import Optional, Union
 
-from paystackease.core import PayStackResponse, SyncRequestAPI
-from paystackease.helpers import PWT
+from paystackease.src import PayStackResponse, SyncRequestAPI
+from paystackease.helpers import convert_to_string, AuthReferenceObject, ChargeBankModel, VirtualPaymentModel, CustomMetaData, charges_endpoint
 
 
 class ChargesClientAPI(SyncRequestAPI):
@@ -20,17 +20,12 @@ class ChargesClientAPI(SyncRequestAPI):
     def create_charge(
             self,
             email: str,
-            amount: int,
-            metadata: Dict[str, List[Dict[str, Any]]],
-            authorization_code: Optional[Union[str, None]] = None,
+            metadata: CustomMetaData,
+            auth_ref: AuthReferenceObject,
+            bank_charge: Optional[ChargeBankModel] = None,
+            virtual_pay: Optional[VirtualPaymentModel] = None,
             pin: Optional[Union[int, None]] = None,
-            reference: Optional[Union[str, None]] = None,
             device_id: Optional[Union[str, None]] = None,
-            bank: Optional[Union[Dict[str, str], None]] = None,
-            bank_transfer: Optional[Union[Dict[PWT, Any], None]] = None,
-            qr: Optional[Union[Dict[str, str], None]] = None,
-            ussd: Optional[Union[Dict[str, str], None]] = None,
-            mobile_money: Optional[Union[Dict[str, str], None]] = None,
     ) -> PayStackResponse:
         """
         Create a charge
@@ -67,21 +62,16 @@ class ChargesClientAPI(SyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        data = {
+        validated_data = {
             "email": email,
-            "amount": amount,
-            "metadata": metadata,
-            "authorization_code": authorization_code,
-            "bank": bank,
-            "bank_transfer": bank_transfer,
-            "qr": qr,
+            "metadata": metadata.model_dump(),
+            **auth_ref.model_dump(exclude_none=True),
+            **bank_charge.model_dump(exclude_none=True),
+            **virtual_pay.model_dump(exclude_none=True),
             "pin": pin,
-            "reference": reference,
-            "ussd": ussd,
-            "mobile_money": mobile_money,
             "device_id": device_id,
         }
-        return self._post_request("/charge", data=data)
+        return self._post_request(charges_endpoint, data=validated_data)
 
     def submit_pin(self, pin: int, reference: str) -> PayStackResponse:
         """
@@ -97,7 +87,7 @@ class ChargesClientAPI(SyncRequestAPI):
             "pin": pin,
             "reference": reference,
         }
-        return self._post_request("/charge/submit_pin", data=data)
+        return self._post_request(f"{charges_endpoint}submit_pin", data=data)
 
     def submit_otp(self, otp: int, reference: str) -> PayStackResponse:
         """
@@ -113,7 +103,7 @@ class ChargesClientAPI(SyncRequestAPI):
             "otp": otp,
             "reference": reference,
         }
-        return self._post_request("/charge/submit_otp", data=data)
+        return self._post_request(f"{charges_endpoint}submit_otp", data=data)
 
     def submit_phone(self, phone: str, reference: str) -> PayStackResponse:
         """
@@ -129,7 +119,7 @@ class ChargesClientAPI(SyncRequestAPI):
             "phone": phone,
             "reference": reference,
         }
-        return self._post_request("/charge/submit_phone", data=data)
+        return self._post_request(f"{charges_endpoint}submit_phone", data=data)
 
     def submit_birthday(self, birthday: date, reference: str) -> PayStackResponse:
         """
@@ -145,13 +135,13 @@ class ChargesClientAPI(SyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        birthday = self._convert_to_string(birthday)
+        birthday = convert_to_string(birthday)
 
         data = {
             "birthday": birthday,
             "reference": reference,
         }
-        return self._post_request("/charge/submit_birthday", data=data)
+        return self._post_request(f"{charges_endpoint}submit_birthday", data=data)
 
     def submit_address(
             self, reference: str, address: str, city: str, state: str, zipcode: str
@@ -175,7 +165,7 @@ class ChargesClientAPI(SyncRequestAPI):
             "state": state,
             "zip_code": zipcode,
         }
-        return self._post_request("/charge/submit_address", data=data)
+        return self._post_request(f"{charges_endpoint}submit_address", data=data)
 
     def check_pending_charge(self, reference: str) -> PayStackResponse:
         """
@@ -186,4 +176,4 @@ class ChargesClientAPI(SyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        return self._get_request(f"/charge/{reference}")
+        return self._get_request(f"{charges_endpoint}{reference}")

@@ -1,5 +1,5 @@
 """ Wrappers for Paystack API calls"""
-from paystackease.core import (
+from paystackease.src import (
     APIConnectionError as APIConnectionError,
     InvalidRequestMethodError as InvalidRequestMethodError,
     PayStackError as PayStackError,
