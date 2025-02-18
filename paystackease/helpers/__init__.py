@@ -41,7 +41,13 @@ from paystackease.helpers.constants import (
     customer_endpoint,
     dvd_endpoint,
     dispute_endpoint,
-    integration_endpoint
+    integration_endpoint,
+    misc_bank_endpoint,
+    misc_country_endpoint,
+    misc_state_endpoint,
+    payment_page_endpoint,
+    payment_request_endpoint,
+    plans_endpoint
 )
 from paystackease.helpers.models import (
     DomainNameModel, ListDomainNamesModel, AuthReferenceObject, PageModel, DatePageModel,

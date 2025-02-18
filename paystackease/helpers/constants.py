@@ -28,6 +28,12 @@ customer_endpoint: str = "/customer/"
 dvd_endpoint: str = "/dedicated_account/"
 dispute_endpoint: str = "/dispute/"
 integration_endpoint: str = "/integration/payment_session_timeout/"
+misc_bank_endpoint: str = "/bank/"
+misc_country_endpoint: str = "/country/"
+misc_state_endpoint: str = "/address_verification/states/"
+payment_page_endpoint: str = "/page/"
+payment_request_endpoint: str = "/paymentrequest/"
+plans_endpoint: str = "/plan/"
 
 
 class AccountType(Enum):

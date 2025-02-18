@@ -276,7 +276,7 @@ class ChargeBankModel(BaseModel):
 
 
 class CustomMetaData(BaseModel):
-    custom_fields: List[CustomMetaField] = Field(..., description="Custom Metadata can be passed in here", examples=[])
+    custom_fields: List[CustomMetaField] = Field(default=None, description="Custom Metadata can be passed in here", examples=[])
 
 
 class MetaDataModel(BaseModel):
