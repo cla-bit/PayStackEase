@@ -6,7 +6,7 @@ def main():
     # make sure to set PAYSTACK_SECRET_KEY env variable
     paystack_client = PayStackBase()
     auth_model1 = AuthReferenceObject(amount=10000, authorization="AUTH_authorization-code", reference="dam1266638dhhe")
-    auth_model2 = AuthReferenceObject(amount=10000, authorization="AUTH_authorization-code", reference="dam1266638dhhe")
+    auth_model2 = AuthReferenceObject(amount=10000, authorization="AUTH_authorization-code1", reference="dam1266638dhhe")
 
     # """Implementing all the API endpoints"""
     # # access the API endpoints making a Get request
@@ -34,7 +34,7 @@ def main():
     # print(f"Resume a bulk charge batch: {resume_bulk}")
 
     # access the API endpoints making a Post request
-    init_bulk_charge = paystack_client.bulk_charges.initiate_bulk_charge([auth_model1, auth_model2])
+    init_bulk_charge = paystack_client.bulk_charges.initiate_bulk_charge(auth_model1)
     print(f"Initiated a bulk charge: {init_bulk_charge}")
 
 

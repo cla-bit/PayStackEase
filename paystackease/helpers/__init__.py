@@ -22,11 +22,9 @@ from paystackease.helpers.constants import (
     GateWay,
     Interval,
     MobileMoney,
-    MobileMoneyPay,
     PayMentRequestStatus,
     PWT,
     QRCODE,
-    QRPayment,
     RecipientType,
     ResendOTP,
     Resolution,
@@ -35,7 +33,6 @@ from paystackease.helpers.constants import (
     SplitType,
     STATUS,
     TransactionStatus,
-    USSDPayment,
     USSD,
     IntString,
     apple_pay_endpoint,
@@ -45,5 +42,6 @@ from paystackease.helpers.constants import (
 )
 from paystackease.helpers.models import (
     DomainNameModel, ListDomainNamesModel, AuthReferenceObject, PageModel, DatePageModel,
-    ChargeBankModel, VirtualPaymentModel, CustomMetaData, CustomerDetails
+    ChargeBankModel, VirtualPaymentModel, CustomMetaData, CustomerDetails, MobileMoneyPay, USSDPayment, QRPayment,
+    MetaDataModel
 )
