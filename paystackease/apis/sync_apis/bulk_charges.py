@@ -3,7 +3,7 @@
 The Bulk Charges API allows you to create and manage multiple recurring payments from your customers.
 """
 
-from typing import List, Dict, Optional, Any, Union
+from typing import List, Optional, Union
 
 from paystackease.src import PayStackResponse, SyncRequestAPI
 from paystackease.helpers import STATUS, AuthReferenceObject, bulk_charge_endpoint, PageModel, DatePageModel

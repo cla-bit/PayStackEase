@@ -34,6 +34,13 @@ misc_state_endpoint: str = "/address_verification/states/"
 payment_page_endpoint: str = "/page/"
 payment_request_endpoint: str = "/paymentrequest/"
 plans_endpoint: str = "/plan/"
+product_endpoint: str = "/product/"
+refund_endpoint: str = "/refund/"
+settlement_endpoint: str = "/settlement/"
+subaccount_endpoint: str = "/subaccount/"
+subscription_endpoint: str = "/subscription/"
+
+
 
 
 class AccountType(Enum):
