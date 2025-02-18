@@ -3,7 +3,7 @@ Examples
 """
 
 import asyncio
-from paystackease.helpers import CustomerDetails
+from paystackease.helpers import CustomerDetails, MetaDataModel
 from paystackease import PayStackBase, AsyncPayStackBase, RiskAction
 
 
@@ -67,7 +67,7 @@ def main():
     # Interacting with the PayStackBase wrapper
     # make sure to set PAYSTACK_SECRET_KEY env variable
     paystack_client = PayStackBase()
-    customer = CustomerDetails(first_name="John", last_name="Tester", phone="09012345678")
+    customer = CustomerDetails(first_name="John2", last_name="Tester2", phone="09012345678")
 
     # """ Implementing all the API endpoints """
     # access the API endpoints making a Get request
@@ -81,8 +81,9 @@ def main():
 
     # access the API endpoints making a Post request
     create_customer = paystack_client.customers.create_customer(
-        email="test@gmail.com",
-        customer_details=customer
+        email="test2@gmail.com",
+        customer_details=customer,
+        metadata=MetaDataModel(metadata={"nickname": "johndoe_test2"})
     )
     print(f"Create charge: {create_customer}")
 

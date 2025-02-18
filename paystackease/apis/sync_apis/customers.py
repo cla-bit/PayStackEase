@@ -4,10 +4,10 @@ Wrapper for Paystack Customers API.
 The Customers API allows you to create and manage customers on your integration.
 """
 
-from typing import Optional, Dict, Any, Union
+from typing import Optional
 
 from paystackease.src import PayStackResponse, SyncRequestAPI
-from paystackease.helpers import RiskAction, customer_endpoint, CustomerDetails, PageModel, DatePageModel
+from paystackease.helpers import RiskAction, customer_endpoint, CustomerDetails, PageModel, DatePageModel, MetaDataModel
 
 
 class CustomerClientAPI(SyncRequestAPI):
@@ -20,7 +20,7 @@ class CustomerClientAPI(SyncRequestAPI):
             self, 
             email: str,
             customer_details: CustomerDetails,
-            metadata: Optional[Union[Dict[str, Any], None]] = None
+            metadata: Optional[MetaDataModel] = None
     ) -> PayStackResponse:
         """
         Create a customer
@@ -37,7 +37,7 @@ class CustomerClientAPI(SyncRequestAPI):
         validated_data = {
             "email": email,
             **customer_details.model_dump(exclude={"middle_name"}),
-            "metadata": metadata,
+            **(metadata.model_dump() if metadata else {})
         }
         return self._post_request(customer_endpoint, data=validated_data)
 
@@ -50,7 +50,7 @@ class CustomerClientAPI(SyncRequestAPI):
             account_number: str,
             bvn: str,
             account_type: str = "bank_account",
-            customer_id_num: Optional[Union[str, None]] = None,
+            customer_id_num: Optional[str] = None,
     ) -> PayStackResponse:
         """
         Validate a customer's identity
@@ -81,7 +81,7 @@ class CustomerClientAPI(SyncRequestAPI):
         return self._post_request(f"{customer_endpoint}{email_or_code}/identification", data=data)
 
     def whitelist_blacklist_customer(
-            self, email_or_code: str, risk_action: Optional[Union[RiskAction, None]] = None
+            self, email_or_code: str, risk_action: Optional[RiskAction] = None
     ) -> PayStackResponse:
         """
         Whitelist or blacklist a customer
@@ -114,7 +114,7 @@ class CustomerClientAPI(SyncRequestAPI):
             self,
             customer_code: str,
             customer_details: CustomerDetails,
-            metadata: Optional[Union[Dict[str, Any], None]] = None
+            metadata: Optional[MetaDataModel] = None
     ) -> PayStackResponse:
         """
         Update a customer

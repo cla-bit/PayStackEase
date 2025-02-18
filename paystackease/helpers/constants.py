@@ -25,6 +25,9 @@ apple_pay_endpoint: str = "/apple-pay/domain/"
 bulk_charge_endpoint: str = "/bulkcharge/"
 charges_endpoint: str = "/charge/"
 customer_endpoint: str = "/customer/"
+dvd_endpoint: str = "/dedicated_account/"
+dispute_endpoint: str = "/dispute/"
+integration_endpoint: str = "/integration/payment_session_timeout/"
 
 
 class AccountType(Enum):

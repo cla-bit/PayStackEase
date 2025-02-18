@@ -4,10 +4,10 @@ Wrapper for Asynchronous Paystack Customers API.
 The Customers API allows you to create and manage customers on your integration.
 """
 
-from typing import Optional, Dict, Any, Union
+from typing import Optional
 
 from paystackease.src import PayStackResponse, AsyncRequestAPI
-from paystackease.helpers import RiskAction, customer_endpoint, CustomerDetails, PageModel, DatePageModel
+from paystackease.helpers import RiskAction, customer_endpoint, CustomerDetails, PageModel, DatePageModel, MetaDataModel
 
 
 class AsyncCustomerClientAPI(AsyncRequestAPI):
@@ -20,7 +20,7 @@ class AsyncCustomerClientAPI(AsyncRequestAPI):
             self,
             email: str,
             customer_details: CustomerDetails,
-            metadata: Optional[Union[Dict[str, Any], None]] = None
+            metadata: Optional[MetaDataModel] = None
     ) -> PayStackResponse:
         """
         Create a customer
@@ -37,7 +37,7 @@ class AsyncCustomerClientAPI(AsyncRequestAPI):
         validated_data = {
             "email": email,
             **customer_details.model_dump(exclude={"middle_name"}),
-            "metadata": metadata,
+            **(metadata.model_dump() if metadata else {})
         }
         return await self._post_request(customer_endpoint, data=validated_data)
 
@@ -50,7 +50,7 @@ class AsyncCustomerClientAPI(AsyncRequestAPI):
             account_number: str,
             bvn: str,
             account_type: str = "bank_account",
-            customer_id_num: Optional[Union[str, None]] = None,
+            customer_id_num: Optional[str] = None,
     ) -> PayStackResponse:
         """
         Validate a customer's identity
@@ -81,7 +81,7 @@ class AsyncCustomerClientAPI(AsyncRequestAPI):
         return await self._post_request(f"{customer_endpoint}{email_or_code}/identification", data=data)
 
     async def whitelist_blacklist_customer(
-            self, email_or_code: str, risk_action: Optional[Union[RiskAction, None]] = None
+            self, email_or_code: str, risk_action: Optional[RiskAction] = None
     ) -> PayStackResponse:
         """
         Whitelist or blacklist a customer
@@ -114,7 +114,7 @@ class AsyncCustomerClientAPI(AsyncRequestAPI):
             self,
             customer_code: str,
             customer_details: CustomerDetails,
-            metadata: Optional[Union[Dict[str, Any], None]] = None
+            metadata: Optional[MetaDataModel] = None
     ) -> PayStackResponse:
         """
         Update a customer
@@ -130,7 +130,7 @@ class AsyncCustomerClientAPI(AsyncRequestAPI):
         """
         validated_data = {
             **customer_details.model_dump(exclude={"middle_name"}, exclude_none=True),
-            "metadata": metadata,
+            **(metadata.model_dump() if metadata else {})
         }
         return await self._put_request(f"{customer_endpoint}{customer_code}", data=validated_data)
 

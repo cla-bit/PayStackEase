@@ -38,7 +38,10 @@ from paystackease.helpers.constants import (
     apple_pay_endpoint,
     bulk_charge_endpoint,
     charges_endpoint,
-    customer_endpoint
+    customer_endpoint,
+    dvd_endpoint,
+    dispute_endpoint,
+    integration_endpoint
 )
 from paystackease.helpers.models import (
     DomainNameModel, ListDomainNamesModel, AuthReferenceObject, PageModel, DatePageModel,

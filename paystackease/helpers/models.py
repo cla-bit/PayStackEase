@@ -11,7 +11,7 @@ are maintained for different use cases.
 
 
 from datetime import date
-from typing import Optional, Union, TypedDict, Dict, List
+from typing import Optional, Union, Dict, List
 from pydantic import BaseModel, Field, field_validator, model_validator
 
 from paystackease.helpers import (
@@ -269,22 +269,6 @@ class ChargeBankModel(BaseModel):
     Attributes:
     bank (Optional[BankDetails]): Bank details for the charge.
     bank_transfer (Optional[Union[ExpiryInfo, Dict[PWT, str]]]): Pay With Transfer (PWT) information for the charge.
-
-    Examples:
-    >>> charge_bank_model = ChargeBankModel(
-    >>>     bank=BankDetails(code='FBN', account_number='1231241234'),
-    >>>     bank_transfer=ExpiryInfo(account_expires_at='2023-09-12T13:10:00Z')
-    >>> )
-    >>> print(charge_bank_model.json())
-    {
-        "bank": {
-            "code": "FBN",
-            "account_number": "1231241234"
-        },
-        "bank_transfer": {
-            "account_expires_at": "2023-09-12T13:10:00Z"
-        }
-    }
     """
 
     bank: Optional[BankDetails] = Field(default=None, description="Bank details", examples=[{'code': '057', 'account_number': '1231241234'}])
@@ -302,5 +286,5 @@ class MetaDataModel(BaseModel):
 class CustomerDetails(BaseModel):
     first_name: str = Field(description="Customer first name", examples=["John"])
     last_name: str = Field(description="Customer last name", examples=["Doe Tester"])
-    phone: str = Field(description="Customer phone number", examples=["090123454678"])
+    phone: str = Field(description="Customer phone number", examples=["+23490123454678", "090123454678"])
     middle_name: Optional[str] = Field(default=None, description="Customer middle name", examples=["Test"])
