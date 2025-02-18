@@ -28,46 +28,29 @@ class AsyncChargesClientAPI(AsyncRequestAPI):
             device_id: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
-        Create a charge
+        Initiates a new charge on Paystack.
 
-        :param: email
-        :param: amount
-        :param: bank. (Set key ass: {code, account_number})
-        :param: bank_transfer. (Set key as: {account_expires_at} and value: {datetime iso format})
-        :param: qr (Set key as: {provider})
-        :param: authorization_code
-        :param: pin
-        :param: reference
-        :param: ussd (Set key as: {type})
-        :param: mobile_money (Set Keys as: {phone, provider}, and value {phone_number, MobileMoney.value.value})
-        :param: device_id
-        :param: metadata A JSON object, which is passed as-is to your integration API
+        This function allows you to create a new charge with the provided parameters.
+        It validates the input data and sends a POST request to the Paystack Charges API endpoint.
 
-        note::
+        Parameters:
+        - email (str): The email address of the customer.
+        - metadata (CustomMetaData): Custom metadata to be associated with the charge.
+        - auth_ref (AuthReferenceObject): Authentication reference object containing the payment method and other details.
+        - bank_charge (ChargeBankModel, optional): Bank charge details for bank-based payment methods. Defaults to None.
+        - virtual_pay (VirtualPaymentModel, optional): Virtual payment details for virtual payment methods. Defaults to None.
+        - pin (int, optional): PIN for 3D Secure authentication. Defaults to None.
+        - device_id (str, optional): Device ID for 3D Secure authentication. Defaults to None.
 
-            Do not send or use the following if charging an authorization code:
-            * bank
-            * ussd
-            * mobile_money
-
-            Do not send or use the following if charging an authorization code, bank or card:
-            * ussd
-            * mobile_money
-
-            Send with a non-reusable authorization code:
-            * pin
-
-            mobile_money is only available in Ghana and Kenya
-
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+        - PayStackResponse: The response from the Paystack API.
         """
         validated_data = {
             "email": email,
             "metadata": metadata.model_dump(),
             **auth_ref.model_dump(exclude_none=True),
-            **bank_charge.model_dump(exclude_none=True),
-            **virtual_pay.model_dump(exclude_none=True),
+            **(bank_charge.model_dump(exclude_none=True) if bank_charge else {}),
+            **(virtual_pay.model_dump(exclude_none=True) if virtual_pay else {}),
             "pin": pin,
             "device_id": device_id,
         }

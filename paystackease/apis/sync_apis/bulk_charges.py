@@ -15,7 +15,7 @@ class BulkChargesClientAPI(SyncRequestAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    def initiate_bulk_charge(self, objects: List[AuthReferenceObject]) -> PayStackResponse:
+    def initiate_bulk_charge(self, objects: Union[AuthReferenceObject, List[AuthReferenceObject]]) -> PayStackResponse:
         """
         Send an array of objects with authorization codes and amount
 
@@ -29,8 +29,17 @@ class BulkChargesClientAPI(SyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
+        # ensure objects is a list
+        if isinstance(objects, AuthReferenceObject):
+            objects = [objects]  # converts the single instance to a list
+
+        if not isinstance(objects, list) or not all(isinstance(obj, AuthReferenceObject) for obj in objects):
+            raise ValueError("Expected a single AuthReferenceObject or a list of AuthReferenceObject instances.")
+
+        if not objects:
+            raise ValueError("The list of charge objects cannot be empty.")
+
         validated_data = [obj.model_dump() for obj in objects]
-        print(validated_data)
         return self._post_request(bulk_charge_endpoint, data=validated_data)
 
     def list_bulk_charge_batches(

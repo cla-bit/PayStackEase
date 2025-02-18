@@ -26,7 +26,6 @@ class ApplePayClientAPI(SyncRequestAPI):
         :rtype: PayStackResponse object
         """
         validated_data = domain_name.model_dump(by_alias=True)
-        print(validated_data)
         return self._post_request(apple_pay_endpoint, data=validated_data)
 
     def list_domains(

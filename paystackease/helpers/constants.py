@@ -240,19 +240,6 @@ class BankDetails(TypedDict):
     account_number: str
 
 
-class MobileMoneyPay(TypedDict):
-    phone: str
-    provider: MobileMoney
-
-
-class QRPayment(TypedDict):
-    provider: QRCODE
-
-
-class USSDPayment(TypedDict):
-    type: USSD
-
-
 class CustomMetaField(TypedDict):
     value: str
     display_name: str
