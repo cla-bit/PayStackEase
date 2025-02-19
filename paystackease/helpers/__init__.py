@@ -33,6 +33,7 @@ from paystackease.helpers.constants import (
     SplitType,
     STATUS,
     TransactionStatus,
+    TransferBatch,
     USSD,
     IntString,
     apple_pay_endpoint,
@@ -53,9 +54,14 @@ from paystackease.helpers.constants import (
     settlement_endpoint,
     subaccount_endpoint,
     subscription_endpoint,
+    terminal_endpoint,
+    transaction_split_endpoint,
+    transaction_endpoint,
+    transfer_recipients_endpoint,
+    transfer_endpoint,
 )
 from paystackease.helpers.models import (
     DomainNameModel, ListDomainNamesModel, AuthReferenceObject, PageModel, DatePageModel,
     ChargeBankModel, VirtualPaymentModel, CustomMetaData, CustomerDetails, MobileMoneyPay, USSDPayment, QRPayment,
-    MetaDataModel
+    MetaDataModel, CursorModel, BatchModel, TransferBulkModel
 )

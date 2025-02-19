@@ -39,7 +39,11 @@ refund_endpoint: str = "/refund/"
 settlement_endpoint: str = "/settlement/"
 subaccount_endpoint: str = "/subaccount/"
 subscription_endpoint: str = "/subscription/"
-
+terminal_endpoint: str = "/terminal/"
+transaction_split_endpoint: str = "/split/"
+transaction_endpoint: str = "/transaction/"
+transfer_recipients_endpoint: str = "/transferrecipient/"
+transfer_endpoint: str = "/transfer/"
 
 
 
@@ -261,3 +265,11 @@ class CustomMetaField(TypedDict):
     display_name: str
     variable_name: str
 
+
+class TransferBatch(TypedDict):
+    # TODO: Add and test these: description, authorization_code & metadata[CustomMetaField type]
+    type: str
+    name: str
+    account_number: str
+    bank_code: str
+    currency: str

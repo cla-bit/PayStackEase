@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 
 from paystackease.helpers import (
     ExpiryInfo, BankDetails, PWT, CustomMetaField,
-    QRCODE, USSD, MobileMoney
+    QRCODE, USSD, MobileMoney, TransferBatch
 )
 
 
@@ -71,6 +71,27 @@ class ListDomainNamesModel(BaseModel):
     previous_page: Optional[int] = Field(default=None, alias="previous", description="previous page")
 
     @field_validator("use_cursor")
+    def validate_use_cursor(cls, value):
+        """
+        Validates the use_cursor attribute. Converts boolean values to string representation.
+
+        Parameters:
+        value (bool): The value to validate.
+
+        Returns:
+        str: The validated value as a string representation.
+
+        """
+        if isinstance(value, bool):
+            return "True" if value else "False"
+        return value
+
+
+class CursorModel(BaseModel):
+    next_cursor: Optional[bool] = Field(default=True, alias="next", description="next cursor")
+    previous_cursor: Optional[bool] = Field(default=True, alias="previous", description="previous cursor")
+
+    @field_validator("next_cursor", "previous_cursor")
     def validate_use_cursor(cls, value):
         """
         Validates the use_cursor attribute. Converts boolean values to string representation.
@@ -279,6 +300,10 @@ class CustomMetaData(BaseModel):
     custom_fields: List[CustomMetaField] = Field(default=None, description="Custom Metadata can be passed in here", examples=[])
 
 
+class BatchModel(BaseModel):
+    batch: List[TransferBatch] = Field(default=None, description="Transfer Batch data can be passed in here", examples=[])
+
+
 class MetaDataModel(BaseModel):
     metadata: Dict[str, str] = Field(default=None, description="Metadata of key, value pairs can be passed in here", examples=[])
 
@@ -288,3 +313,10 @@ class CustomerDetails(BaseModel):
     last_name: str = Field(description="Customer last name", examples=["Doe Tester"])
     phone: str = Field(description="Customer phone number", examples=["+23490123454678", "090123454678"])
     middle_name: Optional[str] = Field(default=None, description="Customer middle name", examples=["Test"])
+
+
+class TransferBulkModel(BaseModel):
+    amount: int
+    reference: str
+    reason: str
+    recipient: str
