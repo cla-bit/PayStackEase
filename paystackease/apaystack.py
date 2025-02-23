@@ -1,4 +1,8 @@
-""" Wrapper classes for various Asynchronous Paystack API endpoints,
+"""
+Module: apaystack.py
+=======================
+
+This module contains wrapper classes for various Asynchronous Paystack API endpoints,
 providing simplified access to functionality in Paystack
 """
 
@@ -114,4 +118,3 @@ class AsyncPayStackBase:
         await self.transfers.__aexit__(*args)
         await self.transfer_control.__aexit__(*args)
         await self.verification.__aexit__(*args)
-        # await super().__aexit__(*args)

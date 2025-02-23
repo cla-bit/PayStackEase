@@ -10,7 +10,7 @@ Each function in this module is designed to encapsulate a specific task, making 
 reusable, and easier to maintain.
 """
 
-from typing import Union
+from typing import Union, Dict
 from datetime import date, datetime
 from urllib.parse import urljoin
 
@@ -20,20 +20,31 @@ from paystackease.helpers.constants import PAYSTACK_API_URL, Currency
 
 def join_url(path: str) -> str:
     """
-    Join URL with Paystack API URL
-    :param path:
-    :return:
+    Joins a given path with the Paystack API base URL.
+
+    Parameters:
+        path (str): The path to be joined with the Paystack API URL.
+
+    Returns:
+        str: The full URL formed by joining the base URL with the provided path.
     """
+
     if path.startswith("/"):
         path = path[1:]
     return urljoin(PAYSTACK_API_URL, path)
 
 
-def make_paystack_http_headers(secret_key: str) -> dict:
+def make_paystack_http_headers(secret_key: str) -> Dict[str, str]:
     """
-    Make Paystack HTTP Headers
-    :return:
+    Creates HTTP headers for Paystack API requests.
+
+    Parameters:
+        secret_key (str): The secret key used for authorization.
+
+    Returns:
+        Dict[str, str]: A dictionary containing the HTTP headers.
     """
+
     return {
         "Authorization": f"Bearer {secret_key}",
         "content-type": "application/json",
@@ -42,14 +53,21 @@ def make_paystack_http_headers(secret_key: str) -> dict:
 
 def convert_to_string(value: Union[bool, date, datetime, None]) -> Union[str, int, None]:
     """
-    Convert the type of value to a string
-    :param value: The value to be converted
+    Converts the given value to a string.
 
-    :raise TypeError: if the value is not a supported type
+    This function supports converting boolean, date, and datetime values to their string representations.
+    If the value is None, it returns None. If the value is not a supported type, it raises a TypeError.
 
-    :return: The value as a string
-    :rtype: str
+    Parameters:
+        value (Union[bool, date, datetime, None]): The value to be converted.
+
+    Raises:
+        TypeError: If the value is not a supported type.
+
+    Returns:
+        Union[str, int, None]: The value as a string, or None if the value is None.
     """
+
     # each supported type is mapped to its corresponding conversion function
     conversion_functions = {
         bool: lambda val: str(val).lower(),
@@ -67,11 +85,22 @@ def convert_to_string(value: Union[bool, date, datetime, None]) -> Union[str, in
 
 def convert_to_subunit(amount: int, currency: Union[Currency, None] = Currency.NGN) -> int:
     """
-    Convert a subunit amount to a base amount in NGN, GHS, USD, ZAR and KES
-    :param amount:
-    :param currency:
-    :return:
+    Converts an amount to its subunit value based on the specified currency.
+
+    This function multiplies the given amount by the subunit multiplier for the specified currency.
+    Supported currencies are NGN, GHS, USD, ZAR, and KES.
+
+    Parameters:
+        amount (int): The amount to be converted.
+        currency (Union[Currency, None]): The currency of the amount. Defaults to Currency.NGN.
+
+    Raises:
+        ValueError: If the currency is not supported.
+
+    Returns:
+        int: The amount converted to its subunit value.
     """
+
     subunit_multipliers = {
         currency.NGN: 100,
         currency.GHS: 100,

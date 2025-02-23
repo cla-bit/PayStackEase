@@ -4,6 +4,7 @@ Module: logger.py
 
 Custom logger for logging. Users can use this CustomLogger class to log or use python's logging module.
 """
+
 import logging
 from typing import Union
 from pathlib import Path
@@ -26,7 +27,7 @@ class CustomLogger:
         """
         Initialize the CustomLogger.
 
-        Args:
+        Parameters:
             log_file_name (str, optional): Name of the log file. Defaults to "default.log".
             log_dir_path (Union[str, Path], optional): Directory path for storing log files.
                 If None, uses a default directory. Defaults to None.
@@ -96,7 +97,7 @@ class CustomLogger:
         """
         Internal method to log messages with a status code.
 
-        Args:
+        Parameters:
             level: The logging level (e.g., logging.DEBUG, logging.INFO, etc.).
             message (str): The message to be logged.
             status (int): The status code associated with the log message.
@@ -120,7 +121,7 @@ class CustomLogger:
         """
         Log a debug message.
 
-        Args:
+        Parameters:
             message (str): The debug message to be logged.
             status (int, optional): The status code for the debug message. Defaults to 100.
 
@@ -133,7 +134,7 @@ class CustomLogger:
         """
         Log an info message.
 
-        Args:
+        Parameters:
             message (str): The info message to be logged.
             status (int, optional): The status code for the info message. Defaults to 200.
 
@@ -146,7 +147,7 @@ class CustomLogger:
         """
         Log a warning message.
 
-        Args:
+        Parameters:
             message (str): The warning message to be logged.
             status (int, optional): The status code for the warning message. Defaults to 400.
 
@@ -159,7 +160,7 @@ class CustomLogger:
         """
         Log an error message.
 
-        Args:
+        Parameters:
             message (str): The error message to be logged.
             status (int, optional): The status code for the error message. Defaults to 401.
 
@@ -172,7 +173,7 @@ class CustomLogger:
         """
         Log a critical message.
 
-        Args:
+        Parameters:
             message (str): The critical message to be logged.
             status (int, optional): The status code for the critical message. Defaults to 500.
 

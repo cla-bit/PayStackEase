@@ -12,7 +12,7 @@ are maintained for different use cases.
 
 from datetime import date
 from typing import Optional, Union, Dict, List
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator, model_serializer
 
 from paystackease.helpers import (
     ExpiryInfo, BankDetails, PWT, CustomMetaField,
@@ -59,32 +59,25 @@ class ListDomainNamesModel(BaseModel):
 
     Attributes:
     use_cursor (Optional[bool]): Flag indicating whether to use cursor-based pagination. Default is False.
-    next_page (Optional[int]): The page number for the next set of results. Default is None.
-    previous_page (Optional[int]): The page number for the previous set of results. Default is None.
+    next_page (Optional[str]): The page number for the next set of results. Default is None.
+    previous_page (Optional[str]): The page number for the previous set of results. Default is None.
 
     Methods:
     validate_use_cursor(cls, value): Validates the use_cursor attribute. Converts boolean values to string representation.
 
     """
-    use_cursor: Optional[bool] = Field(default=False, description="use cursor for pagination")
-    next_page: Optional[int] = Field(default=None, alias="next", description="next page")
-    previous_page: Optional[int] = Field(default=None, alias="previous", description="previous page")
+    use_cursor: Optional[bool] = Field(default=False, description="Flag to enable cursor pagination on the endpoint")
+    next_page: Optional[str] = Field(default=None, alias="next", description="A cursor that indicates your place in the list. It can be used to fetch the next page of the list")
+    previous_page: Optional[str] = Field(default=None, alias="previous", description="A cursor that indicates your place in the list. It should be used to fetch the previous page of the list after an intial next request")
 
-    @field_validator("use_cursor")
-    def validate_use_cursor(cls, value):
-        """
-        Validates the use_cursor attribute. Converts boolean values to string representation.
+    @model_serializer()
+    def serialize_model(self):
+        return {
+            "use_cursor": "True" if self.use_cursor else "False",
+            "next": self.next_page,
+            "previous": self.previous_page
+        }
 
-        Parameters:
-        value (bool): The value to validate.
-
-        Returns:
-        str: The validated value as a string representation.
-
-        """
-        if isinstance(value, bool):
-            return "True" if value else "False"
-        return value
 
 
 class CursorModel(BaseModel):

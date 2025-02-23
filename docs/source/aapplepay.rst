@@ -13,40 +13,36 @@ See how to call the instance here: :doc:`apaystack`
 
 ------------------------------------------------------------------------------
 
-.. py:class:: AsyncApplePayClientAPI(secret_key: str = None)
+.. py:class:: AsyncApplePayClientAPI()
 
     Paystack Apple Pay API Reference: `Apple Pay`_
 
-    .. py:method:: async list_domains(use_cursor: bool | None = False, next_page: int | None = None, previous_page: int | None = None)→ PayStackResponse
+    .. py:method:: async list_domains(list_domains: Optional[ListDomainNamesModel] = None)→ PayStackResponse
 
         List all domains registered with the Apple Pay API.
 
-        :param use_cursor: Use cursor for pagination (default: False).
-        :type use_cursor: bool, optional
-        :param next_page: Next page.
-        :type next_page: int, optional
-        :param previous_page: Previous page.
-        :type previous_page: int, optional
+        :param list_domains: A ListDomainNamesModel model representing parameters for listing domain names.
+        :type list_domains: ListDomainNamesModel: a pydantic model class, optional
 
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: async register_domain(domain_name: str)→ PayStackResponse
+    .. py:method:: async register_domain(domain_name: DomainNameModel)→ PayStackResponse
 
         Register a domain with the Apple Pay API.
 
         :param domain_name: The domain name.
-        :type domain_name: str
+        :type domain_name: DomainNameModel pydantic model class.
 
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: async unregister_domain(domain_name: str)→ PayStackResponse
+    .. py:method:: async unregister_domain(domain_name: DomainNameModel)→ PayStackResponse
 
         Unregister a domain with the Apple Pay API.
 
         :param domain_name: The domain name.
-        :type domain_name: str
+        :type domain_name: DomainNameModel pydantic model class.
 
         :return: The response from the API.
         :rtype: PayStackResponse object

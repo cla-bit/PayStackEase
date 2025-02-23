@@ -3,6 +3,7 @@ Wrapper class for Paystack Apple Pay API.
 
 The Apple Pay API allows you register your application's top-level domain or subdomain.
 """
+from typing import Optional
 
 from paystackease.src import PayStackResponse, SyncRequestAPI
 from paystackease.helpers import (
@@ -20,39 +21,43 @@ class ApplePayClientAPI(SyncRequestAPI):
         """
         Register a domain or subdomain for Apple Pay
 
-        :param: domain_name  # domain name or subdomain
+        Parameters:
+            domain_name (DomainNameModel):  domain name or subdomain which is a DomainNameModel type.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            PayStackResponse: The PayStackResponse object from the API
         """
+
         validated_data = domain_name.model_dump(by_alias=True)
         return self._post_request(apple_pay_endpoint, data=validated_data)
 
     def list_domains(
             self,
-            domain_values: ListDomainNamesModel
+            list_domains: Optional[ListDomainNamesModel] = None
     ) -> PayStackResponse:
         """
         List all registered domains
 
-        :param: use_cursor  # use cursor for pagination
-        :param: next_page  # next page
-        :param: previous_page  # previous page
+        Parameters:
+            list_domains (Optional[ListDomainNamesModel]): This is a model with attributes use_cursor, next_page and previous_page
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            PayStackResponse: The PayStackResponse object from the API
         """
-        validated_params = domain_values.model_dump(by_alias=True, exclude_none=True)
+
+        validated_params = (list_domains.model_dump(by_alias=True, exclude_none=True) if list_domains else {})
         return self._get_request(apple_pay_endpoint, params=validated_params)
 
     def unregister_domain(self, domain_name: DomainNameModel) -> PayStackResponse:
         """
         Unregister a domain or subdomain for Apple Pay
 
-        :param: domain_name  # domain name or subdomain
+        Parameters:
+            domain_name (DomainNameModel):  domain name or subdomain which is a DomainNameModel type.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            PayStackResponse: The PayStackResponse object from the API
         """
+
         validated_data = domain_name.model_dump(by_alias=True)
         return self._delete_request(apple_pay_endpoint, data=validated_data)

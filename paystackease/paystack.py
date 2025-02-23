@@ -1,4 +1,8 @@
-""" Wrapper classes for various Synchronous Paystack API endpoints,
+"""
+Module: paystack.py
+=======================
+
+This module contains wrapper classes for various Synchronous Paystack API endpoints,
 providing simplified access to functionality in Paystack
 """
 
