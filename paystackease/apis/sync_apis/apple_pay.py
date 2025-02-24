@@ -28,8 +28,8 @@ class ApplePayClientAPI(SyncRequestAPI):
             PayStackResponse: The PayStackResponse object from the API
         """
 
-        validated_data = domain_name.model_dump(by_alias=True)
-        return self._post_request(apple_pay_endpoint, data=validated_data)
+        data = domain_name.model_dump(by_alias=True)
+        return self._post_request(apple_pay_endpoint, data=data)
 
     def list_domains(
             self,
@@ -45,8 +45,8 @@ class ApplePayClientAPI(SyncRequestAPI):
             PayStackResponse: The PayStackResponse object from the API
         """
 
-        validated_params = (list_domains.model_dump(by_alias=True, exclude_none=True) if list_domains else {})
-        return self._get_request(apple_pay_endpoint, params=validated_params)
+        params = (list_domains.model_dump(by_alias=True, exclude_none=True) if list_domains else {})
+        return self._get_request(apple_pay_endpoint, params=params)
 
     def unregister_domain(self, domain_name: DomainNameModel) -> PayStackResponse:
         """
@@ -59,5 +59,5 @@ class ApplePayClientAPI(SyncRequestAPI):
             PayStackResponse: The PayStackResponse object from the API
         """
 
-        validated_data = domain_name.model_dump(by_alias=True)
-        return self._delete_request(apple_pay_endpoint, data=validated_data)
+        data = domain_name.model_dump(by_alias=True)
+        return self._delete_request(apple_pay_endpoint, data=data)

@@ -6,7 +6,7 @@ The Bulk Charges API allows you to create and manage multiple recurring payments
 from typing import List, Optional, Union
 
 from paystackease.src import PayStackResponse, SyncRequestAPI
-from paystackease.helpers import STATUS, AuthReferenceObject, bulk_charge_endpoint, PageModel, DatePageModel
+from paystackease.helpers import STATUS, BulkChargeObject, bulk_charge_endpoint, PageModel, DatePageModel
 
 
 class BulkChargesClientAPI(SyncRequestAPI):
@@ -15,113 +15,101 @@ class BulkChargesClientAPI(SyncRequestAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    def initiate_bulk_charge(self, objects: Union[AuthReferenceObject, List[AuthReferenceObject]]) -> PayStackResponse:
+    def initiate_bulk_charge(self, objects: Union[BulkChargeObject, List[BulkChargeObject]]) -> PayStackResponse:
         """
         Send an array of objects with authorization codes and amount
 
-        :param: objects
+        Parameters:
+            objects (BulkChargeObject | List[BulkChargeObject]): A single AuthReferenceObject or a list of AuthReferenceObject instances.
 
-        note::
-
-            A list of dictionary with authorization codes, amount and reference as keys
-            [{"authorization": "123456", "amount": 1000, "reference": "123456" }]
-
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            PayStackResponse: The PayStackResponse object from the API.
         """
+
         # ensure objects is a list
-        if isinstance(objects, AuthReferenceObject):
+        if isinstance(objects, BulkChargeObject):
             objects = [objects]  # converts the single instance to a list
 
-        if not isinstance(objects, list) or not all(isinstance(obj, AuthReferenceObject) for obj in objects):
-            raise ValueError("Expected a single AuthReferenceObject or a list of AuthReferenceObject instances.")
+        if not isinstance(objects, list) or not all(isinstance(obj, BulkChargeObject) for obj in objects):
+            raise ValueError("Expected a single BulkChargeObject or a list of BulkChargeObject instances.")
 
         if not objects:
             raise ValueError("The list of charge objects cannot be empty.")
 
-        validated_data = [obj.model_dump() for obj in objects]
-        return self._post_request(bulk_charge_endpoint, data=validated_data)
+        data = [obj.model_dump() for obj in objects]
+        return self._post_request(bulk_charge_endpoint, data=data)
 
     def list_bulk_charge_batches(
             self,
-            page_model: Optional[PageModel] = None,
-            date_page: Optional[DatePageModel] = None,
+            page_values: Optional[PageModel] = None,
+            date_values: Optional[DatePageModel] = None,
     ) -> PayStackResponse:
         """
         List all bulk charges
 
-        :param: per_page
-        :param: page
-        :param: from_date
-        :param: to_date
+        Parameters
+            page_values (Optional[PageModel]): A PageModel instance with page number and per_page.
+            date_values (Optional[DatePageModel]): A DatePageModel instance with from_date and to_date.
 
-        note::
-
-            Date Time format: 2016-09-24T00:00:05.000Z, 2016-09-21
-
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            PayStackResponse: The PayStackResponse object from the API.
         """
 
-        validated_params = {
-            **page_model.model_dump(by_alias=True, exclude_none=True),
-            **date_page.model_dump(by_alias=True, exclude_none=True),
+        params = {
+            **(page_values.model_dump(by_alias=True, exclude_none=True) if page_values else {}),
+            **(date_values.model_dump(by_alias=True, exclude_none=True) if date_values else {}),
         }
 
-        return self._get_request(bulk_charge_endpoint, validated_params)
+        return self._get_request(bulk_charge_endpoint, params=params)
 
     def fetch_bulk_charge_batch(self, id_or_code: str) -> PayStackResponse:
         """
         Fetch a bulk charge of a specific batch
 
-        :param: id_or_code
+        Parameters:
+            id_or_code (str): The id or code of the Batch object created after initiating a bulk charge.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            PayStackResponse: The PayStackResponse object from the API.
         """
         return self._get_request(f"{bulk_charge_endpoint}{id_or_code}")
 
     def fetch_charge_bulk_batch(
             self,
             id_or_code: str,
-            page_model: Optional[PageModel] = None,
-            date_page: Optional[DatePageModel] = None,
-            status: Optional[Union[STATUS, None]] = None,
+            page_values: Optional[PageModel] = None,
+            date_values: Optional[DatePageModel] = None,
+            status: Optional[STATUS] = None,
     ) -> PayStackResponse:
         """
         Fetch a bulk charge of a specific batch
 
-        :param: id_or_code
-        :param: status:  {STATUS.value.value}
-        :param: per_page
-        :param: page
-        :param: from_date
-        :param: to_date
+        Parameters:
+            id_or_code (str): The id or code of the Batch object created after initiating a bulk charge.
+            page_values (Optional[PageModel]): A PageModel instance with page number and per_page.
+            date_values (Optional[DatePageModel]): A DatePageModel instance with from_date and to_date.
+            status (Optional[STATUS]): The status of the charges. Either one of these values: pending, success or failed of the STATUS Enum class
 
-        note::
-
-            Date Time format: 2016-09-24T00:00:05.000Z, 2016-09-21
-            status: STATUS.value.value
-
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
-        validated_params = {
-            "status": status,
-            **page_model.model_dump(by_alias=True, exclude_none=True),
-            **date_page.model_dump(by_alias=True, exclude_none=True),
+        params = {
+            **(page_values.model_dump(by_alias=True, exclude_none=True) if page_values else {}),
+            **(date_values.model_dump(by_alias=True, exclude_none=True) if date_values else {}),
+            "status": status if status else None,
         }
 
-        return self._get_request(f"{bulk_charge_endpoint}{id_or_code}/charges", params=validated_params)
+        return self._get_request(f"{bulk_charge_endpoint}{id_or_code}/charges", params=params)
 
     def pause_bulk_charge_batch(self, batch_code: str) -> PayStackResponse:
         """
         Pause a bulk charge of a specific batch
 
-        :param: batch_code
+        Parameters:
+            batch_code (str): The code of the Batch object created after initiating a bulk charge.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
         return self._get_request(f"{bulk_charge_endpoint}pause/{batch_code}")
 
@@ -129,9 +117,10 @@ class BulkChargesClientAPI(SyncRequestAPI):
         """
         Resume a bulk charge of a specific batch
 
-        :param: batch_code
+        Parameters:
+            batch_code (str): The code of the Batch object created after initiating a bulk charge.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
         return self._get_request(f"{bulk_charge_endpoint}resume/{batch_code}")
