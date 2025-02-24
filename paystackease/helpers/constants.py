@@ -61,7 +61,7 @@ class AccountType(Enum):
     BUSINESS = "business"
 
 
-class Bearer(Enum):
+class Bearer(str, Enum):
     """
     Enumeration for Bearer types supported by Paystack.
 

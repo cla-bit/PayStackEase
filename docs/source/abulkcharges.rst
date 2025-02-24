@@ -10,7 +10,7 @@ To access the Bulk Charges API methods, you need to call the ``bulk_charges`` in
 
 ------------------------
 
-.. py:class:: AsyncBulkChargesClientAPI(secret_key: str = None)
+.. py:class:: AsyncBulkChargesClientAPI()
 
     Paystack Bulk Charges API Reference: `Bulk Charges`_
 
@@ -24,48 +24,40 @@ To access the Bulk Charges API methods, you need to call the ``bulk_charges`` in
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: async fetch_charge_bulk_batch(id_or_code: str, status: str | None = None, per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
+    .. py:method:: async fetch_charge_bulk_batch(id_or_code: str, page_values: Optional[PageModel] = None, date_values: Optional[DatePageModel] = None, status: Optional[STATUS] = None)→ PayStackResponse
 
         Fetch a bulk charge of a specific batch
 
         :param id_or_code: An ID or code for the charge whose batches you want to retrieve
         :type id_or_code: str
+        :param page_values: Optional page model with page and per_page values.
+        :type page_values: Optional[PageModel], optional
+        :param date_values: Optional date page model with from_date and to_date values.
+        :type date_values: Optional[DatePageModel], optional
         :param status: The status of the bulk charge batch. The ``STATUS`` enum value is passed in here.
-        :type status: str, optional
-        :param per_page: The number of records to return per page (default: 50).
-        :type per_page: int, optional
-        :param page: The page to return (default: 1).
-        :type page: int, optional
-        :param from_date: The starting date of the bulk charge batch.
-        :type from_date: date, optional
-        :param to_date: The ending date of the bulk charge batch.
-        :type to_date: date, optional
+        :type status: STATUS, optional
 
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: async initiate_bulk_charge(objects: List[Dict[str, str]])→ PayStackResponse
+    .. py:method:: async initiate_bulk_charge(objects: Union[BulkChargeObject, List[BulkChargeObject]])→ PayStackResponse
 
         Initiate a bulk charge
 
         :param objects: An array of objects with authorization, amount and reference.
-        :type objects: List[Dict[str, Any]]
+        :type objects: BulkChargeObject | List[BulkChargeObject]
 
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: async list_bulk_charge_batches(per_page: int | None = 50, page: int | None = 1, from_date: date | None = None, to_date: date | None = None)→ PayStackResponse
+    .. py:method:: async list_bulk_charge_batches(page_values: Optional[PageModel] = None, date_values: Optional[DatePageModel] = None)→ PayStackResponse
 
         List bulk charge batches
 
-        :param per_page: The number of records to return per page (default: 50).
-        :type per_page: int, optional
-        :param page: The page to return (default: 1).
-        :type page: int, optional
-        :param from_date: The starting date of the bulk charge batch.
-        :type from_date: date, optional
-        :param to_date: The ending date of the bulk charge batch.
-        :type to_date: date, optional
+        :param page_values: Optional page model with page and per_page values.
+        :type page_values: Optional[PageModel], optional
+        :param date_values: Optional date page model with from_date and to_date values.
+        :type date_values: Optional[DatePageModel], optional
 
         :return: The response from the API.
         :rtype: PayStackResponse object
@@ -124,16 +116,22 @@ on :doc:`convert`.
 
     >>> import asyncio
     >>> from paystackease import AsyncPayStackBase
+    >>> from paystackease.helpers import BulkChargeObject
 
-    >>> objects = [
-    { "authorization": "AUTH_test1234", "amount": 10000, "reference": "test1234" },
-    { "authorization": "AUTH_tester4176", "amount": 2000, "reference": "tester1234" },
-    ]
+    >>> objects = BulkChargeObject(amount=10000, authorization="AUTH_test1234", reference="test1234")
+    >>> objects1 = BulkChargeObject(amount=10000, authorization="AUTH_test1234", reference="test1234")
 
     >>> async def paystack_client():
     >>>     async with AsyncPayStackBase() as client:
-    >>>         response = await client.bulk_charges.initiate_bulk_charge(objects)
+    >>>         response = await client.bulk_charges.initiate_bulk_charge(objects)  # pass it as a single BulkChargeObject instance
     >>>         print(response)
 
+    >>> asyncio.run(paystack_client())
+
+
+    >>> async def paystack_client():
+    >>>     async with AsyncPayStackBase() as client:
+    >>>         response = await client.bulk_charges.initiate_bulk_charge([objects, objects1])  # pass it as a list BulkChargeObject instances
+    >>>         print(response)
 
     >>> asyncio.run(paystack_client())

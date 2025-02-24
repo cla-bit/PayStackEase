@@ -25,27 +25,27 @@ class DomainNameModel(BaseModel):
     A Pydantic model representing a domain name.
 
     Attributes:
-    domain_name (str): The domain name or subdomain name.
+        domain_name (str): The domain name or subdomain name to be registered.
 
     Methods:
-    validate_domain_name(cls, value): Validates the domain name.
+        validate_domain_name(cls, value): Validates the domain name.
 
     """
-    domain_name: str = Field(..., alias="domainName", description="Domain name or subdomain name", examples=["example.com"])
+    domain_name: str = Field(..., alias="domainName", description="Domain name or subdomain name to be registered.", examples=["example.com"])
 
     @field_validator("domain_name")
-    def validate_domain_name(cls, value):
+    def validate_domain_name(cls, value) -> str:
         """
         Validates the domain name.
 
         Parameters:
-        value (str): The domain name to validate.
+            value (str): The domain name to validate.
 
         Returns:
-        str: The validated domain name.
+            str: The validated domain name.
 
         Raises:
-        ValueError: If the domain name is empty or not a string.
+            ValueError: If the domain name is empty or not a string.
 
         """
         if not value or not isinstance(value, str):
@@ -58,12 +58,12 @@ class ListDomainNamesModel(BaseModel):
     A Pydantic model representing pagination parameters for listing domain names.
 
     Attributes:
-    use_cursor (Optional[bool]): Flag indicating whether to use cursor-based pagination. Default is False.
-    next_page (Optional[str]): The page number for the next set of results. Default is None.
-    previous_page (Optional[str]): The page number for the previous set of results. Default is None.
+        use_cursor (Optional[bool]): Flag indicating whether to use cursor-based pagination. Default is False.
+        next_page (Optional[str]): The page number for the next set of results. Default is None.
+        previous_page (Optional[str]): The page number for the previous set of results. Default is None.
 
     Methods:
-    validate_use_cursor(cls, value): Validates the use_cursor attribute. Converts boolean values to string representation.
+        validate_use_cursor(cls, value): Validates the use_cursor attribute. Converts boolean values to string representation.
 
     """
     use_cursor: Optional[bool] = Field(default=False, description="Flag to enable cursor pagination on the endpoint")
@@ -71,7 +71,7 @@ class ListDomainNamesModel(BaseModel):
     previous_page: Optional[str] = Field(default=None, alias="previous", description="A cursor that indicates your place in the list. It should be used to fetch the previous page of the list after an intial next request")
 
     @model_serializer()
-    def serialize_model(self):
+    def serialize_model(self) -> Dict[str, str]:
         return {
             "use_cursor": "True" if self.use_cursor else "False",
             "next": self.next_page,
@@ -90,10 +90,10 @@ class CursorModel(BaseModel):
         Validates the use_cursor attribute. Converts boolean values to string representation.
 
         Parameters:
-        value (bool): The value to validate.
+            value (bool): The value to validate.
 
         Returns:
-        str: The validated value as a string representation.
+            str: The validated value as a string representation.
 
         """
         if isinstance(value, bool):
@@ -101,23 +101,23 @@ class CursorModel(BaseModel):
         return value
 
 
-class AuthReferenceObject(BaseModel):
+class BulkChargeObject(BaseModel):
     """
     A Pydantic model representing the reference object for an authorization or charge.
 
     Attributes:
-    amount (int): The amount to charge in subunit.
-    authorization (Optional[str]): The authorization code for the charge.
-    reference (Optional[str]): The unique reference for the charge.
+        amount (int): The amount to charge in subunit.
+        authorization (str): The authorization code for the charge.
+        reference (str): The unique reference for the charge.
 
     Methods:
-    validate_amount(cls, value): Validates the amount attribute.
-    validate_authorization(cls, value): Validates the authorization attribute.
-    validate_reference(cls, value): Validates the reference attribute.
+        validate_amount(cls, value): Validates the amount attribute.
+        validate_authorization(cls, value): Validates the authorization attribute.
+        validate_reference(cls, value): Validates the reference attribute.
 
     """
     amount: int = Field(..., description="Amount to charge should be in subunit", examples=[1000, 20000])
-    authorization: Optional[str] = Field(default=None, description="Authorization code for the charge", examples=["AUTH_ncx8hews93", "AUTH_ncx8hfaw45"])
+    authorization: Optional[str] = Field(default=None, alias="authorization_code", description="Authorization code for the charge", examples=["AUTH_ncx8hews93", "AUTH_ncx8hfaw45"])
     reference: Optional[str] = Field(default=None, description="Unique reference for the charge", examples=["dam1266638dhhe", "dam1290638dhha"])
 
     @field_validator("amount")
@@ -126,13 +126,13 @@ class AuthReferenceObject(BaseModel):
         Validates the amount attribute.
 
         Parameters:
-        value (int): The amount to validate.
+            value (int): The amount to validate.
 
         Returns:
-        int: The validated amount.
+            int: The validated amount.
 
         Raises:
-        ValueError: If the amount is not a positive integer greater than zero.
+            ValueError: If the amount is not a positive integer greater than zero.
 
         """
         if value < 1:
@@ -145,13 +145,13 @@ class AuthReferenceObject(BaseModel):
         Validates the authorization attribute.
 
         Parameters:
-        value (Optional[str]): The authorization code to validate.
+            value (Optional[str]): The authorization code to validate.
 
         Returns:
-        Optional[str]: The validated authorization code.
+            Optional[str]: The validated authorization code.
 
         Raises:
-        ValueError: If the authorization code is not a string or None.
+            ValueError: If the authorization code is not a string or None.
 
         """
         if value is not None and not isinstance(value, str):
@@ -164,13 +164,13 @@ class AuthReferenceObject(BaseModel):
         Validates the reference attribute.
 
         Parameters:
-        value (Optional[str]): The reference to validate.
+            value (Optional[str]): The reference to validate.
 
         Returns:
-        Optional[str]: The validated reference.
+            Optional[str]: The validated reference.
 
         Raises:
-        ValueError: If the reference is not a string or None.
+            ValueError: If the reference is not a string or None.
 
         """
         if value is not None and not isinstance(value, str):
@@ -183,11 +183,8 @@ class PageModel(BaseModel):
     A Pydantic model representing pagination parameters.
 
     Attributes:
-    per_page (Optional[int]): The number of items to display per page. Default is 50.
-    page (Optional[int]): The page number for pagination. Default is 1.
-
-    Methods:
-    None
+        per_page (Optional[int]): The number of items to display per page. Default is 50.
+        page (Optional[int]): The page number for pagination. Default is 1.
 
     """
     per_page: Optional[int] = Field(default=50, alias="perPage", description="Number of items per page")
@@ -199,11 +196,11 @@ class DatePageModel(BaseModel):
     A Pydantic model representing date range parameters for pagination.
 
     Attributes:
-    from_date (Optional[Union[str, date]]): The start date for filtering. Default is None.
-    to_date (Optional[Union[str, date]]): The end date for filtering. Default is None.
+        from_date (Optional[Union[str, date]]): The start date for filtering. Default is None.
+        to_date (Optional[Union[str, date]]): The end date for filtering. Default is None.
 
     Methods:
-    validate_dates(cls, value): Validates the date parameters. Raises ValueError if the date is not a string or a date object.
+        validate_dates(cls, value): Validates the date parameters. Raises ValueError if the date is not a string or a date object.
 
     """
     from_date: Optional[Union[str, date]] = Field(default=None, alias="from", description="Start date for filtering")
@@ -272,21 +269,8 @@ class VirtualPaymentModel(BaseModel):
     """
 
     qr: Optional[QRPayment] = Field(default=None, description="QR Payment Details", examples=[{'provider': QRCODE.SCAN_TO_PAY}, {'provider': QRCODE.VISA}, {'provider': "scan-to-pay"}])
-    ussd: Optional[USSDPayment] = Field(default=None, description="", examples=[{'type': USSD.ZENITH_BANK}, {'type': USSD.STERLING_BANK}, {'type': "737"}])
-    mobile_money: Optional[MobileMoneyPay] = Field(default=None, description="", examples=[{'phone': '08012345678', "provider": MobileMoney.MTN}, {'phone': '08012345678', "provider": MobileMoney.AIRTEL_TIGO}, {'phone': '08012345678', "provider": "mtn"}])
-
-
-class ChargeBankModel(BaseModel):
-    """
-    A Pydantic model representing bank details and Pay With Transfer (PWT) information for a charge.
-
-    Attributes:
-    bank (Optional[BankDetails]): Bank details for the charge.
-    bank_transfer (Optional[Union[ExpiryInfo, Dict[PWT, str]]]): Pay With Transfer (PWT) information for the charge.
-    """
-
-    bank: Optional[BankDetails] = Field(default=None, description="Bank details", examples=[{'code': '057', 'account_number': '1231241234'}])
-    bank_transfer: Optional[Union[ExpiryInfo, Dict[PWT, str]]] = Field(default=None, description="Pay With Transfer (PWT)", examples=[{'account_expires_at': '2023-09-12T13:10:00Z"'}])
+    ussd: Optional[USSDPayment] = Field(default=None, description="USSDPayment Details", examples=[{'type': USSD.ZENITH_BANK}, {'type': USSD.STERLING_BANK}, {'type': "737"}])
+    mobile_money: Optional[MobileMoneyPay] = Field(default=None, description="MobileMoneyPay Details", examples=[{'phone': '08012345678', "provider": MobileMoney.MTN}, {'phone': '08012345678', "provider": MobileMoney.AIRTEL_TIGO}, {'phone': '08012345678', "provider": "mtn"}])
 
 
 class CustomMetaData(BaseModel):

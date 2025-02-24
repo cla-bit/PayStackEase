@@ -12,7 +12,7 @@ Check example on :doc:`apaystack`
 
 -------------
 
-.. py:class:: AsyncChargesClientAPI(secret_key: str = None)
+.. py:class:: AsyncChargesClientAPI()
 
     Paystack Charges API Reference: `Charges`_
 
@@ -26,34 +26,34 @@ Check example on :doc:`apaystack`
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: async create_charge(email: str, amount: int, metadata: Dict[str, List[Dict[str, str]]], pin: int | None = None, authorization_code: str | None = None, reference: str | None = None, device_id: str | None = None, bank: Dict[str, str] | None = None, bank_transfer: Dict[str, Any] | None = None, qr: Dict[str, str] | None = None, ussd: Dict[str, str] | None = None, mobile_money: Dict[str, str] | None = NoneisPayStackResponse
+    .. py:method:: async create_charge(email: str, metadata: CustomMetaData, auth_ref: Optional[BulkChargeObject] = None, bank: Optional[BankDetails] = None, bank_transfer: Optional[Union[ExpiryInfo, Dict[PWT, str]]] = None, virtual_pay: Optional[VirtualPaymentModel] = None, split_code: Optional[str] = None, subaccount: Optional[str] = None, transaction_charge: Optional[int] = None, bearer: Optional[Bearer] = Bearer.ACCOUNT, pin: Optional[int] = None, device_id: str | None = None)→ PayStackResponse
 
         Create a new charge
 
         :param email: The email of the customer
         :type email: str
-        :param amount: The amount to charge
-        :type amount: int
         :param metadata: The metadata of the charge. A JSON object
-        :type metadata: dict
+        :type metadata: CustomMetaData
+        :param auth_ref: A BulkChargeObject type containing the amount, authorization and reference to charge.
+        :type auth_ref: BulkChargeObject, optional
+        :param bank: Bank account to charge
+        :type bank: BankDetails, optional
+        :param bank_transfer: Takes the settings for the Pay with Transfer (PwT) channel
+        :type bank_transfer: ExpiryInfo, Dict[PWT, str], optional
+        :param virtual_pay: Virtual payment details for virtual payment methods (qr, ussd, and mobile money)
+        :type virtual_pay: VirtualPaymentModel, optional
+        :param split_code: The split code of a previously created split.
+        :type split_code: str, optional
+        :param subaccount: The code for the subaccount that owns the payment
+        :type subaccount: str, optional
+        :param transaction_charge: An amount used to override the split configuration for a single split payment
+        :type transaction_charge: int, optional
+        :param bearer: Bearer type for who bears the charge. Default is Bearer.ACCOUNT
+        :type bearer: Bearer, optional
         :param pin: The pin of the customer
         :type pin: int, optional
-        :param authorization_code: The authorization code of the customer
-        :type authorization_code: str, optional
-        :param reference: The reference of the charge
-        :type reference: str, optional
         :param device_id: The device id of the customer
         :type device_id: str, optional
-        :param bank: Bank account to charge
-        :type bank: dict, optional
-        :param bank_transfer: Takes the settings for the Pay with Transfer (PwT) channel
-        :type bank_transfer: dict, optional
-        :param qr: QR type to charge
-        :type qr: dict, optional
-        :param ussd: USSD type to charge
-        :type ussd: dict, optional
-        :param mobile_money: The mobile money details
-        :type mobile_money: dict, optional
 
         :return: The response from the API.
         :rtype: PayStackResponse object

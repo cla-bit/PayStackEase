@@ -8,7 +8,7 @@ from typing import List, Optional, Union
 
 from paystackease.src import PayStackResponse, SyncRequestAPI
 from paystackease.helpers import Channels, Currency, Bearer, TransactionStatus, transaction_endpoint, MetaDataModel, \
-    CustomMetaData, convert_to_string, AuthReferenceObject, PageModel, DatePageModel
+    CustomMetaData, convert_to_string, BulkChargeObject, PageModel, DatePageModel
 
 
 class TransactionClientAPI(SyncRequestAPI):
@@ -76,7 +76,7 @@ class TransactionClientAPI(SyncRequestAPI):
     def charge_authorization(
             self,
             email: str,
-            auth_model: AuthReferenceObject,
+            auth_model: BulkChargeObject,
             currency: Optional[Union[Currency, None]] = None,
             channels: Optional[Union[List[Channels], None]] = None,
             subaccount: Optional[Union[str, None]] = None,
@@ -124,7 +124,7 @@ class TransactionClientAPI(SyncRequestAPI):
     def partial_debit(
             self,
             email: str,
-            auth_model: AuthReferenceObject,
+            auth_model: BulkChargeObject,
             currency: str,
             at_least: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
