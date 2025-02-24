@@ -5,10 +5,13 @@ The Charge API allows you to configure payment channel of your choice when initi
 """
 
 from datetime import date
-from typing import Optional, Union
+from typing import Optional, Union, Dict
 
 from paystackease.src import PayStackResponse, SyncRequestAPI
-from paystackease.helpers import convert_to_string, AuthReferenceObject, ChargeBankModel, VirtualPaymentModel, CustomMetaData, charges_endpoint
+from paystackease.helpers import (
+    convert_to_string, BulkChargeObject, VirtualPaymentModel, CustomMetaData,
+    charges_endpoint, ExpiryInfo, BankDetails, PWT, Bearer
+)
 
 
 class ChargesClientAPI(SyncRequestAPI):
@@ -21,11 +24,16 @@ class ChargesClientAPI(SyncRequestAPI):
             self,
             email: str,
             metadata: CustomMetaData,
-            auth_ref: AuthReferenceObject,
-            bank_charge: Optional[ChargeBankModel] = None,
+            auth_ref: Optional[BulkChargeObject] = None,
+            bank: Optional[BankDetails] = None,
+            bank_transfer: Optional[Union[ExpiryInfo, Dict[PWT, str]]] = None,
             virtual_pay: Optional[VirtualPaymentModel] = None,
-            pin: Optional[Union[int, None]] = None,
-            device_id: Optional[Union[str, None]] = None,
+            split_code: Optional[str] = None,
+            subaccount: Optional[str] = None,
+            transaction_charge: Optional[int] = None,
+            bearer: Optional[Bearer] = Bearer.ACCOUNT,
+            pin: Optional[int] = None,
+            device_id: Optional[str] = None,
     ) -> PayStackResponse:
         """
         Initiates a new charge on Paystack.
@@ -34,37 +42,49 @@ class ChargesClientAPI(SyncRequestAPI):
         It validates the input data and sends a POST request to the Paystack Charges API endpoint.
 
         Parameters:
-        - email (str): The email address of the customer.
-        - metadata (CustomMetaData): Custom metadata to be associated with the charge.
-        - auth_ref (AuthReferenceObject): Authentication reference object containing the payment method and other details.
-        - bank_charge (ChargeBankModel, optional): Bank charge details for bank-based payment methods. Defaults to None.
-        - virtual_pay (VirtualPaymentModel, optional): Virtual payment details for virtual payment methods. Defaults to None.
-        - pin (int, optional): PIN for 3D Secure authentication. Defaults to None.
-        - device_id (str, optional): Device ID for 3D Secure authentication. Defaults to None.
+            email (str): The email address of the customer.
+            metadata (CustomMetaData): Custom metadata to be associated with the charge.
+            auth_ref (BulkChargeObject, optional): A BulkChargeObject type containing the amount, authorization and reference to charge.
+            bank (BankDetails, optional): Bank details to charge. Defaults to None.
+            bank_transfer (ExpiryInfo or dict, optional): Takes the settings for the Pay with Transfer (PwT) channel.
+            virtual_pay (VirtualPaymentModel, optional): Virtual payment details for virtual payment methods (qr, ussd, and mobile money). Defaults to None.
+            split_code (str, optional): The split code of a previously created split.
+            subaccount (str, optional): The code for the subaccount that owns the payment
+            transaction_charge (int, optional): An amount used to override the split configuration for a single split payment
+            bearer (Bearer, optional): Bearer type for who bears the charge.
+            pin (int, optional): PIN for 3D Secure authentication. Defaults to None.
+            device_id (str, optional): Device ID for 3D Secure authentication. Defaults to None.
 
         Returns:
-        - PayStackResponse: The response from the Paystack API.
+            PayStackResponse: The response from the Paystack API.
         """
-        validated_data = {
+        data = {
             "email": email,
             "metadata": metadata.model_dump(),
-            **auth_ref.model_dump(exclude_none=True),
-            **(bank_charge.model_dump(exclude_none=True) if bank_charge else {}),
+            **auth_ref.model_dump(by_alias=True, exclude_none=True),
+            "bank": bank if bank else None,
+            "bank_transfer": bank_transfer if bank_transfer else None,
             **(virtual_pay.model_dump(exclude_none=True) if virtual_pay else {}),
+            "split_code": split_code,
+            "subaccount": subaccount,
+            "transaction_charge": transaction_charge,
+            "bearer": bearer,
             "pin": pin,
             "device_id": device_id,
         }
-        return self._post_request(charges_endpoint, data=validated_data)
+        print(data)
+        return self._post_request(charges_endpoint, data=data)
 
     def submit_pin(self, pin: int, reference: str) -> PayStackResponse:
         """
         Submit a PIN for a charge
 
-        :param: pin
-        :param: reference
+        Parameters:
+            pin (int): The PIN submitted by user.
+            reference (str): Reference for transaction that requested pin
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
         data = {
             "pin": pin,
@@ -76,11 +96,12 @@ class ChargesClientAPI(SyncRequestAPI):
         """
         Submit OTP to complete a charge
 
-        :param: otp
-        :param: reference
+        Parameters:
+            otp (int): OTP to submitted by user
+            reference (str): Reference for ongoing transaction.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
         data = {
             "otp": otp,
@@ -92,11 +113,12 @@ class ChargesClientAPI(SyncRequestAPI):
         """
         Submit a phone number to complete a charge
 
-        :param: phone
-        :param: reference
+        Parameters:
+            phone (str): Phone number submitted by user
+            reference (str): Reference for ongoing transaction.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
         data = {
             "phone": phone,
@@ -108,16 +130,14 @@ class ChargesClientAPI(SyncRequestAPI):
         """
         Submit birthday when required
 
-        :param: birthday
-        :param: reference
+        Parameters:
+            birthday (date): Date of birth submitted by user
+            reference (str): Reference for ongoing transaction.
 
-        note::
-
-            Birthday submitted by user e.g. 2016-09-21
-
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
+
         birthday = convert_to_string(birthday)
 
         data = {
@@ -132,14 +152,15 @@ class ChargesClientAPI(SyncRequestAPI):
         """
         Submit address to continue a charge
 
-        :param: reference
-        :param: address
-        :param: city
-        :param: state
-        :param: zipcode
+        Parameters:
+            reference (str): Reference for ongoing transaction.
+            address (str): Address submitted by user.
+            city (str): City submitted by user.
+            state (str): State submitted by user.
+            zipcode (str): Zipcode submitted by user.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
         data = {
             "reference": reference,
@@ -154,9 +175,10 @@ class ChargesClientAPI(SyncRequestAPI):
         """
         Check pending charge
 
-        :param: reference
+        Parameters:
+            reference (str): Reference to check.
 
-        :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
+        Returns:
+            The PayStackResponse object from the API
         """
         return self._get_request(f"{charges_endpoint}{reference}")

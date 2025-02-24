@@ -63,7 +63,7 @@ from paystackease.helpers.constants import (
     transfer_endpoint,
 )
 from paystackease.helpers.models import (
-    DomainNameModel, ListDomainNamesModel, AuthReferenceObject, PageModel, DatePageModel,
-    ChargeBankModel, VirtualPaymentModel, CustomMetaData, CustomerDetails, MobileMoneyPay, USSDPayment, QRPayment,
+    DomainNameModel, ListDomainNamesModel, BulkChargeObject, PageModel, DatePageModel,
+    VirtualPaymentModel, CustomMetaData, CustomerDetails, MobileMoneyPay, USSDPayment, QRPayment,
     MetaDataModel, CursorModel, BatchModel, TransferBulkModel
 )
