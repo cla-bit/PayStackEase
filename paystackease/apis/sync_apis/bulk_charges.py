@@ -8,30 +8,36 @@ from typing import List, Dict, Optional, Any, Union
 
 from paystackease.core import PayStackResponse, SyncRequestAPI
 from paystackease.helpers import STATUS
+from paystackease.apis.sync_apis.Model_bulkcharge import BulkChargeItem
+class BulkChargesSyncAPI:
+    
+    def __init__(self):
+        # Initialize the class if needed (e.g., for API authentication)
+        pass
 
-
-class BulkChargesClientAPI(SyncRequestAPI):
-    """
-    Paystack Bulk Charges API
-    Reference: https://paystack.com/docs/api/bulk-charge/
-    """
-
-    def initiate_bulk_charge(self, objects: List[Dict[str, Any]]) -> PayStackResponse:
+    def initiate_bulk_charge(self, objects: Union[List[Dict[str, Any]], List[BulkChargeItem]]) -> PayStackResponse:
         """
-        Send an array of objects with authorization codes and amount
+        Initiates a bulk charge with a list of authorization codes, amounts, and references.
 
-        :param: objects
-
-        note::
-
-            A list of dictionary with authorization codes, amount and reference as keys
-            [{"authorization": "123456", "amount": 1000, "reference": "123456" }]
-
+        :param objects: A list of BulkChargeItem instances or dictionaries
         :return: The PayStackResponse from the API
-        :rtype: PayStackResponse object
         """
+        if not objects:
+            raise ValueError("Objects parameter cannot be empty")
+
+        if isinstance(objects[0], BulkChargeItem):
+            # If the input is a list of BulkChargeItem instances, convert them to dictionaries
+            objects = [item.dict() for item in objects]  # Convert Pydantic models to dictionaries
+        elif isinstance(objects[0], dict):
+            # If the input is already a list of dictionaries, no conversion is needed
+            pass
+        else:
+            raise ValueError("Input must be a list of dictionaries or BulkChargeItem instances.")
+
+        # Send the request to the Paystack API
         return self._post_request("/bulkcharge", data=objects)
 
+    
     def list_bulk_charge_batches(
             self,
             per_page: Optional[Union[int, None]] = 50,
