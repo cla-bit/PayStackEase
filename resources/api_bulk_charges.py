@@ -5,7 +5,18 @@ Examples
 import asyncio
 from datetime import date
 
-from paystackease import PayStackBase, AsyncPayStackBase, STATUS
+from paystackease import PayStackBase, AsyncPayStackBase, STATUS, BulkChargeListObject
+
+
+valid_data = {
+    "charges": [
+        {"authorization": "AUTH_authorization-code", "amount": 1000, "reference": "reference"},
+        {"authorization": "AUTH_authorization-code", "amount": 4000, "reference": "reference"}
+    ]
+}
+
+# validate the data
+validated_data = BulkChargeListObject(**valid_data)
 
 
 async def main():
@@ -38,15 +49,7 @@ async def main():
         print(f"Resume a bulk charge batch: {resume_bulk}")
 
         # access the API endpoints making a Post request
-        init_bulk_charge = await paystack_client.bulk_charges.initiate_bulk_charge(
-            [
-                {
-                    "authorization": "AUTH_authorization-code",
-                    "amount": 1500,
-                    "reference": "reference",
-                }
-            ]
-        )
+        init_bulk_charge = await paystack_client.bulk_charges.initiate_bulk_charge(objects=validated_data)
         print(f"Initiated a bulk charge: {init_bulk_charge}")
 
 
@@ -84,15 +87,7 @@ def main():
     print(f"Resume a bulk charge batch: {resume_bulk}")
 
     # access the API endpoints making a Post request
-    init_bulk_charge = paystack_client.bulk_charges.initiate_bulk_charge(
-        [
-            {
-                "authorization": "AUTH_authorization-code",
-                "amount": 1500,
-                "reference": "reference",
-            }
-        ]
-    )
+    init_bulk_charge = paystack_client.bulk_charges.initiate_bulk_charge(objects=validated_data)
     print(f"Initiated a bulk charge: {init_bulk_charge}")
 
 

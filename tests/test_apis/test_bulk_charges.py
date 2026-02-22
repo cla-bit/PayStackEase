@@ -4,26 +4,44 @@ import json
 from datetime import date
 import pytest
 import responses
-from paystackease import STATUS
+from paystackease import STATUS, BulkChargeListObject
 
 from tests.conftest import bulk_charges_client
 
 
 @pytest.mark.parametrize(
-    "objects",
-    [[{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]],
+    "input_data, expected_output",
+    [
+        # Test case 1: Valid single input data
+        (
+                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
+                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]
+        ),
+        # Test case 2: Valid multiple input data
+        (
+                [
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
+                ],
+                [
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
+                ],
+
+        )
+    ],
 )
 @responses.activate
-def test_initiate_bulk_charge(bulk_charges_client, objects):
+def test_initiate_bulk_charge(bulk_charges_client, input_data, expected_output):
     """
     This function tests the behavior of the initiate bulk charge method with various combinations
     of parameters,
     """
     url = "https://api.paystack.co/bulkcharge"
     response_data = {"status": "success"}
-    expected_data = [
-        {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
-    ]
+    # expected_data = [
+    #     {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
+    # ]
 
     # mock the API response
     responses.add(
@@ -32,9 +50,11 @@ def test_initiate_bulk_charge(bulk_charges_client, objects):
         status=200,
         json=response_data,
     )
-    response = bulk_charges_client.initiate_bulk_charge(objects=objects)
+
+    validated_data = BulkChargeListObject(charges=input_data)
+    response = bulk_charges_client.initiate_bulk_charge(objects=validated_data)
     assert len(responses.calls) == 1
-    assert json.loads(responses.calls[0].request.body) == expected_data
+    assert json.loads(responses.calls[0].request.body) == expected_output
     assert response is not None
 
 

@@ -4,16 +4,34 @@ import pytest
 from datetime import date
 
 from tests.conftest import async_bulk_charges_client, mocked_responses
-from paystackease import STATUS
+from paystackease import STATUS, BulkChargeListObject
 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "objects",
-    [[{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]],
+    "input_data, expected_output",
+    [
+        # Test case 1: Valid single input data
+        (
+                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
+                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]
+        ),
+        # Test case 2: Valid multiple input data
+        (
+                [
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
+                ],
+                [
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
+                ],
+
+        )
+    ],
 )
 async def test_initialize_bulk_charges(
-    async_bulk_charges_client, mocked_responses, objects
+    async_bulk_charges_client, mocked_responses, input_data, expected_output
 ):
     """
     This function tests the behavior of the initialize_bulk_charges method
@@ -23,7 +41,9 @@ async def test_initialize_bulk_charges(
 
     # mock the API response
     mocked_responses.post(url, status=200, payload=response_data)
-    response = await async_bulk_charges_client.initiate_bulk_charge(objects=objects)
+    validated_data = BulkChargeListObject(charges=input_data)
+
+    response = await async_bulk_charges_client.initiate_bulk_charge(objects=validated_data)
     mocked_responses.assert_called()
     assert response is not None
 
