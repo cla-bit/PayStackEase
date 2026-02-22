@@ -44,12 +44,12 @@ To access the Bulk Charges API methods, you need to call the ``bulk_charges`` in
         :return: The response from the API.
         :rtype: PayStackResponse object
 
-    .. py:method:: async initiate_bulk_charge(objects: List[Dict[str, str]])→ PayStackResponse
+    .. py:method:: async initiate_bulk_charge(objects: BulkChargeListObject)→ PayStackResponse
 
         Initiate a bulk charge
 
         :param objects: An array of objects with authorization, amount and reference.
-        :type objects: List[Dict[str, Any]]
+        :type objects: BulkChargeListObject
 
         :return: The response from the API.
         :rtype: PayStackResponse object
@@ -110,9 +110,12 @@ When passing the ``status`` parameter, you can pass the string value of the
     >>> 'pending'
 
 
-In initiating a bulk charge, the values being passed into the dictionary as keys are:
-``authorization``, ``amount`` and ``reference``. These keys are passed alongside with their values into a
-List. You can initiate multiple bulk charge at the same time also. The ``authorization`` is gotten after a successful card transaction.
+In initiating a bulk charge, either use ``BulkChargeItem`` as a base pydantic data class or ``BulkChargeListObject`` class.
+
+The attributes in ``BulkChargeItem`` are: ``authorization``, ``amount`` and ``reference``.
+The attribute in ``BulkChargeListObject`` is ``charges``.
+
+You can initiate multiple bulk charge at the same time also. The ``authorization`` is gotten after a successful card transaction.
 The ``reference`` is a unique set of characters you can create as your desired choice.
 
 You can also check to ensure that the amount passed into is in subunit. See the documentation
@@ -123,16 +126,19 @@ on :doc:`convert`.
 .. code-block:: python
 
     >>> import asyncio
-    >>> from paystackease import AsyncPayStackBase
+    >>> from paystackease import AsyncPayStackBase, BulkChargeListObject, BulkChargeItem
 
-    >>> objects = [
-    { "authorization": "AUTH_test1234", "amount": 10000, "reference": "test1234" },
-    { "authorization": "AUTH_tester4176", "amount": 2000, "reference": "tester1234" },
-    ]
+    >>> valid_data = {
+        "charges": [
+            { "authorization": "AUTH_test1234", "amount": 10000, "reference": "test1234" },
+            { "authorization": "AUTH_tester4176", "amount": 2000, "reference": "tester1234" },
+        ]
+    }
+    data = BulkChargeListObject(**valid_data)
 
     >>> async def paystack_client():
     >>>     async with AsyncPayStackBase() as client:
-    >>>         response = await client.bulk_charges.initiate_bulk_charge(objects)
+    >>>         response = await client.bulk_charges.initiate_bulk_charge(objects=data)
     >>>         print(response)
 
 

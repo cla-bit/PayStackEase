@@ -28,4 +28,4 @@ from paystackease.helpers.tool_kit import (
     TransactionStatus,
     USSD,
 )
-from paystackease.helpers.meta import get_meta
+from paystackease.helpers.data_types import BulkChargeItem, BulkChargeListObject

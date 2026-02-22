@@ -8,7 +8,7 @@ from datetime import date
 from typing import List, Dict, Optional, Any, Union
 
 from paystackease.core import AsyncRequestAPI, PayStackResponse
-from paystackease.helpers import STATUS
+from paystackease.helpers import STATUS, BulkChargeListObject
 
 
 class AsyncBulkChargesClientAPI(AsyncRequestAPI):
@@ -17,7 +17,7 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    async def initiate_bulk_charge(self, objects: List[Dict[str, Any]]) -> PayStackResponse:
+    async def initiate_bulk_charge(self, objects: BulkChargeListObject) -> PayStackResponse:
         """
         Send an array of objects with authorization codes and amount
 
@@ -25,13 +25,12 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
 
         note::
 
-            A list of dictionary with authorization codes, amount and reference as keys
-            [{"authorization": "123456", "amount": 1000, "reference": "123456" }]
+            A BulkChargeListObject. See paystackease.helpers.data_types.BulkChargeListObject
 
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        return await self._post_request("/bulkcharge", data=objects)
+        return await self._post_request("/bulkcharge", data=objects.use_as_list)
 
     async def list_bulk_charge_batches(
             self,
