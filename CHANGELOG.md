@@ -1,7 +1,15 @@
 # CHANGELOG
 
 
+## v2.3.5 (2026-02-22)
+
+
 ## v2.3.4 (2026-02-22)
+
+### Bug Fixes
+
+- Changed the licence year
+  ([`4b0a554`](https://github.com/cla-bit/PayStackEase/commit/4b0a55411f7b017452186907351911582c64291f))
 
 
 ## v2.3.3 (2026-02-22)
