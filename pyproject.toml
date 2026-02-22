@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "paystackease"
-version = "2.3.2"
-description = "This is a simple api wrapper that implements both asynchronous and synchronous http requests to interact with Paystack APIs. This also utilizes webhooks for improved integration."
+version = "2.3.3"
+description = "This is a simple api wrapper that implements both asynchronous and synchronous http requests to interact with Paystack APIs."
 authors = ["Peter Mbachu <doublep098@gmail.com>"]
 maintainers = ["Ose Ovie <ovieose17@gmail.com>"]
 license = "MIT"
@@ -36,7 +36,7 @@ text = "Copyright ©2024 Peter Mbachu"
 
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.9"
 aiohttp = "^3.8"
 requests = "^2.31"
 python-decouple = "^3.8"

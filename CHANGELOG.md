@@ -2,9 +2,19 @@
 
 
 
+## v2.3.3 (2026-02-22)
+
+### Unknown
+
+* Merge branch &#39;main&#39; of github.com-personal:cla-bit/PayStackEase ([`7b50bd3`](https://github.com/cla-bit/PayStackEase/commit/7b50bd31fd871656640a4dddc311f586062862d9))
+
+
 ## v2.3.2 (2026-02-22)
 
 ### Fix
+
+* fix: implemented version numbering in the conf.py for automated version documentation.
+refactor: reformatted using black ([`7dd494b`](https://github.com/cla-bit/PayStackEase/commit/7dd494b45d70a31258a51fa76c8b035d39e5da20))
 
 * fix: implemented version numbering in the conf.py for automated version documentation. ([`a2afd67`](https://github.com/cla-bit/PayStackEase/commit/a2afd67bce92679024c6d882487ab76e613b1fee))
 
