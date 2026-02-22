@@ -42,6 +42,8 @@ from paystackease.helpers import (
     TransactionStatus,
     USSD,
 )
+from paystackease.metadata.__version__ import __version__
+
 
 __all__ = [
     "PayStackBase",

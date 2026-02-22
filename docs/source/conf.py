@@ -12,12 +12,15 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
+# import the paystackease package
+import paystackease
+
 
 project = "PayStackEase"
-copyright = "2024, Peter Mbachu"
+copyright = "2026, Peter Mbachu"
 author = "Peter Mbachu"
-release = "2.0.0"
-version = "2.0.0"
+release = paystackease.__version__
+version = '.'.join(release.split('.')[:2])
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
