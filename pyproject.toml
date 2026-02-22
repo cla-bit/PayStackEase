@@ -25,7 +25,7 @@ packages = [{include = "paystackease"}]
 
 
 [license]
-text = "Copyright ©2024 Peter Mbachu"
+text = "Copyright ©2026 Peter Mbachu"
 
 
 [tool.poetry.urls]
