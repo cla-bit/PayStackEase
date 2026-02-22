@@ -2,6 +2,56 @@
 
 
 
+## v2.3.1 (2026-02-22)
+
+### Fix
+
+* fix: fixed the initiate_bulk_charge() method in BulkChargesClientAPI AND AsyncBulkChargesClientAPI class using BulkChargeListObject pydantic class
+feat: added data_types module. This contains data schemas or types, example BulkChargeListObject
+refactor: updated bulk_charge documentation on both async and sync api.
+refactor: updated the api_bulk_charges module. ([`aee52a7`](https://github.com/cla-bit/PayStackEase/commit/aee52a7467852435bbbbfd6388e16ea72fd1b9ea))
+
+### Refactor
+
+* refactor: reformatted paystackease-ci.yml
+refactor: reformatted paystackease-cd.yml
+refactor: deleted paystackease-ci-cd.yml ([`6f78035`](https://github.com/cla-bit/PayStackEase/commit/6f780355d98be1414cb3eacad12a94ae2bcadff1))
+
+* refactor: reformatted using black ([`ad254f2`](https://github.com/cla-bit/PayStackEase/commit/ad254f28461344fd85ecea04987abe2150f5ca47))
+
+* refactor: reformatted using black ([`08f3635`](https://github.com/cla-bit/PayStackEase/commit/08f363567a03d88b87fe6b674649263dcf917d47))
+
+* refactor: updated paystackease-ci-cd yaml file ([`023c185`](https://github.com/cla-bit/PayStackEase/commit/023c185bbddf96c556657fc41118ba59072dbe99))
+
+* refactor: updated paystackease-ci-cd yaml file ([`5f30243`](https://github.com/cla-bit/PayStackEase/commit/5f30243a0c12b1d76c943ac442cbe55885a4a2b5))
+
+* refactor: updated paystackease-ci-cd yaml file ([`d19beef`](https://github.com/cla-bit/PayStackEase/commit/d19beefb13f986cc24ca442bed26ce196caa3842))
+
+* refactor: updated paystackease-ci-cd yaml file ([`9813384`](https://github.com/cla-bit/PayStackEase/commit/9813384588408dde75a3accb5bcb058e7eb1d97e))
+
+* refactor: updated paystackease-ci-cd yaml file ([`0cf757a`](https://github.com/cla-bit/PayStackEase/commit/0cf757a739d07db715fa983ffae1b8e731a47244))
+
+* refactor: updated paystackease-ci-cd yaml file ([`4cdfb73`](https://github.com/cla-bit/PayStackEase/commit/4cdfb737e8293d4518113512add258e4f0c19218))
+
+* refactor: updated paystackease-ci-cd yaml file ([`988655f`](https://github.com/cla-bit/PayStackEase/commit/988655f697ee0b0e7aad0dbed8ed43716d4269ee))
+
+### Style
+
+* style: docs
+bugfix: removed any test case scenario that might trigger data detection in the api examples in the resources module.
+feat: added api examples in the resources module to aid easier understanding on how to implement the apis.
+feat: added webhook.rst file for documentation.
+bugfix: deprecated the &#39;url&#39; property as a response method to &#39;checkout_url&#39; after a transaction process.
+add: added a &#39;charge_url&#39; property method as a response after a charge process.
+feat: added webhooks and events apis using the PayStackWebhook class.
+add: added a signature verification error class response called PayStackSignatureVerifyError.
+fix: updated the following documentations example, transactions and index rst files. ([`92f5f9b`](https://github.com/cla-bit/PayStackEase/commit/92f5f9b2f83dc46f734db49b0e427855aac3297a))
+
+### Unknown
+
+* Merge branch &#39;refs/heads/dev&#39; ([`4fa1dca`](https://github.com/cla-bit/PayStackEase/commit/4fa1dca16f938bea2403eed3d4c265f290bbf93c))
+
+
 ## v2.3.0 (2024-05-30)
 
 ### Feature
