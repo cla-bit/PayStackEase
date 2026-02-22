@@ -26,7 +26,7 @@ jobs:
 
       ## Alternative Method 2: If you prefer snok/install-poetry, uncomment below and comment above
     - name: Install poetry
-    - uses: snok/install-poetry@v1
+      uses: snok/install-poetry@v1
       with:
         version: 2.3.2  # Use specific version instead of 'latest'
         virtualenvs-create: true
