@@ -1,11 +1,14 @@
 """
 This holds function to convert to subunits in NGN, GHS, USD, ZAR and KES
 """
+
 from typing import Union
 from paystackease.helpers.tool_kit import Currency
 
 
-def convert_to_subunit(amount: int, currency: Union[Currency, None] = Currency.NGN) -> int:
+def convert_to_subunit(
+    amount: int, currency: Union[Currency, None] = Currency.NGN
+) -> int:
     """
     Convert a subunit amount to a base amount
     :param amount:

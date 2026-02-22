@@ -18,15 +18,15 @@ class TransferRecipientsClientAPI(SyncRequestAPI):
     """
 
     def create_transfer_recipients(
-            self,
-            recipient_type: str,
-            recipient_name: str,
-            account_number: str,
-            bank_code: str,
-            description: Optional[Union[str, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            authorization_code: Optional[Union[str, None]] = None,
-            metadata: Optional[Union[Dict[str, Any], None]] = None,
+        self,
+        recipient_type: str,
+        recipient_name: str,
+        account_number: str,
+        bank_code: str,
+        description: Optional[Union[str, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        authorization_code: Optional[Union[str, None]] = None,
+        metadata: Optional[Union[Dict[str, Any], None]] = None,
     ) -> PayStackResponse:
         """
         Create a transfer recipient
@@ -56,7 +56,9 @@ class TransferRecipientsClientAPI(SyncRequestAPI):
         }
         return self._post_request("/transferrecipient", data=data)
 
-    def bulk_create_transfer_recipient(self, batch: List[Dict[str, Any]]) -> PayStackResponse:
+    def bulk_create_transfer_recipient(
+        self, batch: List[Dict[str, Any]]
+    ) -> PayStackResponse:
         """
         Create multiple transfer recipients in batches.
 
@@ -70,11 +72,11 @@ class TransferRecipientsClientAPI(SyncRequestAPI):
         return self._post_request("/transferrecipient/bulk", data=data)
 
     def list_transfer_recipients(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List transfer recipients
@@ -107,10 +109,10 @@ class TransferRecipientsClientAPI(SyncRequestAPI):
         return self._get_request(f"/transferrecipient/{id_or_code}")
 
     def update_transfer_recipient(
-            self,
-            id_or_code: str,
-            recipient_name: str,
-            recipient_email: Optional[Union[str, None]] = None,
+        self,
+        id_or_code: str,
+        recipient_name: str,
+        recipient_email: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Update a transfer recipient

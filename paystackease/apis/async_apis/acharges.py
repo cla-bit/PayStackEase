@@ -19,18 +19,18 @@ class AsyncChargesClientAPI(AsyncRequestAPI):
 
     async def create_charge(
         self,
-            email: str,
-            amount: int,
-            metadata: Dict[str, List[Dict[str, Any]]],
-            authorization_code: Optional[Union[str, None]] = None,
-            pin: Optional[Union[int, None]] = None,
-            reference: Optional[Union[str, None]] = None,
-            device_id: Optional[Union[str, None]] = None,
-            bank: Optional[Union[Dict[str, str], None]] = None,
-            bank_transfer: Optional[Union[Dict[PWT, Any], None]] = None,
-            qr: Optional[Union[Dict[str, str], None]] = None,
-            ussd: Optional[Union[Dict[str, str], None]] = None,
-            mobile_money: Optional[Union[Dict[str, str], None]] = None,
+        email: str,
+        amount: int,
+        metadata: Dict[str, List[Dict[str, Any]]],
+        authorization_code: Optional[Union[str, None]] = None,
+        pin: Optional[Union[int, None]] = None,
+        reference: Optional[Union[str, None]] = None,
+        device_id: Optional[Union[str, None]] = None,
+        bank: Optional[Union[Dict[str, str], None]] = None,
+        bank_transfer: Optional[Union[Dict[PWT, Any], None]] = None,
+        qr: Optional[Union[Dict[str, str], None]] = None,
+        ussd: Optional[Union[Dict[str, str], None]] = None,
+        mobile_money: Optional[Union[Dict[str, str], None]] = None,
     ) -> PayStackResponse:
         """
         Create a charge

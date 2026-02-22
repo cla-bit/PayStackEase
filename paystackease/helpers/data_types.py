@@ -28,6 +28,7 @@ class BulkChargeItem(BaseModel):
         >>> print(charge.authorization)
         'AUTH_12345'
     """
+
     authorization: str
     amount: int
     reference: str
@@ -114,6 +115,7 @@ class BulkChargeListObject(BaseModel):
         >>> print(api_ready_list)
         [{'authorization': 'AUTH1', 'amount': 1000, 'reference': 'REF1'}, ...]
     """
+
     charges: List[BulkChargeItem]
 
     @field_validator("charges", mode="before")
@@ -159,11 +161,11 @@ class BulkChargeListObject(BaseModel):
             raise ValueError("charges must be a list")
 
         # Validate each dictionary has exactly the required keys
-        required_keys = {'authorization', 'amount', 'reference'}
+        required_keys = {"authorization", "amount", "reference"}
 
         for i, item in enumerate(value):
             if not isinstance(item, dict):
-                raise ValueError(f'Item at index {i} must be a dictionary')
+                raise ValueError(f"Item at index {i} must be a dictionary")
 
             # Check for exact key match
             item_keys = set(item.keys())
@@ -171,12 +173,14 @@ class BulkChargeListObject(BaseModel):
             # Check for missing keys
             missing_keys = required_keys - item_keys
             if missing_keys:
-                raise ValueError(f'Item at index {i} missing required keys: {missing_keys}')
+                raise ValueError(
+                    f"Item at index {i} missing required keys: {missing_keys}"
+                )
 
             # Check for extra keys
             extra_keys = item_keys - required_keys
             if extra_keys:
-                raise ValueError(f'Item at index {i} has extra keys: {extra_keys}')
+                raise ValueError(f"Item at index {i} has extra keys: {extra_keys}")
         return value
 
     @property

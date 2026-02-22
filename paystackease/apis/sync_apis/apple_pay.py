@@ -29,10 +29,10 @@ class ApplePayClientAPI(SyncRequestAPI):
         return self._post_request("/apple-pay/domain", data=data)
 
     def list_domains(
-            self,
-            use_cursor: Optional[Union[bool, None]] = False,
-            next_page: Optional[Union[int, None]] = None,
-            previous_page: Optional[Union[int, None]] = None,
+        self,
+        use_cursor: Optional[Union[bool, None]] = False,
+        next_page: Optional[Union[int, None]] = None,
+        previous_page: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         List all registered domains

@@ -17,7 +17,9 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
     Reference: https://paystack.com/docs/api/bulk-charge/
     """
 
-    async def initiate_bulk_charge(self, objects: BulkChargeListObject) -> PayStackResponse:
+    async def initiate_bulk_charge(
+        self, objects: BulkChargeListObject
+    ) -> PayStackResponse:
         """
         Send an array of objects with authorization codes and amount
 
@@ -33,11 +35,11 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         return await self._post_request("/bulkcharge", data=objects.use_as_list)
 
     async def list_bulk_charge_batches(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all bulk charges
@@ -79,13 +81,13 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
         return await self._get_request(f"/bulkcharge/{id_or_code}")
 
     async def fetch_charge_bulk_batch(
-            self,
-            id_or_code: str,
-            status: Optional[Union[STATUS, None]] = None,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        id_or_code: str,
+        status: Optional[Union[STATUS, None]] = None,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Fetch a bulk charge of a specific batch
@@ -117,7 +119,9 @@ class AsyncBulkChargesClientAPI(AsyncRequestAPI):
             "from": from_date,
             "to": to_date,
         }
-        return await self._get_request(f"/bulkcharge/{id_or_code}/charges", params=params)
+        return await self._get_request(
+            f"/bulkcharge/{id_or_code}/charges", params=params
+        )
 
     async def pause_bulk_charge_batch(self, batch_code: str) -> PayStackResponse:
         """

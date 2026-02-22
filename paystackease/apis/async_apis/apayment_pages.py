@@ -17,15 +17,15 @@ class AsyncPaymentPagesClientAPI(AsyncRequestAPI):
     """
 
     async def create_payment_page(
-            self,
-            name: str,
-            description: Optional[Union[str, None]] = None,
-            amount: Optional[Union[int, None]] = None,
-            split_code: Optional[Union[str, None]] = None,
-            page_slug: Optional[Union[str, None]] = None,
-            redirect_url: Optional[Union[str, None]] = None,
-            metadata: Optional[Union[Dict[str, Any], None]] = None,
-            custom_fields: Optional[Union[List[Dict[str, Any]], None]] = None,
+        self,
+        name: str,
+        description: Optional[Union[str, None]] = None,
+        amount: Optional[Union[int, None]] = None,
+        split_code: Optional[Union[str, None]] = None,
+        page_slug: Optional[Union[str, None]] = None,
+        redirect_url: Optional[Union[str, None]] = None,
+        metadata: Optional[Union[Dict[str, Any], None]] = None,
+        custom_fields: Optional[Union[List[Dict[str, Any]], None]] = None,
     ) -> PayStackResponse:
         """
         Create a payment page
@@ -61,11 +61,11 @@ class AsyncPaymentPagesClientAPI(AsyncRequestAPI):
         return await self._post_request("/page", data=data)
 
     async def list_payment_pages(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all the payment pages
@@ -101,12 +101,12 @@ class AsyncPaymentPagesClientAPI(AsyncRequestAPI):
         return await self._get_request(f"/page/{page_id_or_slug}")
 
     async def update_payment_page(
-            self,
-            page_id_or_slug: str,
-            name: Optional[Union[str, None]] = None,
-            description: Optional[Union[str, None]] = None,
-            amount: Optional[Union[int, None]] = None,
-            active: Optional[Union[bool, None]] = True,
+        self,
+        page_id_or_slug: str,
+        name: Optional[Union[str, None]] = None,
+        description: Optional[Union[str, None]] = None,
+        amount: Optional[Union[int, None]] = None,
+        active: Optional[Union[bool, None]] = True,
     ) -> PayStackResponse:
         """
         Update a payment page detail
@@ -143,7 +143,9 @@ class AsyncPaymentPagesClientAPI(AsyncRequestAPI):
         """
         return await self._get_request(f"/page/check_slug_availability/{page_slug}")
 
-    async def add_products(self, payment_id: int, product: List[int]) -> PayStackResponse:
+    async def add_products(
+        self, payment_id: int, product: List[int]
+    ) -> PayStackResponse:
         """
         Add products to a payment page
 

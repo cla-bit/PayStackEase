@@ -8,7 +8,7 @@ from tests.conftest import async_base_client_request
 
 @pytest.mark.asyncio
 async def test_get_request(async_base_client_request):
-    """ Test the get request method"""
+    """Test the get request method"""
     with aioresponses() as mock_client:
         mock_response = {"status": "success"}
         mock_client.get(
@@ -22,7 +22,7 @@ async def test_get_request(async_base_client_request):
 
 @pytest.mark.asyncio
 async def test_post_request(async_base_client_request):
-    """ Test the get request method"""
+    """Test the get request method"""
     with aioresponses() as mock_client:
         mock_response = {"status": "success"}
         mock_data = {"key": "value"}
@@ -37,7 +37,7 @@ async def test_post_request(async_base_client_request):
 
 @pytest.mark.asyncio
 async def test_put_request(async_base_client_request):
-    """ Test the get request method"""
+    """Test the get request method"""
     with aioresponses() as mock_client:
         mock_response = {"status": "success"}
         mock_data = {"key": "value"}
@@ -52,7 +52,7 @@ async def test_put_request(async_base_client_request):
 
 @pytest.mark.asyncio
 async def test_delete_request(async_base_client_request):
-    """ Test the get request method"""
+    """Test the get request method"""
     with aioresponses() as mock_client:
         mock_response = {"status": "success"}
         mock_data = {"key": "value"}
@@ -61,5 +61,7 @@ async def test_delete_request(async_base_client_request):
             payload=mock_response,
             status=200,
         )
-        response = await async_base_client_request._delete_request("test", data=mock_data)
+        response = await async_base_client_request._delete_request(
+            "test", data=mock_data
+        )
         assert response.status == "success"

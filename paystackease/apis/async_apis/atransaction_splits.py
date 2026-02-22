@@ -4,6 +4,7 @@ Wrapper for Asynchronous Paystack Transaction Splits APIs
 The Transaction Splits API enables merchants split the settlement for a transaction
 across their payout account, and one or more subaccounts.
 """
+
 from datetime import date
 from typing import Optional, List, Dict, Any, Union
 
@@ -18,13 +19,13 @@ class AsyncTransactionSplitClientAPI(AsyncRequestAPI):
     """
 
     async def create_split(
-            self,
-            transaction_split_name: str,
-            transaction_split_type: str,
-            currency: Currency,
-            subaccounts: List[Dict[str, Any]],
-            bearer_type: str,
-            bearer_subaccount: str,
+        self,
+        transaction_split_name: str,
+        transaction_split_type: str,
+        currency: Currency,
+        subaccounts: List[Dict[str, Any]],
+        bearer_type: str,
+        bearer_subaccount: str,
     ) -> PayStackResponse:
         """
         Create a split payment on your integration
@@ -51,7 +52,7 @@ class AsyncTransactionSplitClientAPI(AsyncRequestAPI):
         return await self._post_request("/split", data=data)
 
     async def add_or_update_subaccount_split(
-            self, split_id: str, subaccount: str, transaction_share: int
+        self, split_id: str, subaccount: str, transaction_share: int
     ) -> PayStackResponse:
         """
         Add a Subaccount to a Transaction Split, or update the share of
@@ -67,7 +68,9 @@ class AsyncTransactionSplitClientAPI(AsyncRequestAPI):
         data = {"subaccount": subaccount, "share": transaction_share}
         return await self._post_request(f"/split/{split_id}/subaccount/add", data=data)
 
-    async def remove_sub_account_split(self, split_id: str, subaccount: str) -> PayStackResponse:
+    async def remove_sub_account_split(
+        self, split_id: str, subaccount: str
+    ) -> PayStackResponse:
         """
         Remove a Sub Account from a transaction split
 
@@ -78,15 +81,17 @@ class AsyncTransactionSplitClientAPI(AsyncRequestAPI):
         :rtype: PayStackResponse object
         """
         data = {"subaccount": subaccount}
-        return await self._post_request(f"/split/{split_id}/subaccount/remove", data=data)
+        return await self._post_request(
+            f"/split/{split_id}/subaccount/remove", data=data
+        )
 
     async def update_split(
-            self,
-            split_id: str,
-            transaction_split_name: str,
-            active: bool,
-            bearer_type: Optional[Union[str, None]] = None,
-            bearer_subaccount: Optional[Union[str, None]] = None,
+        self,
+        split_id: str,
+        transaction_split_name: str,
+        active: bool,
+        bearer_type: Optional[Union[str, None]] = None,
+        bearer_subaccount: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Update a specific transaction split details
@@ -113,14 +118,14 @@ class AsyncTransactionSplitClientAPI(AsyncRequestAPI):
         return await self._put_request(f"/split/{split_id}", data=data)
 
     async def list_split(
-            self,
-            split_name: Optional[Union[str, None]] = None,
-            active: Optional[Union[bool, None]] = True,
-            sort_by: Optional[Union[str, None]] = None,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        split_name: Optional[Union[str, None]] = None,
+        active: Optional[Union[bool, None]] = True,
+        sort_by: Optional[Union[str, None]] = None,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all the transaction splits

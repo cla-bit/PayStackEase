@@ -19,13 +19,13 @@ class TransactionSplitClientAPI(SyncRequestAPI):
     """
 
     def create_split(
-            self,
-            transaction_split_name: str,
-            transaction_split_type: str,
-            currency: Currency,
-            subaccounts: List[Dict[str, Any]],
-            bearer_type: str,
-            bearer_subaccount: str,
+        self,
+        transaction_split_name: str,
+        transaction_split_type: str,
+        currency: Currency,
+        subaccounts: List[Dict[str, Any]],
+        bearer_type: str,
+        bearer_subaccount: str,
     ) -> PayStackResponse:
         """
         Create a split payment on your integration
@@ -52,7 +52,7 @@ class TransactionSplitClientAPI(SyncRequestAPI):
         return self._post_request("/split", data=data)
 
     def add_or_update_subaccount_split(
-            self, split_id: str, subaccount: str, transaction_share: int
+        self, split_id: str, subaccount: str, transaction_share: int
     ) -> PayStackResponse:
         """
         Add a Subaccount to a Transaction Split, or update the share of
@@ -68,7 +68,9 @@ class TransactionSplitClientAPI(SyncRequestAPI):
         data = {"subaccount": subaccount, "share": transaction_share}
         return self._post_request(f"/split/{split_id}/subaccount/add", data=data)
 
-    def remove_sub_account_split(self, split_id: str, subaccount: str) -> PayStackResponse:
+    def remove_sub_account_split(
+        self, split_id: str, subaccount: str
+    ) -> PayStackResponse:
         """
         Remove a Sub Account from a transaction split
 
@@ -82,12 +84,12 @@ class TransactionSplitClientAPI(SyncRequestAPI):
         return self._post_request(f"/split/{split_id}/subaccount/remove", data=data)
 
     def update_split(
-            self,
-            split_id: str,
-            transaction_split_name: str,
-            active: bool,
-            bearer_type: Optional[Union[str, None]] = None,
-            bearer_subaccount: Optional[Union[str, None]] = None,
+        self,
+        split_id: str,
+        transaction_split_name: str,
+        active: bool,
+        bearer_type: Optional[Union[str, None]] = None,
+        bearer_subaccount: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Update a specific transaction split details
@@ -114,14 +116,14 @@ class TransactionSplitClientAPI(SyncRequestAPI):
         return self._put_request(f"/split/{split_id}", data=data)
 
     def list_split(
-            self,
-            split_name: Optional[Union[str, None]] = None,
-            active: Optional[Union[bool, None]] = True,
-            sort_by: Optional[Union[str, None]] = None,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        split_name: Optional[Union[str, None]] = None,
+        active: Optional[Union[bool, None]] = True,
+        sort_by: Optional[Union[str, None]] = None,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all the transaction splits

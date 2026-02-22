@@ -52,7 +52,7 @@ class BaseAPI(ABC):
 
     @staticmethod
     def _convert_to_string(
-            value: Union[bool, date, datetime, None]
+        value: Union[bool, date, datetime, None]
     ) -> Union[str, int, None]:
         """
         Convert the type of value to a string
@@ -74,7 +74,9 @@ class BaseAPI(ABC):
             return None
         if type(value) in conversion_functions:
             return conversion_functions[type(value)](value)
-        error_message = f"Unsupported type: {type(value)}. Expected type -bool, -date, -datetime"
+        error_message = (
+            f"Unsupported type: {type(value)}. Expected type -bool, -date, -datetime"
+        )
         logger.error(error_message)
         raise TypeValueError(error_message)
 

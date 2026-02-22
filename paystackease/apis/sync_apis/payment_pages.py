@@ -17,15 +17,15 @@ class PaymentPagesClientAPI(SyncRequestAPI):
     """
 
     def create_payment_page(
-            self,
-            name: str,
-            description: Optional[Union[str, None]] = None,
-            amount: Optional[Union[int, None]] = None,
-            split_code: Optional[Union[str, None]] = None,
-            page_slug: Optional[Union[str, None]] = None,
-            redirect_url: Optional[Union[str, None]] = None,
-            metadata: Optional[Union[Dict[str, Any], None]] = None,
-            custom_fields: Optional[Union[List[Dict[str, Any]], None]] = None,
+        self,
+        name: str,
+        description: Optional[Union[str, None]] = None,
+        amount: Optional[Union[int, None]] = None,
+        split_code: Optional[Union[str, None]] = None,
+        page_slug: Optional[Union[str, None]] = None,
+        redirect_url: Optional[Union[str, None]] = None,
+        metadata: Optional[Union[Dict[str, Any], None]] = None,
+        custom_fields: Optional[Union[List[Dict[str, Any]], None]] = None,
     ) -> PayStackResponse:
         """
         Create a payment page
@@ -35,7 +35,7 @@ class PaymentPagesClientAPI(SyncRequestAPI):
         :param: amount: Amount of the page
         :param: split_code: Split code of the transaction split
         :param: page_slug: URL slug you would like to be associated with this page.
-        
+
         note::
 
             Page will be accessible at https://paystack.com/pay/page_slug
@@ -61,11 +61,11 @@ class PaymentPagesClientAPI(SyncRequestAPI):
         return self._post_request("/page", data=data)
 
     def list_payment_pages(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all the payment pages
@@ -101,12 +101,12 @@ class PaymentPagesClientAPI(SyncRequestAPI):
         return self._get_request(f"/page/{page_id_or_slug}")
 
     def update_payment_page(
-            self,
-            page_id_or_slug: str,
-            name: Optional[Union[str, None]] = None,
-            description: Optional[Union[str, None]] = None,
-            amount: Optional[Union[int, None]] = None,
-            active: Optional[Union[bool, None]] = True,
+        self,
+        page_id_or_slug: str,
+        name: Optional[Union[str, None]] = None,
+        description: Optional[Union[str, None]] = None,
+        amount: Optional[Union[int, None]] = None,
+        active: Optional[Union[bool, None]] = True,
     ) -> PayStackResponse:
         """
         Update a payment page detail

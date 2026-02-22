@@ -16,13 +16,16 @@ async def main():
 
         # access the API endpoints making a Post request
         register_domain = await paystack_client.apple_pay.register_domain(
-            domain_name="example-of-domain-name")
+            domain_name="example-of-domain-name"
+        )
         print(f"Register domain: {register_domain}")
 
         # access the API endpoints making a Delete request
         unregister_domain = await paystack_client.apple_pay.unregister_domain(
-            domain_name="example-of-domain-name")
+            domain_name="example-of-domain-name"
+        )
         print(f"Unregister domain: {unregister_domain}")
+
 
 asyncio.run(main())
 
@@ -39,12 +42,14 @@ def main():
 
     # access the API endpoints making a Post request
     register_domain = paystack_client.apple_pay.register_domain(
-        domain_name="example-of-domain-name")
+        domain_name="example-of-domain-name"
+    )
     print(f"Register domain: {register_domain}")
 
     # access the API endpoints making a Delete request
     unregister_domain = paystack_client.apple_pay.unregister_domain(
-        domain_name="example-of-domain-name")
+        domain_name="example-of-domain-name"
+    )
     print(f"Unregister domain: {unregister_domain}")
 
 

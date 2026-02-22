@@ -14,21 +14,20 @@ from tests.conftest import bulk_charges_client
     [
         # Test case 1: Valid single input data
         (
-                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
-                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]
+            [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
+            [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
         ),
         # Test case 2: Valid multiple input data
         (
-                [
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
-                ],
-                [
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
-                ],
-
-        )
+            [
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+            ],
+            [
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+            ],
+        ),
     ],
 )
 @responses.activate

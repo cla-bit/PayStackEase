@@ -9,24 +9,28 @@ from paystackease.core import Event
 
 # Sample secret key and payload for tests
 SECRET_KEY = "test_secret_key"
-PAYLOAD = json.dumps({"event": "payment.success", "data": {"id": 12345, "status": "success"}})
-SIGNATURE = hmac.new(SECRET_KEY.encode('utf-8'), msg=PAYLOAD.encode('utf-8'), digestmod=sha512).hexdigest()
+PAYLOAD = json.dumps(
+    {"event": "payment.success", "data": {"id": 12345, "status": "success"}}
+)
+SIGNATURE = hmac.new(
+    SECRET_KEY.encode("utf-8"), msg=PAYLOAD.encode("utf-8"), digestmod=sha512
+).hexdigest()
 INVALID_PAYLOAD_NO_EVENT = {"data": {"id": 12345, "status": "success"}}
 INVALID_PAYLOAD_EMPTY_EVENT = {"event": "", "data": {"id": 12345, "status": "success"}}
 
 
 def test_get_event_data_valid():
-    payload_type = PAYLOAD.encode('utf-8')
+    payload_type = PAYLOAD.encode("utf-8")
     signature_header = SIGNATURE
     data = PayStackWebhook.get_event_data(SECRET_KEY, payload_type, signature_header)
 
     assert isinstance(data, Event)
-    assert data.type == 'payment.success'
-    assert data.event_data == {'id': 12345, 'status': 'success'}
+    assert data.type == "payment.success"
+    assert data.event_data == {"id": 12345, "status": "success"}
 
 
 def test_get_event_data_invalid_signature():
-    payload_type = PAYLOAD.encode('utf-8')
+    payload_type = PAYLOAD.encode("utf-8")
     signature_header = "invalid_signature"
 
     with pytest.raises(PayStackSignatureVerifyError) as excinfo:
@@ -36,7 +40,7 @@ def test_get_event_data_invalid_signature():
 
 
 def test_get_event_data_no_signature():
-    payload_type = PAYLOAD.encode('utf-8')
+    payload_type = PAYLOAD.encode("utf-8")
     signature_header = None
 
     with pytest.raises(PayStackSignatureVerifyError) as excinfo:
@@ -51,8 +55,8 @@ def test_get_event_data_decoded_payload():
     data = PayStackWebhook.get_event_data(SECRET_KEY, payload_type, signature_header)
 
     assert isinstance(data, Event)
-    assert data.type == 'payment.success'
-    assert data.event_data == {'id': 12345, 'status': 'success'}
+    assert data.type == "payment.success"
+    assert data.event_data == {"id": 12345, "status": "success"}
 
 
 def test_make_signature():
@@ -79,17 +83,17 @@ def test_verify_headers_no_signature():
 
 
 def test_event_initialization():
-    event = Event('payment.success', {'id': 12345, 'status': 'success'})
-    assert event.type == 'payment.success'
-    assert event.event_data == {'id': 12345, 'status': 'success'}
+    event = Event("payment.success", {"id": 12345, "status": "success"})
+    assert event.type == "payment.success"
+    assert event.event_data == {"id": 12345, "status": "success"}
 
 
 def test_event_payload():
     event = Event._get_event(json.loads(PAYLOAD))
 
     assert isinstance(event, Event)
-    assert event.type == 'payment.success'
-    assert event.event_data == {'id': 12345, 'status': 'success'}
+    assert event.type == "payment.success"
+    assert event.event_data == {"id": 12345, "status": "success"}
 
 
 def test_get_event_no_event_type():

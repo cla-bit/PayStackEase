@@ -13,21 +13,20 @@ from paystackease import STATUS, BulkChargeListObject
     [
         # Test case 1: Valid single input data
         (
-                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
-                [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}]
+            [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
+            [{"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}],
         ),
         # Test case 2: Valid multiple input data
         (
-                [
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
-                ],
-                [
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
-                    {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"}
-                ],
-
-        )
+            [
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+            ],
+            [
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+                {"authorization": "AUTH_123456", "amount": 1000, "reference": "123456"},
+            ],
+        ),
     ],
 )
 async def test_initialize_bulk_charges(
@@ -43,7 +42,9 @@ async def test_initialize_bulk_charges(
     mocked_responses.post(url, status=200, payload=response_data)
     validated_data = BulkChargeListObject(charges=input_data)
 
-    response = await async_bulk_charges_client.initiate_bulk_charge(objects=validated_data)
+    response = await async_bulk_charges_client.initiate_bulk_charge(
+        objects=validated_data
+    )
     mocked_responses.assert_called()
     assert response is not None
 

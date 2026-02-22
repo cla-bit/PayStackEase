@@ -14,6 +14,7 @@ class AccountType(Enum):
 
 class Bearer(Enum):
     """Bearer supported by Paystack."""
+
     ACCOUNT = "account"
     SUB_ACCOUNT = "subaccount"
 
@@ -42,6 +43,7 @@ class Channels(Enum):
 
 class DisputeStatus(Enum):
     """Dispute status."""
+
     MERCHANT_FEEDBACK = "awaiting-merchant-feedback"
     BANK_FEEDBACK = "awaiting-bank-feedback"
     PENDING = "pending"
@@ -58,6 +60,7 @@ class DocumentType(Enum):
 
 class DVABank(Enum):
     """DVA_BANK supported by Paystack."""
+
     WEMA_BANK = "wema-bank"
     TITAN = "titan-paystack"
 
@@ -70,6 +73,7 @@ class EFT(Enum):
 
 class EventAction(Enum):
     """Event action supported by Paystack."""
+
     PROCESS = "process"
     VIEW = "view"
     PRINT = "print"
@@ -81,7 +85,8 @@ class EventType(Enum):
 
 
 class GateWay(Enum):
-    """ Gateway supported bt Paystack"""
+    """Gateway supported bt Paystack"""
+
     E_MANDATE = "emandate"
     DIGITAL_BANK_MANDATE = "digitalbankmandate"
 
@@ -109,7 +114,8 @@ class MobileMoney(Enum):
 
 
 class PayMentRequestStatus(Enum):
-    """ Payment request status supported by Paystack"""
+    """Payment request status supported by Paystack"""
+
     DRAFT = "draft"
     PENDING = "pending"
 
@@ -153,7 +159,8 @@ class RiskAction(Enum):
 
 
 class SettlementSchedule(Enum):
-    """ Schedule"""
+    """Schedule"""
+
     AUTO = "auto"
     WEEKLY = "weekly"
     MANUAL = "manual"
@@ -176,6 +183,7 @@ class STATUS(Enum):
 
 class TransactionStatus(Enum):
     """Transaction status supported by Paystack."""
+
     FAILED = "failed"
     SUCCESS = "success"
     ABANDONED = "abandoned"

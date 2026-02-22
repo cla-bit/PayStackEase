@@ -3,6 +3,7 @@ Wrapper for Paystack Integration API
 
 The Integration API allows you manage some settings on your integration.
 """
+
 from paystackease.core import PayStackResponse, SyncRequestAPI
 
 
@@ -26,7 +27,7 @@ class IntegrationClientAPI(SyncRequestAPI):
         Update payment session timeout
 
         :param: timeout: The new payment session timeout before session
-        
+
         note::
 
             timeout is in seconds. Set 0 to cancel the timeout

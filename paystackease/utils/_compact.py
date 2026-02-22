@@ -8,6 +8,4 @@ else:
     import importlib.metadata as metadata
 
 
-__all__ = [
-    "metadata"
-]
+__all__ = ["metadata"]

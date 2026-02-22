@@ -17,18 +17,18 @@ class MiscellaneousClientAPI(SyncRequestAPI):
     """
 
     def list_banks(
-            self,
-            country: Optional[Union[str, None]] = None,
-            use_cursor: Optional[Union[bool, None]] = False,
-            per_page: Optional[Union[int, None]] = 50,
-            pay_with_bank_transfer: Optional[Union[bool, None]] = False,
-            pay_with_bank: Optional[Union[bool, None]] = False,
-            enabled_for_verification: Optional[Union[bool, None]] = False,
-            next_cursor: Optional[Union[str, None]] = None,
-            previous_cursor: Optional[Union[str, None]] = None,
-            gateway: Optional[Union[GateWay, None]] = None,
-            channel_type: Optional[Union[Channels, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
+        self,
+        country: Optional[Union[str, None]] = None,
+        use_cursor: Optional[Union[bool, None]] = False,
+        per_page: Optional[Union[int, None]] = 50,
+        pay_with_bank_transfer: Optional[Union[bool, None]] = False,
+        pay_with_bank: Optional[Union[bool, None]] = False,
+        enabled_for_verification: Optional[Union[bool, None]] = False,
+        next_cursor: Optional[Union[str, None]] = None,
+        previous_cursor: Optional[Union[str, None]] = None,
+        gateway: Optional[Union[GateWay, None]] = None,
+        channel_type: Optional[Union[Channels, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
     ) -> PayStackResponse:
         """
         Get a list of all supported banks and their properties

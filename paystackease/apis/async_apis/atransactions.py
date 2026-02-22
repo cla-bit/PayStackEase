@@ -18,20 +18,20 @@ class AsyncTransactionClientAPI(AsyncRequestAPI):
     """
 
     async def initialize(
-            self,
-            email: str,
-            amount: int,
-            currency: Optional[Union[Currency, None]] = Currency.NGN.value,
-            reference: Optional[Union[str, None]] = None,
-            callback_url: Optional[Union[str, None]] = None,
-            plan: Optional[Union[str, None]] = None,
-            invoice_limit: Optional[Union[int, None]] = None,
-            channels: Optional[Union[List[Channels], None]] = None,
-            split_code: Optional[Union[str, None]] = None,
-            subaccount: Optional[Union[str, None]] = None,
-            transaction_charge: Optional[Union[int, None]] = None,
-            bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
-            metadata: Optional[Union[Dict[str, Any], None]] = None,
+        self,
+        email: str,
+        amount: int,
+        currency: Optional[Union[Currency, None]] = Currency.NGN.value,
+        reference: Optional[Union[str, None]] = None,
+        callback_url: Optional[Union[str, None]] = None,
+        plan: Optional[Union[str, None]] = None,
+        invoice_limit: Optional[Union[int, None]] = None,
+        channels: Optional[Union[List[Channels], None]] = None,
+        split_code: Optional[Union[str, None]] = None,
+        subaccount: Optional[Union[str, None]] = None,
+        transaction_charge: Optional[Union[int, None]] = None,
+        bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
+        metadata: Optional[Union[Dict[str, Any], None]] = None,
     ) -> PayStackResponse:
         """
         Initialize a transaction
@@ -74,18 +74,18 @@ class AsyncTransactionClientAPI(AsyncRequestAPI):
         return await self._post_request("/transaction/initialize", data=data)
 
     async def charge_authorization(
-            self,
-            email: str,
-            amount: int,
-            authorization_code: str,
-            reference: Optional[Union[str, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            channels: Optional[Union[List[Channels], None]] = None,
-            subaccount: Optional[Union[str, None]] = None,
-            transaction_charge: Optional[int] = None,
-            bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
-            queue: Optional[Union[bool, None]] = True,
-            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
+        self,
+        email: str,
+        amount: int,
+        authorization_code: str,
+        reference: Optional[Union[str, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        channels: Optional[Union[List[Channels], None]] = None,
+        subaccount: Optional[Union[str, None]] = None,
+        transaction_charge: Optional[int] = None,
+        bearer: Optional[Union[Bearer, None]] = Bearer.ACCOUNT.value,
+        queue: Optional[Union[bool, None]] = True,
+        metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
     ) -> PayStackResponse:
         """
         Charge an authorization transaction
@@ -126,13 +126,13 @@ class AsyncTransactionClientAPI(AsyncRequestAPI):
         return await self._post_request("/transaction/charge_authorization", data=data)
 
     async def partial_debit(
-            self,
-            email: str,
-            authorization_code: str,
-            amount: int,
-            currency: str,
-            reference: Optional[Union[str, None]] = None,
-            at_least: Optional[Union[int, None]] = None,
+        self,
+        email: str,
+        authorization_code: str,
+        amount: int,
+        currency: str,
+        reference: Optional[Union[str, None]] = None,
+        at_least: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         Charge a partial debit transaction
@@ -159,15 +159,15 @@ class AsyncTransactionClientAPI(AsyncRequestAPI):
         return await self._post_request("/transaction/partial_debit", data=data)
 
     async def list_transactions(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            customer: Optional[Union[int, None]] = None,
-            terminal_id: Optional[Union[str, None]] = None,
-            amount: Optional[Union[int, None]] = None,
-            status: Optional[Union[TransactionStatus, None]] = None,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        customer: Optional[Union[int, None]] = None,
+        terminal_id: Optional[Union[str, None]] = None,
+        amount: Optional[Union[int, None]] = None,
+        status: Optional[Union[TransactionStatus, None]] = None,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all transactions
@@ -235,11 +235,11 @@ class AsyncTransactionClientAPI(AsyncRequestAPI):
         return await self._get_request(f"/transaction/timeline/{id_or_reference}")
 
     async def transaction_totals(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Get totals of all transactions
@@ -266,18 +266,18 @@ class AsyncTransactionClientAPI(AsyncRequestAPI):
         return await self._get_request("/transaction/totals", params=params)
 
     async def export_transactions(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            customer: Optional[Union[int, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            amount: Optional[Union[int, None]] = None,
-            status: Optional[Union[TransactionStatus, None]] = None,
-            settled: Optional[Union[bool, None]] = True,
-            settlement: Optional[Union[int, None]] = None,
-            payment_page: Optional[Union[int, None]] = None,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        customer: Optional[Union[int, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        amount: Optional[Union[int, None]] = None,
+        status: Optional[Union[TransactionStatus, None]] = None,
+        settled: Optional[Union[bool, None]] = True,
+        settlement: Optional[Union[int, None]] = None,
+        payment_page: Optional[Union[int, None]] = None,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Export transactions

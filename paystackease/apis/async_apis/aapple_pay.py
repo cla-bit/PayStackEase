@@ -31,9 +31,9 @@ class AsyncApplePayClientAPI(AsyncRequestAPI):
 
     async def list_domains(
         self,
-            use_cursor: Optional[Union[bool, None]] = False,
-            next_page: Optional[Union[int, None]] = None,
-            previous_page: Optional[Union[int, None]] = None,
+        use_cursor: Optional[Union[bool, None]] = False,
+        next_page: Optional[Union[int, None]] = None,
+        previous_page: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         List all registered domains

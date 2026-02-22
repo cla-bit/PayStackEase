@@ -17,11 +17,11 @@ class AsyncTerminalClientAPI(AsyncRequestAPI):
     """
 
     async def send_event(
-            self,
-            terminal_id: str,
-            event_type: EventType,
-            terminal_action: EventAction,
-            data_object: Dict[str, str],
+        self,
+        terminal_id: str,
+        event_type: EventType,
+        terminal_action: EventAction,
+        data_object: Dict[str, str],
     ) -> PayStackResponse:
         """
         Send an event from your application to the Paystack Terminal
@@ -66,7 +66,7 @@ class AsyncTerminalClientAPI(AsyncRequestAPI):
         return await self._post_request("/terminal/decommission_device", data=data)
 
     async def update_terminal(
-            self, terminal_id: str, terminal_name: str, terminal_address: str
+        self, terminal_id: str, terminal_name: str, terminal_address: str
     ) -> PayStackResponse:
         """
         Update details of a terminal
@@ -81,7 +81,9 @@ class AsyncTerminalClientAPI(AsyncRequestAPI):
         data = {"name": terminal_name, "address": terminal_address}
         return await self._put_request(f"/terminal/{terminal_id}", data=data)
 
-    async def fetch_event_status(self, terminal_id: str, event_id: str) -> PayStackResponse:
+    async def fetch_event_status(
+        self, terminal_id: str, event_id: str
+    ) -> PayStackResponse:
         """
         Fetch details of a specific event status sent to the terminal
 
@@ -105,10 +107,10 @@ class AsyncTerminalClientAPI(AsyncRequestAPI):
         return await self._get_request(f"/terminal/{terminal_id}/presence")
 
     async def list_terminals(
-            self,
-            per_page: int = 50,
-            next_cursor: Optional[Union[bool, None]] = True,
-            previous_cursor: Optional[Union[bool, None]] = True,
+        self,
+        per_page: int = 50,
+        next_cursor: Optional[Union[bool, None]] = True,
+        previous_cursor: Optional[Union[bool, None]] = True,
     ) -> PayStackResponse:
         """
         List the Terminals available on your integration

@@ -17,11 +17,11 @@ class TerminalClientAPI(SyncRequestAPI):
     """
 
     def send_event(
-            self,
-            terminal_id: str,
-            event_type: EventType,
-            terminal_action: EventAction,
-            data_object: Dict[str, str],
+        self,
+        terminal_id: str,
+        event_type: EventType,
+        terminal_action: EventAction,
+        data_object: Dict[str, str],
     ) -> PayStackResponse:
         """
         Send an event from your application to the Paystack Terminal
@@ -66,7 +66,7 @@ class TerminalClientAPI(SyncRequestAPI):
         return self._post_request("/terminal/decommission_device", data=data)
 
     def update_terminal(
-            self, terminal_id: str, terminal_name: str, terminal_address: str
+        self, terminal_id: str, terminal_name: str, terminal_address: str
     ) -> PayStackResponse:
         """
         Update details of a terminal
@@ -105,10 +105,10 @@ class TerminalClientAPI(SyncRequestAPI):
         return self._get_request(f"/terminal/{terminal_id}/presence")
 
     def list_terminals(
-            self,
-            per_page: int = 50,
-            next_cursor: Optional[Union[bool, None]] = True,
-            previous_cursor: Optional[Union[bool, None]] = True,
+        self,
+        per_page: int = 50,
+        next_cursor: Optional[Union[bool, None]] = True,
+        previous_cursor: Optional[Union[bool, None]] = True,
     ) -> PayStackResponse:
         """
         List the Terminals available on your integration

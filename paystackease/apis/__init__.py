@@ -23,7 +23,7 @@ from paystackease.apis.async_apis import (
     atransfer_recipients,
     atransfers,
     atransfers_control,
-    averification
+    averification,
 )
 
 from paystackease.apis.sync_apis import (
@@ -49,5 +49,5 @@ from paystackease.apis.sync_apis import (
     transfer_recipients,
     transfers,
     transfers_control,
-    verification
+    verification,
 )

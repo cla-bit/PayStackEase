@@ -24,7 +24,7 @@ async def main():
             description="Testing Product One",
             amount=10000,
             currency=Currency.NGN.value,
-            quantity=10
+            quantity=10,
         )
         print(f"Created Product: {create_product}")
 
@@ -62,7 +62,7 @@ def main():
         description="Testing Product One",
         amount=10000,
         currency=Currency.NGN.value,
-        quantity=10
+        quantity=10,
     )
     print(f"Created Product: {create_product}")
 

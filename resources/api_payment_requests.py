@@ -109,7 +109,7 @@ def main():
         line_items=[{"name": "item 1", "amount": 20000}],
         tax=[{"name": "VAT", "amount": 2300}],
         description="Testing payment request",
-        has_invoice=False
+        has_invoice=False,
     )
     print(f"Created Payment Request: {payment_request}")
 

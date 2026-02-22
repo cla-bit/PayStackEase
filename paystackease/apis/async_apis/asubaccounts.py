@@ -19,16 +19,16 @@ class AsyncSubAccountClientAPI(AsyncRequestAPI):
     """
 
     async def create_subaccount(
-            self,
-            business_name: str,
-            settlement_bank: str,
-            account_number: str,
-            percentage_charge: float,
-            description: str,
-            primary_contact_email: Optional[Union[str, None]] = None,
-            primary_contact_name: Optional[Union[str, None]] = None,
-            primary_contact_phone: Optional[Union[str, None]] = None,
-            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
+        self,
+        business_name: str,
+        settlement_bank: str,
+        account_number: str,
+        percentage_charge: float,
+        description: str,
+        primary_contact_email: Optional[Union[str, None]] = None,
+        primary_contact_name: Optional[Union[str, None]] = None,
+        primary_contact_phone: Optional[Union[str, None]] = None,
+        metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
     ) -> PayStackResponse:
         """
         Create a subaccount
@@ -60,19 +60,21 @@ class AsyncSubAccountClientAPI(AsyncRequestAPI):
         return await self._post_request("/subaccount", data=data)
 
     async def update_subaccount(
-            self,
-            id_or_code: str,
-            business_name: str,
-            settlement_bank: str,
-            account_number: str,
-            active: Optional[Union[bool, None]] = True,
-            percentage_charge: Optional[Union[float, None]] = None,
-            description: Optional[Union[str, None]] = None,
-            primary_contact_email: Optional[Union[str, None]] = None,
-            primary_contact_name: Optional[Union[str, None]] = None,
-            primary_contact_phone: Optional[Union[str, None]] = None,
-            settlement_schedule: Optional[Union[SettlementSchedule, None]] = SettlementSchedule.AUTO.value,
-            metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
+        self,
+        id_or_code: str,
+        business_name: str,
+        settlement_bank: str,
+        account_number: str,
+        active: Optional[Union[bool, None]] = True,
+        percentage_charge: Optional[Union[float, None]] = None,
+        description: Optional[Union[str, None]] = None,
+        primary_contact_email: Optional[Union[str, None]] = None,
+        primary_contact_name: Optional[Union[str, None]] = None,
+        primary_contact_phone: Optional[Union[str, None]] = None,
+        settlement_schedule: Optional[
+            Union[SettlementSchedule, None]
+        ] = SettlementSchedule.AUTO.value,
+        metadata: Optional[Union[Dict[str, List[Dict[str, Any]]], None]] = None,
     ) -> PayStackResponse:
         """
         Update a subaccount
@@ -118,11 +120,11 @@ class AsyncSubAccountClientAPI(AsyncRequestAPI):
         return await self._put_request(f"/subaccount/{id_or_code}", data=data)
 
     async def list_subaccounts(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all subaccounts

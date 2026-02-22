@@ -21,14 +21,14 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
     """
 
     async def create_virtual_account(
-            self,
-            customer_id_or_code: str,
-            preferred_bank: Optional[Union[str, None]] = None,
-            subaccount: Optional[Union[str, None]] = None,
-            split_code: Optional[Union[str, None]] = None,
-            first_name: Optional[Union[str, None]] = None,
-            last_name: Optional[Union[str, None]] = None,
-            phone: Optional[Union[str, None]] = None,
+        self,
+        customer_id_or_code: str,
+        preferred_bank: Optional[Union[str, None]] = None,
+        subaccount: Optional[Union[str, None]] = None,
+        split_code: Optional[Union[str, None]] = None,
+        first_name: Optional[Union[str, None]] = None,
+        last_name: Optional[Union[str, None]] = None,
+        phone: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Create a dedicated virtual account for existing customers.
@@ -62,18 +62,18 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
         return await self._post_request("/dedicated_account", data=data)
 
     async def assign_dedicated_virtual_account(
-            self,
-            email: str,
-            first_name: str,
-            last_name: str,
-            phone: str,
-            preferred_bank: str,
-            country: str,
-            account_number: Optional[Union[str, None]] = None,
-            bvn: Optional[Union[str, None]] = None,
-            bank_code: Optional[Union[str, None]] = None,
-            subaccount: Optional[Union[str, None]] = None,
-            split_code: Optional[Union[str, None]] = None,
+        self,
+        email: str,
+        first_name: str,
+        last_name: str,
+        phone: str,
+        preferred_bank: str,
+        country: str,
+        account_number: Optional[Union[str, None]] = None,
+        bvn: Optional[Union[str, None]] = None,
+        bank_code: Optional[Union[str, None]] = None,
+        subaccount: Optional[Union[str, None]] = None,
+        split_code: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         create a customer, validate the customer, and assign a DVA to the customer
@@ -119,12 +119,12 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
         return await self._post_request("/dedicated_account", data=data)
 
     async def list_dedicated_account(
-            self,
-            active: Optional[Union[bool, None]] = True,
-            currency: Optional[Union[Currency, None]] = None,
-            provider_slug: Optional[Union[str, None]] = None,
-            bank_id: Optional[Union[str, None]] = None,
-            customer_id: Optional[Union[str, None]] = None,
+        self,
+        active: Optional[Union[bool, None]] = True,
+        currency: Optional[Union[Currency, None]] = None,
+        provider_slug: Optional[Union[str, None]] = None,
+        bank_id: Optional[Union[str, None]] = None,
+        customer_id: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         List dedicated accounts
@@ -150,7 +150,9 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
         }
         return await self._get_request("/dedicated_account", params=params)
 
-    async def fetch_dedicated_account(self, dedicated_account_id: int) -> PayStackResponse:
+    async def fetch_dedicated_account(
+        self, dedicated_account_id: int
+    ) -> PayStackResponse:
         """
         Get details of a dedicated virtual account
 
@@ -162,10 +164,10 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
         return await self._get_request(f"/dedicated_account/{dedicated_account_id}")
 
     async def requery_dedicated_account(
-            self,
-            account_number: Optional[Union[str, None]] = None,
-            provider_slug: Optional[Union[str, None]] = None,
-            date_transfer: Optional[Union[date, None]] = None,
+        self,
+        account_number: Optional[Union[str, None]] = None,
+        provider_slug: Optional[Union[str, None]] = None,
+        date_transfer: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Requery a dedicated virtual account for new transactions
@@ -188,7 +190,9 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
         }
         return await self._get_request("/dedicated_account/requery", params=params)
 
-    async def deactivate_dedicated_account(self, dedicated_account_id: int) -> PayStackResponse:
+    async def deactivate_dedicated_account(
+        self, dedicated_account_id: int
+    ) -> PayStackResponse:
         """
         Deactivate a dedicated virtual account
 
@@ -200,11 +204,11 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
         return await self._delete_request(f"/dedicated_account/{dedicated_account_id}")
 
     async def split_dedicated_account(
-            self,
-            customer_id_or_code: str,
-            subaccount: Optional[Union[str, None]] = None,
-            split_code: Optional[Union[str, None]] = None,
-            preferred_bank: Optional[Union[str, None]] = None,
+        self,
+        customer_id_or_code: str,
+        subaccount: Optional[Union[str, None]] = None,
+        split_code: Optional[Union[str, None]] = None,
+        preferred_bank: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Split a dedicated virtual account transaction with one or more accounts
@@ -225,7 +229,9 @@ class AsyncDedicatedVirtualAccountClientAPI(AsyncRequestAPI):
         }
         return await self._post_request("/dedicated_account/split", data=data)
 
-    async def remove_split_dedicated_account(self, account_number: str) -> PayStackResponse:
+    async def remove_split_dedicated_account(
+        self, account_number: str
+    ) -> PayStackResponse:
         """
         Remove a split dedicated virtual account
 

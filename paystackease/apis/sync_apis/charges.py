@@ -18,19 +18,19 @@ class ChargesClientAPI(SyncRequestAPI):
     """
 
     def create_charge(
-            self,
-            email: str,
-            amount: int,
-            metadata: Dict[str, List[Dict[str, Any]]],
-            authorization_code: Optional[Union[str, None]] = None,
-            pin: Optional[Union[int, None]] = None,
-            reference: Optional[Union[str, None]] = None,
-            device_id: Optional[Union[str, None]] = None,
-            bank: Optional[Union[Dict[str, str], None]] = None,
-            bank_transfer: Optional[Union[Dict[PWT, Any], None]] = None,
-            qr: Optional[Union[Dict[str, str], None]] = None,
-            ussd: Optional[Union[Dict[str, str], None]] = None,
-            mobile_money: Optional[Union[Dict[str, str], None]] = None,
+        self,
+        email: str,
+        amount: int,
+        metadata: Dict[str, List[Dict[str, Any]]],
+        authorization_code: Optional[Union[str, None]] = None,
+        pin: Optional[Union[int, None]] = None,
+        reference: Optional[Union[str, None]] = None,
+        device_id: Optional[Union[str, None]] = None,
+        bank: Optional[Union[Dict[str, str], None]] = None,
+        bank_transfer: Optional[Union[Dict[PWT, Any], None]] = None,
+        qr: Optional[Union[Dict[str, str], None]] = None,
+        ussd: Optional[Union[Dict[str, str], None]] = None,
+        mobile_money: Optional[Union[Dict[str, str], None]] = None,
     ) -> PayStackResponse:
         """
         Create a charge
@@ -154,7 +154,7 @@ class ChargesClientAPI(SyncRequestAPI):
         return self._post_request("/charge/submit_birthday", data=data)
 
     def submit_address(
-            self, reference: str, address: str, city: str, state: str, zipcode: str
+        self, reference: str, address: str, city: str, state: str, zipcode: str
     ) -> PayStackResponse:
         """
         Submit address to continue a charge

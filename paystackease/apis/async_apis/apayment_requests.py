@@ -18,19 +18,19 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
     """
 
     async def create_payment_request(
-            self,
-            customer: str,
-            amount: int,
-            draft: bool = False,
-            has_invoice: bool = True,
-            send_notification: bool = True,
-            due_date: Optional[Union[date, None]] = None,
-            description: Optional[Union[str, Any]] = None,
-            line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
-            tax: Optional[Union[List[Dict[str, Any]], None]] = None,
-            currency: Optional[Union[Currency, Any]] = None,
-            invoice_number: Optional[Union[int, Any]] = None,
-            split_code: Optional[Union[str, Any]] = None,
+        self,
+        customer: str,
+        amount: int,
+        draft: bool = False,
+        has_invoice: bool = True,
+        send_notification: bool = True,
+        due_date: Optional[Union[date, None]] = None,
+        description: Optional[Union[str, Any]] = None,
+        line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
+        tax: Optional[Union[List[Dict[str, Any]], None]] = None,
+        currency: Optional[Union[Currency, Any]] = None,
+        invoice_number: Optional[Union[int, Any]] = None,
+        split_code: Optional[Union[str, Any]] = None,
     ) -> PayStackResponse:
         """
         Create a payment request for a transaction
@@ -71,15 +71,15 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
         return await self._post_request("/paymentrequest", data=data)
 
     async def list_payment_requests(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            customer: Optional[Union[str, None]] = None,
-            status: Optional[Union[PayMentRequestStatus, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            include_archive: Optional[Union[bool, None]] = True,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        customer: Optional[Union[str, None]] = None,
+        status: Optional[Union[PayMentRequestStatus, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        include_archive: Optional[Union[bool, None]] = True,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all the payment requests
@@ -156,7 +156,9 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
         """
         return await self._get_request("/paymentrequest/totals")
 
-    async def finalize_payment_request(self, code: str, send_notification: bool) -> PayStackResponse:
+    async def finalize_payment_request(
+        self, code: str, send_notification: bool
+    ) -> PayStackResponse:
         """
         Finalize a draft payment request
 
@@ -171,19 +173,19 @@ class AsyncPaymentRequestClientAPI(AsyncRequestAPI):
         return await self._post_request(f"/paymentrequest/finalize/{code}", data=data)
 
     async def update_payment_request(
-            self,
-            id_or_code: str,
-            customer: Optional[Union[str, None]] = None,
-            amount: Optional[Union[int, None]] = None,
-            description: Optional[Union[str, None]] = None,
-            line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
-            tax: Optional[Union[List[Dict[str, Any]], None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            due_date: Optional[Union[date, None]] = None,
-            send_notification: Optional[Union[bool, None]] = True,
-            draft: Optional[Union[bool, None]] = True,
-            invoice_number: Optional[Union[int, None]] = None,
-            split_code: Optional[Union[str, None]] = None,
+        self,
+        id_or_code: str,
+        customer: Optional[Union[str, None]] = None,
+        amount: Optional[Union[int, None]] = None,
+        description: Optional[Union[str, None]] = None,
+        line_items: Optional[Union[List[Dict[str, Any]], None]] = None,
+        tax: Optional[Union[List[Dict[str, Any]], None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        due_date: Optional[Union[date, None]] = None,
+        send_notification: Optional[Union[bool, None]] = True,
+        draft: Optional[Union[bool, None]] = True,
+        invoice_number: Optional[Union[int, None]] = None,
+        split_code: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Update a payment request

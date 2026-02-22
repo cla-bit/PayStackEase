@@ -43,7 +43,9 @@ class AsyncPayStackBase:
         self.bulk_charges = abulk_charges.AsyncBulkChargesClientAPI()
         self.charges = acharges.AsyncChargesClientAPI()
         self.customers = acustomers.AsyncCustomerClientAPI()
-        self.dedicated_virtual_accounts = adedicated_virtual_accounts.AsyncDedicatedVirtualAccountClientAPI()
+        self.dedicated_virtual_accounts = (
+            adedicated_virtual_accounts.AsyncDedicatedVirtualAccountClientAPI()
+        )
         self.disputes = adisputes.AsyncDisputesClientAPI()
         self.integration = aintegration.AsyncIntegrationClientAPI()
         self.miscellaneous = amiscellaneous.AsyncMiscellaneousClientAPI()
@@ -58,7 +60,9 @@ class AsyncPayStackBase:
         self.terminal = aterminal.AsyncTerminalClientAPI()
         self.transaction_splits = atransaction_splits.AsyncTransactionSplitClientAPI()
         self.transactions = atransactions.AsyncTransactionClientAPI()
-        self.transfer_recipients = atransfer_recipients.AsyncTransferRecipientsClientAPI()
+        self.transfer_recipients = (
+            atransfer_recipients.AsyncTransferRecipientsClientAPI()
+        )
         self.transfers = atransfers.AsyncTransfersClientAPI()
         self.transfer_control = atransfers_control.AsyncTransferControlClientAPI()
         self.verification = averification.AsyncVerificationClientAPI()

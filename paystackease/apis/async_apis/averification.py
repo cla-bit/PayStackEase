@@ -13,7 +13,9 @@ class AsyncVerificationClientAPI(AsyncRequestAPI):
     Reference: https://paystack.com/docs/api/verification/
     """
 
-    async def resolve_account(self, account_number: str, bank_code: str) -> PayStackResponse:
+    async def resolve_account(
+        self, account_number: str, bank_code: str
+    ) -> PayStackResponse:
         """
         Confirm an account belongs to the right customer.
         This feature is available to business in Nigeria and Ghana.
@@ -28,14 +30,14 @@ class AsyncVerificationClientAPI(AsyncRequestAPI):
         return await self._get_request("/bank/resolve", params=params)
 
     async def validate_account(
-            self,
-            account_name: str,
-            account_number: str,
-            account_type: str,
-            bank_code: str,
-            country_code: str,
-            document_type: str,
-            document_number: str,
+        self,
+        account_name: str,
+        account_number: str,
+        account_type: str,
+        bank_code: str,
+        country_code: str,
+        document_type: str,
+        document_number: str,
     ) -> PayStackResponse:
         """
         Confirm the authenticity of a customer's account number before sending money.

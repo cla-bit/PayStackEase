@@ -28,14 +28,14 @@ class VerificationClientAPI(SyncRequestAPI):
         return self._get_request("/bank/resolve", params=params)
 
     def validate_account(
-            self,
-            account_name: str,
-            account_number: str,
-            account_type: str,
-            bank_code: str,
-            country_code: str,
-            document_type: str,
-            document_number: str,
+        self,
+        account_name: str,
+        account_number: str,
+        account_type: str,
+        bank_code: str,
+        country_code: str,
+        document_type: str,
+        document_number: str,
     ) -> PayStackResponse:
         """
         Confirm the authenticity of a customer's account number before sending money.

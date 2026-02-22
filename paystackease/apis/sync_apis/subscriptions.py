@@ -17,11 +17,11 @@ class SubscriptionClientAPI(SyncRequestAPI):
     """
 
     def create_subscription(
-            self,
-            customer: str,
-            plan_code: str,
-            authorization: str,
-            start_date: Optional[Union[date, None]] = None,
+        self,
+        customer: str,
+        plan_code: str,
+        authorization: str,
+        start_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Create a subscription
@@ -47,11 +47,11 @@ class SubscriptionClientAPI(SyncRequestAPI):
         return self._post_request("/subscription", data=data)
 
     def list_subscriptions(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            customer: Optional[Union[int, None]] = None,
-            plan_code: Optional[Union[int, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        customer: Optional[Union[int, None]] = None,
+        plan_code: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         List all the subscriptions
@@ -83,7 +83,9 @@ class SubscriptionClientAPI(SyncRequestAPI):
         """
         return self._get_request(f"/subscription/{id_or_code}")
 
-    def enable_subscription(self, subscription_code: str, token: str) -> PayStackResponse:
+    def enable_subscription(
+        self, subscription_code: str, token: str
+    ) -> PayStackResponse:
         """
         Enable a subscription
 
@@ -96,7 +98,9 @@ class SubscriptionClientAPI(SyncRequestAPI):
         data = {"code": subscription_code, "token": token}
         return self._post_request("/subscription/enable", data=data)
 
-    def disable_subscription(self, subscription_code: str, token: str) -> PayStackResponse:
+    def disable_subscription(
+        self, subscription_code: str, token: str
+    ) -> PayStackResponse:
         """
         Disable a subscription
 

@@ -18,13 +18,13 @@ class SettlementClientAPI(SyncRequestAPI):
     """
 
     def list_settlements(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            status: Optional[Union[STATUS, None]] = None,
-            subaccount: Optional[Union[str, None]] = None,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        status: Optional[Union[STATUS, None]] = None,
+        subaccount: Optional[Union[str, None]] = None,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List settlements made to your settlement accounts
@@ -55,12 +55,12 @@ class SettlementClientAPI(SyncRequestAPI):
         return self._get_request("/settlement", params=params)
 
     def list_settlement_transactions(
-            self,
-            settlement_id: int,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        settlement_id: int,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Get the transactions that make up a particular settlement
@@ -73,7 +73,7 @@ class SettlementClientAPI(SyncRequestAPI):
 
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
-        
+
         note::
 
             Date and time format: 2016-09-24T00:00:05.000Z, 2016-09-21

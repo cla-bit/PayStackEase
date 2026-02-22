@@ -32,11 +32,11 @@ class BulkChargesClientAPI(SyncRequestAPI):
         return self._post_request("/bulkcharge", data=objects.use_as_list)
 
     def list_bulk_charge_batches(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all bulk charges
@@ -78,13 +78,13 @@ class BulkChargesClientAPI(SyncRequestAPI):
         return self._get_request(f"/bulkcharge/{id_or_code}")
 
     def fetch_charge_bulk_batch(
-            self,
-            id_or_code: str,
-            status: Optional[Union[STATUS, None]] = None,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        id_or_code: str,
+        status: Optional[Union[STATUS, None]] = None,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Fetch a bulk charge of a specific batch

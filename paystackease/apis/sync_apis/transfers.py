@@ -18,13 +18,13 @@ class TransfersClientAPI(SyncRequestAPI):
     """
 
     def initiate_transfer(
-            self,
-            transfer_source: str,
-            amount: int,
-            transfer_recipient: str,
-            reason: Optional[Union[str, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            reference: Optional[Union[str, None]] = None,
+        self,
+        transfer_source: str,
+        amount: int,
+        transfer_recipient: str,
+        reason: Optional[Union[str, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        reference: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Initiate a transfer. Upgrade your business to a Registered Business to use
@@ -64,7 +64,7 @@ class TransfersClientAPI(SyncRequestAPI):
         return self._post_request("/transfer/finalize_transfer", data=data)
 
     def initiate_bulk_transfer(
-            self, transfer_source: str, transfers: List[Dict[str, Any]]
+        self, transfer_source: str, transfers: List[Dict[str, Any]]
     ) -> PayStackResponse:
         """
         Batch multiple transfers in a single request
@@ -79,12 +79,12 @@ class TransfersClientAPI(SyncRequestAPI):
         return self._post_request("/transfer/bulk", data=data)
 
     def list_transfers(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            customer_id: Optional[Union[str, None]] = None,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        customer_id: Optional[Union[str, None]] = None,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List transfers

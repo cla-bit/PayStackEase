@@ -10,8 +10,16 @@ from paystackease import PayStackBase, AsyncPayStackBase, STATUS, BulkChargeList
 
 valid_data = {
     "charges": [
-        {"authorization": "AUTH_authorization-code", "amount": 1000, "reference": "reference"},
-        {"authorization": "AUTH_authorization-code", "amount": 4000, "reference": "reference"}
+        {
+            "authorization": "AUTH_authorization-code",
+            "amount": 1000,
+            "reference": "reference",
+        },
+        {
+            "authorization": "AUTH_authorization-code",
+            "amount": 4000,
+            "reference": "reference",
+        },
     ]
 }
 
@@ -26,7 +34,9 @@ async def main():
         list_domains = await paystack_client.bulk_charges.list_bulk_charge_batches(
             from_date=date.today()
         )
-        print(f"List all domains: {list_domains.data}")  # access the data from the PayStackResponse
+        print(
+            f"List all domains: {list_domains.data}"
+        )  # access the data from the PayStackResponse
 
         get_bulk_batch = await paystack_client.bulk_charges.fetch_bulk_charge_batch(
             id_or_code="bulk-id-or-code"
@@ -49,7 +59,9 @@ async def main():
         print(f"Resume a bulk charge batch: {resume_bulk}")
 
         # access the API endpoints making a Post request
-        init_bulk_charge = await paystack_client.bulk_charges.initiate_bulk_charge(objects=validated_data)
+        init_bulk_charge = await paystack_client.bulk_charges.initiate_bulk_charge(
+            objects=validated_data
+        )
         print(f"Initiated a bulk charge: {init_bulk_charge}")
 
 
@@ -87,7 +99,9 @@ def main():
     print(f"Resume a bulk charge batch: {resume_bulk}")
 
     # access the API endpoints making a Post request
-    init_bulk_charge = paystack_client.bulk_charges.initiate_bulk_charge(objects=validated_data)
+    init_bulk_charge = paystack_client.bulk_charges.initiate_bulk_charge(
+        objects=validated_data
+    )
     print(f"Initiated a bulk charge: {init_bulk_charge}")
 
 

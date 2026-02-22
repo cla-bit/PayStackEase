@@ -3,6 +3,7 @@ Wrapper for Asynchronous Paystack Integration API
 
 The Integration API allows you manage some settings on your integration.
 """
+
 from paystackease.core import AsyncRequestAPI, PayStackResponse
 
 
@@ -36,4 +37,6 @@ class AsyncIntegrationClientAPI(AsyncRequestAPI):
         """
 
         data = {"timeout": timeout}
-        return await self._put_request("/integration/payment_session_timeout", data=data)
+        return await self._put_request(
+            "/integration/payment_session_timeout", data=data
+        )

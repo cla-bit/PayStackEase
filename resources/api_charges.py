@@ -10,7 +10,9 @@ async def main():
     """Implementing all the API endpoints"""
     async with AsyncPayStackBase() as paystack_client:
         # access the API endpoints making a Get request
-        check_pend_charge = await paystack_client.charges.check_pending_charge(reference="reference")
+        check_pend_charge = await paystack_client.charges.check_pending_charge(
+            reference="reference"
+        )
         print(f"Check pending charge: {check_pend_charge}")
 
         # access the API endpoints making a Post request
@@ -24,9 +26,11 @@ async def main():
                     "display_name": "test-display",
                     "variable_name": "test-variable",
                 }
-            }
+            },
         )
-        print(f"Create charge: {create_charge.charge_url}")  # access the charge url from PayStackResponse
+        print(
+            f"Create charge: {create_charge.charge_url}"
+        )  # access the charge url from PayStackResponse
 
         submit_pin = await paystack_client.charges.submit_pin(
             pin=1234, reference="reference"
@@ -68,7 +72,9 @@ def main():
 
     """ Implementing all the API endpoints """
     # access the API endpoints making a Get request
-    check_pend_charge = paystack_client.charges.check_pending_charge(reference="reference")
+    check_pend_charge = paystack_client.charges.check_pending_charge(
+        reference="reference"
+    )
     print(f"Check pending charge: {check_pend_charge}")
 
     # access the API endpoints making a Post request
@@ -82,18 +88,16 @@ def main():
                 "display_name": "test-display",
                 "variable_name": "test-variable",
             }
-        }
+        },
     )
-    print(f"Create charge: {create_charge.charge_url}")  # access the charge url from PayStackResponse
+    print(
+        f"Create charge: {create_charge.charge_url}"
+    )  # access the charge url from PayStackResponse
 
-    submit_pin = paystack_client.charges.submit_pin(
-        pin=1234, reference="reference"
-    )
+    submit_pin = paystack_client.charges.submit_pin(pin=1234, reference="reference")
     print(f"Submit pin: {submit_pin}")
 
-    submit_otp = paystack_client.charges.submit_otp(
-        otp=123456, reference="reference"
-    )
+    submit_otp = paystack_client.charges.submit_otp(otp=123456, reference="reference")
     print(f"Submit otp: {submit_otp}")
 
     submit_phone = paystack_client.charges.submit_phone(

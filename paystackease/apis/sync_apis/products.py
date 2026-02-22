@@ -17,13 +17,13 @@ class ProductClientAPI(SyncRequestAPI):
     """
 
     def create_product(
-            self,
-            name: str,
-            description: str,
-            amount: int,
-            currency: str,
-            unlimited: Optional[Union[bool, None]] = True,
-            quantity: Optional[Union[int, None]] = None,
+        self,
+        name: str,
+        description: str,
+        amount: int,
+        currency: str,
+        unlimited: Optional[Union[bool, None]] = True,
+        quantity: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         Create a product
@@ -50,11 +50,11 @@ class ProductClientAPI(SyncRequestAPI):
         return self._post_request("/product", data=data)
 
     def list_products(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all the products
@@ -87,14 +87,14 @@ class ProductClientAPI(SyncRequestAPI):
         return self._get_request(f"/product/{product_id}")
 
     def update_product(
-            self,
-            product_id: str,
-            name: str,
-            description: str,
-            amount: int,
-            currency: str,
-            unlimited: Optional[Union[bool, None]] = True,
-            quantity: Optional[Union[int, None]] = None,
+        self,
+        product_id: str,
+        name: str,
+        description: str,
+        amount: int,
+        currency: str,
+        unlimited: Optional[Union[bool, None]] = True,
+        quantity: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         Update a product detail

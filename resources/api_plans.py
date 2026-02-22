@@ -10,10 +10,14 @@ async def main():
     """Implementing all the API endpoints"""
     async with AsyncPayStackBase() as paystack_client:
         # access the API endpoints making a Get request
-        all_plans = await paystack_client.plans.list_plans()  # active, archived, deleted
+        all_plans = (
+            await paystack_client.plans.list_plans()
+        )  # active, archived, deleted
         print(f"All Plans: {all_plans}")
 
-        plan_detail = await paystack_client.plans.fetch_plan(id_or_code="PLN_plan-id-or-code")
+        plan_detail = await paystack_client.plans.fetch_plan(
+            id_or_code="PLN_plan-id-or-code"
+        )
         print(f"Plan Detail: {plan_detail}")
 
         # access the API endpoints making a Post request

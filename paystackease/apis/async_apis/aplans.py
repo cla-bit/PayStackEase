@@ -17,15 +17,15 @@ class AsyncPlanClientAPI(AsyncRequestAPI):
     """
 
     async def create_plan(
-            self,
-            name: str,
-            amount: int,
-            interval: Interval,
-            currency: str,
-            invoice_limit: int,
-            send_invoices: bool,
-            send_sms: bool,
-            description: Optional[Union[str, None]] = None,
+        self,
+        name: str,
+        amount: int,
+        interval: Interval,
+        currency: str,
+        invoice_limit: int,
+        send_invoices: bool,
+        send_sms: bool,
+        description: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Create a plan
@@ -55,12 +55,12 @@ class AsyncPlanClientAPI(AsyncRequestAPI):
         return await self._post_request("/plan", data=data)
 
     async def list_plans(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            status: Optional[Union[str, None]] = 'active',
-            interval: Optional[Union[Interval, None]] = None,
-            amount: Optional[Union[int, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        status: Optional[Union[str, None]] = "active",
+        interval: Optional[Union[Interval, None]] = None,
+        amount: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         List all the plans
@@ -95,16 +95,16 @@ class AsyncPlanClientAPI(AsyncRequestAPI):
         return await self._get_request(f"/plan/{id_or_code}")
 
     async def update_plan(
-            self,
-            id_or_code: str,
-            name: str,
-            amount: int,
-            interval: Interval,
-            send_invoices: bool,
-            send_sms: bool,
-            currency: str,
-            invoice_limit: int,
-            description: Optional[Union[str, None]] = None,
+        self,
+        id_or_code: str,
+        name: str,
+        amount: int,
+        interval: Interval,
+        send_invoices: bool,
+        send_sms: bool,
+        currency: str,
+        invoice_limit: int,
+        description: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Update a plan detail

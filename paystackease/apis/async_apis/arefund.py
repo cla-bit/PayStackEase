@@ -18,12 +18,12 @@ class AsyncRefundClientAPI(AsyncRequestAPI):
     """
 
     async def create_refund(
-            self,
-            transaction_ref_or_id: str,
-            amount: Optional[Union[int, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            customer_note: Optional[Union[str, None]] = None,
-            merchant_note: Optional[Union[str, None]] = None,
+        self,
+        transaction_ref_or_id: str,
+        amount: Optional[Union[int, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        customer_note: Optional[Union[str, None]] = None,
+        merchant_note: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Create a refund
@@ -47,13 +47,13 @@ class AsyncRefundClientAPI(AsyncRequestAPI):
         return await self._post_request("/refund", data=data)
 
     async def list_refunds(
-            self,
-            reference: Optional[Union[str, None]] = None,
-            currency: Optional[Union[Currency, None]] = None,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        reference: Optional[Union[str, None]] = None,
+        currency: Optional[Union[Currency, None]] = None,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List refunds

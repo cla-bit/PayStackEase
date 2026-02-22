@@ -43,7 +43,9 @@ class PayStackBase:
         self.bulk_charges = bulk_charges.BulkChargesClientAPI()
         self.charges = charges.ChargesClientAPI()
         self.customers = customers.CustomerClientAPI()
-        self.dedicated_virtual_accounts = dedicated_virtual_accounts.DedicatedVirtualAccountClientAPI()
+        self.dedicated_virtual_accounts = (
+            dedicated_virtual_accounts.DedicatedVirtualAccountClientAPI()
+        )
         self.disputes = disputes.DisputesClientAPI()
         self.integration = integration.IntegrationClientAPI()
         self.miscellaneous = miscellaneous.MiscellaneousClientAPI()

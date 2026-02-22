@@ -9,6 +9,7 @@ class Event:
     """
     This represents the events from paystack
     """
+
     _type = Literal[
         "charge.dispute.create",
         "charge.dispute.remind",
@@ -33,7 +34,7 @@ class Event:
         "subscription.not_renew",
         "transfer.failed",
         "transfer.success",
-        "transfer.reversed"
+        "transfer.reversed",
     ]
 
     def __init__(self, event_type: _type, data: Dict[str, Any]):

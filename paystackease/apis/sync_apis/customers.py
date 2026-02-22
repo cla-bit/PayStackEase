@@ -18,12 +18,12 @@ class CustomerClientAPI(SyncRequestAPI):
     """
 
     def create_customer(
-            self, 
-            email: str, 
-            first_name: str, 
-            last_name: str, 
-            phone: str, 
-            metadata: Optional[Union[Dict[str, Any], None]] = None
+        self,
+        email: str,
+        first_name: str,
+        last_name: str,
+        phone: str,
+        metadata: Optional[Union[Dict[str, Any], None]] = None,
     ) -> PayStackResponse:
         """
         Create a customer
@@ -47,17 +47,17 @@ class CustomerClientAPI(SyncRequestAPI):
         return self._post_request("/customer", data=data)
 
     def validate_customer(
-            self,
-            email_or_code: str,
-            first_name: str,
-            last_name: str,
-            account_type: str,
-            country: str,
-            bank_code: str,
-            account_number: str,
-            bvn: str,
-            customer_id_num: Optional[Union[str, None]] = None,
-            middle_name: Optional[Union[str, None]] = None
+        self,
+        email_or_code: str,
+        first_name: str,
+        last_name: str,
+        account_type: str,
+        country: str,
+        bank_code: str,
+        account_number: str,
+        bvn: str,
+        customer_id_num: Optional[Union[str, None]] = None,
+        middle_name: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Validate a customer's identity
@@ -90,7 +90,7 @@ class CustomerClientAPI(SyncRequestAPI):
         return self._post_request(f"customer/{email_or_code}/identification", data=data)
 
     def whitelist_blacklist_customer(
-            self, email_or_code: str, risk_action: Optional[Union[RiskAction, None]] = None
+        self, email_or_code: str, risk_action: Optional[Union[RiskAction, None]] = None
     ) -> PayStackResponse:
         """
         Whitelist or blacklist a customer
@@ -101,10 +101,7 @@ class CustomerClientAPI(SyncRequestAPI):
         :return: The PayStackResponse from the API
         :rtype: PayStackResponse object
         """
-        data = {
-            "customer": email_or_code,
-            "risk_action": risk_action
-        }
+        data = {"customer": email_or_code, "risk_action": risk_action}
         return self._post_request("/customer/set_risk_action", data=data)
 
     def deactivate_authorization(self, authorization_code: str) -> PayStackResponse:
@@ -120,12 +117,12 @@ class CustomerClientAPI(SyncRequestAPI):
         return self._post_request("/customer/deactivate_authorization", data=data)
 
     def update_customer(
-            self,
-            customer_code: str,
-            first_name: Optional[Union[str, None]] = None,
-            last_name: Optional[Union[str, None]] = None,
-            phone: Optional[Union[str, None]] = None,
-            metadata: Optional[Union[Dict[str, Any], None]] = None
+        self,
+        customer_code: str,
+        first_name: Optional[Union[str, None]] = None,
+        last_name: Optional[Union[str, None]] = None,
+        phone: Optional[Union[str, None]] = None,
+        metadata: Optional[Union[Dict[str, Any], None]] = None,
     ) -> PayStackResponse:
         """
         Update a customer
@@ -159,11 +156,11 @@ class CustomerClientAPI(SyncRequestAPI):
         return self._get_request(f"/customer/{email_or_code}")
 
     def list_customers(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         List all customers

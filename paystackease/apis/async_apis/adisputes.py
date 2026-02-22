@@ -18,13 +18,13 @@ class AsyncDisputesClientAPI(AsyncRequestAPI):
     """
 
     async def list_disputes(
-            self,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            transaction_id: Optional[Union[str, None]] = None,
-            status: Optional[Union[DisputeStatus, None]] = None,
+        self,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        transaction_id: Optional[Union[str, None]] = None,
+        status: Optional[Union[DisputeStatus, None]] = None,
     ) -> PayStackResponse:
         """
         List disputes filed against you
@@ -78,10 +78,10 @@ class AsyncDisputesClientAPI(AsyncRequestAPI):
         return await self._get_request(f"/dispute/transaction/{transaction_id}")
 
     async def update_dispute(
-            self,
-            dispute_id: str,
-            refund_amount: int,
-            uploaded_filename: Optional[Union[str, None]] = None,
+        self,
+        dispute_id: str,
+        refund_amount: int,
+        uploaded_filename: Optional[Union[str, None]] = None,
     ) -> PayStackResponse:
         """
         Update details of a dispute
@@ -98,14 +98,14 @@ class AsyncDisputesClientAPI(AsyncRequestAPI):
         return await self._put_request(f"/dispute/{dispute_id}", data=data)
 
     async def add_evidence(
-            self,
-            dispute_id: str,
-            customer_email: str,
-            customer_name: str,
-            customer_phone: str,
-            service_details: str,
-            delivery_address: Optional[Union[str, None]] = None,
-            delivery_date: Optional[Union[date, None]] = None,
+        self,
+        dispute_id: str,
+        customer_email: str,
+        customer_name: str,
+        customer_phone: str,
+        service_details: str,
+        delivery_address: Optional[Union[str, None]] = None,
+        delivery_date: Optional[Union[date, None]] = None,
     ) -> PayStackResponse:
         """
         Add evidence to a dispute
@@ -135,7 +135,9 @@ class AsyncDisputesClientAPI(AsyncRequestAPI):
         }
         return await self._post_request(f"/dispute/{dispute_id}/evidence", data=data)
 
-    async def get_upload_url(self, dispute_id: str, uploaded_filename: str) -> PayStackResponse:
+    async def get_upload_url(
+        self, dispute_id: str, uploaded_filename: str
+    ) -> PayStackResponse:
         """
         Get upload url for dispute evidence
 
@@ -146,16 +148,18 @@ class AsyncDisputesClientAPI(AsyncRequestAPI):
         :rtype: PayStackResponse object
         """
         params = {"uploaded_filename": uploaded_filename}
-        return await self._get_request(f"/dispute/{dispute_id}/upload_url", params=params)
+        return await self._get_request(
+            f"/dispute/{dispute_id}/upload_url", params=params
+        )
 
     async def resolve_dispute(
-            self,
-            dispute_id: str,
-            resolution: Resolution,
-            message: str,
-            refund_amount: int,
-            uploaded_filename: str,
-            evidence: Optional[Union[int, None]] = None,
+        self,
+        dispute_id: str,
+        resolution: Resolution,
+        message: str,
+        refund_amount: int,
+        uploaded_filename: str,
+        evidence: Optional[Union[int, None]] = None,
     ) -> PayStackResponse:
         """
         Resolve a dispute
@@ -180,13 +184,13 @@ class AsyncDisputesClientAPI(AsyncRequestAPI):
         return await self._put_request(f"/dispute/{dispute_id}/resolve", data=data)
 
     async def export_disputes(
-            self,
-            per_page: Optional[Union[int, None]] = 50,
-            page: Optional[Union[int, None]] = 1,
-            from_date: Optional[Union[date, None]] = None,
-            to_date: Optional[Union[date, None]] = None,
-            transaction_id: Optional[Union[str, None]] = None,
-            status: Optional[Union[DisputeStatus, None]] = None,
+        self,
+        per_page: Optional[Union[int, None]] = 50,
+        page: Optional[Union[int, None]] = 1,
+        from_date: Optional[Union[date, None]] = None,
+        to_date: Optional[Union[date, None]] = None,
+        transaction_id: Optional[Union[str, None]] = None,
+        status: Optional[Union[DisputeStatus, None]] = None,
     ) -> PayStackResponse:
         """
         Export disputes
