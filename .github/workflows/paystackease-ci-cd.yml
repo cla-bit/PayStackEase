@@ -28,7 +28,7 @@ jobs:
     - name: Install poetry
     - uses: snok/install-poetry@v1
       with:
-        version: latest  # Use specific version instead of 'latest'
+        version: 2.3.2  # Use specific version instead of 'latest'
         virtualenvs-create: true
         virtualenvs-in-project: true
 
