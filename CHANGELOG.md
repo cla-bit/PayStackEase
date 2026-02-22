@@ -2,6 +2,21 @@
 
 
 
+## v2.3.2 (2026-02-22)
+
+### Fix
+
+* fix: implemented version numbering in the conf.py for automated version documentation. ([`a2afd67`](https://github.com/cla-bit/PayStackEase/commit/a2afd67bce92679024c6d882487ab76e613b1fee))
+
+### Refactor
+
+* refactor: reformatted paystackease-ci.yml ([`512efe8`](https://github.com/cla-bit/PayStackEase/commit/512efe8c109b9537db2ff263625628614e2415a9))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of github.com-personal:cla-bit/PayStackEase ([`c729cb9`](https://github.com/cla-bit/PayStackEase/commit/c729cb9077efac9696cd4122916f83217013ae2d))
+
+
 ## v2.3.1 (2026-02-22)
 
 ### Fix
@@ -12,6 +27,8 @@ refactor: updated bulk_charge documentation on both async and sync api.
 refactor: updated the api_bulk_charges module. ([`aee52a7`](https://github.com/cla-bit/PayStackEase/commit/aee52a7467852435bbbbfd6388e16ea72fd1b9ea))
 
 ### Refactor
+
+* refactor: reformatted paystackease-ci.yml ([`5ac8657`](https://github.com/cla-bit/PayStackEase/commit/5ac8657896df6c79bb7395d7094ee4761ace53c5))
 
 * refactor: reformatted paystackease-ci.yml
 refactor: reformatted paystackease-cd.yml
