@@ -9,15 +9,20 @@
 
 import os
 import sys
+import datetime
+
 
 sys.path.insert(0, os.path.abspath(".."))
+
+current_year = datetime.datetime.now().year
+
 
 # import the paystackease package
 import paystackease
 
 
 project = "PayStackEase"
-copyright = "2026, Peter Mbachu"
+copyright = f"{current_year}, Peter Mbachu"
 author = "Peter Mbachu"
 release = paystackease.__version__
 version = ".".join(release.split(".")[:2])
