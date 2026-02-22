@@ -20,7 +20,7 @@ project = "PayStackEase"
 copyright = "2026, Peter Mbachu"
 author = "Peter Mbachu"
 release = paystackease.__version__
-version = '.'.join(release.split('.')[:2])
+version = ".".join(release.split(".")[:2])
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
