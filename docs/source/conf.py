@@ -38,12 +38,6 @@ extensions = [
     "myst_parser",
 ]
 
-myst_enable_extensions = [
-    "colon_fence",  # allows ::: fenced blocks
-    "deflist",  # definition lists
-    "linkify",  # auto-detect links
-]
-
 templates_path = ["_templates"]
 exclude_patterns = []
 
