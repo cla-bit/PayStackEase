@@ -35,6 +35,13 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
+    "myst_parser",
+]
+
+myst_enable_extensions = [
+    "colon_fence",   # allows ::: fenced blocks
+    "deflist",       # definition lists
+    "linkify",       # auto-detect links
 ]
 
 templates_path = ["_templates"]
