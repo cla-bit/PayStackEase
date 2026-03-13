@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v2.3.6 (2026-03-13)
+
+### Bug Fixes
+
+- Included missing pydantic dependency.
+  ([`697b578`](https://github.com/cla-bit/PayStackEase/commit/697b578bacefe1aac488e8e7a9455fce1200d5d3))
+
+
 ## v2.3.5 (2026-02-22)
 
 
