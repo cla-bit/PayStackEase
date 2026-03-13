@@ -3,6 +3,7 @@
 
 ## v2.3.6 (2026-03-13)
 
+
 ### Bug Fixes
 
 - Included missing pydantic dependency.
