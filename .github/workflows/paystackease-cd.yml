@@ -62,7 +62,6 @@ jobs:
       with:
         repository-url: https://test.pypi.org/legacy/
         attestations: true
-#        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
     - name: Test install from TestPyPI
       if: steps.release.outputs.released == 'true'
