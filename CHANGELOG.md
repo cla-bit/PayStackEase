@@ -1,8 +1,41 @@
 # CHANGELOG
 
 
-## v2.3.6 (2026-03-13)
+## v2.3.7 (2026-03-13)
 
+### Bug Fixes
+
+- Checked if bump occurred.
+  ([`adf6387`](https://github.com/cla-bit/PayStackEase/commit/adf6387875cb4a54c4069ebc969d01e031626bf4))
+
+### Build System
+
+- Included myst library
+  ([`1764ed3`](https://github.com/cla-bit/PayStackEase/commit/1764ed349004d19fed9f6deb34c39be0fb22f229))
+
+- Used Trusted Publishing instad of testpypi authentication.
+  ([`9738069`](https://github.com/cla-bit/PayStackEase/commit/97380691890c551d5bfc34bb7eef44a0e0e1aa86))
+
+### Code Style
+
+- Added whitespace
+  ([`83ad2cc`](https://github.com/cla-bit/PayStackEase/commit/83ad2ccadef517205c28fa8a53fc8b2aa9c83519))
+
+- Used black for code linting
+  ([`ce86f27`](https://github.com/cla-bit/PayStackEase/commit/ce86f27c6a194b643b0a2846cc6aff020a856bcd))
+
+### Documentation
+
+- Added myst library and its extensions to include CHANGELOG.md
+  ([`6ab8a98`](https://github.com/cla-bit/PayStackEase/commit/6ab8a98d83129e3c8aa4c2cd935980709fc2be59))
+
+### Refactoring
+
+- Deprecated myst_enable_extensions list
+  ([`6b7d898`](https://github.com/cla-bit/PayStackEase/commit/6b7d898b14e35e551c65935c40be8bbecbbf4738))
+
+
+## v2.3.6 (2026-03-13)
 
 ### Bug Fixes
 
