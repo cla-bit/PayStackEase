@@ -89,6 +89,10 @@ If you want to download the sdist packages directly:
    :maxdepth: 1
    :caption: Contents:
 
+   bulkcharge
+   convert
+   datatype
+
    usage
    submodules
    paystackease.apis
